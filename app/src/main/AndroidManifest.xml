@@ -16,6 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Settings" />
+        <activity android:name=".AssignmentStart"></activity>
     </application>
 
 </manifest>
