@@ -17,7 +17,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".Settings" />
-        <activity android:name=".AssignmentStart"></activity>
+        <activity android:name=".AssignmentStart" />
+        <activity android:name=".TaskCreate" />
+        <activity android:name=".AssignmentDetails"></activity>
     </application>
 
 </manifest>
