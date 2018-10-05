@@ -82,7 +82,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textSize="18sp" />
 
             <ImageView
                 android:id="@+id/Task1Priority"
@@ -112,14 +113,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textSize="18sp" />
 
             <ImageView
                 android:id="@+id/Task2Priority"
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/PriorityHigh" />
+                app:srcCompat="@color/PriorityHigh" />
 
             <Button
                 android:id="@+id/Task2ToDetails"
@@ -142,7 +144,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textSize="18sp" />
 
             <ImageView
                 android:id="@+id/Task3Priority"
@@ -173,14 +176,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textSize="18sp" />
 
             <ImageView
                 android:id="@+id/Task4Priority"
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/PriorityMedium" />
+                app:srcCompat="@color/PriorityMedium" />
 
             <Button
                 android:id="@+id/Task4ToDetails"
@@ -203,14 +207,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textSize="18sp" />
 
             <ImageView
                 android:id="@+id/Task5Priority"
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/PriorityMedium" />
+                app:srcCompat="@color/PriorityMedium" />
 
             <Button
                 android:id="@+id/Task5ToDetails"
@@ -233,7 +238,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textSize="18sp" />
 
             <ImageView
                 android:id="@+id/Task6Priority"
@@ -263,14 +269,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textSize="18sp" />
 
             <ImageView
                 android:id="@+id/Task7Priority"
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/PriorityLow" />
+                app:srcCompat="@color/PriorityLow" />
 
             <Button
                 android:id="@+id/Task7ToDetails"
@@ -294,14 +301,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textSize="18sp" />
 
             <ImageView
                 android:id="@+id/Task8Priority"
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/PriorityLow" />
+                app:srcCompat="@color/PriorityLow" />
 
             <Button
                 android:id="@+id/Task8ToDetails"
