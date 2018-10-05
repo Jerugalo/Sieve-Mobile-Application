@@ -58,6 +58,7 @@
         android:ems="10"
         android:inputType="date"
         android:text="[Date]"
+        android:textAlignment="center"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
