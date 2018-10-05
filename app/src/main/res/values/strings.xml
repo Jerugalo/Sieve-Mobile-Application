@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Sieve Mobile Application</string>
+    <string name="ToDetails"><![CDATA[Details >]]></string>
 </resources>
