@@ -52,14 +52,13 @@
     <EditText
         android:id="@+id/DateView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:ems="10"
         android:inputType="date"
         android:text="[Date]"
         android:textAlignment="center"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteY="60dp" />
 
     <LinearLayout
         android:id="@+id/TaskContainer"
@@ -90,7 +89,8 @@
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@color/PriorityHigh" />
+                app:srcCompat="@color/PriorityHigh"
+                android:background="@drawable/taskBorder"/>
 
             <Button
                 android:id="@+id/Task1ToDetails"
@@ -106,7 +106,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            >
 
             <TextView
                 android:id="@+id/Task2Title"
@@ -121,7 +122,8 @@
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@color/PriorityHigh" />
+                app:srcCompat="@color/PriorityHigh"
+                android:background="@drawable/taskBorder"/>
 
             <Button
                 android:id="@+id/Task2ToDetails"
@@ -152,7 +154,8 @@
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@color/PriorityMedium" />
+                app:srcCompat="@color/PriorityMedium"
+                android:background="@drawable/taskBorder"/>
 
             <Button
                 android:id="@+id/Task3ToDetails"
@@ -184,7 +187,8 @@
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@color/PriorityMedium" />
+                app:srcCompat="@color/PriorityMedium"
+                android:background="@drawable/taskBorder"/>
 
             <Button
                 android:id="@+id/Task4ToDetails"
@@ -215,7 +219,8 @@
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@color/PriorityMedium" />
+                app:srcCompat="@color/PriorityMedium"
+                android:background="@drawable/taskBorder"/>
 
             <Button
                 android:id="@+id/Task5ToDetails"
@@ -246,7 +251,8 @@
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@color/PriorityLow" />
+                app:srcCompat="@color/PriorityLow"
+                android:background="@drawable/taskBorder"/>
 
             <Button
                 android:id="@+id/Task6ToDetails"
@@ -277,7 +283,8 @@
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@color/PriorityLow" />
+                app:srcCompat="@color/PriorityLow"
+                android:background="@drawable/taskBorder"/>
 
             <Button
                 android:id="@+id/Task7ToDetails"
@@ -302,14 +309,15 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="TextView"
-                android:textSize="18sp" />
+                android:textSize="18sp"/>
 
             <ImageView
                 android:id="@+id/Task8Priority"
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@color/PriorityLow" />
+                app:srcCompat="@color/PriorityLow"
+                android:background="@drawable/taskBorder"/>
 
             <Button
                 android:id="@+id/Task8ToDetails"
