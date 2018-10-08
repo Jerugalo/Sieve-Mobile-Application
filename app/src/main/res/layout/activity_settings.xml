@@ -6,4 +6,83 @@
     android:layout_height="match_parent"
     tools:context=".Settings">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/SettingsTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Settings"
+                android:textAlignment="center"
+                android:textSize="33sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="46dp" />
+
+            <Button
+                android:id="@+id/NotificationButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Notification Settings"
+                android:textAlignment="center" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:textAlignment="center" />
+
+            <Button
+                android:id="@+id/CreateScheduleButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Create a Schedule"
+                android:textAlignment="center" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:textAlignment="center" />
+
+            <Button
+                android:id="@+id/DisplayButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Display Settings"
+                android:textAlignment="center" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:textAlignment="center" />
+
+            <Button
+                android:id="@+id/OtherSettingsButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Other Settings"
+                android:textAlignment="center" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:textAlignment="center" />
+
+            <Button
+                android:id="@+id/AboutButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="About"
+                android:textAlignment="center" />
+
+        </LinearLayout>
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
