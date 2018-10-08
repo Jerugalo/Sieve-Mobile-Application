@@ -18,8 +18,8 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/MenuKey"
+            <Button
+                android:id="@+id/MenuButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -36,10 +36,10 @@
                 android:textAlignment="center"
                 android:textSize="33sp" />
 
-            <TextView
-                android:id="@+id/AddTask"
+            <Button
+                android:id="@+id/AddTaskButton"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="+"
                 android:textAlignment="center"
