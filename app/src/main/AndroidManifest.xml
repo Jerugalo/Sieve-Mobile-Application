@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HomePage">
+        <activity android:name=".HomePage"
+            android:theme="@style/SieveDefault">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,7 +20,8 @@
         <activity android:name=".Settings" />
         <activity android:name=".AssignmentStart" />
         <activity android:name=".TaskCreate" />
-        <activity android:name=".AssignmentDetails"></activity>
+        <activity android:name=".AssignmentDetails"></activity>\
+        <activity android:theme="@style/SieveDefault"></activity>
     </application>
 
 </manifest>
