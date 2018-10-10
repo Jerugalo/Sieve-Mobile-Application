@@ -6,4 +6,93 @@
     android:layout_height="match_parent"
     tools:context=".AssignmentDetails">
 
+    <LinearLayout
+        android:layout_width="369dp"
+        android:layout_height="554dp"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteX="7dp"
+        tools:layout_editor_absoluteY="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/AdditionalText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Additional Details"
+                android:textAlignment="center"
+                android:textSize="33sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:id="@+id/AssignmentText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Assignment Details"
+                android:textSize="33sp" />
+
+            <EditText
+                android:id="@+id/editText4"
+                android:layout_width="match_parent"
+                android:layout_height="126dp"
+                android:ems="10"
+                android:inputType="textMultiLine" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="36dp" />
+
+            <TextView
+                android:id="@+id/CustomPriorityText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Custom Priority"
+                android:textSize="33sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="161dp"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/1stPriorityBox"
+                    android:layout_width="94dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Not Important"
+                    android:textSize="18sp" />
+
+                <CheckBox
+                    android:id="@+id/2ndPriorityBox"
+                    android:layout_width="103dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Moderately Important"
+                    android:textSize="18sp" />
+
+                <CheckBox
+                    android:id="@+id/3rdPriorityBox"
+                    android:layout_width="95dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Very Important"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/ReturnButton"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="Return to Task Creation" />
+
+        </LinearLayout>
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
