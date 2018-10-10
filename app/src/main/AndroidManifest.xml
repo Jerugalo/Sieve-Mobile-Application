@@ -21,7 +21,6 @@
         <activity android:name=".AssignmentStart" />
         <activity android:name=".TaskCreate" />
         <activity android:name=".AssignmentDetails"></activity>\
-        <activity android:theme="@style/SieveDefault"></activity>
     </application>
 
 </manifest>
