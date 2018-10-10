@@ -58,6 +58,7 @@
         android:inputType="date"
         android:text="[Date]"
         android:textAlignment="center"
+        tools:layout_constraintTop_toBottomOf="@+id/TopBarContainer"
         tools:layout_editor_absoluteY="60dp" />
 
     <LinearLayout
