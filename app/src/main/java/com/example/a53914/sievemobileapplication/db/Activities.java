@@ -18,7 +18,7 @@ public class Activities {
     public String Class;//Class as in school, not programming
 
     @ColumnInfo(name = "date")
-    public Date DueDate;
+    public String DueDate;
 
     @ColumnInfo(name="timeEst")
     public float TimeEst;
