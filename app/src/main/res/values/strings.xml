@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">Sieve Mobile Application</string>
+    <string name="sieve_title">Sieve</string>
     <string name="ToDetails"><![CDATA[Details >]]></string>
+    <string name="menu_key">&#8801;</string>
+    <string name="create_task">+</string>
+    <string name="task1title">Task 1 Title</string>
+    <string name="task2title">Task 2 Title</string>
+    <string name="task3title">Task 3 Title</string>
+    <string name="task4title">Task 4 Title</string>
+    <string name="task5title">Task 5 Title</string>
+    <string name="task6title">Task 6 Title</string>
+    <string name="task7title">Task 7 Title</string>
+    <string name="task8title">Task 8 Title</string>
 </resources>
