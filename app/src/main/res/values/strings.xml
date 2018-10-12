@@ -4,6 +4,7 @@
     <string name="ToDetails"><![CDATA[Details >]]></string>
     <string name="menu_key">&#8801;</string>
     <string name="create_task">+</string>
+    <string name="date">[date]</string>
     <string name="task1title">Task 1 Title</string>
     <string name="task2title">Task 2 Title</string>
     <string name="task3title">Task 3 Title</string>
