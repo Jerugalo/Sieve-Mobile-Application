@@ -26,6 +26,7 @@
                 android:layout_height="57dp"
                 android:layout_marginTop="16dp"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="Adding Task..."
                 android:textAlignment="center"
                 android:textSize="33sp"
@@ -45,6 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="Name"
                 android:textSize="33sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/editText3"
@@ -58,6 +60,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_weight="1"
                 android:ems="10"
+                android:fontFamily="sans-serif-smallcaps"
                 android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView10"
@@ -75,6 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="Class"
                 android:textSize="33sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/planets_spinner"
@@ -102,8 +106,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="Habit"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/button2"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -112,8 +117,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="Assignment"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="184dp" />
@@ -124,8 +130,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="Project"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/button2"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -142,6 +149,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="16dp"
                 android:layout_weight="0"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="Priority"
                 android:textSize="33sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -167,6 +175,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_weight="0"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="Due Date"
                 android:textSize="33sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/editText3"
@@ -178,6 +187,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
+                android:fontFamily="sans-serif-smallcaps"
                 android:inputType="date" />
 
         </LinearLayout>
@@ -193,6 +203,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_weight="0"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="Notes and Details"
                 android:textSize="33sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/editText3"
@@ -204,17 +215,19 @@
                 android:layout_height="140dp"
                 android:layout_weight="0"
                 android:ems="10"
+                android:fontFamily="sans-serif-smallcaps"
                 android:inputType="textMultiLine" />
         </LinearLayout>
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="35dp" />
+            android:layout_height="34dp" />
 
         <Button
             android:id="@+id/button4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-smallcaps"
             android:text="Create Task" />
 
     </LinearLayout>
