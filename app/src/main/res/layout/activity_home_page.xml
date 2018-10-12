@@ -53,12 +53,13 @@
         android:id="@+id/DateView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:layout_weight="1"
         android:ems="10"
         android:inputType="date"
         android:text="[Date]"
         android:textAlignment="center"
-        tools:layout_editor_absoluteY="60dp" />
+        app:layout_constraintTop_toBottomOf="@+id/TopBarContainer" />
 
     <LinearLayout
         android:id="@+id/TaskContainer"
@@ -90,7 +91,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 app:srcCompat="@color/PriorityHigh"
-                android:background="@drawable/taskBorder"/>
+                android:background="@drawable/task_border"/>
 
             <Button
                 android:id="@+id/Task1ToDetails"
@@ -123,7 +124,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 app:srcCompat="@color/PriorityHigh"
-                android:background="@drawable/taskBorder"/>
+                android:background="@drawable/task_border"/>
 
             <Button
                 android:id="@+id/Task2ToDetails"
@@ -155,7 +156,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 app:srcCompat="@color/PriorityMedium"
-                android:background="@drawable/taskBorder"/>
+                android:background="@drawable/task_border"/>
 
             <Button
                 android:id="@+id/Task3ToDetails"
@@ -188,7 +189,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 app:srcCompat="@color/PriorityMedium"
-                android:background="@drawable/taskBorder"/>
+                android:background="@drawable/task_border"/>
 
             <Button
                 android:id="@+id/Task4ToDetails"
@@ -220,7 +221,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 app:srcCompat="@color/PriorityMedium"
-                android:background="@drawable/taskBorder"/>
+                android:background="@drawable/task_border"/>
 
             <Button
                 android:id="@+id/Task5ToDetails"
@@ -252,7 +253,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 app:srcCompat="@color/PriorityLow"
-                android:background="@drawable/taskBorder"/>
+                android:background="@drawable/task_border"/>
 
             <Button
                 android:id="@+id/Task6ToDetails"
@@ -284,7 +285,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 app:srcCompat="@color/PriorityLow"
-                android:background="@drawable/taskBorder"/>
+                android:background="@drawable/task_border"/>
 
             <Button
                 android:id="@+id/Task7ToDetails"
@@ -317,7 +318,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 app:srcCompat="@color/PriorityLow"
-                android:background="@drawable/taskBorder"/>
+                android:background="@drawable/task_border"/>
 
             <Button
                 android:id="@+id/Task8ToDetails"
