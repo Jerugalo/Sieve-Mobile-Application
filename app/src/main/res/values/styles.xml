@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="SieveDefault" parent="android:Theme.Material.Light.NoActionBar" >
+    <style name="SieveDefault" parent="Base.Theme.AppCompat.Light.DarkActionBar" >
         <item name="android:colorBackground">@color/background_material_light</item>
         <item name="android:colorAccent">@color/accent_material_light</item>
         <item name="android:colorPrimaryDark">@color/primary_dark_material_light</item>

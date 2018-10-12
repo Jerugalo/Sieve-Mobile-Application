@@ -13,14 +13,13 @@
             android:theme="@style/SieveDefault">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".Settings" />
         <activity android:name=".AssignmentStart" />
         <activity android:name=".TaskCreate" />
-        <activity android:name=".AssignmentDetails"></activity>\
+        <activity android:name=".AssignmentDetails"/>
     </application>
 
 </manifest>
