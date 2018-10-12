@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:layout_width="386dp"
-        android:layout_height="559dp"
+        android:layout_height="576dp"
         android:layout_marginBottom="8dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,13 +23,13 @@
             <TextView
                 android:id="@+id/AddingTask"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="57dp"
                 android:layout_marginTop="16dp"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="Adding Task..."
                 android:textAlignment="center"
-                android:textSize="24sp"
+                android:textSize="33sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -42,13 +42,13 @@
 
             <TextView
                 android:id="@+id/textView10"
-                android:layout_width="158dp"
+                android:layout_width="177dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="Name"
-                android:textSize="24sp"
+                android:textSize="33sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/editText3"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -74,13 +74,13 @@
 
             <TextView
                 android:id="@+id/textView11"
-                android:layout_width="158dp"
+                android:layout_width="199dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="Class"
-                android:textSize="24sp"
+                android:textSize="33sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/planets_spinner"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -151,7 +151,7 @@
                 android:layout_weight="0"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="Priority"
-                android:textSize="24sp"
+                android:textSize="33sp"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="256dp" />
 
@@ -177,7 +177,7 @@
                 android:layout_weight="0"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="Due Date"
-                android:textSize="24sp"
+                android:textSize="33sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/editText3"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -205,14 +205,14 @@
                 android:layout_weight="0"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="Notes and Details"
-                android:textSize="24sp"
+                android:textSize="33sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/editText3"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <EditText
                 android:id="@+id/editText2"
                 android:layout_width="match_parent"
-                android:layout_height="148dp"
+                android:layout_height="140dp"
                 android:layout_weight="0"
                 android:ems="10"
                 android:fontFamily="sans-serif-smallcaps"
@@ -221,7 +221,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="79dp" />
+            android:layout_height="35dp" />
 
         <Button
             android:id="@+id/button4"
