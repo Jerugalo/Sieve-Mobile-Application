@@ -8,10 +8,10 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="555dp"
+        android:layout_height="566dp"
         android:orientation="horizontal"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="12dp">
+        tools:layout_editor_absoluteY="1dp">
 
         <LinearLayout
             android:layout_width="match_parent"
