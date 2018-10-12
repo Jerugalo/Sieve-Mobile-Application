@@ -42,26 +42,21 @@
 
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/DateView"
+    <TextView
+        android:id="@+id/dateView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:ems="10"
-        android:inputType="date"
-        android:text="@string/date"
-        android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@+id/TopBar"
-        tools:layout_constraintTop_toBottomOf="@+id/TopBarContainer" />
+        android:text="@/string/date"
+        app:layout_constraintTop_toBottomOf="@+id/TopBar" />
 
     <LinearLayout
         android:id="@+id/TaskContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/DateView">
+        app:layout_constraintTop_toBottomOf="@+id/dateView">
 
         <LinearLayout
             android:id="@+id/Task1"
