@@ -18,7 +18,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/menu_key"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="&#8801;"
             android:textAlignment="center"
             android:textSize="40sp" />
 
@@ -27,6 +28,7 @@
             android:layout_width="164dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:fontFamily="sans-serif-smallcaps"
             android:text="Sieve"
             android:textAlignment="center"
             android:textSize="33sp" />
@@ -36,7 +38,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/create_task"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="+"
             android:textAlignment="center"
             android:textSize="40sp" />
 
@@ -47,8 +50,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+<<<<<<< HEAD
         android:text="@/string/date"
         app:layout_constraintTop_toBottomOf="@+id/TopBar" />
+=======
+        android:fontFamily="sans-serif-smallcaps"
+        android:inputType="date"
+        android:text="@string/date"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/TopBar"
+        tools:layout_constraintTop_toBottomOf="@+id/TopBarContainer" />
+>>>>>>> 53537d8e4059ca84dbcc44ffe0c88dbf4bf2de3d
 
     <LinearLayout
         android:id="@+id/TaskContainer"
@@ -70,6 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/task1title"
                 android:textSize="18sp" />
 
@@ -86,6 +99,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/ToDetails"
                 android:textAlignment="center" />
         </LinearLayout>
@@ -102,6 +116,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/task2title"
                 android:textSize="18sp" />
 
@@ -118,6 +133,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/ToDetails"
                 android:textAlignment="center" />
         </LinearLayout>
@@ -134,6 +150,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/task3title"
                 android:textSize="18sp" />
 
@@ -150,6 +167,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/ToDetails"
                 android:textAlignment="center" />
 
@@ -167,6 +185,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/task4title"
                 android:textSize="18sp" />
 
@@ -183,6 +202,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/ToDetails"
                 android:textAlignment="center" />
         </LinearLayout>
@@ -199,6 +219,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/task5title"
                 android:textSize="18sp" />
 
@@ -215,6 +236,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/ToDetails"
                 android:textAlignment="center" />
         </LinearLayout>
@@ -231,6 +253,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/task6title"
                 android:textSize="18sp" />
 
@@ -247,6 +270,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/ToDetails"
                 android:textAlignment="center" />
         </LinearLayout>
@@ -263,6 +287,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/task7title"
                 android:textSize="18sp" />
 
@@ -279,6 +304,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/ToDetails"
                 android:textAlignment="center" />
 
@@ -296,6 +322,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/task8title"
                 android:textSize="18sp" />
 
@@ -312,6 +339,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/ToDetails"
                 android:textAlignment="center" />
         </LinearLayout>

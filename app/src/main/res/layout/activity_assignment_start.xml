@@ -23,6 +23,7 @@
                 android:layout_width="258dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="You are now working on"
                 android:textAlignment="center"
                 android:textSize="33sp" />
@@ -35,6 +36,7 @@
                 android:id="@+id/TaskNameTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="Task Name"
                 android:textAlignment="center"
                 android:textSize="33sp" />
@@ -47,6 +49,7 @@
                 android:id="@+id/TimeBreakTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="Time Until Break / VRS"
                 android:textAlignment="center"
                 android:textSize="33sp" />
@@ -59,6 +62,7 @@
                 android:id="@+id/DetailsTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="See Details"
                 android:textSize="20sp" />
 
@@ -76,6 +80,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="sans-serif-smallcaps"
                     android:text="X" />
 
                 <Button
@@ -83,6 +88,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="sans-serif-smallcaps"
                     android:text="&#x2713;	" />
             </LinearLayout>
 
