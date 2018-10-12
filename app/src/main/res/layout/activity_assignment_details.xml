@@ -22,6 +22,7 @@
                 android:id="@+id/AdditionalText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="Additional Details"
                 android:textAlignment="center"
                 android:textSize="33sp" />
@@ -34,6 +35,7 @@
                 android:id="@+id/AssignmentText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="Assignment Details"
                 android:textSize="33sp" />
 
@@ -42,6 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="126dp"
                 android:ems="10"
+                android:fontFamily="sans-serif-smallcaps"
                 android:inputType="textMultiLine" />
 
             <Space
@@ -52,6 +55,7 @@
                 android:id="@+id/CustomPriorityText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="Custom Priority"
                 android:textSize="33sp" />
 
@@ -65,14 +69,16 @@
                     android:layout_width="94dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="sans-serif-smallcaps"
                     android:text="Not Important"
                     android:textSize="18sp" />
 
                 <CheckBox
                     android:id="@+id/PriorityBox1"
-                    android:layout_width="103dp"
+                    android:layout_width="108dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="sans-serif-smallcaps"
                     android:text="Moderately Important"
                     android:textSize="18sp" />
 
@@ -81,6 +87,7 @@
                     android:layout_width="95dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="sans-serif-smallcaps"
                     android:text="Very Important"
                     android:textSize="18sp" />
 
@@ -90,6 +97,7 @@
                 android:id="@+id/ReturnButton"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="Return to Task Creation" />
 
         </LinearLayout>

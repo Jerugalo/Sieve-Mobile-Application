@@ -20,6 +20,7 @@
                 android:id="@+id/SettingsTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="Settings"
                 android:textAlignment="center"
                 android:textSize="33sp" />
@@ -32,6 +33,7 @@
                 android:id="@+id/NotificationButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="Notification Settings"
                 android:textAlignment="center" />
 
@@ -44,6 +46,7 @@
                 android:id="@+id/CreateScheduleButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="Create a Schedule"
                 android:textAlignment="center" />
 
@@ -56,6 +59,7 @@
                 android:id="@+id/DisplayButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="Display Settings"
                 android:textAlignment="center" />
 
@@ -68,6 +72,7 @@
                 android:id="@+id/OtherSettingsButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="Other Settings"
                 android:textAlignment="center" />
 
@@ -80,6 +85,7 @@
                 android:id="@+id/AboutButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="About"
                 android:textAlignment="center" />
 
