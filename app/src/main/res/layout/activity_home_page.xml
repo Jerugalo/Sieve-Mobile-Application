@@ -21,6 +21,7 @@
             android:fontFamily="sans-serif-smallcaps"
             android:text="@string/menu_key"
             android:textAlignment="center"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="40sp" />
 
         <TextView
@@ -31,6 +32,7 @@
             android:fontFamily="sans-serif-smallcaps"
             android:text="Sieve"
             android:textAlignment="center"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="33sp" />
 
         <Button
@@ -41,6 +43,7 @@
             android:fontFamily="sans-serif-smallcaps"
             android:text="@string/create_task"
             android:textAlignment="center"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="40sp" />
 
     </LinearLayout>
@@ -78,6 +81,7 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/task1title"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp" />
 
             <ImageView
@@ -95,7 +99,8 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/ToDetails"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
         </LinearLayout>
 
         <LinearLayout
@@ -112,6 +117,7 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/task2title"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp" />
 
             <ImageView
@@ -129,7 +135,8 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/ToDetails"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
         </LinearLayout>
 
         <LinearLayout
@@ -146,6 +153,7 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/task3title"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp" />
 
             <ImageView
@@ -163,7 +171,8 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/ToDetails"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
         </LinearLayout>
 
@@ -181,6 +190,7 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/task4title"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp" />
 
             <ImageView
@@ -198,7 +208,8 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/ToDetails"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
         </LinearLayout>
 
         <LinearLayout
@@ -215,6 +226,7 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/task5title"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp" />
 
             <ImageView
@@ -232,7 +244,8 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/ToDetails"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
         </LinearLayout>
 
         <LinearLayout
@@ -249,6 +262,7 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/task6title"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp" />
 
             <ImageView
@@ -266,7 +280,8 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/ToDetails"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
         </LinearLayout>
 
         <LinearLayout
@@ -283,6 +298,7 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/task7title"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp" />
 
             <ImageView
@@ -300,7 +316,8 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/ToDetails"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
         </LinearLayout>
 
@@ -318,6 +335,7 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/task8title"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp" />
 
             <ImageView
@@ -335,7 +353,8 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/ToDetails"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
         </LinearLayout>
 
     </LinearLayout>

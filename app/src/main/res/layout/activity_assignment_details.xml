@@ -26,6 +26,7 @@
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="Additional Details"
                 android:textAlignment="center"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="33sp" />
 
             <Space
@@ -38,6 +39,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="Assignment Details"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="33sp" />
 
             <EditText
@@ -47,7 +49,8 @@
                 android:ems="10"
                 android:fontFamily="sans-serif-smallcaps"
                 android:inputType="textMultiLine"
-                android:text="@string/assignment_details" />
+                android:text="@string/assignment_details"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
             <Space
                 android:layout_width="match_parent"
@@ -59,6 +62,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="Custom Priority"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="33sp" />
 
             <LinearLayout
@@ -73,6 +77,7 @@
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-smallcaps"
                     android:text="@string/not_important"
+                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="18sp" />
 
                 <CheckBox
@@ -82,6 +87,7 @@
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-smallcaps"
                     android:text="@string/moderately_important"
+                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="18sp" />
 
                 <CheckBox
@@ -91,6 +97,7 @@
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-smallcaps"
                     android:text="Very Important"
+                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
                     android:textSize="18sp" />
 
             </LinearLayout>
@@ -100,7 +107,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:fontFamily="sans-serif-smallcaps"
-                android:text="Return to Task Creation" />
+                android:text="Return to Task Creation"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
         </LinearLayout>
     </LinearLayout>
