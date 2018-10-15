@@ -7,11 +7,12 @@
     tools:context=".AssignmentDetails">
 
     <LinearLayout
-        android:layout_width="369dp"
-        android:layout_height="554dp"
+        android:layout_width="383dp"
+        android:layout_height="557dp"
+        android:layout_marginTop="8dp"
         android:orientation="horizontal"
-        tools:layout_editor_absoluteX="7dp"
-        tools:layout_editor_absoluteY="5dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -45,7 +46,8 @@
                 android:layout_height="126dp"
                 android:ems="10"
                 android:fontFamily="sans-serif-smallcaps"
-                android:inputType="textMultiLine" />
+                android:inputType="textMultiLine"
+                android:text="@string/assignment_details" />
 
             <Space
                 android:layout_width="match_parent"
@@ -70,7 +72,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-smallcaps"
-                    android:text="Not Important"
+                    android:text="@string/not_important"
                     android:textSize="18sp" />
 
                 <CheckBox
@@ -79,7 +81,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-smallcaps"
-                    android:text="Moderately Important"
+                    android:text="@string/moderately_important"
                     android:textSize="18sp" />
 
                 <CheckBox

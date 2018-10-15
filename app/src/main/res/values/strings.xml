@@ -14,4 +14,8 @@
     <string name="task7title">Task 7 Title</string>
     <string name="task8title">Task 8 Title</string>
     <string name="TaskName">Task Name</string>
+    <string name="assignment_details">Assignment Details</string>
+    <string name="not_important">Not Important</string>
+    <string name="moderately_important">Moderately Important</string>
+    <string name="very_important">Very Important</string>
 </resources>

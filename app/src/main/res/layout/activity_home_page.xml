@@ -51,14 +51,17 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:text="@/string/date"
+        android:textAlignment="center"
         app:layout_constraintTop_toBottomOf="@+id/TopBar" />
 
     <LinearLayout
         android:id="@+id/TaskContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginStart="8dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dateView">
 
         <LinearLayout
