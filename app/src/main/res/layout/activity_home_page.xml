@@ -55,7 +55,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:text="@/string/date"
+        android:text="@string/date"
         android:textAlignment="center"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         app:layout_constraintTop_toBottomOf="@+id/TopBar" />
