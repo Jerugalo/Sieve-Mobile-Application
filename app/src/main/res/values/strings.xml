@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Sieve Mobile Application</string>
     <string name="ToDetails"><![CDATA[Details >]]></string>
+    <string-array name="classes_array">
+        <item>Math</item>
+        <item>English</item>
+        <item>Other Class</item>
+    </string-array>
 </resources>

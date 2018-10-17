@@ -21,7 +21,7 @@ public interface ActivitiesDao {
     //Activities findByName(String first, String last);
 
     @Insert
-    void insertAll(Activities... activities);
+    void insertAll(Activities activities);
 
     @Delete
     void delete(Activities user);
