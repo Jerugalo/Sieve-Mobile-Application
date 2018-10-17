@@ -22,4 +22,5 @@ public class HomePage extends AppCompatActivity {
         Intent toAssignmentCreation = new Intent(this, TaskCreate.class);
         startActivity(toAssignmentCreation);
     }
+
 }
