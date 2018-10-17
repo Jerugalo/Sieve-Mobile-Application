@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
 
 
 @Entity
-public class Activities {
+public class Task {
     @PrimaryKey
     @NonNull
     private float Priority;
