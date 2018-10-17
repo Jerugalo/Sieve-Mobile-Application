@@ -12,6 +12,7 @@ import android.widget.Spinner;
 
 import com.example.a53914.sievemobileapplication.db.Task;
 import com.example.a53914.sievemobileapplication.db.AppDatabase;
+import com.example.a53914.sievemobileapplication.db.TaskDao;
 
 public class TaskCreate extends AppCompatActivity {
     int priorityID;
@@ -39,6 +40,7 @@ public class TaskCreate extends AppCompatActivity {
 
             }
         });
+
         Spinner classChooser = (Spinner) findViewById(R.id.planets_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.classes_array,android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -52,22 +54,30 @@ public class TaskCreate extends AppCompatActivity {
             }
         });
     }
-    public void AddToDb (View view) {
-        Task task = new Task();
-        task.setPriority(priorityID);
+    class DBAddition implements Runnable {
+        public void run() {
+            final TaskDao taskDao = null;
+            Task task = new Task();
+            task.setPriority(priorityID);
 
-        EditText nameText = (EditText) findViewById(R.id.NameAddText);
-        task.setNameID(nameText.getText().toString());
+            EditText nameText = (EditText) findViewById(R.id.NameAddText);
+            task.setNameID(nameText.getText().toString());
 
-        task.setClassroom(classes);
+            task.setClassroom(classes);
 
-        //task.setDueDate();
+            //task.setDueDate();
 
-        EditText notesText = (EditText) findViewById(R.id.NotesText);
-        task.setNotes(notesText.getText().toString());
+            EditText notesText = (EditText) findViewById(R.id.NotesText);
+            task.setNotes(notesText.getText().toString());
 
-        task.setTypeID(typeID);
+            task.setTypeID(typeID);
+            taskDao.insertAll(task);
+        }
+    }
 
+    public void AddToDB(View view){
+        DBAddition a =new DBAddition();
+        new Thread(a).start();
     }
     public void HabitClick(View view){
         typeID=0;
