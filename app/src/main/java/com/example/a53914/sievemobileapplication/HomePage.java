@@ -19,7 +19,7 @@ public class HomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
         AppDatabase db = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "database-name").build();
+        AppDatabase.class, "Activities").build();
 
         // Lookup the recyclerview in activity layout
         RecyclerView rvContacts = (RecyclerView) findViewById(R.id.TaskList);
@@ -34,4 +34,5 @@ public class HomePage extends AppCompatActivity {
         rvContacts.setLayoutManager(new LinearLayoutManager(this));
         // That's all!
     }
+
 }
