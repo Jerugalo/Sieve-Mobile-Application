@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 
-import com.example.a53914.sievemobileapplication.db.Activities;
+import com.example.a53914.sievemobileapplication.db.Task;
 import com.example.a53914.sievemobileapplication.db.AppDatabase;
 
 public class TaskCreate extends AppCompatActivity {
@@ -21,7 +21,7 @@ public class TaskCreate extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_create);
-        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Activities").build();
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Task").build();
         SeekBar slidey = (SeekBar) findViewById(R.id.TaskCreateSeekbar);
         slidey.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -53,20 +53,20 @@ public class TaskCreate extends AppCompatActivity {
         });
     }
     public void AddToDb (View view) {
-        Activities activities = new Activities();
-        activities.setPriority(priorityID);
+        Task task = new Task();
+        task.setPriority(priorityID);
 
         EditText nameText = (EditText) findViewById(R.id.NameAddText);
-        activities.setNameID(nameText.getText().toString());
+        task.setNameID(nameText.getText().toString());
 
-        activities.setClassroom(classes);
+        task.setClassroom(classes);
 
-        //activities.setDueDate();
+        //task.setDueDate();
 
         EditText notesText = (EditText) findViewById(R.id.NotesText);
-        activities.setNotes(notesText.getText().toString());
+        task.setNotes(notesText.getText().toString());
 
-        activities.setTypeID(typeID);
+        task.setTypeID(typeID);
 
     }
     public void HabitClick(View view){
