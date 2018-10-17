@@ -10,7 +10,7 @@ import java.util.Date;
 public class Activities {
     @PrimaryKey
     public float Priority;
-
+    /*
     @ColumnInfo(name = "name")
     public String Name;
 
@@ -25,7 +25,7 @@ public class Activities {
 
     @ColumnInfo(name="notes")
     public String Notes;
-
+*/
     // Getters and setters are ignored for brevity,
     // but they're required for Room to work.
 }

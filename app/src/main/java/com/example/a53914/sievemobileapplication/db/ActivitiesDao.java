@@ -10,7 +10,7 @@ import java.util.List;
 
 @Dao
 public interface ActivitiesDao {
-    @Query("SELECT * FROM activities")
+    /*@Query("SELECT * FROM activities")
     List<Activities> getAll();
 
     @Query("SELECT * FROM activities WHERE uid IN (:userIds)")
@@ -25,4 +25,5 @@ public interface ActivitiesDao {
 
     @Delete
     void delete(Activities user);
+    */
 }
