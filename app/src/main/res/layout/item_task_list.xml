@@ -16,29 +16,29 @@
         app:layout_constraintTop_toBottomOf="@+id/DateView">
 
         <TextView
-            android:id="@+id/TaskTitle"
+            android:id="@+id/Title"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="@string/task1title"
             android:textSize="18sp" />
 
         <ImageView
-            android:id="@+id/TaskPriority"
+            android:id="@+id/Priority"
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/task_border"
+            app:color="@color/PriorityHigh"
             app:srcCompat="@color/PriorityHigh" />
 
         <Button
-            android:id="@+id/TaskToDetails"
+            android:id="@+id/ToDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="@string/ToDetails"
+            android:text="Details"
             android:textAlignment="center" />
     </LinearLayout>
 

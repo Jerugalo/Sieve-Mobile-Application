@@ -10,4 +10,10 @@
     <color name="PriorityHigh">#cc5e64</color>
     <color name="PriorityMedium">#d09060</color>
     <color name="PriorityLow">#57aa4e</color>
+
+    <array name="priority">
+        <item>@color/PriorityLow</item>
+        <item>@color/PriorityMedium</item>
+        <item>@color/PriorityHigh</item>
+    </array>
 </resources>

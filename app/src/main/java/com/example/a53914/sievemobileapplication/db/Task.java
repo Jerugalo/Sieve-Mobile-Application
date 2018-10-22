@@ -10,7 +10,7 @@ import android.support.annotation.NonNull;
 public class Task {
     @PrimaryKey
     @NonNull
-    private float Priority;
+    private int Priority;
     @ColumnInfo(name = "name")
     private String NameID;
 
@@ -30,7 +30,7 @@ public class Task {
 
     //Below Are Getters and Setters
     public float getPriority(){ return Priority; }
-    public void setPriority(float priority) { Priority = priority; }
+    public void setPriority(int priority) { Priority = priority; }
 
     public String getNameID() { return NameID; }
     public void setNameID(String name) { NameID = name; }

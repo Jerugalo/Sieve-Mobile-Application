@@ -1,6 +1,10 @@
 package com.example.a53914.sievemobileapplication;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
+import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,14 +13,16 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.a53914.sievemobileapplication.db.;
+import com.example.a53914.sievemobileapplication.db.Task;
 
 import java.util.List;
 
 public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHolder>{
+
+
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView taskTitleTextView;
-        public ImageView taskPriorityImage;
+        public TextView taskTitle;
+        public ImageView taskPriority;
         public Button detailsButton;
 
         public ViewHolder(View itemView) {
@@ -24,8 +30,8 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
             // to access the context from any ViewHolder instance.
             super(itemView);
 
-            taskTitleTextView = (TextView) itemView.findViewById(R.id.TaskTitle);
-            taskPriorityImage = (ImageView) itemView.findViewById(R.id.TaskPriority);
+            taskTitle = (TextView) itemView.findViewById(R.id.TaskTitle);
+            taskPriority = (ImageView) itemView.findViewById(R.id.TaskPriority);
             detailsButton = (Button) itemView.findViewById(R.id.TaskToDetails);
         }
     }
@@ -57,11 +63,12 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
         Task task = mTasks.get(position);
 
         // Set item views based on your views and data model
-        TextView textView = viewHolder.taskTitleTextView;
-        textView.setText(task.getName());
-        Button button = viewHolder.detailsButton;
-        button.setText(task.isOnline() ? "Message" : "Offline");
-        button.setEnabled(task.isOnline());
+        TextView textView = viewHolder.taskTitle;
+        textView.setText(task.getNameID());
+
+        ImageView imageView = viewHolder.taskPriority;
+        TypedArray mPriority = ctx.getResources().obtainTypedArray(R.array.priority);
+        imageView.setImageResource(mPriority[task.getPriority()]);
     }
 
     // Returns the total count of items in the list
