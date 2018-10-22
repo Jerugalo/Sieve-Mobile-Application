@@ -4,10 +4,11 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="background_material_light_1">#6ba5a1</color>
-    <color name="background_material_light">#99bfbc</color>
+    <color name="background_material_light">#84cdc8</color>
     <color name="accent_material_light">#91d58a</color>
-    <color name="primary_dark_material_light">#205753</color>
+    <color name="primary_dark_material_light">#3b807b</color>
     <color name="PriorityHigh">#cc5e64</color>
     <color name="PriorityMedium">#d09060</color>
     <color name="PriorityLow">#57aa4e</color>
+    <color name="legacy_light_primary">#6ba5a1</color>
 </resources>
