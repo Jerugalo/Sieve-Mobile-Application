@@ -1,5 +1,5 @@
 <resources>
-    <style name="SieveDefault" parent="Theme.AppCompat.Light.NoActionBar" >
+    <style name="SieveDefault" parent="android:Theme.Translucent.NoTitleBar" >
         <item name="android:colorBackground">@color/backgroundColor</item>
         <item name="android:colorButtonNormal">@color/buttonColor</item>
         <item name="android:colorPrimary">@color/legacy_primary</item>

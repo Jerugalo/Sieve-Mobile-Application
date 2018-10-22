@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--THIS PAGE IS FOR DISPLAYING DATA ONLY-->
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -32,7 +31,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="10dp" />
+                android:layout_height="40dp" />
 
             <TextView
                 android:id="@+id/AssignmentText"
@@ -41,7 +40,7 @@
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="Assignment Details"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="24sp" />
+                android:textSize="33sp" />
 
             <EditText
                 android:id="@+id/editText4"
@@ -64,7 +63,7 @@
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="Custom Priority"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="24sp" />
+                android:textSize="33sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -108,8 +107,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:fontFamily="sans-serif-smallcaps"
-                android:onClick="toHomePage"
-                android:text="@string/returnHome"
+                android:text="Return to Task Creation"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
         </LinearLayout>

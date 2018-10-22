@@ -22,10 +22,5 @@ public class HomePage extends AppCompatActivity {
         Intent toAssignmentCreation = new Intent(this, TaskCreate.class);
         startActivity(toAssignmentCreation);
     }
-    //Function to send user to Assignment Details
-    public void toAssignmentDetails(View view){
-        Intent toAssignmentDetails = new Intent(this, AssignmentDetails.class);
-        startActivity(toAssignmentDetails);
-    }
 
 }

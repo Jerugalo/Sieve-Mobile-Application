@@ -101,7 +101,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
-                android:onClick="toAssignmentDetails"
                 android:text="@string/ToDetails"
                 android:textAlignment="center"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused" />
@@ -138,7 +137,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
-                android:onClick="toAssignmentDetails"
                 android:text="@string/ToDetails"
                 android:textAlignment="center"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused" />
@@ -175,7 +173,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
-                android:onClick="toAssignmentDetails"
                 android:text="@string/ToDetails"
                 android:textAlignment="center"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused" />
@@ -213,7 +210,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
-                android:onClick="toAssignmentDetails"
                 android:text="@string/ToDetails"
                 android:textAlignment="center"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused" />
@@ -250,7 +246,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
-                android:onClick="toAssignmentDetails"
                 android:text="@string/ToDetails"
                 android:textAlignment="center"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused" />
@@ -287,7 +282,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
-                android:onClick="toAssignmentDetails"
                 android:text="@string/ToDetails"
                 android:textAlignment="center"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused" />
@@ -324,7 +318,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
-                android:onClick="toAssignmentDetails"
                 android:text="@string/ToDetails"
                 android:textAlignment="center"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused" />
@@ -362,7 +355,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
-                android:onClick="toAssignmentDetails"
                 android:text="@string/ToDetails"
                 android:textAlignment="center"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused" />
