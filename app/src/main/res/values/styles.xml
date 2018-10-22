@@ -8,10 +8,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="SieveDefault" parent="Base.Theme.AppCompat.Light.DarkActionBar" >
+    <style name="SieveDefault" parent="android:Theme.Light.NoTitleBar" >
         <item name="android:colorBackground">@color/background_material_light</item>
         <item name="android:colorAccent">@color/accent_material_light</item>
         <item name="android:colorPrimaryDark">@color/primary_dark_material_light</item>
+        <item name="android:colorPrimary">@color/legacy_light_primary</item>
+        <item name="android:textColorPrimaryInverse">
+            @color/common_google_signin_btn_text_dark_focused
+        </item>
     </style>
 
 </resources>
