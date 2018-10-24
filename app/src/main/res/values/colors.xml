@@ -9,4 +9,16 @@
     <color name="priorityMed">#D09060</color>
     <color name="priorityLow">#57AA4E</color>
 
+    <color name="PriorityHigh">#cc5e64</color>
+    <color name="PriorityMedium">#d09060</color>
+    <color name="PriorityLow">#57aa4e</color>
+
+    <array name="priority">
+        <item>@color/priorityLow</item>
+        <item>@color/priorityMed</item>
+        <item>@color/priorityHigh</item>
+    </array>
+
 </resources>
+
+

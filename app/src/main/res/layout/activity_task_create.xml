@@ -50,20 +50,20 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView10"
                 android:layout_width="177dp"
+                android:id="@+id/NameText"
+
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="Name"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="33sp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/editText3"
+                app:layout_constraintBaseline_toBaselineOf="@+id/NameAddText"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/NameAddText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
@@ -74,7 +74,7 @@
                 android:inputType="textPersonName"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView10"
+                app:layout_constraintStart_toEndOf="@+id/NameText"
                 tools:layout_editor_absoluteY="64dp" />
         </LinearLayout>
 
@@ -84,8 +84,8 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView11"
                 android:layout_width="199dp"
+                android:id="@+id/ClassTextNE"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_weight="1"
@@ -102,8 +102,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_weight="1"
-                app:layout_constraintEnd_toEndOf="@+id/editText3"
-                app:layout_constraintStart_toEndOf="@+id/textView11"
+                app:layout_constraintEnd_toEndOf="@+id/NameAddText"
+                app:layout_constraintStart_toEndOf="@+id/ClassTextNE"
                 tools:layout_editor_absoluteY="144dp" />
         </LinearLayout>
 
@@ -113,24 +113,26 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/habitButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
+                android:onClick="HabitClick"
                 android:text="Habit"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="14sp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/button2"
+                app:layout_constraintBaseline_toBaselineOf="@+id/assignButton"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/assignButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
+                android:onClick="AssignClick"
                 android:text="Assignment"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="14sp"
@@ -139,16 +141,17 @@
                 tools:layout_editor_absoluteY="184dp" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/projectButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
+                android:onClick="ProjectClick"
                 android:text="Project"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="14sp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/button2"
+                app:layout_constraintBaseline_toBaselineOf="@+id/assignButton"
                 app:layout_constraintEnd_toEndOf="parent" />
 
         </LinearLayout>
@@ -172,11 +175,12 @@
                 tools:layout_editor_absoluteY="256dp" />
 
             <SeekBar
-                android:id="@+id/seekBar3"
+                android:id="@+id/TaskCreateSeekbar"
                 style="@android:style/Widget.Material.SeekBar.Discrete"
                 android:layout_width="207dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0" />
+                android:layout_weight="0"
+                android:scrollbars="horizontal" />
 
         </LinearLayout>
 
@@ -195,7 +199,7 @@
                 android:text="Due Date"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="33sp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/editText3"
+                app:layout_constraintBaseline_toBaselineOf="@+id/NameAddText"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <EditText
@@ -225,11 +229,11 @@
                 android:text="Notes and Details"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="33sp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/editText3"
+                app:layout_constraintBaseline_toBaselineOf="@+id/NameAddText"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/NotesText"
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
                 android:layout_weight="0"
@@ -244,12 +248,13 @@
             android:layout_height="34dp" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/CreateButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-smallcaps"
             android:text="Create Task"
             android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+            android:onClick="AddToDb"
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
