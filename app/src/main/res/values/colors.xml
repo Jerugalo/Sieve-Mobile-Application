@@ -5,6 +5,6 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorBackground">#6BA5A1</color>
     <color name="priorityHigh"></color>
-    <color name="priorityHigh"></color>
-    <color name="priorityHigh"></color>
+    <color name="priorityMed"></color>
+    <color name="priorityLow"></color>
 </resources>
