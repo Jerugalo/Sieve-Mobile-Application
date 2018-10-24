@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimary">#3b807b</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="colorBackground">#6BA5A1</color>
-    <color name="priorityHigh"></color>
-    <color name="priorityMed"></color>
-    <color name="priorityLow"></color>
+    <color name="colorBackground">#95d3cf</color>
+    <color name="priorityHigh">CC5E64</color>
+    <color name="priorityMed">D09060</color>
+    <color name="priorityLow">57AA4E</color>
 </resources>
