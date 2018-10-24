@@ -29,7 +29,7 @@ public class Task {
     private int TypeID;//0 is habit, 1 is assignment, 2 is project
 
     //Below Are Getters and Setters
-    public float getPriority(){ return Priority; }
+    public int getPriority(){ return Priority; }
     public void setPriority(int priority) { Priority = priority; }
 
     public String getNameID() { return NameID; }

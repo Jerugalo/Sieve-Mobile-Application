@@ -30,9 +30,9 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
             // to access the context from any ViewHolder instance.
             super(itemView);
 
-            taskTitle = (TextView) itemView.findViewById(R.id.TaskTitle);
-            taskPriority = (ImageView) itemView.findViewById(R.id.TaskPriority);
-            detailsButton = (Button) itemView.findViewById(R.id.TaskToDetails);
+            taskTitle = (TextView) itemView.findViewById(R.id.Title);
+            taskPriority = (ImageView) itemView.findViewById(R.id.Priority);
+            detailsButton = (Button) itemView.findViewById(R.id.ToDetails);
         }
     }
 
@@ -67,8 +67,9 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
         textView.setText(task.getNameID());
 
         ImageView imageView = viewHolder.taskPriority;
-        TypedArray mPriority = ctx.getResources().obtainTypedArray(R.array.priority);
-        imageView.setImageResource(mPriority[task.getPriority()]);
+        TypedArray mPriority = App.context().getResources().obtainTypedArray(R.array.priority);
+        imageView.setImageResource(mPriority.getResourceId(task.getPriority(), -1));
+        mPriority.recycle();
     }
 
     // Returns the total count of items in the list
