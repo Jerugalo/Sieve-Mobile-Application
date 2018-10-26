@@ -6,14 +6,6 @@
     <string name="create_task">+</string>
     <string name="date">[date]</string>
     <string name="returnHome">&#60; Back</string>
-    <string name="task1title">Task 1 Title</string>
-    <string name="task2title">Task 2 Title</string>
-    <string name="task3title">Task 3 Title</string>
-    <string name="task4title">Task 4 Title</string>
-    <string name="task5title">Task 5 Title</string>
-    <string name="task6title">Task 6 Title</string>
-    <string name="task7title">Task 7 Title</string>
-    <string name="task8title">Task 8 Title</string>
     <string name="TaskName">Task Name</string>
     <string name="assignment_details">Assignment Details</string>
     <string name="not_important">Not Important</string>
