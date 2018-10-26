@@ -18,5 +18,6 @@
     <color name="priorityHigh2">#B55F79</color>
     <color name="priorityMed2">#724A87</color>
     <color name="priorityLow2">#437F77</color>
+    <color name="status_bar">#768bbd</color>
 
 </resources>

@@ -21,7 +21,7 @@
         <item name="primary_material_light2">#768bbd</item>
         <item name="background_material_light2">#7c9be1</item>
         <item name="primary_dark_material_light2">#526aa4</item>
-
+        <item name="android:statusBarColor">@color/status_bar</item>
     </style>
 
 </resources>
