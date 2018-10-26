@@ -8,5 +8,6 @@
     <color name="priorityHigh">#CC5E64</color>
     <color name="priorityMed">#D09060</color>
     <color name="priorityLow">#57AA4E</color>
+    <color name="colorSecondary">#6ba5a1</color>
 
 </resources>
