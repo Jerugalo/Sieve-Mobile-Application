@@ -9,9 +9,14 @@
     <color name="priorityMed">#D09060</color>
     <color name="priorityLow">#57AA4E</color>
     <color name="colorSecondary">#6ba5a1</color>
-    <color name="primary_material_light">#768bbd</color>
-    <color name="background_material_light">#7c9be1</color>
-    <color name="primary_dark_material_light">#526aa4</color>
-    <color name="accent_material_light">#9766b0</color>
+
+    <!--Second theme colors -->
+    <color name="primary_material_light2">#768bbd</color>
+    <color name="background_material_light2">#7c9be1</color>
+    <color name="primary_dark_material_light2">#526aa4</color>
+    <color name="accent_material_light2">#9766b0</color>
+    <color name="priorityHigh2">#B55F79</color>
+    <color name="priorityMed2">#724A87</color>
+    <color name="priorityLow2">#437F77</color>
 
 </resources>
