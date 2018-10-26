@@ -6,15 +6,12 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
 
-
 @Database(entities = {Task.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
-    public abstract TaskDao getTaskDao();
-
     private static AppDatabase taskDB;
 
-    public static AppDatabase getInstance(Context context){
-        if (null == taskDB){
+    public static AppDatabase getInstance(Context context) {
+        if (null == taskDB) {
             taskDB = buildDatabaseInstance(context);
         }
         return taskDB;
@@ -28,7 +25,9 @@ public abstract class AppDatabase extends RoomDatabase {
                 .allowMainThreadQueries().build();
     }
 
-    public void cleanUp(){
+    public abstract TaskDao getTaskDao();
+
+    public void cleanUp() {
         taskDB = null;
     }
 }

@@ -1,7 +1,7 @@
 package com.example.a53914.sievemobileapplication;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 public class AssignmentStart extends AppCompatActivity {
 

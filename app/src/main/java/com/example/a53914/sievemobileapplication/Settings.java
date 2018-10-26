@@ -1,9 +1,11 @@
 package com.example.a53914.sievemobileapplication;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+
+import com.example.a53914.sievemobileapplication.hp.HomePage;
 
 public class Settings extends AppCompatActivity {
 
@@ -12,8 +14,9 @@ public class Settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
     }
+
     //Returning Home
-    public void toHomePage(View view){
+    public void toHomePage(View view) {
         Intent toHomePage = new Intent(this, HomePage.class);
         startActivity(toHomePage);
     }

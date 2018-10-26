@@ -1,10 +1,8 @@
-package com.example.a53914.sievemobileapplication;
+package com.example.a53914.sievemobileapplication.hp;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.graphics.Color;
-import android.support.v4.content.ContextCompat;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,28 +11,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.a53914.sievemobileapplication.App;
+import com.example.a53914.sievemobileapplication.R;
 import com.example.a53914.sievemobileapplication.db.Task;
 
 import java.util.List;
 
-public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHolder>{
-
-
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView taskTitle;
-        public ImageView taskPriority;
-        public Button detailsButton;
-
-        public ViewHolder(View itemView) {
-            // Stores the itemView in a public final member variable that can be used
-            // to access the context from any ViewHolder instance.
-            super(itemView);
-
-            taskTitle = (TextView) itemView.findViewById(R.id.Title);
-            taskPriority = (ImageView) itemView.findViewById(R.id.Priority);
-            detailsButton = (Button) itemView.findViewById(R.id.ToDetails);
-        }
-    }
+public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHolder> {
 
     private List<Task> mTasks;
 
@@ -43,8 +26,9 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
     }
 
     // Usually involves inflating a layout from XML and returning the holder
+    @NonNull
     @Override
-    public TaskListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public TaskListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
@@ -52,13 +36,12 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
         View contactView = inflater.inflate(R.layout.item_task_list, parent, false);
 
         // Return a new holder instance
-        ViewHolder viewHolder = new ViewHolder(contactView);
-        return viewHolder;
+        return new ViewHolder(contactView);
     }
 
     // Involves populating data into the item through holder
     @Override
-    public void onBindViewHolder(TaskListAdapter.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull TaskListAdapter.ViewHolder viewHolder, int position) {
         // Get the data model based on position
         Task task = mTasks.get(position);
 
@@ -76,5 +59,21 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
     @Override
     public int getItemCount() {
         return mTasks.size();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        public TextView taskTitle;
+        public ImageView taskPriority;
+        public Button detailsButton;
+
+        public ViewHolder(View itemView) {
+            // Stores the itemView in a public final member variable that can be used
+            // to access the context from any ViewHolder instance.
+            super(itemView);
+
+            taskTitle = itemView.findViewById(R.id.Title);
+            taskPriority = itemView.findViewById(R.id.Priority);
+            detailsButton = itemView.findViewById(R.id.ToDetails);
+        }
     }
 }
