@@ -11,15 +11,14 @@
     <color name="colorSecondary">#6ba5a1</color>
 
     <!--Second theme colors -->
-    <color name="primary_material_light2">#768bbd</color>
+    <color name="primary_material_light2">#f5f5f5</color>
     <color name="background_material_light2">#6c81b5</color>
-    <color name="primary_dark_material_light2">#526aa4</color>
-    <color name="accent_material_light2">#9766b0</color>
+    <color name="primary_dark_material_light2">#4E5F88</color>
+
     <color name="priorityHigh2">#B55F79</color>
     <color name="priorityMed2">#724A87</color>
     <color name="priorityLow2">#437F77</color>
     <color name="status_bar">#4e5f88</color>
-    <color name="accent_material_light">#69b5aa</color>
-    <color name="primary_dark_material_light">#4e5f88</color>
+    <color name="accent_material_light2">#69b5aa</color>
 
 </resources>
