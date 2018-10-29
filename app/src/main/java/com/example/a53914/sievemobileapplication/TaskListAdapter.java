@@ -1,4 +1,4 @@
-package com.example.a53914.sievemobileapplication.hp;
+package com.example.a53914.sievemobileapplication;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -11,8 +11,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.a53914.sievemobileapplication.App;
-import com.example.a53914.sievemobileapplication.R;
 import com.example.a53914.sievemobileapplication.db.Task;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.a53914.sievemobileapplication.hp;
+package com.example.a53914.sievemobileapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,9 +7,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.example.a53914.sievemobileapplication.R;
-import com.example.a53914.sievemobileapplication.Settings;
-import com.example.a53914.sievemobileapplication.TaskCreate;
 import com.example.a53914.sievemobileapplication.db.AppDatabase;
 import com.example.a53914.sievemobileapplication.db.Task;
 

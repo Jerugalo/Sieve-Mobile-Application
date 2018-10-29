@@ -12,7 +12,6 @@ import android.widget.Spinner;
 
 import com.example.a53914.sievemobileapplication.db.Task;
 import com.example.a53914.sievemobileapplication.db.TaskDao;
-import com.example.a53914.sievemobileapplication.hp.HomePage;
 
 public class TaskCreate extends AppCompatActivity {
     int priorityID;

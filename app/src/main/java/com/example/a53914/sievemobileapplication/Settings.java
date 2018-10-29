@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.example.a53914.sievemobileapplication.hp.HomePage;
-
 public class Settings extends AppCompatActivity {
 
     @Override
