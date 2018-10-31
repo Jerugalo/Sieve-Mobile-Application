@@ -17,7 +17,7 @@ import java.util.List;
 
 public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHolder> {
 
-    private List<Task> mTasks;
+    private final List<Task> mTasks;
 
     public TaskListAdapter(List<Task> tasks) {
         mTasks = tasks;
@@ -60,11 +60,11 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView taskTitle;
-        public ImageView taskPriority;
-        public Button detailsButton;
+        final TextView taskTitle;
+        final ImageView taskPriority;
+        final Button detailsButton;
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             // Stores the itemView in a public final member variable that can be used
             // to access the context from any ViewHolder instance.
             super(itemView);

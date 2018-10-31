@@ -23,7 +23,9 @@ public interface TaskDao {
     @Insert
     void insertAll(Task task);
 
-    @Delete
-    void delete(Task user);
+// --Commented out by Inspection START (10/31/2018 2:03 PM):
+//    @Delete
+//    void delete(Task user);
+// --Commented out by Inspection STOP (10/31/2018 2:03 PM)
 
 }

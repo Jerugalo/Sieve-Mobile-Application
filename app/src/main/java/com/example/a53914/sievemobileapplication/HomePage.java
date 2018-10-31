@@ -14,8 +14,6 @@ import java.util.List;
 
 public class HomePage extends AppCompatActivity {
 
-    List<Task> tasks;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +26,7 @@ public class HomePage extends AppCompatActivity {
         RecyclerView rvContacts = findViewById(R.id.TaskList);
 
         // Initialize contacts
-        tasks = appDatabase.getTaskDao().getAll();
+        List<Task> tasks = appDatabase.getTaskDao().getAll();
         // Create adapter passing in the sample user data
         TaskListAdapter adapter = new TaskListAdapter(tasks);
         // Attach the adapter to the recyclerview to populate items

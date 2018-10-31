@@ -3,7 +3,7 @@ package com.example.a53914.sievemobileapplication;
 import android.app.Application;
 import android.content.Context;
 
-public abstract class App extends Application {
+abstract class App extends Application {
     private static App mApp = null;
 
     public static Context context() {

@@ -14,9 +14,9 @@ import com.example.a53914.sievemobileapplication.db.Task;
 import com.example.a53914.sievemobileapplication.db.TaskDao;
 
 public class TaskCreate extends AppCompatActivity {
-    int priorityID;
-    String classes;
-    int typeID = 0;
+    private int priorityID;
+    private String classes;
+    private int typeID = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

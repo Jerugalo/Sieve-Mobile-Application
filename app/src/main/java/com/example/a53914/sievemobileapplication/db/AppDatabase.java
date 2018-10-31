@@ -27,7 +27,9 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public abstract TaskDao getTaskDao();
 
-    public void cleanUp() {
-        taskDB = null;
-    }
+// --Commented out by Inspection START (10/31/2018 2:03 PM):
+//    public void cleanUp() {
+//        taskDB = null;
+//    }
+// --Commented out by Inspection STOP (10/31/2018 2:03 PM)
 }
