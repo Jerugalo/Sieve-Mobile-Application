@@ -3,7 +3,7 @@
     <!-- Base application theme. -->
     <style name="SieveDefault" parent="Base.Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
-         <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:colorBackground">@color/colorBackground</item>
@@ -13,18 +13,12 @@
         <item name="android:statusBarColor">@color/colorSecondary</item>
     </style>
 
-    <style name="SieveAlternative" parent="Theme.AppCompat.Light.NoActionBar" >
-        <item name="android:colorBackground">@color/background_material_light2</item>
-        <item name="PriorityLow2">@color/priorityLow2</item>
-        <item name="PriorityMed2">@color/priorityMed2</item>
-        <item name="PriorityHigh2">@color/priorityHigh2</item>
-        <item name="primary_material_light2">@color/primary_material_light2</item>
-        <item name="background_material_light2">@color/background_material_light2</item>
-        <item name="primary_dark_material_light2">@color/primary_dark_material_light2</item>
-        <item name="android:statusBarColor">@color/status_bar</item>
-        <item name="android:colorAccent">@color/accent_material_light2</item>
-        <item name="colorPrimaryDark">@color/primary_dark_material_light2</item>
-        <item name="colorAccent">@color/accent_material_light2</item>
+    <style name="SieveAlternative" parent="SieveDefault" >
+        <item name="colorPrimary">@color/colorPrimary2</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark2</item>
+        <item name="android:colorBackground">@color/colorBackground2</item>
+        <item name="android:colorPrimary">@color/colorBackground2</item>
+        <item name="android:colorPrimaryDark">@color/colorPrimary2</item>
     </style>
 
 </resources>

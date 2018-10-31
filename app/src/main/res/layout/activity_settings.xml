@@ -73,14 +73,18 @@
                 android:layout_height="46dp"
                 android:textAlignment="center" />
 
-            <Button
-                android:id="@+id/DisplayButton"
+            <TextView
+                android:id="@+id/DisplaySettings"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-smallcaps"
                 android:text="Display Settings"
-                android:textAlignment="center"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+                android:textSize="24sp" />
+
+            <Switch
+                android:id="@+id/switch1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Toggle Theme" />
 
             <Space
                 android:layout_width="match_parent"
