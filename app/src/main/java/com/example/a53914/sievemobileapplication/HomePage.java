@@ -12,40 +12,41 @@ import com.example.a53914.sievemobileapplication.db.Task;
 
 import java.util.List;
 
-public class HomePage extends AppCompatActivity {
+/**
+ * Default activity for app. Displays a list of events created by user, links to settings menu
+ * and task creation menu. Events display name of event, color coded priority, and provide link to
+ * further information on the task.
+ */
 
+public class HomePage extends AppCompatActivity {
+    
+    /**
+     * Creates Activity and sets up the recycler view. Recycler view pulls a list of Task objects
+     * from the TaskDao and displays them in a visual list.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        //Setup the database
         AppDatabase appDatabase = AppDatabase.getInstance(HomePage.this);
-
-        // Lookup the recyclerview in activity layout
-        RecyclerView rvContacts = findViewById(R.id.TaskList);
-
-        // Initialize contacts
+        RecyclerView rvTasks = findViewById(R.id.TaskList);
         List<Task> tasks = appDatabase.getTaskDao().getAll();
-        // Create adapter passing in the sample user data
         TaskListAdapter adapter = new TaskListAdapter(tasks);
-        // Attach the adapter to the recyclerview to populate items
-        rvContacts.setAdapter(adapter);
-        // Set layout manager to position the items
-        rvContacts.setLayoutManager(new LinearLayoutManager(this));
-        // That's all!
+        rvTasks.setAdapter(adapter);
+        rvTasks.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    //Function called when user opens Settings//
-    public void toSettingsMenu(android.view.View view) {
-        Intent toSettingsMenu = new Intent(this, Settings.class);
-        startActivity(toSettingsMenu);
+    /** Opens Settings activity */
+    public void toSettings(android.view.View view) {
+        Intent toSettings = new Intent(this, Settings.class);
+        startActivity(toSettings);
     }
 
-    //The function below is called when user clicks on "+" key on the homepage.
-    public void toAssignmentCreation(View view) {
-        Intent toAssignmentCreation = new Intent(this, TaskCreate.class);
-        startActivity(toAssignmentCreation);
+    /** Opens TaskCreate activity */
+    public void toTaskCreate(View view) {
+        Intent toTaskCreate = new Intent(this, TaskCreate.class);
+        startActivity(toTaskCreate);
     }
 
 }
