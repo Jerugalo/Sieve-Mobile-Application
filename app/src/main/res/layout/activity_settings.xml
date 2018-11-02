@@ -26,6 +26,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="sans-serif-smallcaps"
                     android:onClick="toHomePage"
                     android:text="@string/returnHome" />
 
@@ -45,28 +46,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="46dp" />
 
-            <Button
-                android:id="@+id/NotificationButton"
+            <TextView
+                android:id="@+id/Notification"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="Notification Settings"
-                android:textAlignment="center"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+                android:textSize="24sp" />
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="46dp"
                 android:textAlignment="center" />
 
-            <Button
-                android:id="@+id/CreateScheduleButton"
+            <TextView
+                android:id="@+id/CreateSchedule"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="Create a Schedule"
-                android:textAlignment="center"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+                android:textSize="24sp" />
 
             <Space
                 android:layout_width="match_parent"
@@ -77,6 +76,7 @@
                 android:id="@+id/DisplaySettings"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="Display Settings"
                 android:textSize="24sp" />
 
@@ -84,35 +84,35 @@
                 android:id="@+id/switch1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Toggle Theme" />
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="Toggle Theme"
+                android:textSize="20sp" />
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="46dp"
                 android:textAlignment="center" />
 
-            <Button
-                android:id="@+id/OtherSettingsButton"
+            <TextView
+                android:id="@+id/OtherSettings"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="Other Settings"
-                android:textAlignment="center"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+                android:textSize="24sp" />
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="46dp"
                 android:textAlignment="center" />
 
-            <Button
-                android:id="@+id/AboutButton"
+            <TextView
+                android:id="@+id/About"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="About"
-                android:textAlignment="center"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+                android:textSize="24sp" />
 
         </LinearLayout>
     </LinearLayout>
