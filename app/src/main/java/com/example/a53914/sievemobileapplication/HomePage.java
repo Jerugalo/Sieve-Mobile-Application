@@ -16,7 +16,7 @@ import java.util.List;
 public class HomePage extends AppCompatActivity {
 
     private AppDatabase appDatabase;
-    //List<Task> tasks;
+    List<Task> tasks;
     //TaskDao taskDao = AppDatabase.getInstance().taskDao();
     private Task task;
 
@@ -32,13 +32,13 @@ public class HomePage extends AppCompatActivity {
         RecyclerView rvContacts = (RecyclerView) findViewById(R.id.TaskList);
 
         // Initialize contacts
-        //tasks = appDatabase.taskDao().getAll();
+        tasks = appDatabase.taskDao().getAll();
         // Create adapter passing in the sample user data
-        //TaskListAdapter adapter = new TaskListAdapter(tasks);
+        TaskListAdapter adapter = new TaskListAdapter(tasks);
         // Attach the adapter to the recyclerview to populate items
-        //rvContacts.setAdapter(adapter);
+        rvContacts.setAdapter(adapter);
         // Set layout manager to position the items
-        //rvContacts.setLayoutManager(new LinearLayoutManager(this));
+        rvContacts.setLayoutManager(new LinearLayoutManager(this));
         // That's all!
     }
     //Function called when user opens Settings//
