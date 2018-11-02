@@ -7,7 +7,7 @@ import android.content.Context;
  * Provides Context to methods that cannot create thier own Context
  */
 
-abstract class App extends Application {
+abstract public class App extends Application {
     private static App mApp = null;
 
     /** Saves App Context to mApp */

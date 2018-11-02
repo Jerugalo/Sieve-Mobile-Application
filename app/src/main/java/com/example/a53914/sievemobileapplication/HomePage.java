@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.example.a53914.sievemobileapplication.db.AppDatabase;
+import com.example.a53914.sievemobileapplication.db.TaskDatabase;
 import com.example.a53914.sievemobileapplication.db.Task;
 
 import java.util.List;
@@ -29,9 +29,9 @@ public class HomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        AppDatabase appDatabase = AppDatabase.getInstance(HomePage.this);
+        TaskDatabase taskDatabase = TaskDatabase.getInstance(HomePage.this);
         RecyclerView rvTasks = findViewById(R.id.TaskList);
-        List<Task> tasks = appDatabase.getTaskDao().getAll();
+        List<Task> tasks = taskDatabase.taskDao().getAll();
         TaskListAdapter adapter = new TaskListAdapter(tasks);
         rvTasks.setAdapter(adapter);
         rvTasks.setLayoutManager(new LinearLayoutManager(this));
