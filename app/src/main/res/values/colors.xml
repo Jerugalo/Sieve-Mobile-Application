@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#3b807b</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimaryDark">#205753</color>
     <color name="colorAccent">#91d58a</color>
     <color name="colorBackground">#95d3cf</color>
-
     <color name="priorityHigh">#CC5E64</color>
     <color name="priorityMed">#D09060</color>
     <color name="priorityLow">#57AA4E</color>
@@ -15,11 +14,9 @@
     <color name="colorPrimary2">#f5f5f5</color>
     <color name="colorPrimaryDark2">#4E5F88</color>
     <color name="colorBackground2">#6c81b5</color>
-
     <color name="PriorityHigh2">#B55F79</color>
     <color name="PriorityMed2">#724A87</color>
     <color name="PriorityLow2">#437F77</color>
-    <color name="status_bar">#4e5f88</color>
-    <color name="accent_material_light2">#69b5aa</color>
+    <color name="colorSecondary2">#4e5f88</color>
 
 </resources>

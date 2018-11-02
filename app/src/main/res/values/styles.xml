@@ -9,16 +9,17 @@
         <item name="android:colorBackground">@color/colorBackground</item>
         <item name="android:colorPrimary">@color/colorBackground</item>
         <item name="android:colorPrimaryDark">@color/colorPrimary</item>
-        <item name="android:colorAccent">@color/colorAccent</item>
         <item name="android:statusBarColor">@color/colorSecondary</item>
     </style>
 
     <style name="SieveAlternative" parent="SieveDefault" >
         <item name="colorPrimary">@color/colorPrimary2</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark2</item>
+        <item name="android:colorAccent">@color/colorAccent</item>
         <item name="android:colorBackground">@color/colorBackground2</item>
         <item name="android:colorPrimary">@color/colorBackground2</item>
         <item name="android:colorPrimaryDark">@color/colorPrimary2</item>
+        <item name="android:statusBarColor">@color/colorSecondary2</item>
     </style>
 
 </resources>
