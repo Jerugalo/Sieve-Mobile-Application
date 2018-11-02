@@ -19,7 +19,7 @@ import java.util.List;
  */
 
 public class HomePage extends AppCompatActivity {
-    
+
     /**
      * Creates Activity and sets up the recycler view. Recycler view pulls a list of Task objects
      * from the TaskDao and displays them in a visual list.
