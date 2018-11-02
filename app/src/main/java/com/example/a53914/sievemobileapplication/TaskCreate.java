@@ -1,11 +1,14 @@
 package com.example.a53914.sievemobileapplication;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
@@ -14,19 +17,34 @@ import com.example.a53914.sievemobileapplication.db.Task;
 import com.example.a53914.sievemobileapplication.db.AppDatabase;
 import com.example.a53914.sievemobileapplication.db.TaskDao;
 
+import java.lang.ref.WeakReference;
+import java.util.List;
+
 public class TaskCreate extends AppCompatActivity {
+    private AppDatabase appDatabase;
+    private Task task;
     int priorityID;
     String classes;
     int typeID=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //final EditText nameText= (EditText) findViewById(R.id.NameAddText);
+        //final EditText notesText = (EditText) findViewById(R.id.NotesText);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_create);
         SeekBar slidey = (SeekBar) findViewById(R.id.TaskCreateSeekbar);
         slidey.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                priorityID = progress;
+                if(progress>=0&&progress<34){
+                    priorityID=0;
+                }
+                else if (progress>=34&&progress<67){
+                    priorityID=1;
+                }
+                else{
+                    priorityID=2;
+                }
             }
 
             @Override
@@ -40,6 +58,7 @@ public class TaskCreate extends AppCompatActivity {
             }
         });
 
+
         Spinner classChooser = (Spinner) findViewById(R.id.planets_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.classes_array,android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -52,32 +71,84 @@ public class TaskCreate extends AppCompatActivity {
 
             }
         });
+        //initialize Database:
+        appDatabase=AppDatabase.getInstance(TaskCreate.this);
+        Button button =findViewById(R.id.CreateButton);
+            button.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view){
+                    EditText nameText= (EditText) findViewById(R.id.NameAddText);
+                    EditText notesText = (EditText) findViewById(R.id.NotesText);
+                    task = new Task(0,priorityID,nameText.getText().toString(),classes,/*null,*/
+                            notesText.getText().toString(),typeID);
+                    new InsertTask(TaskCreate.this,task).execute();
+                }
+            });
     }
-    class DBAddition implements Runnable {
+    private void setResult(Task task, int flag){
+        setResult(flag,new Intent().putExtra("task",task.toString()));
+        finish();
+    }
+    private static class InsertTask extends AsyncTask<Void, Void,Boolean> {
+        private WeakReference<TaskCreate> activityReference;
+        private Task task;
+        InsertTask(TaskCreate context, Task task){
+            activityReference=new WeakReference<>(context);
+            this.task=task;
+        }
+        @Override
+        protected Boolean doInBackground(Void...objs){
+            activityReference.get().appDatabase.taskDao().insertAll(task);
+            return true;
+        }
+        @Override
+        protected void onPostExecute(Boolean bool){
+            if(bool){
+                activityReference.get().setResult(task,1);
+                Log.d("TaskCreate","The Async Task has finished!");
+                Log.d("TaskCreate",task.toString());
+            }
+        }
+    }
+    /*class DBAddition implements Runnable {
         public void run() {
-            final TaskDao taskDao = null;
-            Task task = new Task();
-            task.setPriority(priorityID);
+            final TaskDao taskDao = new TaskDao() {
+                @Override
+                public List<Task> getAll() {
+                    return null;
+                }
+
+                @Override
+                public void insertAll(Task task) {
+
+                }
+
+                @Override
+                public void delete(Task user) {
+
+                }
+            };
+
+            //task.setPriority(priorityID);
 
             EditText nameText = (EditText) findViewById(R.id.NameAddText);
-            task.setNameID(nameText.getText().toString());
-
-            task.setClassroom(classes);
+            //task.setNameID(nameText.getText().toString());
+            String textName = nameText.getText().toString();
+            //task.setClassroom(classes);
 
             //task.setDueDate();
 
             EditText notesText = (EditText) findViewById(R.id.NotesText);
-            task.setNotes(notesText.getText().toString());
+            //task.setNotes(notesText.getText().toString());
+            String textNotes = notesText.getText().toString();
 
-            task.setTypeID(typeID);
+            //task.setTypeID(typeID);
+            Task task = new Task(priorityID,textName,classes,null,textNotes,typeID);
             taskDao.insertAll(task);
         }
-    }
+    }*/
 
-    public void AddToDB(View view){
-        DBAddition a =new DBAddition();
-        new Thread(a).start();
-    }
+
     public void HabitClick(View view){
         typeID=0;
     }
