@@ -10,15 +10,15 @@ import android.content.Context;
 abstract class App extends Application {
     private static App mApp = null;
 
-    /** Returns mApp */
-    public static Context context() {
-        return mApp.getApplicationContext();
-    }
-
     /** Saves App Context to mApp */
     @Override
     public void onCreate() {
         super.onCreate();
         mApp = this;
+    }
+
+    /** Returns mApp */
+    public static Context context() {
+        return mApp.getApplicationContext();
     }
 }
