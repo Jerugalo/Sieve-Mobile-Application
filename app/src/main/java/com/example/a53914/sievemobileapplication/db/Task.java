@@ -2,7 +2,6 @@ package com.example.a53914.sievemobileapplication.db;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
@@ -12,7 +11,6 @@ public class Task {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    @NonNull
     private int Priority;
 
     @ColumnInfo(name = "name")
@@ -88,7 +86,7 @@ public class Task {
 
     public int getId(){return id;}
 
-    public void setId(@NonNull int id) { this.id = id; }
+    public void setId(int id) { this.id = id; }
     // Getters and setters are ignored for brevity,
     // but they're required for Room to work.
     @Override
