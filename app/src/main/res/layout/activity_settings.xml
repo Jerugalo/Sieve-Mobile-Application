@@ -7,9 +7,10 @@
     tools:context=".Settings">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="379dp"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteX="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,7 +29,8 @@
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-smallcaps"
                     android:onClick="toHomePage"
-                    android:text="@string/returnHome" />
+                    android:text="@string/returnHome"
+                    android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
                 <TextView
                     android:id="@+id/SettingsTitle"
@@ -52,6 +54,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="Notification Settings"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="24sp" />
 
             <Space
@@ -65,6 +68,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="Create a Schedule"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="24sp" />
 
             <Space
@@ -78,6 +82,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="Display Settings"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="24sp" />
 
             <Switch
@@ -86,7 +91,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="Toggle Theme"
-                android:textSize="20sp" />
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textSize="24sp" />
 
             <Space
                 android:layout_width="match_parent"
@@ -99,6 +105,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="Other Settings"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="24sp" />
 
             <Space
@@ -112,6 +119,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="About"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="24sp" />
 
         </LinearLayout>
