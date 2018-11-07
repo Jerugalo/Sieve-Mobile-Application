@@ -27,10 +27,9 @@ public class TaskCreate extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //final EditText nameText= (EditText) findViewById(R.id.NameAddText);
-        //final EditText notesText = (EditText) findViewById(R.id.NotesText);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_create);
+
         SeekBar slidey = findViewById(R.id.TaskCreateSeekbar);
         slidey.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -70,6 +69,7 @@ public class TaskCreate extends AppCompatActivity {
 
             }
         });
+
         //initialize Database:
         taskDatabase = TaskDatabase.getInstance(TaskCreate.this);
         Button button =findViewById(R.id.CreateButton);
@@ -78,7 +78,7 @@ public class TaskCreate extends AppCompatActivity {
                 public void onClick(View view){
                     EditText nameText= (EditText) findViewById(R.id.NameAddText);
                     EditText notesText = (EditText) findViewById(R.id.NotesText);
-                    task = new Task(0,priorityID,nameText.getText().toString(),classes,/*null,*/
+                    task = new Task(priorityID,nameText.getText().toString(),classes,/*null,*/
                             notesText.getText().toString(),typeID);
                     new InsertTask(TaskCreate.this,task).execute();
                 }
@@ -107,6 +107,7 @@ public class TaskCreate extends AppCompatActivity {
                 activityReference.get().setResult(task,1);
                 Log.d("TaskCreate","The Async Task has finished!");
                 Log.d("TaskCreate",task.toString());
+                activityReference.get().finish();
             }
         }
     }

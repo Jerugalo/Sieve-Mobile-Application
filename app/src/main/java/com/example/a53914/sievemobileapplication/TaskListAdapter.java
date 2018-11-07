@@ -18,7 +18,6 @@ import java.util.List;
 public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHolder> {
 
     private final List<Task> mTasks;
-
     public TaskListAdapter(List<Task> tasks) {
         mTasks = tasks;
     }
@@ -40,6 +39,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
     // Involves populating data into the item through holder
     @Override
     public void onBindViewHolder(@NonNull TaskListAdapter.ViewHolder viewHolder, int position) {
+
         // Get the data model based on position
         Task task = mTasks.get(position);
 
@@ -48,7 +48,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
         textView.setText(task.getNameID());
 
         ImageView imageView = viewHolder.taskPriority;
-        TypedArray mPriority = App.context().getResources().obtainTypedArray(R.array.priority);
+        TypedArray mPriority = textView.getContext().getResources().obtainTypedArray(R.array.priority);
         imageView.setImageResource(mPriority.getResourceId(task.getPriority(), -1));
         mPriority.recycle();
     }

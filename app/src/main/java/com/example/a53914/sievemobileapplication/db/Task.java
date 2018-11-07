@@ -32,8 +32,7 @@ public class Task {
 
     private int TypeID;//0 is habit, 1 is assignment, 2 is project
 
-    public Task(int id, int Priority, String NameID, String Classroom, /*String DueDate,*/ String Notes, int TypeID) {
-        this.id=id;
+    public Task(int Priority, String NameID, String Classroom, /*String DueDate,*/ String Notes, int TypeID) {
         this.Priority = Priority;
         this.NameID = NameID;
         this.Classroom = Classroom;
