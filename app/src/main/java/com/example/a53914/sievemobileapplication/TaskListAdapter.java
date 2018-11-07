@@ -15,35 +15,33 @@ import com.example.a53914.sievemobileapplication.db.Task;
 
 import java.util.List;
 
+/**
+ * Receives values from the SQL database and assigns the code to multiple views. These views are
+ * compiled into a ViewHolder in preparation for use by the RecyclerView.
+ */
 public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHolder> {
 
+    /** Assigns contents of input database to a local database */
     private final List<Task> mTasks;
     public TaskListAdapter(List<Task> tasks) {
         mTasks = tasks;
     }
 
-    // Usually involves inflating a layout from XML and returning the holder
+    /** Creates the ViewHolder */
     @NonNull
     @Override
     public TaskListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-
-        // Inflate the custom layout
-        View contactView = inflater.inflate(R.layout.item_task_list, parent, false);
-
-        // Return a new holder instance
-        return new ViewHolder(contactView);
+        View taskView = inflater.inflate(R.layout.item_task_list, parent, false);
+        return new ViewHolder(taskView);
     }
 
-    // Involves populating data into the item through holder
+    /** Gets values from the Task list*/
     @Override
     public void onBindViewHolder(@NonNull TaskListAdapter.ViewHolder viewHolder, int position) {
-
-        // Get the data model based on position
         Task task = mTasks.get(position);
 
-        // Set item views based on your views and data model
         TextView textView = viewHolder.taskTitle;
         textView.setText(task.getNameID());
 
@@ -53,12 +51,13 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
         mPriority.recycle();
     }
 
-    // Returns the total count of items in the list
+    /** Returns the total count of items in the list */
     @Override
     public int getItemCount() {
         return mTasks.size();
     }
 
+    /** Assigns layout values to current task item */
     public class ViewHolder extends RecyclerView.ViewHolder {
         final TextView taskTitle;
         final ImageView taskPriority;
