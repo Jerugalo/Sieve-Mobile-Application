@@ -7,18 +7,12 @@ import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.migration.Migration;
 import android.content.Context;
 
-import com.example.a53914.sievemobileapplication.App;
-
 @Database(entities = {Task.class}, version = 2)
 public abstract class TaskDatabase extends RoomDatabase {
 
     public abstract TaskDao taskDao();
 
     private static TaskDatabase taskDB;
-
-    public void onCreate() {
-
-    }
 
     public static TaskDatabase getInstance(Context context){
 
