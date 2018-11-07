@@ -37,6 +37,18 @@ public class HomePage extends AppCompatActivity {
         rvTasks.setLayoutManager(new LinearLayoutManager(this));
     }
 
+    @Override
+    protected void onStart(){
+        super.onStart();
+
+        TaskDatabase taskDatabase = TaskDatabase.getInstance(HomePage.this);
+        RecyclerView rvTasks = findViewById(R.id.TaskList);
+        List<Task> tasks = taskDatabase.taskDao().getAll();
+        TaskListAdapter adapter = new TaskListAdapter(tasks);
+        rvTasks.setAdapter(adapter);
+        rvTasks.setLayoutManager(new LinearLayoutManager(this));
+    }
+
     /** Opens Settings activity */
     public void toSettings(android.view.View view) {
         Intent toSettings = new Intent(this, Settings.class);
