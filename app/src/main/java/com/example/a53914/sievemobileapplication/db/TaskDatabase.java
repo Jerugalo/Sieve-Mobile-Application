@@ -7,6 +7,10 @@ import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.migration.Migration;
 import android.content.Context;
 
+/**
+ * Fetches the database.
+ */
+
 @Database(entities = {Task.class}, version = 2)
 public abstract class TaskDatabase extends RoomDatabase {
 
@@ -14,6 +18,10 @@ public abstract class TaskDatabase extends RoomDatabase {
 
     private static TaskDatabase taskDB;
 
+    /**
+     * Returns the database by building it from TaskDatabase and running it through the database
+     * migrations.
+     */
     public static TaskDatabase getInstance(Context context){
 
         if (taskDB==null){
@@ -23,14 +31,7 @@ public abstract class TaskDatabase extends RoomDatabase {
        return taskDB;
     }
 
-    private static TaskDatabase buildDatabaseInstance(Context context) {
-        return Room.databaseBuilder(
-                context,
-                TaskDatabase.class,
-                "mainTasks.db")
-                .allowMainThreadQueries().build();
-    }
-
+    //** Migration for the first version of the code */
     static final Migration MIGRATION_1_2 = new Migration(1, 2) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
@@ -38,9 +39,8 @@ public abstract class TaskDatabase extends RoomDatabase {
         }
     };
 
-// --Commented out by Inspection START (10/31/2018 2:03 PM):
-//    public void cleanUp() {
-//        taskDB = null;
-//    }
-// --Commented out by Inspection STOP (10/31/2018 2:03 PM)
+    /** Wipes the database */
+    public void cleanUp() {
+        taskDB = null;
+    }
 }

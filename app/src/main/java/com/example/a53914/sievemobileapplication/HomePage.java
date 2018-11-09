@@ -37,6 +37,7 @@ public class HomePage extends AppCompatActivity {
         rvTasks.setLayoutManager(new LinearLayoutManager(this));
     }
 
+    /** Instates the RecyclerView */
     @Override
     protected void onStart(){
         super.onStart();
