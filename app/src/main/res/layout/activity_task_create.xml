@@ -13,7 +13,8 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -50,8 +51,8 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="177dp"
                 android:id="@+id/NameText"
+                android:layout_width="177dp"
 
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -59,6 +60,7 @@
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="Name"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textSize="33sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/NameAddText"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -84,8 +86,8 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="199dp"
                 android:id="@+id/ClassTextNE"
+                android:layout_width="199dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_weight="1"
@@ -212,7 +214,8 @@
                 android:inputType="date"
                 android:onClick="showDatePickerDialog"
                 android:textAlignment="center"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textSize="30sp" />
 
         </LinearLayout>
 
