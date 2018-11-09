@@ -24,8 +24,8 @@ public class Task {
     @ColumnInfo(name = "class")
     private String Classroom;
 
-    // @ColumnInfo(name = "date")
-    // private String DueDate;
+     @ColumnInfo(name = "date")
+     private String DueDate;//Format is standard Month/Day/Year
 
     //@ColumnInfo(name="timeEst")
     //private float TimeEst;
@@ -37,11 +37,11 @@ public class Task {
     private int TypeID;
 
     /** Initialisation */
-    public Task(int Priority, String NameID, String Classroom, /*String DueDate,*/ String Notes, int TypeID) {
+    public Task(int Priority, String NameID, String Classroom, String DueDate, String Notes, int TypeID) {
         this.Priority = Priority;
         this.NameID = NameID;
         this.Classroom = Classroom;
-        //this.DueDate = DueDate;
+        this.DueDate = DueDate;
         this.Notes = Notes;
         this.TypeID = TypeID;
     }
@@ -65,12 +65,12 @@ public class Task {
     public void setClassroom(String aClass) {
         Classroom = aClass;
     }
-    /*public String getDueDate() {
+    public String getDueDate() {
         return DueDate;
-    }*/
-    /*public void setDueDate(String dueDate) {
+    }
+    public void setDueDate(String dueDate) {
         DueDate = dueDate;
-    }*/
+    }
     /*public float getTimeEst() {
         return TimeEst;
     }*/

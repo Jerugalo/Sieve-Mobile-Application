@@ -11,7 +11,7 @@ import android.content.Context;
  * Fetches the database.
  */
 
-@Database(entities = {Task.class}, version = 2)
+@Database(entities = {Task.class}, version = 3)
 public abstract class TaskDatabase extends RoomDatabase {
 
     public abstract TaskDao taskDao();
@@ -26,7 +26,7 @@ public abstract class TaskDatabase extends RoomDatabase {
 
         if (taskDB==null){
            taskDB = Room.databaseBuilder(context, TaskDatabase.class, "TaskDatabase")
-                   .addMigrations(MIGRATION_1_2).allowMainThreadQueries().build();
+                   .addMigrations(MIGRATION_1_2,MIGRATION_2_3).allowMainThreadQueries().build();
        }
        return taskDB;
     }
@@ -36,6 +36,12 @@ public abstract class TaskDatabase extends RoomDatabase {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
             database.execSQL("");
+        }
+    };
+    static final Migration MIGRATION_2_3 = new Migration(2,3){
+        @Override
+        public void migrate(SupportSQLiteDatabase database){
+            database.execSQL("ALTER TABLE Task "+" ADD COLUMN date TEXT");
         }
     };
 

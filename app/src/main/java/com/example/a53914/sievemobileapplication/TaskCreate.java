@@ -90,7 +90,8 @@ public class TaskCreate extends AppCompatActivity {
                 public void onClick(View view){
                     EditText nameText= (EditText) findViewById(R.id.NameAddText);
                     EditText notesText = (EditText) findViewById(R.id.NotesText);
-                    task = new Task(priorityID,nameText.getText().toString(),classes,/*null,*/
+                    TextView dateText = findViewById(R.id.DateViewer);
+                    task = new Task(priorityID,nameText.getText().toString(),classes,dateText.getText().toString(),
                             notesText.getText().toString(),typeID);
                     new InsertTask(TaskCreate.this,task).execute();
                 }
