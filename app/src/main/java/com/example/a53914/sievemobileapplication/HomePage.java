@@ -20,19 +20,22 @@ import java.util.List;
 
 public class HomePage extends AppCompatActivity {
 
+    GlobalVars global = GlobalVars.getInstance();
+
     /**
      * Creates Activity and sets up the recycler view. Recycler view pulls a list of Task objects
      * from the TaskDao and displays them in a visual list.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        TaskDatabase taskDatabase = TaskDatabase.getInstance(HomePage.this);
+        global.setTaskData(taskDatabase.taskDao().getAll());
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        TaskDatabase taskDatabase = TaskDatabase.getInstance(HomePage.this);
         RecyclerView rvTasks = findViewById(R.id.TaskList);
-        List<Task> tasks = taskDatabase.taskDao().getAll();
-        TaskListAdapter adapter = new TaskListAdapter(tasks);
+        TaskListAdapter adapter = new TaskListAdapter(global.getTaskData());
         rvTasks.setAdapter(adapter);
         rvTasks.setLayoutManager(new LinearLayoutManager(this));
     }
