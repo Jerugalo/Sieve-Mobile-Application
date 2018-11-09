@@ -7,21 +7,22 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:colorBackground">@color/colorBackground</item>
-        <item name="android:colorPrimary">@color/colorBackground</item>
-        <item name="android:colorPrimaryDark">@color/colorPrimary</item>
+        <item name="android:colorPrimary">@color/priorityHigh</item>
+        <item name="android:colorPrimaryDark">@color/priorityMed</item>
         <item name="android:statusBarColor">@color/colorSecondary</item>
         <item name="priorityLow">@color/priorityLow</item>
         <item name="priorityMed">@color/priorityMed</item>
         <item name="priorityHigh">@color/priorityHigh</item>
+        <item name="android:colorAccent">@color/priorityLow</item>
     </style>
 
     <style name="SieveAlternative" parent="SieveDefault" >
         <item name="colorPrimary">@color/colorPrimary2</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark2</item>
-        <item name="android:colorAccent">@color/colorAccent</item>
+        <item name="android:colorAccent">@color/priorityLow2</item>
         <item name="android:colorBackground">@color/colorBackground2</item>
-        <item name="android:colorPrimary">@color/colorBackground2</item>
-        <item name="android:colorPrimaryDark">@color/colorPrimary2</item>
+        <item name="android:colorPrimary">@color/priorityHigh2</item>
+        <item name="android:colorPrimaryDark">@color/priorityMed2</item>
         <item name="android:statusBarColor">@color/colorSecondary2</item>
         <item name="priorityLow">@color/priorityLow2</item>
         <item name="priorityMed">@color/priorityMed2</item>
