@@ -2,6 +2,7 @@ package com.example.a53914.sievemobileapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -12,11 +13,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.a53914.sievemobileapplication.db.TaskDatabase;
 import com.example.a53914.sievemobileapplication.db.Task;
+import com.example.a53914.sievemobileapplication.fragments.DatePickerFragment;
 
 import java.lang.ref.WeakReference;
+import java.util.Calendar;
 
 public class TaskCreate extends AppCompatActivity {
     private TaskDatabase taskDatabase;
@@ -29,6 +33,14 @@ public class TaskCreate extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_create);
+
+        final Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month =c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        TextView dateText = findViewById(R.id.DateViewer);
+        String dateText1 = month +"/"+day+"/"+year;
+        dateText.setText(dateText1);
 
         SeekBar slidey = findViewById(R.id.TaskCreateSeekbar);
         slidey.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -111,44 +123,6 @@ public class TaskCreate extends AppCompatActivity {
             }
         }
     }
-    /*class DBAddition implements Runnable {
-        public void run() {
-            final TaskDao taskDao = new TaskDao() {
-                @Override
-                public List<Task> getAll() {
-                    return null;
-                }
-
-                @Override
-                public void insertAll(Task task) {
-
-                }
-
-                @Override
-                public void delete(Task user) {
-
-                }
-            };
-
-            //task.setPriority(priorityID);
-
-            EditText nameText = (EditText) findViewById(R.id.NameAddText);
-            //task.setNameID(nameText.getText().toString());
-            String textName = nameText.getText().toString();
-            //task.setClassroom(classes);
-
-            //task.setDueDate();
-
-            EditText notesText = (EditText) findViewById(R.id.NotesText);
-            //task.setNotes(notesText.getText().toString());
-            String textNotes = notesText.getText().toString();
-
-            //task.setTypeID(typeID);
-            Task task = new Task(priorityID,textName,classes,null,textNotes,typeID);
-            taskDao.insertAll(task);
-        }
-    }*/
-
 
     public void HabitClick(View view){
         typeID=0;
@@ -164,4 +138,10 @@ public class TaskCreate extends AppCompatActivity {
         Intent toHomePage = new Intent(this, HomePage.class);
         startActivity(toHomePage);
     }
+    public void showDatePickerDialog(View view){
+        DialogFragment newFragment = new DatePickerFragment();
+        newFragment.show(getSupportFragmentManager(),"datePicker");
+
+    }
+
 }

@@ -202,14 +202,16 @@
                 app:layout_constraintBaseline_toBaselineOf="@+id/NameAddText"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <EditText
-                android:id="@+id/editText"
+            <TextView
+                android:id="@+id/DateViewer"
                 android:layout_width="139dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:ems="10"
                 android:fontFamily="sans-serif-smallcaps"
                 android:inputType="date"
+                android:onClick="showDatePickerDialog"
+                android:textAlignment="center"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
         </LinearLayout>
