@@ -48,5 +48,7 @@ public class Settings extends AppCompatActivity {
     public void toHomePage(View view){
         Intent toHomePage = new Intent(this, HomePage.class);
         startActivity(toHomePage);
+
+
     }
 }
