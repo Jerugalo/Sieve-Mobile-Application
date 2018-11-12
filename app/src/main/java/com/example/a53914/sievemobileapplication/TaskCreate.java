@@ -34,6 +34,7 @@ public class TaskCreate extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_create);
 
+        //Date view shows today's date when user first opens screen
         final Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
         int month =c.get(Calendar.MONTH);
@@ -42,6 +43,7 @@ public class TaskCreate extends AppCompatActivity {
         String dateText1 = month +"/"+day+"/"+year;
         dateText.setText(dateText1);
 
+        //Slide bar code
         SeekBar slidey = findViewById(R.id.TaskCreateSeekbar);
         slidey.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -68,6 +70,7 @@ public class TaskCreate extends AppCompatActivity {
             }
         });
 
+        //Class chooser code
         Spinner classChooser = (Spinner) findViewById(R.id.planets_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.classes_array,android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -125,15 +128,9 @@ public class TaskCreate extends AppCompatActivity {
         }
     }
 
-    public void HabitClick(View view){
-        typeID=0;
-    }
-    public void AssignClick(View view){
-        typeID=1;
-    }
-    public void ProjectClick(View view){
-        typeID=2;
-    }
+    public void HabitClick(View view){ typeID=0; }
+    public void AssignClick(View view){ typeID=1; }
+    public void ProjectClick(View view){ typeID=2; }
     //Returning Home
     public void toHomePage(View view){
         Intent toHomePage = new Intent(this, HomePage.class);
