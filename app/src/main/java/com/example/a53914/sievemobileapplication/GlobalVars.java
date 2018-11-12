@@ -33,4 +33,11 @@ public class GlobalVars extends Application {
     public static void setTaskData(List<Task> taskData) {
         GlobalVars.taskData = taskData;
     }
+
+    public static Task getCurrentTask() {
+        return currentTask;
+    }
+    public static void setCurrentTask(Task currentTask) {
+        GlobalVars.currentTask = currentTask;
+    }
 }
