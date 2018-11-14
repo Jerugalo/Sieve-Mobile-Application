@@ -1,8 +1,10 @@
 package com.example.a53914.sievemobileapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +23,8 @@ import java.util.List;
  */
 public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHolder> {
 
+    GlobalVars global = GlobalVars.getInstance();
+
     /** Assigns contents of input database to a local database */
     private final List<Task> mTasks;
     public TaskListAdapter(List<Task> tasks) {
@@ -34,13 +38,15 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View taskView = inflater.inflate(R.layout.item_task_list, parent, false);
-        return new ViewHolder(taskView);
+        return new ViewHolder(taskView, 1);
     }
 
     /** Gets values from the Task list*/
     @Override
     public void onBindViewHolder(@NonNull TaskListAdapter.ViewHolder viewHolder, int position) {
         Task task = mTasks.get(position);
+
+        viewHolder.taskID = position;
 
         TextView textView = viewHolder.taskTitle;
         textView.setText(task.getNameID());
@@ -58,12 +64,13 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
     }
 
     /** Assigns layout values to current task item */
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         final TextView taskTitle;
         final ImageView taskPriority;
         final Button detailsButton;
+        int taskID;
 
-        ViewHolder(View itemView) {
+        ViewHolder(View itemView, int taskID) {
             // Stores the itemView in a public final member variable that can be used
             // to access the context from any ViewHolder instance.
             super(itemView);
@@ -72,8 +79,15 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
             taskPriority = itemView.findViewById(R.id.Priority);
             detailsButton = itemView.findViewById(R.id.ToDetails);
 
+            detailsButton.setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View v) {
+            Intent toDetails = new Intent(detailsButton.getContext(), AssignmentDetails.class);
+            global.setCurrentTask(mTasks.get(taskID));
+            detailsButton.getContext().startActivity(toDetails);
+        }
     }
 
 }
