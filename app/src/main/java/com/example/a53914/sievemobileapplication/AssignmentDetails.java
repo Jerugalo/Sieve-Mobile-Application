@@ -18,6 +18,9 @@ import com.example.a53914.sievemobileapplication.db.TaskDatabase;
  *  Java Class for Assignment Details activity
  */
 public class AssignmentDetails extends AppCompatActivity {
+
+    GlobalVars global = GlobalVars.getInstance();
+    Task mTask = global.getCurrentTask();
     boolean isEditing = false;
 
     /**
