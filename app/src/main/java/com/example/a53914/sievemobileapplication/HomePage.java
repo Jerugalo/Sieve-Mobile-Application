@@ -11,7 +11,7 @@ public class HomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-        boolean useDark = getIntent().getBooleanExtra("usedark",false);
+        boolean useDark = getIntent().getBooleanExtra("usedark",true);
         if(useDark){
             setTheme(R.style.SieveAlternative);
         }else{
@@ -28,5 +28,4 @@ public class HomePage extends AppCompatActivity {
         Intent toAssignmentCreation = new Intent(this, TaskCreate.class);
         startActivity(toAssignmentCreation);
     }
-
 }
