@@ -58,7 +58,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
     }
 
     /** Assigns layout values to current task item */
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder{
         final TextView taskTitle;
         final ImageView taskPriority;
         final Button detailsButton;
@@ -71,6 +71,9 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
             taskTitle = itemView.findViewById(R.id.Title);
             taskPriority = itemView.findViewById(R.id.Priority);
             detailsButton = itemView.findViewById(R.id.ToDetails);
+
         }
+
     }
+
 }

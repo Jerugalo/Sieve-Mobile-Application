@@ -71,7 +71,7 @@ public class TaskCreate extends AppCompatActivity {
         });
 
         //Class chooser code
-        Spinner classChooser = (Spinner) findViewById(R.id.planets_spinner);
+        Spinner classChooser = (Spinner) findViewById(R.id.DetailsClassSpinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.classes_array,android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         classChooser.setAdapter(adapter);

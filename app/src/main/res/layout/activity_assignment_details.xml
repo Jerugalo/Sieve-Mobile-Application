@@ -43,7 +43,7 @@
             android:orientation="horizontal">
 
             <CheckBox
-                android:id="@+id/Habit"
+                android:id="@+id/HabitD"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -52,7 +52,7 @@
                 android:textSize="18sp" />
 
             <CheckBox
-                android:id="@+id/Assignment"
+                android:id="@+id/AssignmentD"
                 android:layout_width="394dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -61,7 +61,7 @@
                 android:textSize="18sp" />
 
             <CheckBox
-                android:id="@+id/Project"
+                android:id="@+id/ProjectD"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -87,11 +87,11 @@
                 android:text="Class"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="33sp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/planets_spinner"
+                app:layout_constraintBaseline_toBaselineOf="@+id/DetailsClassSpinner"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Spinner
-                android:id="@+id/planets_spinner"
+                android:id="@+id/DetailsClassSpinner"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -161,7 +161,7 @@
                 android:textSize="24sp" />
 
             <EditText
-                android:id="@+id/editText4"
+                android:id="@+id/DateEditTextD"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

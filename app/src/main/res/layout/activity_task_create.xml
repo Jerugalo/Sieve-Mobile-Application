@@ -95,11 +95,11 @@
                 android:text="Class"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="33sp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/planets_spinner"
+                app:layout_constraintBaseline_toBaselineOf="@+id/DetailsClassSpinner"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Spinner
-                android:id="@+id/planets_spinner"
+                android:id="@+id/DetailsClassSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
