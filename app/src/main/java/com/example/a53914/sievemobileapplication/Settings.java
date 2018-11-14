@@ -46,9 +46,10 @@ public class Settings extends AppCompatActivity {
     }
     //Returning Home
     public void toHomePage(View view){
+        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        boolean useDarkTheme = preferences.getBoolean(PREF_LIGHT_THEME, false);
         Intent toHomePage = new Intent(this, HomePage.class);
+        toHomePage.putExtra("usedark",useDarkTheme);
         startActivity(toHomePage);
-
-
     }
 }

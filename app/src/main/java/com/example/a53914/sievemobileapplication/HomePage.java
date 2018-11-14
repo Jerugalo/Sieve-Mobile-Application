@@ -1,8 +1,6 @@
 package com.example.a53914.sievemobileapplication;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,8 +11,12 @@ public class HomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
-        String PREFS_NAME = settings.getString("useDarkTheme","");
+        boolean useDark = getIntent().getBooleanExtra("usedark",false);
+        if(useDark){
+            setTheme(R.style.SieveAlternative);
+        }else{
+            setTheme(R.style.SieveDefault);
+        }
     }
     //Function called when user opens Settings//
     public void toSettingsMenu(android.view.View view){
