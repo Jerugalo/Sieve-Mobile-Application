@@ -17,6 +17,7 @@ public class HomePage extends AppCompatActivity {
         }else{
             setTheme(R.style.SieveDefault);
         }
+        super.onCreate(savedInstanceState);
     }
     //Function called when user opens Settings//
     public void toSettingsMenu(android.view.View view){
