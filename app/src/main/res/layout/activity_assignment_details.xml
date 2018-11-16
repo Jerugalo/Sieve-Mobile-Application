@@ -165,8 +165,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:editable="false"
                 android:ems="10"
                 android:inputType="date"
+                android:onClick="showDatePickerDialog"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused" />
         </LinearLayout>
 
@@ -217,7 +219,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:onClick="editTask"
-                    android:text="@string/editTask"
+                    android:text="Edit Text"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
                 <Button
