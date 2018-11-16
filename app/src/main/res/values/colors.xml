@@ -4,8 +4,8 @@
     <color name="colorPrimaryDark">#205753</color>
     <color name="colorAccent">#91d58a</color>
     <color name="colorBackground">#49a49e</color>
-    <color name="priorityHigh">#cc5e64</color>
-    <color name="priorityMed">#D09060</color>
+    <color name="priorityHigh">#eb545c</color>
+    <color name="priorityMed">#e09965</color>
     <color name="priorityLow">#68b160</color>
     <color name="colorSecondary">#03776f</color>
 
