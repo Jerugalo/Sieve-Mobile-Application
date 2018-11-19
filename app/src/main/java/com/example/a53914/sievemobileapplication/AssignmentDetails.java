@@ -12,6 +12,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.a53914.sievemobileapplication.db.Task;
 import com.example.a53914.sievemobileapplication.db.TaskDatabase;
@@ -35,7 +36,7 @@ public class AssignmentDetails extends AppCompatActivity {
     RadioButton projectD;
     EditText titleText;
     Spinner classSpinner;
-    EditText dateText;
+    TextView dateText;
     RadioButton lowPCb;
     RadioButton medPCb;
     RadioButton highPCb;
