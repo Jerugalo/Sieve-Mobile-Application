@@ -231,6 +231,7 @@ public class AssignmentDetails extends AppCompatActivity {
 
             task.setTypeID(typeID);
             taskDatabase.taskDao().update(task);
+            global.setCurrentTask(task);
 
             isEditing=false;
         }
