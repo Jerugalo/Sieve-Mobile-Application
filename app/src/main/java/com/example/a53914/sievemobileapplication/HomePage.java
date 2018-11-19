@@ -22,6 +22,7 @@ import java.util.List;
 public class HomePage extends AppCompatActivity {
 
     GlobalVars global = GlobalVars.getInstance();
+    Task mTask =global.getCurrentTask();
 
     /**
      * Creates Activity and sets up the recycler view. Recycler view pulls a list of Task objects
@@ -47,7 +48,7 @@ public class HomePage extends AppCompatActivity {
         {
             Boolean delete = (Boolean) bd.get("delete");
             if (delete){
-                //TODO: Add statement to delete current task from database
+                taskDatabase.taskDao().delete(mTask);
             }
         }
     }
