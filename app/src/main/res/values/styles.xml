@@ -26,6 +26,7 @@
         <item name="priorityLow">@color/priorityLow2</item>
         <item name="priorityMed">@color/priorityMed2</item>
         <item name="priorityHigh">@color/priorityHigh2</item>
+        <item name="android:colorAccent">@color/priorityLow2</item>
     </style>
 
 </resources>
