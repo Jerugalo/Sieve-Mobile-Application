@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 
 import com.example.a53914.sievemobileapplication.db.Task;
@@ -29,16 +30,16 @@ public class AssignmentDetails extends AppCompatActivity {
     boolean isEditing = false;
 
     /** Below variables are all View objects stored in convenient location */
-    CheckBox habitD/* = findViewById(R.id.HabitD)*/;
-    CheckBox assignD/* = findViewById(R.id.AssignmentD)*/;
-    CheckBox projectD/* = findViewById(R.id.ProjectD)*/;
-    EditText titleText/* =findViewById(R.id.TaskTitle)*/;
-    Spinner classSpinner/*=findViewById(R.id.DetailsClassSpinner)*/;
-    EditText dateText/* = findViewById(R.id.DateEditTextD)*/;
-    CheckBox lowPCb/* = findViewById(R.id.LowPriorit)*/;
-    CheckBox medPCb/* = findViewById(R.id.MedPriority)*/;
-    CheckBox highPCb/* = findViewById(R.id.HighPriority)*/;
-    EditText notesD/* = findViewById(R.id.NotesDetails)*/;
+    RadioButton habitD;
+    RadioButton assignD;
+    RadioButton projectD;
+    EditText titleText;
+    Spinner classSpinner;
+    EditText dateText;
+    RadioButton lowPCb;
+    RadioButton medPCb;
+    RadioButton highPCb;
+    EditText notesD;
 
     TaskDatabase taskDatabase;
     Task task;
@@ -65,15 +66,15 @@ public class AssignmentDetails extends AppCompatActivity {
         int month =c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
 
-        habitD = findViewById(R.id.HabitD);
-        assignD = findViewById(R.id.AssignmentD);
-        projectD = findViewById(R.id.ProjectD);
+        habitD = findViewById(R.id.HabitButton);
+        assignD = findViewById(R.id.AssignmentButton);
+        projectD = findViewById(R.id.ProjectButton);
         titleText =findViewById(R.id.TaskTitle);
         classSpinner=findViewById(R.id.DetailsClassSpinner);
         dateText = findViewById(R.id.DateEditTextD);
-        lowPCb = findViewById(R.id.LowPriority);
-        medPCb = findViewById(R.id.MedPriority);
-        highPCb = findViewById(R.id.HighPriority);
+        lowPCb = findViewById(R.id.LPriorityButton);
+        medPCb = findViewById(R.id.MPriorityButton);
+        highPCb = findViewById(R.id.HPriorityButton);
         notesD = findViewById(R.id.NotesDetails);
 
         habitD.setClickable(false);
@@ -137,84 +138,7 @@ public class AssignmentDetails extends AppCompatActivity {
             projectD.setChecked(false);
         }
 
-        habitD.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (habitD.isChecked() == false) {
-                    habitD.setChecked(true);
-                    //assignD.setChecked(false);
-                    //projectD.setChecked(false);
-                }
-                else{
-                    habitD.setChecked(false);
-                }
-            }
-        });
-        assignD.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (assignD.isChecked()==false) {
-                    habitD.setChecked(false);
-                    assignD.setChecked(true);
-                    projectD.setChecked(false);
-                }
-                else{
-                    assignD.setChecked(false);
-                }
-            }
-        });
-        projectD.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (projectD.isChecked()==false) {
-                    habitD.setChecked(false);
-                    assignD.setChecked(false);
-                    projectD.setChecked(true);
-                }
-                else{
-                    projectD.setChecked(false);
-                }
-            }
-        });
-        lowPCb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (lowPCb.isChecked()==false) {
-                    lowPCb.setChecked(true);
-                    medPCb.setChecked(false);
-                    highPCb.setChecked(false);
-                }
-                else{
-                    lowPCb.setChecked(false);
-                }
-            }
-        });
-        medPCb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (medPCb.isChecked()==false) {
-                    lowPCb.setChecked(false);
-                    medPCb.setChecked(true);
-                    highPCb.setChecked(false);
-                }
-                else{
-                    medPCb.setChecked(false);
-                }
-            }
-        });
-        highPCb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    highPCb.setChecked(false);
-                }
-                else{
-                    lowPCb.setChecked(false);
-                    medPCb.setChecked(false);
-                    highPCb.setChecked(true);
-                }
-            }
-        });
+
     }
 
     /**
@@ -236,15 +160,15 @@ public class AssignmentDetails extends AppCompatActivity {
         //startActivity(editTask);
         Button editButton = (Button) findViewById(R.id.editButton);
 
-        habitD = findViewById(R.id.HabitD);
-        assignD = findViewById(R.id.AssignmentD);
-        projectD = findViewById(R.id.ProjectD);
+        habitD = findViewById(R.id.HabitButton);
+        assignD = findViewById(R.id.AssignmentButton);
+        projectD = findViewById(R.id.ProjectButton);
         titleText =findViewById(R.id.TaskTitle);
         classSpinner=findViewById(R.id.DetailsClassSpinner);
         dateText = findViewById(R.id.DateEditTextD);
-        lowPCb = findViewById(R.id.LowPriority);
-        medPCb = findViewById(R.id.MedPriority);
-        highPCb = findViewById(R.id.HighPriority);
+        lowPCb = findViewById(R.id.LPriorityButton);
+        medPCb = findViewById(R.id.MPriorityButton);
+        highPCb = findViewById(R.id.HPriorityButton);
         notesD = findViewById(R.id.NotesDetails);
 
         taskDatabase = TaskDatabase.getInstance(AssignmentDetails.this);
@@ -286,15 +210,6 @@ public class AssignmentDetails extends AppCompatActivity {
 
             task.setId(taskID);
 
-            if(lowPCb.isChecked()){
-                priorityID=0;
-            }else if(medPCb.isChecked()){
-                priorityID=1;
-            }else if(highPCb.isChecked()){
-                priorityID=2;
-            }else{
-                priorityID=1;
-            }
             task.setPriority(priorityID);
 
             task.setNameID(titleText.getText().toString());
@@ -308,21 +223,53 @@ public class AssignmentDetails extends AppCompatActivity {
 
                 }
             });
-
             task.setClassroom(classes);
+
             task.setDueDate(dateText.getText().toString());
+
             task.setNotes(notesD.getText().toString());
 
-            if(habitD.isChecked()){
-                typeID=0;
-            }
-            else if (assignD.isChecked()){typeID=1;}
-            else if (projectD.isChecked()){typeID=2;}
-            else{typeID=1;}
             task.setTypeID(typeID);
             taskDatabase.taskDao().update(task);
 
             isEditing=false;
+        }
+    }
+
+    public void onTypeButtonClicked(View view){
+        boolean checked = ((RadioButton) view ).isChecked();
+
+        switch(view.getId()){
+            case R.id.HabitButton:
+                if(checked)
+                    typeID=0;
+                break;
+            case R.id.AssignmentButton:
+                if(checked)
+                    typeID=1;
+                break;
+            case R.id.ProjectButton:
+                if(checked)
+                    typeID=2;
+                break;
+        }
+    }
+    public void onPriorityButtonClicked(View view){
+        boolean checked = ((RadioButton) view).isChecked();
+
+        switch(view.getId()){
+            case R.id.LPriorityButton:
+                if (checked)
+                    priorityID=0;
+                break;
+            case R.id.MPriorityButton:
+                if(checked)
+                    priorityID=1;
+                break;
+            case R.id.HPriorityButton:
+                if(checked)
+                    priorityID=2;
+                break;
         }
     }
 

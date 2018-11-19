@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.Window;
 
 import com.example.a53914.sievemobileapplication.db.TaskDatabase;
 import com.example.a53914.sievemobileapplication.db.Task;
@@ -28,6 +29,7 @@ public class HomePage extends AppCompatActivity {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         TaskDatabase taskDatabase = TaskDatabase.getInstance(HomePage.this);
         global.setTaskData(taskDatabase.taskDao().getAll());
 

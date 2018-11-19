@@ -9,7 +9,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="54dp">
 
         <TextView
             android:id="@+id/TaskDetailsTitle"
@@ -37,39 +40,35 @@
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="33sp" />
 
-        <LinearLayout
+        <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <CheckBox
-                android:id="@+id/HabitD"
-                android:layout_width="350dp"
+            <RadioButton
+                android:id="@+id/HabitButton"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Habit"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="18sp" />
+                android:onClick="onTypeButtonClicked"
+                android:text="Habit" />
 
-            <CheckBox
-                android:id="@+id/AssignmentD"
-                android:layout_width="394dp"
+            <RadioButton
+                android:id="@+id/AssignmentButton"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Assignment"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="18sp" />
+                android:onClick="onTypeButtonClicked"
+                android:text="Assignment" />
 
-            <CheckBox
-                android:id="@+id/ProjectD"
-                android:layout_width="match_parent"
+            <RadioButton
+                android:id="@+id/ProjectButton"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Project"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="18sp" />
-
-        </LinearLayout>
+                android:onClick="onTypeButtonClicked"
+                android:text="Project" />
+        </RadioGroup>
 
         <LinearLayout
             android:id="@+id/ClassListContainer"
@@ -110,40 +109,35 @@
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="33sp" />
 
-        <LinearLayout
-            android:id="@+id/PriorityContainer"
+        <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <CheckBox
-                android:id="@+id/LowPriority"
-                android:layout_width="0dp"
+            <RadioButton
+                android:id="@+id/LPriorityButton"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/not_important"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="18sp" />
+                android:onClick="onPriorityButtonClicked"
+                android:text="Low Priority" />
 
-            <CheckBox
-                android:id="@+id/MedPriority"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/moderately_important"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="18sp" />
-
-            <CheckBox
-                android:id="@+id/HighPriority"
-                android:layout_width="0dp"
+            <RadioButton
+                android:id="@+id/MPriorityButton"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/very_important"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="18sp" />
+                android:onClick="onPriorityButtonClicked"
+                android:text="Medium Priority" />
 
-        </LinearLayout>
+            <RadioButton
+                android:id="@+id/HPriorityButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="onPriorityButtonClicked"
+                android:text="High Priority" />
+        </RadioGroup>
 
         <LinearLayout
             android:id="@+id/DateContainer"
