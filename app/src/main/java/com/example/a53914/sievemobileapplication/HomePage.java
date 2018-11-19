@@ -47,7 +47,7 @@ public class HomePage extends AppCompatActivity {
         if(bd != null)
         {
             Boolean delete = (Boolean) bd.get("delete");
-            if (delete){
+            if (delete && delete != null){
                 taskDatabase.taskDao().delete(mTask);
             }
         }
