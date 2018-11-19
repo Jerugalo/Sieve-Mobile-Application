@@ -63,6 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-smallcaps"
+            android:onClick="toDetails"
             android:text="See Details"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="14sp" />
@@ -82,6 +83,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
+                android:onClick="toHomePage"
                 android:text="X"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp" />
@@ -92,6 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
+                android:onClick="completeTask"
                 android:text="&#x2713;	"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp" />
