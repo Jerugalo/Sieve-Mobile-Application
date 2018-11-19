@@ -40,6 +40,16 @@ public class HomePage extends AppCompatActivity {
         TaskListAdapter adapter = new TaskListAdapter(global.getTaskData());
         rvTasks.setAdapter(adapter);
         rvTasks.setLayoutManager(new LinearLayoutManager(this));
+
+        Intent intent = getIntent();
+        Bundle bd = intent.getExtras();
+        if(bd != null)
+        {
+            Boolean delete = (Boolean) bd.get("delete");
+            if (delete){
+                //TODO: Add statement to delete current task from database
+            }
+        }
     }
 
     /** Instates the RecyclerView */
