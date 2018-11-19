@@ -12,12 +12,13 @@ public class AssignmentStart extends AppCompatActivity {
 
     GlobalVars global = GlobalVars.getInstance();
     Task mTask = global.getCurrentTask();
-    TextView taskTitle = (TextView)findViewById(R.id.TaskNameTitle);
+    TextView taskTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assignment_start);
+        taskTitle = (TextView)findViewById(R.id.TaskNameTitle);
         taskTitle.setText(mTask.getNameID());
     }
 
