@@ -29,4 +29,9 @@
         <item name="android:colorAccent">@color/priorityLow2</item>
     </style>
 
+    <style name="SieveDefault.SieveAlternative" parent="SieveDefault" >
+        <item name="android:colorBackground">@color/colorBackground2</item>
+        <item name="android:statusBarColor">@color/colorSecondary2</item>
+    </style>
+
 </resources>
