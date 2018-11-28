@@ -1,25 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#03776f</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#91d58a</color>
+    <color name="colorPrimaryDark">#205753</color>
+    <color name="colorAccent">#FF68B160</color>
     <color name="colorBackground">#49a49e</color>
     <color name="colorSecondary">#03776f</color>
-
-
     <color name="priorityHigh">#eb545c</color>
     <color name="priorityMed">#e09965</color>
     <color name="priorityLow">#68b160</color>
-
-    <color name="PriorityHigh">#cc5e64</color>
-    <color name="PriorityMedium">#d09060</color>
-    <color name="PriorityLow">#57aa4e</color>
 
     <array name="priority">
         <item>@color/priorityLow</item>
         <item>@color/priorityMed</item>
         <item>@color/priorityHigh</item>
     </array>
+
+    <!--Second theme colors -->
+
+
+    <color name="colorPrimary2">#49619c</color>
+    <color name="colorPrimaryDark2">#4E5F88</color>
+    <color name="colorBackground2">#6c81b5</color>
+    <color name="priorityHigh2">#c96571</color>
+    <color name="priorityMed2">#89619e</color>
+    <color name="priorityLow2">#52a589</color>
+    <color name="colorSecondary2">#49619c</color>
+
+
 
 </resources>
 
