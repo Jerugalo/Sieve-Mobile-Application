@@ -3,7 +3,7 @@
     <!-- Base application theme. -->
     <style name="SieveDefault" parent="Base.Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
-         <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:colorBackground">@color/colorBackground</item>
@@ -12,8 +12,10 @@
         <item name="android:colorAccent">@color/priorityLow</item>
         <item name="android:statusBarColor">@color/colorSecondary</item>
 
-    </style>
 
+
+    </style>
+<!--
     <style name="SieveAlternative" parent="SieveDefault" >
         <item name="colorPrimary">@color/colorPrimary2</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark2</item>
@@ -32,5 +34,5 @@
         <item name="android:colorBackground">@color/colorBackground2</item>
         <item name="android:statusBarColor">@color/colorSecondary2</item>
     </style>
-
+-->
 </resources>
