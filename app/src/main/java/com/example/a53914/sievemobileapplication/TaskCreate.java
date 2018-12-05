@@ -91,7 +91,11 @@ public class TaskCreate extends AppCompatActivity {
         classChooser.setAdapter(adapter);
         classChooser.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                classes = (parent.getItemAtPosition(pos)).toString();
+                if ((parent.getItemAtPosition(pos)).toString() == "Create New Class"){
+                    //TODO: open fragment for class creation
+                } else {
+                    classes = (parent.getItemAtPosition(pos)).toString();
+                }
             }
 
             public void onNothingSelected(AdapterView<?> parent) {
