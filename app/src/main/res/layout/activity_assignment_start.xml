@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="You are now working on"
+            android:text="@string/now_working"
             android:textAlignment="center"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="33sp" />
@@ -49,7 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="Time Until Break / VRS"
+            android:text="@string/break_time"
             android:textAlignment="center"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="33sp" />
@@ -64,9 +64,9 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-smallcaps"
             android:onClick="toDetails"
-            android:text="See Details"
+            android:text="@string/see_details"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:textSize="14sp" />
+            android:textSize="18sp" />
 
         <Space
             android:layout_width="match_parent"
@@ -84,7 +84,7 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:onClick="toHomePage"
-                android:text="X"
+                android:text="@string/x"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp" />
 
@@ -95,7 +95,7 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:onClick="completeTask"
-                android:text="&#x2713;	"
+                android:text="@string/check_mark"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp" />
         </LinearLayout>
