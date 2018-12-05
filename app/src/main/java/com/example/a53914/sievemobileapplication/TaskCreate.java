@@ -15,16 +15,22 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.a53914.sievemobileapplication.db.Class;
+import com.example.a53914.sievemobileapplication.db.ClassDatabase;
 import com.example.a53914.sievemobileapplication.db.TaskDatabase;
 import com.example.a53914.sievemobileapplication.db.Task;
 import com.example.a53914.sievemobileapplication.fragments.DatePickerFragment;
 
 import java.lang.ref.WeakReference;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class TaskCreate extends AppCompatActivity {
     private TaskDatabase taskDatabase;
     private Task task;
+    private ArrayAdapter<String> classList;
     int priorityID;
     String classes;
     int typeID=0;
@@ -33,6 +39,14 @@ public class TaskCreate extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_create);
+
+        /* Instantiate the ClassDatabase */
+        ClassDatabase classDatabase = ClassDatabase.getInstance(this);
+        List<Class> clss = classDatabase.classDao().getAll();
+        for (Class cls : clss) {
+            classList.add(cls.getName());
+        }
+        classList.add("Create New Class");
 
         //Date view shows today's date when user first opens screen
         final Calendar c = Calendar.getInstance();
@@ -72,7 +86,7 @@ public class TaskCreate extends AppCompatActivity {
 
         //Class chooser code
         Spinner classChooser = (Spinner) findViewById(R.id.DetailsClassSpinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.classes_array,android.R.layout.simple_spinner_item);
+        ArrayAdapter adapter = classList;
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         classChooser.setAdapter(adapter);
         classChooser.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {

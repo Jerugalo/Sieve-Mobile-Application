@@ -14,9 +14,4 @@
     <string name="editTask">Edit Task</string>
     <string name="beginTask">Begin &#62;</string>
     <string name="notesDetails">Notes and Details</string>
-    <string-array name="classes_array">
-        <item>Math</item>
-        <item>English</item>
-        <item>Other Class</item>
-    </string-array>
 </resources>

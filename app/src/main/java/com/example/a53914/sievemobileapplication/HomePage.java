@@ -22,7 +22,7 @@ import java.util.List;
 public class HomePage extends AppCompatActivity {
 
     GlobalVars global = GlobalVars.getInstance();
-    Task mTask =global.getCurrentTask();
+    Task mTask = global.getCurrentTask();
 
     /**
      * Creates Activity and sets up the recycler view. Recycler view pulls a list of Task objects
@@ -31,7 +31,7 @@ public class HomePage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        TaskDatabase taskDatabase = TaskDatabase.getInstance(HomePage.this);
+        TaskDatabase taskDatabase = TaskDatabase.getInstance(this);
         global.setTaskData(taskDatabase.taskDao().getAll());
 
         super.onCreate(savedInstanceState);
