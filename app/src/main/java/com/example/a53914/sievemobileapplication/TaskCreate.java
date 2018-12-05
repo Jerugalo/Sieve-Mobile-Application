@@ -24,13 +24,14 @@ import com.example.a53914.sievemobileapplication.fragments.DatePickerFragment;
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
 public class TaskCreate extends AppCompatActivity {
     private TaskDatabase taskDatabase;
     private Task task;
-    private ArrayAdapter<String> classList;
+    private ArrayList<String> classList = new ArrayList<>();
     int priorityID;
     String classes;
     int typeID=0;
@@ -86,7 +87,7 @@ public class TaskCreate extends AppCompatActivity {
 
         //Class chooser code
         Spinner classChooser = (Spinner) findViewById(R.id.DetailsClassSpinner);
-        ArrayAdapter adapter = classList;
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         classChooser.setAdapter(adapter);
         classChooser.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
