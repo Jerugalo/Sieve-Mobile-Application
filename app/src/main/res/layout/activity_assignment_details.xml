@@ -54,7 +54,7 @@
             <RadioButton
                 android:id="@+id/HabitButton"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:onClick="onTypeButtonClicked"
@@ -65,7 +65,7 @@
             <RadioButton
                 android:id="@+id/AssignmentButton"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:onClick="onTypeButtonClicked"
@@ -76,7 +76,7 @@
             <RadioButton
                 android:id="@+id/ProjectButton"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:onClick="onTypeButtonClicked"
@@ -94,7 +94,7 @@
             <TextView
                 android:id="@+id/textView8"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/class_name"
@@ -104,7 +104,7 @@
             <Spinner
                 android:id="@+id/DetailsClassSpinner"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginStart="16dp"
                 android:layout_weight="1"
                 app:layout_constraintEnd_toEndOf="@+id/NameAddText"
@@ -130,7 +130,7 @@
             <RadioButton
                 android:id="@+id/LPriorityButton"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:onClick="onPriorityButtonClicked"
@@ -140,7 +140,7 @@
             <RadioButton
                 android:id="@+id/MPriorityButton"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:onClick="onPriorityButtonClicked"
@@ -150,7 +150,7 @@
             <RadioButton
                 android:id="@+id/HPriorityButton"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:onClick="onPriorityButtonClicked"
@@ -176,7 +176,7 @@
 
             <TextView
                 android:id="@+id/DateEditTextD"
-                android:layout_width="wrap_content"
+                android:layout_width="225dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:editable="false"
@@ -185,7 +185,7 @@
                 android:inputType="date"
                 android:onClick="showDatePickerDialog"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="18sp" />
+                android:textSize="24sp" />
         </LinearLayout>
 
         <android.support.constraint.ConstraintLayout
