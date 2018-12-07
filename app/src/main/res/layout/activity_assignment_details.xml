@@ -21,6 +21,7 @@
             android:id="@+id/TaskDetailsTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-smallcaps"
             android:text="@string/task_details"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="33sp" />
@@ -30,6 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:fontFamily="sans-serif-smallcaps"
             android:inputType="textPersonName"
             android:text="@string/task_title"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
@@ -39,6 +41,7 @@
             android:id="@+id/TaskTypeTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-smallcaps"
             android:text="@string/task_type"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="33sp" />
@@ -53,8 +56,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:onClick="onTypeButtonClicked"
                 android:text="@string/habit"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="14sp" />
 
             <RadioButton
@@ -62,8 +67,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:onClick="onTypeButtonClicked"
                 android:text="@string/assignment"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="14sp" />
 
             <RadioButton
@@ -71,8 +78,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:onClick="onTypeButtonClicked"
                 android:text="@string/project"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="14sp" />
         </RadioGroup>
 
@@ -87,6 +96,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/class_name"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="33sp" />
@@ -107,6 +117,7 @@
             android:id="@+id/PriorityTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-smallcaps"
             android:text="@string/priority"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="33sp" />
@@ -121,24 +132,30 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:onClick="onPriorityButtonClicked"
-                android:text="@string/low_priority" />
+                android:text="@string/low_priority"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
             <RadioButton
                 android:id="@+id/MPriorityButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:onClick="onPriorityButtonClicked"
-                android:text="@string/medium_priority" />
+                android:text="@string/medium_priority"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
             <RadioButton
                 android:id="@+id/HPriorityButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:onClick="onPriorityButtonClicked"
-                android:text="@string/high_priority" />
+                android:text="@string/high_priority"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
         </RadioGroup>
 
         <LinearLayout
@@ -152,6 +169,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/date_due"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="33sp" />
@@ -163,6 +181,7 @@
                 android:layout_weight="1"
                 android:editable="false"
                 android:ems="10"
+                android:fontFamily="sans-serif-smallcaps"
                 android:inputType="date"
                 android:onClick="showDatePickerDialog"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
@@ -178,6 +197,7 @@
                 android:id="@+id/NotesDetailsTitle"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/notes_details"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="33sp"
@@ -188,6 +208,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:ems="10"
+                android:fontFamily="sans-serif-smallcaps"
                 android:hint="@string/notes_details"
                 android:inputType="textMultiLine"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
@@ -207,6 +228,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="sans-serif-smallcaps"
                     android:onClick="toHomePage"
                     android:text="@string/return_home"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
@@ -217,6 +239,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="sans-serif-smallcaps"
                     android:onClick="editTask"
                     android:text="@string/edit_text"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
@@ -227,6 +250,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="sans-serif-smallcaps"
                     android:onClick="beginTask"
                     android:text="@string/beginTask"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
