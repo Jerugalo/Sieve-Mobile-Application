@@ -17,7 +17,6 @@
 
     <!--Second theme colors -->
 
-
     <color name="colorPrimary2">#49619c</color>
     <color name="colorPrimaryDark2">#4E5F88</color>
     <color name="colorBackground2">#6c81b5</color>
@@ -26,6 +25,13 @@
     <color name="priorityLow2">#52a589</color>
     <color name="colorSecondary2">#49619c</color>
 
+    <!--Third theme colors -->
+
+    <color name="priorityHigh3">#e47f80</color>
+    <color name="priorityMed3">#ffc16b</color>
+    <color name="priorityLow3">#b9d870</color>
+    <color name="colorBackground3">#fdfd96</color>
+    <color name="colorSecondary3">#fdab9f</color>
 
 
 </resources>
