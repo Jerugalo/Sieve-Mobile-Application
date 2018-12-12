@@ -5,7 +5,7 @@
     <string name="menu_key">&#8801;</string>
     <string name="create_task">+</string>
     <string name="date">[date]</string>
-    <string name="returnHome">&#60; Back</string>
+    <string name="return_home">&#60; Back</string>
     <string name="TaskName">Task Name</string>
     <string name="assignment_details">Task Details</string>
     <string name="not_important">Low Priority</string>
@@ -13,7 +13,36 @@
     <string name="very_important">High Priority</string>
     <string name="editTask">Edit Task</string>
     <string name="beginTask">Begin &#62;</string>
-    <string name="notesDetails">Notes and Details</string>
+    <string name="task_details">Task Details</string>
+    <string name="task_title">Task Title</string>
+    <string name="task_type">Task Type</string>
+    <string name="habit">Habit</string>
+    <string name="assignment">Assignment</string>
+    <string name="project">Project</string>
+    <string name="class_name">Class</string>
+    <string name="priority">Priority</string>
+    <string name="low_priority">Low Priority</string>
+    <string name="medium_priority">Medium Priority</string>
+    <string name="high_priority">High Priority</string>
+    <string name="date_due">Date Due</string>
+    <string name="edit_text">Edit Text</string>
+    <string name="now_working">You are now working on</string>
+    <string name="break_time">Time until break / VRS</string>
+    <string name="see_details">See Details</string>
+    <string name="x">X</string>
+    <string name="check_mark">&#x2713;</string>
+    <string name="adding_task">Adding Task...</string>
+    <string name="name">Name</string>
+    <string name="notes_details">Notes and Details</string>
+    <string name="task_create">Create Task</string>
+    <string name="settings">Settings</string>
+    <string name="notification_settings">Notification Settings</string>
+    <string name="create_schedule">Create a Schedule</string>
+    <string name="display_settings">Display Settings</string>
+    <string name="other_settings">Other Settings</string>
+    <string name="about">About</string>
+
+
     <string-array name="classes_array">
         <item>Math</item>
         <item>English</item>

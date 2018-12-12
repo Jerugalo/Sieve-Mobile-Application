@@ -25,8 +25,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:onClick="toHomePage"
-                android:text="@string/returnHome" />
+                android:text="@string/return_home"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/SettingsTitle"
@@ -34,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
-                android:text="Settings"
+                android:text="@string/settings"
                 android:textAlignment="center"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="33sp" />
@@ -44,70 +47,70 @@
             android:layout_width="match_parent"
             android:layout_height="46dp" />
 
-        <Button
-            android:id="@+id/NotificationButton"
+        <TextView
+            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="Notification Settings"
-            android:textAlignment="center"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+            android:text="@string/notification_settings"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="33sp" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="46dp"
             android:textAlignment="center" />
 
-        <Button
-            android:id="@+id/CreateScheduleButton"
+        <TextView
+            android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="Create a Schedule"
-            android:textAlignment="center"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+            android:text="@string/create_schedule"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="33sp" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="46dp"
             android:textAlignment="center" />
 
-        <Button
-            android:id="@+id/DisplayButton"
+        <TextView
+            android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="Display Settings"
-            android:textAlignment="center"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+            android:text="@string/display_settings"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="33sp" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="46dp"
             android:textAlignment="center" />
 
-        <Button
-            android:id="@+id/OtherSettingsButton"
+        <TextView
+            android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="Other Settings"
-            android:textAlignment="center"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+            android:text="@string/other_settings"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="33sp" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="46dp"
             android:textAlignment="center" />
 
-        <Button
-            android:id="@+id/AboutButton"
+        <TextView
+            android:id="@+id/textView7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="About"
-            android:textAlignment="center"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+            android:text="@string/about"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="33sp" />
 
     </LinearLayout>
 

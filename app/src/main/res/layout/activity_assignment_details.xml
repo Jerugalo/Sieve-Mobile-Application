@@ -9,16 +9,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="54dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/TaskDetailsTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Task Details"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="@string/task_details"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="33sp" />
 
@@ -27,8 +31,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:fontFamily="sans-serif-smallcaps"
             android:inputType="textPersonName"
-            android:text="Task Title"
+            android:text="@string/task_title"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="24sp" />
 
@@ -36,7 +41,8 @@
             android:id="@+id/TaskTypeTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Task Type"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="@string/task_type"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="33sp" />
 
@@ -48,26 +54,35 @@
             <RadioButton
                 android:id="@+id/HabitButton"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:onClick="onTypeButtonClicked"
-                android:text="Habit" />
+                android:text="@string/habit"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textSize="14sp" />
 
             <RadioButton
                 android:id="@+id/AssignmentButton"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:onClick="onTypeButtonClicked"
-                android:text="Assignment" />
+                android:text="@string/assignment"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textSize="14sp" />
 
             <RadioButton
                 android:id="@+id/ProjectButton"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:onClick="onTypeButtonClicked"
-                android:text="Project" />
+                android:text="@string/project"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textSize="14sp" />
         </RadioGroup>
 
         <LinearLayout
@@ -77,22 +92,19 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/ClassTextNE"
+                android:id="@+id/textView8"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
-                android:text="Class"
+                android:text="@string/class_name"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="33sp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/DetailsClassSpinner"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:textSize="33sp" />
 
             <Spinner
                 android:id="@+id/DetailsClassSpinner"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginStart="16dp"
                 android:layout_weight="1"
                 app:layout_constraintEnd_toEndOf="@+id/NameAddText"
@@ -105,7 +117,8 @@
             android:id="@+id/PriorityTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Priority"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="@string/priority"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="33sp" />
 
@@ -117,26 +130,32 @@
             <RadioButton
                 android:id="@+id/LPriorityButton"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:onClick="onPriorityButtonClicked"
-                android:text="Low Priority" />
+                android:text="@string/low_priority"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
             <RadioButton
                 android:id="@+id/MPriorityButton"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:onClick="onPriorityButtonClicked"
-                android:text="Medium Priority" />
+                android:text="@string/medium_priority"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
             <RadioButton
                 android:id="@+id/HPriorityButton"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:onClick="onPriorityButtonClicked"
-                android:text="High Priority" />
+                android:text="@string/high_priority"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
         </RadioGroup>
 
         <LinearLayout
@@ -150,20 +169,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Date Due"
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="@string/date_due"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="24sp" />
+                android:textSize="33sp" />
 
             <TextView
                 android:id="@+id/DateEditTextD"
-                android:layout_width="wrap_content"
+                android:layout_width="225dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:editable="false"
                 android:ems="10"
+                android:fontFamily="sans-serif-smallcaps"
                 android:inputType="date"
                 android:onClick="showDatePickerDialog"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textSize="24sp" />
         </LinearLayout>
 
         <android.support.constraint.ConstraintLayout
@@ -175,9 +197,10 @@
                 android:id="@+id/NotesDetailsTitle"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:text="@string/notesDetails"
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="@string/notes_details"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="24sp"
+                android:textSize="33sp"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
@@ -185,9 +208,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:ems="10"
-                android:hint="@string/notesDetails"
+                android:fontFamily="sans-serif-smallcaps"
+                android:hint="@string/notes_details"
                 android:inputType="textMultiLine"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout"
                 app:layout_constraintTop_toBottomOf="@+id/NotesDetailsTitle" />
 
@@ -203,27 +228,33 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="sans-serif-smallcaps"
                     android:onClick="toHomePage"
-                    android:text="@string/returnHome"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+                    android:text="@string/return_home"
+                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                    android:textSize="18sp" />
 
                 <Button
                     android:id="@+id/editButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="sans-serif-smallcaps"
                     android:onClick="editTask"
-                    android:text="Edit Text"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+                    android:text="@string/edit_text"
+                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                    android:textSize="18sp" />
 
                 <Button
                     android:id="@+id/beginButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="sans-serif-smallcaps"
                     android:onClick="beginTask"
                     android:text="@string/beginTask"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                    android:textSize="18sp" />
             </LinearLayout>
         </android.support.constraint.ConstraintLayout>
 

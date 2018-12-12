@@ -26,8 +26,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 android:onClick="toHomePage"
-                android:text="@string/returnHome" />
+                android:text="@string/return_home"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/AddingTask"
@@ -37,7 +40,7 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:onClick="alarmSet1"
-                android:text="Adding Task..."
+                android:text="@string/adding_task"
                 android:textAlignment="center"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="33sp"
@@ -55,11 +58,11 @@
                 android:id="@+id/NameText"
                 android:layout_width="177dp"
 
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginStart="16dp"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
-                android:text="Name"
+                android:text="@string/name"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="33sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/NameAddText"
@@ -76,6 +79,7 @@
                 android:fontFamily="sans-serif-smallcaps"
                 android:inputType="textPersonName"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/NameText"
                 tools:layout_editor_absoluteY="64dp" />
@@ -89,11 +93,11 @@
             <TextView
                 android:id="@+id/ClassTextNE"
                 android:layout_width="199dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginStart="16dp"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
-                android:text="Class"
+                android:text="@string/class_name"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="33sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/DetailsClassSpinner"
@@ -102,7 +106,7 @@
             <Spinner
                 android:id="@+id/DetailsClassSpinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginStart="16dp"
                 android:layout_weight="1"
                 app:layout_constraintEnd_toEndOf="@+id/NameAddText"
@@ -123,9 +127,9 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:onClick="HabitClick"
-                android:text="Habit"
+                android:text="@string/habit"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="14sp"
+                android:textSize="18sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/assignButton"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -136,9 +140,9 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:onClick="AssignClick"
-                android:text="Assignment"
+                android:text="@string/assignment"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="14sp"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="184dp" />
@@ -151,9 +155,9 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:onClick="ProjectClick"
-                android:text="Project"
+                android:text="@string/project"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="14sp"
+                android:textSize="18sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/assignButton"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -171,7 +175,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_weight="0"
                 android:fontFamily="sans-serif-smallcaps"
-                android:text="Priority"
+                android:text="@string/priority"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="33sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -195,11 +199,11 @@
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginStart="16dp"
                 android:layout_weight="0"
                 android:fontFamily="sans-serif-smallcaps"
-                android:text="Due Date"
+                android:text="@string/date_due"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="33sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/NameAddText"
@@ -228,11 +232,11 @@
             <TextView
                 android:id="@+id/textView5"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginStart="16dp"
                 android:layout_weight="0"
                 android:fontFamily="sans-serif-smallcaps"
-                android:text="Notes and Details"
+                android:text="@string/notes_details"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="33sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/NameAddText"
@@ -246,7 +250,8 @@
                 android:ems="10"
                 android:fontFamily="sans-serif-smallcaps"
                 android:inputType="textMultiLine"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textSize="24sp" />
         </LinearLayout>
 
         <Space
@@ -258,8 +263,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="Create Task"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+            android:text="@string/task_create"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="18sp" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
