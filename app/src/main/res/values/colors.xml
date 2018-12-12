@@ -32,6 +32,24 @@
     <color name="priorityLow3">#b9d870</color>
     <color name="colorBackground3">#fdfd96</color>
     <color name="colorSecondary3">#fdab9f</color>
+    <color name="colorAccent3">#7fffd4</color>
+
+    <!--Fourth theme colors -->
+
+    <color name="priorityLow4">#f7e368</color>
+    <color name="priorityHigh4">#f9aab7</color>
+    <color name="colorBackground4">#76d7d6</color>
+    <color name="colorSecondary4">#41b3a3</color>
+    <color name="colorAccent4">#957dad</color>
+
+    <!--Fifth theme colors -->
+
+    <color name="colorBackground5">#363636</color>
+    <color name="priorityHigh5">#e8175d</color>
+    <color name="priorityMed5">#cc527a</color>
+    <color name="priorityLow5">#a8a7a7</color>
+    <color name="colorAccent5">#f8bbd0</color>
+    <color name="colorSecondary5">#f8bbd0</color>
 
 
 </resources>
