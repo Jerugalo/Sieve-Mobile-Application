@@ -21,6 +21,7 @@ public class GlobalVars extends Application {
 
     private static List<Task> taskData;
     private static Task currentTask;
+    private static  String className;
 
     public GlobalVars() {
 
@@ -39,5 +40,12 @@ public class GlobalVars extends Application {
     }
     public static void setCurrentTask(Task currentTask) {
         GlobalVars.currentTask = currentTask;
+    }
+
+    public static String getClassName() {
+        return className;
+    }
+    public static void setClassName(String className) {
+        GlobalVars.className = className;
     }
 }

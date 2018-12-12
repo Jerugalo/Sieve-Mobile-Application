@@ -19,12 +19,11 @@ import com.example.a53914.sievemobileapplication.db.Class;
 import com.example.a53914.sievemobileapplication.db.ClassDatabase;
 import com.example.a53914.sievemobileapplication.db.TaskDatabase;
 import com.example.a53914.sievemobileapplication.db.Task;
+import com.example.a53914.sievemobileapplication.fragments.ClassCreationDialog;
 import com.example.a53914.sievemobileapplication.fragments.DatePickerFragment;
 
 import java.lang.ref.WeakReference;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -35,6 +34,8 @@ public class TaskCreate extends AppCompatActivity {
     int priorityID;
     String classes;
     int typeID=0;
+    public ClassDatabase classDatabase;
+    GlobalVars global = GlobalVars.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class TaskCreate extends AppCompatActivity {
         setContentView(R.layout.activity_task_create);
 
         /* Instantiate the ClassDatabase */
-        ClassDatabase classDatabase = ClassDatabase.getInstance(this);
+        classDatabase = ClassDatabase.getInstance(this);
         List<Class> clss = classDatabase.classDao().getAll();
         for (Class cls : clss) {
             classList.add(cls.getName());
@@ -92,13 +93,19 @@ public class TaskCreate extends AppCompatActivity {
         classChooser.setAdapter(adapter);
         classChooser.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                if ((parent.getItemAtPosition(pos)).toString() == "Create New Class"){
-                    //TODO: open fragment for class creation
+                if ((parent.getItemAtPosition(pos)).toString().equals("Create New Class")){
+                    ClassCreationDialog dialog = new ClassCreationDialog();
+                    dialog.show(getSupportFragmentManager(), "ClassCreationDialog");
+                    Class mClass = new Class();
+                    mClass.setName(global.getClassName());
+                    mClass.setType(0);
+                    mClass.setId(0);
+                    mClass.setDueDate("");
+                    new InsertClass(TaskCreate.this, mClass).execute();
                 } else {
                     classes = (parent.getItemAtPosition(pos)).toString();
                 }
             }
-
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
@@ -119,7 +126,36 @@ public class TaskCreate extends AppCompatActivity {
                 }
             });
     }
-    private void setResult(Task task, int flag){
+
+    public void setResultClass(Class cls, int flag){
+        setResult(flag,new Intent().putExtra("task",task.toString()));
+        finish();
+    }
+
+    private static class InsertClass extends AsyncTask<Void, Void,Boolean> {
+        private WeakReference<TaskCreate> activityReference;
+        private Class cls;
+        InsertClass(TaskCreate context, Class mClass){
+            activityReference=new WeakReference<>(context);
+            cls = mClass;
+        }
+        @Override
+        protected Boolean doInBackground(Void...objs){
+            activityReference.get().classDatabase.classDao().insertAll(cls);
+            return true;
+        }
+        @Override
+        protected void onPostExecute(Boolean bool){
+            if(bool){
+                activityReference.get().setResultClass(cls,1);
+                Log.d("TaskCreate","The Async Task has finished!");
+                Log.d("TaskCreate", cls.toString());
+                activityReference.get().finish();
+            }
+        }
+    }
+
+    private void setResultTask(Task task, int flag){
         setResult(flag,new Intent().putExtra("task",task.toString()));
         finish();
     }
@@ -139,7 +175,7 @@ public class TaskCreate extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean bool){
             if(bool){
-                activityReference.get().setResult(task,1);
+                activityReference.get().setResultTask(task,1);
                 Log.d("TaskCreate","The Async Task has finished!");
                 Log.d("TaskCreate",task.toString());
                 activityReference.get().finish();
@@ -158,7 +194,6 @@ public class TaskCreate extends AppCompatActivity {
     public void showDatePickerDialog(View view){
         DialogFragment newFragment = new DatePickerFragment();
         newFragment.show(getSupportFragmentManager(),"datePicker");
-
     }
 
 }
