@@ -2,6 +2,7 @@ package com.example.a53914.sievemobileapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.AsyncTask;
@@ -14,13 +15,22 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.example.a53914.sievemobileapplication.db.TaskDatabase;
 import com.example.a53914.sievemobileapplication.db.Task;
+import com.example.a53914.sievemobileapplication.db.TimePickerFragmentAlarm;
 import com.example.a53914.sievemobileapplication.fragments.DatePickerFragment;
+import com.example.a53914.sievemobileapplication.fragments.DatePickerFragmentAlarm;
 
 import java.lang.ref.WeakReference;
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 public class TaskCreate extends AppCompatActivity {
     private TaskDatabase taskDatabase;
@@ -29,10 +39,15 @@ public class TaskCreate extends AppCompatActivity {
     String classes;
     int typeID=0;
 
+    public ArrayList<String> alarms;
+    public String currentTime;
+    public String currentDate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_create);
+        alarms = new ArrayList<>();
 
         //Date view shows today's date when user first opens screen
         final Calendar c = Calendar.getInstance();
@@ -91,11 +106,15 @@ public class TaskCreate extends AppCompatActivity {
             button.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view){
+                    String alarmsString="";
                     EditText nameText= (EditText) findViewById(R.id.NameAddText);
                     EditText notesText = (EditText) findViewById(R.id.NotesText);
                     TextView dateText = findViewById(R.id.DateViewer);
+                    for(int i=0; i<alarms.size();i++){
+                        alarmsString= alarmsString + alarms.get(i);
+                    }
                     task = new Task(priorityID,nameText.getText().toString(),classes,dateText.getText().toString(),
-                            notesText.getText().toString(),typeID);
+                            notesText.getText().toString(),typeID,0,alarmsString);
                     new InsertTask(TaskCreate.this,task).execute();
                 }
             });
@@ -141,5 +160,23 @@ public class TaskCreate extends AppCompatActivity {
         newFragment.show(getSupportFragmentManager(),"datePicker");
 
     }
+    public void alarmSet1(View view){
+        DialogFragment newFragment = new TimePickerFragmentAlarm();
+        newFragment.show(getSupportFragmentManager(),"timePicker");
 
+        //DialogFragment newFragment2 = new DatePickerFragmentAlarm();
+        //newFragment2.show(getSupportFragmentManager(),"datePickerA");
+
+        //String alarmTime = currentTime +currentDate + ":";
+        //alarms.add(alarmTime);
+    }
+    public void alarmSet2(View view){
+        DialogFragment newFragment = new DatePickerFragmentAlarm();
+        newFragment.show(getSupportFragmentManager(),"datePickerA");
+
+    }
+    public void alarmSet3(View view){
+        String alarmTime = currentTime + currentDate +":";
+        alarms.add(alarmTime);
+    }
 }

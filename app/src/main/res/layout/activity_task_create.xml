@@ -36,6 +36,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
+                android:onClick="alarmSet1"
                 android:text="Adding Task..."
                 android:textAlignment="center"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
