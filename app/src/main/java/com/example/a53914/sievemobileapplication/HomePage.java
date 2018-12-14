@@ -81,6 +81,7 @@ public class HomePage extends AppCompatActivity {
             }
         }
 
+        createListofNotifications();
     }
 
     /** Instates the RecyclerView */
@@ -94,6 +95,7 @@ public class HomePage extends AppCompatActivity {
         TaskListAdapter adapter = new TaskListAdapter(tasks);
         rvTasks.setAdapter(adapter);
         rvTasks.setLayoutManager(new LinearLayoutManager(this));
+        createListofNotifications();
     }
 
     /** Opens Settings activity */
@@ -108,6 +110,17 @@ public class HomePage extends AppCompatActivity {
         startActivity(toTaskCreate);
     }
 
+    /**
+     * Creates an alarm to be triggered to send a notification, also built here
+     * @param context
+     * @param day
+     * @param month
+     * @param year
+     * @param hour
+     * @param minute
+     * @param notificationID
+     * @param taskID
+     */
     public void setAlarm(Context context, int day,int month, int year, int hour, int minute,int notificationID, int taskID){
         TaskDatabase taskDatabase = TaskDatabase.getInstance(HomePage.this);
         List<Task> tasks = taskDatabase.taskDao().getAll();
@@ -146,11 +159,9 @@ public class HomePage extends AppCompatActivity {
 
     }
 
-    /*public void AlarmGo(View view){
-        int LastNotificationID=toIntExact(SystemClock.uptimeMillis()/1000);
-        setAlarm(this,5000, LastNotificationID);
-    }*/
-
+    /**
+     * Creates a notification channel for the app, as required by android post SDK 26(?)
+     */
     private void createNotificationChannel(){
         if(Build.VERSION.SDK_INT >= 26){
             CharSequence name = "SieveAppChannel";
@@ -163,7 +174,13 @@ public class HomePage extends AppCompatActivity {
         }
     }
 
-    public void createListofNotifications(View view){
+    //Currently Activated by pressing a button, I'll change that now to whenever user goes to homepage
+
+    /**
+     * Cycles through all tasks and activates notifications for all tasks that have them
+     * @param view
+     */
+    public void createListofNotifications(){
         int today =Calendar.DAY_OF_YEAR;
         TaskDatabase taskDatabase = TaskDatabase.getInstance(this);
         List<Task> tasks = taskDatabase.taskDao().getAll();
