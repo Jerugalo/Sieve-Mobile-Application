@@ -19,4 +19,16 @@
     <string name="not_important">Not Important</string>
     <string name="moderately_important">Moderately Important</string>
     <string name="very_important">Very Important</string>
+    <string name="settingsTitle">Settings</string>
+    <string name="notifSettings">Notification Settings</string>
+    <string name="schedCreate">Create a Schedule</string>
+    <string name="dispSettings">Display Settings</string>
+    <string name="otherSettings">Other Settings</string>
+    <!--Sieve Theme Names-->
+    <string name="sieveThemeDefault">Default</string>
+    <string name="sieveThemeAlternative">Alternative</string>
+    <string name="sieveThemeCombined">Combined</string>
+    <string name="sieveThemeDark">Dark</string>
+    <string name="sieveThemePastel">Pastel</string>
+    <string name="sieveThemeCandy">Candy</string>
 </resources>

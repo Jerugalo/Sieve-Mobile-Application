@@ -1,22 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3b807b</color>
-    <color name="colorPrimaryDark">#205753</color>
-    <color name="colorAccent">#68b160</color>
-    <color name="colorBackground">#49a49e</color>
-    <color name="priorityHigh">#eb545c</color>
-    <color name="priorityMed">#e09965</color>
-    <color name="priorityLow">#68b160</color>
-    <color name="colorSecondary">#03776f</color>
+    <!-- Primary Theme Colors -->
+    <color name="defaultBackground">#49a49e</color>
+    <color name="defaultBar">#03776f</color>
+    <color name="defaultHigh">#eb545c</color>
+    <color name="defaultMed">#e09965</color>
+    <color name="defaultLow">#68b160</color>
 
-    <!--Second theme colors -->
+    <!-- Alternative theme colors -->
+    <color name="alternativeBackground">#6c81b5</color>
+    <color name="alternativeBar">#49619c</color>
+    <color name="alternativeHigh">#c96571</color>
+    <color name="alternativeMed">#89619e</color>
+    <color name="alternativeLow">#52a589</color>
 
-    <color name="colorPrimary2">#49619c</color>
-    <color name="colorPrimaryDark2">#4E5F88</color>
-    <color name="colorBackground2">#6c81b5</color>
-    <color name="priorityHigh2">#c96571</color>
-    <color name="priorityMed2">#89619e</color>
-    <color name="priorityLow2">#52a589</color>
-    <color name="colorSecondary2">#49619c</color>
+    <!-- Combined Theme Colors -->
+    <color name="combinedBackground">#6c81b5</color>
+    <color name="combinedBar">#49619c</color>
+    <color name="combinedHigh">#eb545c</color>
+    <color name="combinedMed">#e09965</color>
+    <color name="combinedLow">#68b160</color>
 
+    <!-- Dark Theme Colors -->
+    <color name="darkBackground">#363636</color>
+    <color name="darkBar">#f8bbd0</color>
+    <color name="darkHigh">#e8175d</color>
+    <color name="darkMed">#cc527a</color>
+    <color name="darkLow">#a8a7a7</color>
+
+    <!-- Pastel Theme Colors -->
+    <color name="pastelBackground">#fdfd96</color>
+    <color name="pastelBar">#fdab9f</color>
+    <color name="pastelHigh">#e47f80</color>
+    <color name="pastelMed">#ffc16b</color>
+    <color name="pastelLow">#b9d870</color>
+
+    <!-- Candy Theme Colors -->
+    <color name="candyBackground">#76d7d6</color>
+    <color name="candyBar">#41b3a3</color>
+    <color name="candyHigh">#f9aab7</color>
+    <color name="candyMed">#e09965</color>
+    <color name="candyLow">#f7e368</color>
 </resources>

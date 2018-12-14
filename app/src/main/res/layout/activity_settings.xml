@@ -7,121 +7,167 @@
     tools:context=".Settings">
 
     <LinearLayout
-        android:layout_width="379dp"
-        android:layout_height="match_parent"
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        tools:layout_editor_absoluteX="5dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-smallcaps"
+            android:onClick="toHomePage"
+            android:text="@string/returnHome"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+        <TextView
+            android:id="@+id/SettingsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="@string/settingsTitle"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="33sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/notifSettingsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/notifSettings"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topBar" />
+
+    <TextView
+        android:id="@+id/schedCreateTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/schedCreate"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/notifSettingsTitle" />
+
+    <TextView
+        android:id="@+id/dispSettingsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/dispSettings"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/schedCreateTitle" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dispSettingsTitle">
 
         <LinearLayout
+            android:id="@+id/themeColum1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:orientation="vertical">
 
-            <LinearLayout
+            <RadioButton
+                android:id="@+id/themeDefault"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_weight="1"
+                android:onClick="onThemeRadio"
+                android:text="@string/sieveThemeDefault" />
 
-                <Button
-                    android:id="@+id/button5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="sans-serif-smallcaps"
-                    android:onClick="toHomePage"
-                    android:text="@string/returnHome"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused" />
-
-                <TextView
-                    android:id="@+id/SettingsTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="sans-serif-smallcaps"
-                    android:text="Settings"
-                    android:textAlignment="center"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="33sp" />
-            </LinearLayout>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="46dp" />
-
-            <TextView
-                android:id="@+id/Notification"
+            <RadioButton
+                android:id="@+id/themeAlternative"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-smallcaps"
-                android:text="Notification Settings"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="24sp" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="46dp"
-                android:textAlignment="center" />
-
-            <TextView
-                android:id="@+id/CreateSchedule"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-smallcaps"
-                android:text="Create a Schedule"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="24sp" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="46dp"
-                android:textAlignment="center" />
-
-            <TextView
-                android:id="@+id/DisplaySettings"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-smallcaps"
-                android:text="Display Settings"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="24sp" />
-
-            <Switch
-                android:id="@+id/switch1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-smallcaps"
-                android:text="Toggle Theme"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="24sp" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="46dp"
-                android:textAlignment="center" />
-
-            <TextView
-                android:id="@+id/OtherSettings"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-smallcaps"
-                android:text="Other Settings"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="24sp" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="46dp"
-                android:textAlignment="center" />
-
-            <TextView
-                android:id="@+id/About"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-smallcaps"
-                android:text="About"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="24sp" />
+                android:layout_weight="1"
+                android:onClick="onThemeRadio"
+                android:text="@string/sieveThemeAlternative" />
 
         </LinearLayout>
-    </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/themeColum2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/themeCombined"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="onThemeRadio"
+                android:text="@string/sieveThemeCombined" />
+
+            <RadioButton
+                android:id="@+id/themeDark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="onThemeRadio"
+                android:text="@string/sieveThemeDark" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/themeColum3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/themePastel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="onThemeRadio"
+                android:text="@string/sieveThemePastel" />
+
+            <RadioButton
+                android:id="@+id/themeCandy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="onThemeRadio"
+                android:text="@string/sieveThemeCandy" />
+        </LinearLayout>
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/otherSettingsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/otherSettings"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 </android.support.constraint.ConstraintLayout>

@@ -1,55 +1,114 @@
 package com.example.a53914.sievemobileapplication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.RadioButton;
 import android.widget.Switch;
 
 public class Settings extends AppCompatActivity {
-    private static final String PREFS_NAME = "prefs";
-    private static final String PREF_LIGHT_THEME = "dark_theme";
-
-    private void toggleTheme(boolean SieveAlternative) {
-        SharedPreferences.Editor editor = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit();
-        editor.putBoolean(PREF_LIGHT_THEME, SieveAlternative);
-        editor.apply();
-
-        Intent intent = getIntent();
-        finish();
-
-        startActivity(intent);
-
+    /*
+     * This public class defines a SharedPreferencesManager.
+     * The retrieveInt definition allows us to access the themeId rom SPM.
+     * The storeInt method allows us to write to the SharedPreferencesManager.
+     */
+    public class SharedPreferencesManager {
+        private SharedPreferences themeStorage;
+        private SharedPreferences.Editor sEditor;
+        private Context context;
+        SharedPreferencesManager(Context context){
+            this.context = context;
+            themeStorage = PreferenceManager.getDefaultSharedPreferences(context);
+        }
+        private SharedPreferences.Editor getEditor(){
+            return themeStorage.edit();
+        }
+        int retrieveInt(String tag, int defValue){
+            return themeStorage.getInt(tag, defValue);
+        }
+        void storeInt(String tag, int defValue){
+            sEditor = getEditor();
+            sEditor.putInt(tag, defValue);
+            sEditor.commit();
+        }
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        boolean useDarkTheme = preferences.getBoolean(PREF_LIGHT_THEME, false);
-
-        if(useDarkTheme) {
-            setTheme(R.style.SieveAlternative);
-        }
-
         super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_settings);
-        Switch toggle = (Switch) findViewById(R.id.switch1);
-        toggle.setChecked(useDarkTheme);
-        toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton view, boolean isChecked) {
-                toggleTheme(isChecked);
+        /*
+         * The themeId int pulls a "themeId" int from the SPM.
+         * The if/else block calls setTheme based on the value of "themeId".
+         */
+        int themeId = new SharedPreferencesManager(this).retrieveInt("themeId",1);
+        if(themeId == 1){
+            setTheme(R.style.SieveDefault);
+        }else{
+            if(themeId == 2){
+                setTheme(R.style.SieveAlternative);
+            }else{
+                if(themeId == 3){
+                    setTheme(R.style.SieveCombined);
+                }else{
+                    if(themeId == 4){
+                        setTheme(R.style.SieveDark);
+                    }else{
+                        if(themeId == 5){
+                            setTheme(R.style.SievePastel);
+                        }else{
+                            setTheme(R.style.SieveCandy);
+                        }
+                    }
+                }
             }
-        });
+        }
+        setContentView(R.layout.activity_settings);
+    }
+
+    public void onThemeRadio(View view){
+        int themeId;
+        RadioButton T1Rd = findViewById(R.id.themeDefault);
+        RadioButton T2Rd = findViewById(R.id.themeAlternative);
+        RadioButton T3Rd = findViewById(R.id.themeCombined);
+        RadioButton T4Rd = findViewById(R.id.themeDark);
+        RadioButton T5Rd = findViewById(R.id.themePastel);
+        RadioButton T6Rd = findViewById(R.id.themeCandy);
+        if(T1Rd.isChecked()){
+            themeId = 1;
+        }else{
+            if (T2Rd.isChecked()){
+                themeId = 2;
+            }else{
+                if (T3Rd.isChecked()) {
+                    themeId = 3;
+                }else{
+                    if(T4Rd.isChecked()){
+                        themeId = 4;
+                    }else{
+                        if(T5Rd.isChecked()){
+                            themeId = 5;
+                        }else{
+                            if(T6Rd.isChecked()){
+                                themeId = 6;
+                            }else{
+                                themeId = 1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        new SharedPreferencesManager(getApplicationContext()).storeInt("themeId",themeId);
+        recreate();
     }
     //Returning Home
     public void toHomePage(View view){
-        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        boolean useDarkTheme = preferences.getBoolean(PREF_LIGHT_THEME, false);
         Intent toHomePage = new Intent(this, HomePage.class);
-        toHomePage.putExtra("usedark",useDarkTheme);
         startActivity(toHomePage);
     }
 }
