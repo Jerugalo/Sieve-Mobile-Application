@@ -42,7 +42,7 @@
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/adding_task"
                 android:textAlignment="center"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textColor="?android:attr/textColor"
                 android:textSize="33sp" />
 
         </LinearLayout>
@@ -61,7 +61,7 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/name"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textColor="?android:attr/textColor"
                 android:textSize="33sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/NameAddText"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -76,7 +76,7 @@
                 android:ems="10"
                 android:fontFamily="sans-serif-smallcaps"
                 android:inputType="textPersonName"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textColor="?android:attr/textColor"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/NameText"
@@ -96,7 +96,7 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/class_name"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textColor="?android:attr/textColor"
                 android:textSize="33sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/DetailsClassSpinner"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -177,7 +177,7 @@
                 android:layout_weight="0"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/priority"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textColor="?android:attr/textColor"
                 android:textSize="33sp"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="256dp" />
@@ -205,7 +205,7 @@
                 android:layout_weight="0"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/date_due"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textColor="?android:attr/textColor"
                 android:textSize="33sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/NameAddText"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -220,7 +220,7 @@
                 android:inputType="date"
                 android:onClick="showDatePickerDialog"
                 android:textAlignment="center"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textColor="?android:attr/textColor"
                 android:textSize="30sp" />
 
         </LinearLayout>
@@ -238,7 +238,7 @@
                 android:layout_weight="0"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/notes_details"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textColor="?android:attr/textColor"
                 android:textSize="33sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/NameAddText"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -251,7 +251,7 @@
                 android:ems="10"
                 android:fontFamily="sans-serif-smallcaps"
                 android:inputType="textMultiLine"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textColor="?android:attr/textColor"
                 android:textSize="24sp" />
         </LinearLayout>
 

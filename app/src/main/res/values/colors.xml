@@ -8,6 +8,8 @@
     <color name="priorityHigh">#eb545c</color>
     <color name="priorityMed">#e09965</color>
     <color name="priorityLow">#68b160</color>
+    <color name="textBlack">#000000</color>
+    <color name="textWhite">#ffffff</color>
 
     <array name="priority">
         <item>@color/priorityLow</item>

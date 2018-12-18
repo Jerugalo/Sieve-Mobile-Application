@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-smallcaps"
             android:text="@string/task_details"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textColor="?android:attr/textColor"
             android:textSize="33sp" />
 
         <EditText
@@ -34,7 +34,7 @@
             android:fontFamily="sans-serif-smallcaps"
             android:inputType="textPersonName"
             android:text="@string/task_title"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textColor="?android:attr/textColor"
             android:textSize="24sp" />
 
         <TextView
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-smallcaps"
             android:text="@string/task_type"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textColor="?android:attr/textColor"
             android:textSize="33sp" />
 
         <RadioGroup
@@ -59,7 +59,7 @@
                 android:fontFamily="sans-serif-smallcaps"
                 android:onClick="onTypeButtonClicked"
                 android:text="@string/habit"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textColor="?android:attr/textColor"
                 android:textSize="14sp" />
 
             <RadioButton
@@ -70,7 +70,7 @@
                 android:fontFamily="sans-serif-smallcaps"
                 android:onClick="onTypeButtonClicked"
                 android:text="@string/assignment"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textColor="?android:attr/textColor"
                 android:textSize="14sp" />
 
             <RadioButton
@@ -81,7 +81,7 @@
                 android:fontFamily="sans-serif-smallcaps"
                 android:onClick="onTypeButtonClicked"
                 android:text="@string/project"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textColor="?android:attr/textColor"
                 android:textSize="14sp" />
         </RadioGroup>
 
@@ -98,7 +98,7 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/class_name"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textColor="?android:attr/textColor"
                 android:textSize="33sp" />
 
             <Spinner
@@ -119,7 +119,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-smallcaps"
             android:text="@string/priority"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textColor="?android:attr/textColor"
             android:textSize="33sp" />
 
         <RadioGroup
@@ -135,7 +135,7 @@
                 android:fontFamily="sans-serif-smallcaps"
                 android:onClick="onPriorityButtonClicked"
                 android:text="@string/low_priority"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+                android:textColor="?android:attr/textColor" />
 
             <RadioButton
                 android:id="@+id/MPriorityButton"
@@ -145,7 +145,7 @@
                 android:fontFamily="sans-serif-smallcaps"
                 android:onClick="onPriorityButtonClicked"
                 android:text="@string/medium_priority"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+                android:textColor="?android:attr/textColor" />
 
             <RadioButton
                 android:id="@+id/HPriorityButton"
@@ -155,7 +155,7 @@
                 android:fontFamily="sans-serif-smallcaps"
                 android:onClick="onPriorityButtonClicked"
                 android:text="@string/high_priority"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+                android:textColor="?android:attr/textColor" />
         </RadioGroup>
 
         <LinearLayout
@@ -171,7 +171,7 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/date_due"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textColor="?android:attr/textColor"
                 android:textSize="33sp" />
 
             <TextView
@@ -184,7 +184,7 @@
                 android:fontFamily="sans-serif-smallcaps"
                 android:inputType="date"
                 android:onClick="showDatePickerDialog"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textColor="?android:attr/textColor"
                 android:textSize="24sp" />
         </LinearLayout>
 
@@ -199,7 +199,7 @@
                 android:layout_height="0dp"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/notes_details"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textColor="?android:attr/textColor"
                 android:textSize="33sp"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -211,7 +211,7 @@
                 android:fontFamily="sans-serif-smallcaps"
                 android:hint="@string/notes_details"
                 android:inputType="textMultiLine"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textColor="?android:attr/textColor"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout"
                 app:layout_constraintTop_toBottomOf="@+id/NotesDetailsTitle" />

@@ -11,6 +11,7 @@
         <item name="android:colorPrimaryDark">@color/priorityMed</item>
         <item name="android:colorAccent">@color/priorityLow</item>
         <item name="android:statusBarColor">@color/colorSecondary</item>
+        <item name="android:textColor">@color/textBlack</item>
 
     </style>
 
@@ -23,11 +24,13 @@
         <item name="android:colorPrimaryDark">@color/priorityMed2</item>
         <item name="android:statusBarColor">@color/colorSecondary2</item>
         <item name="android:colorAccent">@color/priorityLow2</item>
+        <item name="android:textColor">@color/textBlack</item>
     </style>
 
     <style name="SieveDefault.SieveAlternative" parent="SieveDefault" >
         <item name="android:colorBackground">@color/colorBackground2</item>
         <item name="android:statusBarColor">@color/colorSecondary2</item>
+        <item name="android:textColor">@color/textBlack</item>
     </style>
 
     <style name="SievePastel" parent="SieveDefault" >
@@ -37,6 +40,7 @@
         <item name="android:colorBackground">@color/colorBackground3</item>
         <item name="android:statusBarColor">@color/colorSecondary3</item>
         <item name="colorAccent">@color/colorAccent3</item>
+        <item name="android:textColor">@color/textBlack</item>
     </style>
 
     <style name="SieveCandy" parent="SieveDefault" >
@@ -45,6 +49,7 @@
         <item name="android:colorBackground">@color/colorBackground4</item>
         <item name="android:statusBarColor">@color/colorSecondary4</item>
         <item name="colorAccent">@color/colorAccent4</item>
+        <item name="android:textColor">@color/textBlack</item>
     </style>
 
     <style name="SieveDark" parent="SieveDefault" >
@@ -54,6 +59,7 @@
         <item name="android:colorAccent">@color/priorityLow5</item>
         <item name="colorAccent">@color/colorAccent5</item>
         <item name="android:statusBarColor">@color/colorSecondary5</item>
+        <item name="android:textColor">@color/textWhite</item>
     </style>
 
 </resources>
