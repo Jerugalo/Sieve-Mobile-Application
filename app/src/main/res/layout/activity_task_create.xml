@@ -8,24 +8,26 @@
 
     <LinearLayout
         android:layout_width="386dp"
-        android:layout_height="576dp"
+        android:layout_height="561dp"
         android:layout_marginBottom="8dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="58dp"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/button6"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:background="@drawable/button_style"
                 android:fontFamily="sans-serif-smallcaps"
                 android:onClick="toHomePage"
                 android:text="@string/return_home"
@@ -36,17 +38,13 @@
                 android:id="@+id/AddingTask"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
-                android:onClick="alarmSet1"
                 android:text="@string/adding_task"
                 android:textAlignment="center"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="33sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textSize="33sp" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -125,6 +123,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_weight="1"
+                android:background="@drawable/button_style"
                 android:fontFamily="sans-serif-smallcaps"
                 android:onClick="HabitClick"
                 android:text="@string/habit"
@@ -138,6 +137,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/button_style"
                 android:fontFamily="sans-serif-smallcaps"
                 android:onClick="AssignClick"
                 android:text="@string/assignment"
@@ -153,6 +153,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:layout_weight="1"
+                android:background="@drawable/button_style"
                 android:fontFamily="sans-serif-smallcaps"
                 android:onClick="ProjectClick"
                 android:text="@string/project"
@@ -262,6 +263,7 @@
             android:id="@+id/CreateButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_style"
             android:fontFamily="sans-serif-smallcaps"
             android:text="@string/task_create"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
