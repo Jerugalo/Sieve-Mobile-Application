@@ -12,8 +12,10 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
             android:id="@+id/WorkingOnTitle"
@@ -28,7 +30,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="70dp" />
+            android:layout_height="47dp" />
 
         <TextView
             android:id="@+id/TaskNameTitle"
@@ -42,21 +44,19 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="79dp" />
+            android:layout_height="47dp" />
 
-        <TextView
-            android:id="@+id/TimeBreakTitle"
+
+        <pl.droidsonroids.gif.GifImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-smallcaps"
-            android:text="@string/break_time"
-            android:textAlignment="center"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:textSize="33sp" />
+            android:background="@color/colorBackground"
+            android:baselineAligned="false"
+            android:src="@drawable/funnyerror" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="80dp" />
+            android:layout_height="47dp" />
 
         <Button
             android:id="@+id/DetailsTitle"

@@ -178,7 +178,6 @@ public class HomePage extends AppCompatActivity {
 
     /**
      * Cycles through all tasks and activates notifications for all tasks that have them
-     * @param view
      */
     public void createListofNotifications(){
         int today =Calendar.DAY_OF_YEAR;
