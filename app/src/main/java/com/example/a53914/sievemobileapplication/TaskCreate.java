@@ -2,6 +2,8 @@ package com.example.a53914.sievemobileapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.AsyncTask;
@@ -44,8 +46,9 @@ public class TaskCreate extends AppCompatActivity {
 
         /* Instantiate the ClassDatabase */
         classDatabase = ClassDatabase.getInstance(this);
-        List<Class> clss = classDatabase.classDao().getAll();
-        for (Class cls : clss) {
+        List<Class> clses = classDatabase.classDao().getAll();
+        classList.add("Select Class");
+        for (Class cls : clses) {
             classList.add(cls.getName());
         }
         classList.add("Create New Class");
@@ -96,24 +99,29 @@ public class TaskCreate extends AppCompatActivity {
                 if ((parent.getItemAtPosition(pos)).toString().equals("Create New Class")){
                     ClassCreationDialog dialog = new ClassCreationDialog();
                     dialog.show(getSupportFragmentManager(), "ClassCreationDialog");
-                    Class mClass = new Class();
-                    mClass.setName(global.getClassName());
-                    mClass.setType(0);
-                    mClass.setId(0);
-                    mClass.setDueDate("");
-                    new InsertClass(TaskCreate.this, mClass).execute();
                 } else {
                     classes = (parent.getItemAtPosition(pos)).toString();
                 }
             }
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
 
+        //CreateNewClass();
+        Class mClass = new Class();
+        if (global.getClassName() != null){
+            mClass.setName(global.getClassName());
+            global.setClassName(null);
+            mClass.setType(0);
+            mClass.setId(0);
+            mClass.setDueDate("");
+            new InsertClass(TaskCreate.this, mClass).execute();
+            adapter.notifyDataSetChanged();
+        }
+
         //initialize Database:
         taskDatabase = TaskDatabase.getInstance(TaskCreate.this);
-        Button button =findViewById(R.id.CreateButton);
+        Button button = findViewById(R.id.CreateButton);
             button.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view){
@@ -127,16 +135,35 @@ public class TaskCreate extends AppCompatActivity {
             });
     }
 
-    public void setResultClass(Class cls, int flag){
-        setResult(flag,new Intent().putExtra("task",task.toString()));
+    private void CreateNewClass() {
+        Handler mainHandler = new Handler(Looper.getMainLooper());
+        mainHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                Class mClass = new Class();
+                if (global.getClassName() != null){
+                    mClass.setName(global.getClassName());
+                    global.setClassName(null);
+                    mClass.setType(0);
+                    mClass.setId(0);
+                    mClass.setDueDate("");
+                    new InsertClass(TaskCreate.this, mClass).execute();
+                }
+            }
+        });
+    }
+
+    private void refresh(){
         finish();
+        startActivity(new Intent(this, TaskCreate.class));
+        overridePendingTransition(0, 0);
     }
 
     private static class InsertClass extends AsyncTask<Void, Void,Boolean> {
         private WeakReference<TaskCreate> activityReference;
         private Class cls;
         InsertClass(TaskCreate context, Class mClass){
-            activityReference=new WeakReference<>(context);
+            activityReference = new WeakReference<>(context);
             cls = mClass;
         }
         @Override
@@ -147,10 +174,9 @@ public class TaskCreate extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean bool){
             if(bool){
-                activityReference.get().setResultClass(cls,1);
                 Log.d("TaskCreate","The Async Task has finished!");
                 Log.d("TaskCreate", cls.toString());
-                activityReference.get().finish();
+                //activityReference.get().refresh();
             }
         }
     }
