@@ -1,5 +1,6 @@
 package com.example.a53914.sievemobileapplication;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -67,6 +68,7 @@ public class Settings extends AppCompatActivity {
                 }
             }
         }
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_settings);
     }
 

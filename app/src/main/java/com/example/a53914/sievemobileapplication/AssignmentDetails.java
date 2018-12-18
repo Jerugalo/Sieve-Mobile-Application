@@ -1,5 +1,6 @@
 package com.example.a53914.sievemobileapplication;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -48,6 +49,7 @@ public class AssignmentDetails extends AppCompatActivity {
                 }
             }
         }
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_assignment_details);
     }
 }

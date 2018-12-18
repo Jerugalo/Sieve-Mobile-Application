@@ -51,6 +51,7 @@ public class HomePage extends AppCompatActivity {
                 }
             }
         }
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_home_page);
     }
 
