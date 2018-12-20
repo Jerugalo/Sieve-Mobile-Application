@@ -41,11 +41,29 @@
     <string name="display_settings">Display Settings</string>
     <string name="other_settings">Other Settings</string>
     <string name="about">About</string>
-
-
+	
     <string-array name="classes_array">
         <item>Math</item>
         <item>English</item>
         <item>Other Class</item>
     </string-array>
+
+    <string name="TaskName">Task Name</string>
+    <string name="assignment_details">Assignment Details</string>
+    <string name="not_important">Not Important</string>
+    <string name="moderately_important">Moderately Important</string>
+    <string name="very_important">Very Important</string>
+    <string name="settingsTitle">Settings</string>
+    <string name="notifSettings">Notification Settings</string>
+    <string name="schedCreate">Create a Schedule</string>
+    <string name="dispSettings">Display Settings</string>
+    <string name="otherSettings">Other Settings</string>
+	
+    <!--Sieve Theme Names-->
+    <string name="sieveThemeDefault">Default</string>
+    <string name="sieveThemeAlternative">Alternative</string>
+    <string name="sieveThemeCombined">Combined</string>
+    <string name="sieveThemeDark">Dark</string>
+    <string name="sieveThemePastel">Pastel</string>
+    <string name="sieveThemeCandy">Candy</string>
 </resources>

@@ -1,65 +1,53 @@
 <resources>
-
-    <!-- Base application theme. -->
-    <style name="SieveDefault" parent="Base.Theme.AppCompat.Light">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:colorBackground">@color/colorBackground</item>
-        <item name="android:colorPrimary">@color/priorityHigh</item>
-        <item name="android:colorPrimaryDark">@color/priorityMed</item>
-        <item name="android:colorAccent">@color/priorityLow</item>
-        <item name="android:statusBarColor">@color/colorSecondary</item>
-        <item name="android:textColor">@color/textBlack</item>
-
+    <!-- Default Theme -->
+    <style name="SieveDefault" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:colorPrimary">@color/primary_material_light</item>
+        <item name="android:colorPrimaryDark">@color/primary_dark_material_light</item>
+        <item name="android:colorAccent">@color/accent_material_light</item>
+        <item name="android:statusBarColor">@color/defaultBar</item>
+        <item name="android:colorBackground">@color/defaultBackground</item>
+        <item name="priorityHigh">@color/defaultHigh</item>
+        <item name="priorityMed">@color/defaultMed</item>
+        <item name="priorityLow">@color/defaultLow</item>
     </style>
-
-    <style name="SieveAlternative" parent="SieveDefault" >
-        <item name="colorPrimary">@color/colorPrimary2</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark2</item>
-        <item name="colorAccent">@color/priorityLow2</item>
-        <item name="android:colorBackground">@color/colorBackground2</item>
-        <item name="android:colorPrimary">@color/priorityHigh2</item>
-        <item name="android:colorPrimaryDark">@color/priorityMed2</item>
-        <item name="android:statusBarColor">@color/colorSecondary2</item>
-        <item name="android:colorAccent">@color/priorityLow2</item>
-        <item name="android:textColor">@color/textBlack</item>
+    <!-- Alternative Theme -->
+    <style name="SieveAlternative" parent="SieveDefault">
+        <item name="android:colorBackground">@color/alternativeBackground</item>
+        <item name="android:statusBarColor">@color/alternativeBar</item>
+        <item name="priorityHigh">@color/alternativeHigh</item>
+        <item name="priorityMed">@color/alternativeMed</item>
+        <item name="priorityLow">@color/alternativeLow</item>
     </style>
-
-    <style name="SieveDefault.SieveAlternative" parent="SieveDefault" >
-        <item name="android:colorBackground">@color/colorBackground2</item>
-        <item name="android:statusBarColor">@color/colorSecondary2</item>
-        <item name="android:textColor">@color/textBlack</item>
+    <!-- Combined Theme -->
+    <style name="SieveCombined" parent="SieveDefault">
+        <item name="android:colorBackground">@color/combinedBackground</item>
+        <item name="android:statusBarColor">@color/combinedBar</item>
+        <item name="priorityHigh">@color/combinedHigh</item>
+        <item name="priorityMed">@color/combinedMed</item>
+        <item name="priorityLow">@color/combinedLow</item>
     </style>
-
-    <style name="SievePastel" parent="SieveDefault" >
-        <item name="android:colorPrimary">@color/priorityHigh3</item>
-        <item name="android:colorPrimaryDark">@color/priorityMed3</item>
-        <item name="android:colorAccent">@color/priorityLow3</item>
-        <item name="android:colorBackground">@color/colorBackground3</item>
-        <item name="android:statusBarColor">@color/colorSecondary3</item>
-        <item name="colorAccent">@color/colorAccent3</item>
-        <item name="android:textColor">@color/textBlack</item>
+    <!-- Dark Theme -->
+    <style name="SieveDark" parent="SieveDefault">
+        <item name="android:colorBackground">@color/darkBackground</item>
+        <item name="android:statusBarColor">@color/darkBar</item>
+        <item name="priorityHigh">@color/darkHigh</item>
+        <item name="priorityMed">@color/darkMed</item>
+        <item name="priorityLow">@color/darkLow</item>
     </style>
-
-    <style name="SieveCandy" parent="SieveDefault" >
-        <item name="android:colorAccent">@color/priorityLow4</item>
-        <item name="android:colorPrimary">@color/priorityHigh4</item>
-        <item name="android:colorBackground">@color/colorBackground4</item>
-        <item name="android:statusBarColor">@color/colorSecondary4</item>
-        <item name="colorAccent">@color/colorAccent4</item>
-        <item name="android:textColor">@color/textBlack</item>
+    <!-- Pastel Theme -->
+    <style name="SievePastel" parent="SieveDefault">
+        <item name="android:colorBackground">@color/pastelBackground</item>
+        <item name="android:statusBarColor">@color/pastelBar</item>
+        <item name="priorityHigh">@color/pastelHigh</item>
+        <item name="priorityMed">@color/pastelMed</item>
+        <item name="priorityLow">@color/pastelLow</item>
     </style>
-
-    <style name="SieveDark" parent="SieveDefault" >
-        <item name="android:colorBackground">@color/colorBackground5</item>
-        <item name="android:colorPrimary">@color/priorityHigh5</item>
-        <item name="android:colorPrimaryDark">@color/priorityMed5</item>
-        <item name="android:colorAccent">@color/priorityLow5</item>
-        <item name="colorAccent">@color/colorAccent5</item>
-        <item name="android:statusBarColor">@color/colorSecondary5</item>
-        <item name="android:textColor">@color/textWhite</item>
+    <!-- Candy Theme -->
+    <style name="SieveCandy" parent="SieveDefault">
+        <item name="android:colorBackground">@color/candyBackground</item>
+        <item name="android:statusBarColor">@color/candyBar</item>
+        <item name="priorityHigh">@color/candyHigh</item>
+        <item name="priorityMed">@color/candyMed</item>
+        <item name="priorityLow">@color/candyLow</item>
     </style>
-
 </resources>
