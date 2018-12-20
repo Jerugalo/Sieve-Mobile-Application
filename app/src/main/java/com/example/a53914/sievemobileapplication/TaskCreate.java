@@ -116,7 +116,6 @@ public class TaskCreate extends AppCompatActivity {
             mClass.setId(0);
             mClass.setDueDate("");
             new InsertClass(TaskCreate.this, mClass).execute();
-            adapter.notifyDataSetChanged();
         }
 
         //initialize Database:
@@ -135,28 +134,12 @@ public class TaskCreate extends AppCompatActivity {
             });
     }
 
-    private void CreateNewClass() {
-        Handler mainHandler = new Handler(Looper.getMainLooper());
-        mainHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                Class mClass = new Class();
-                if (global.getClassName() != null){
-                    mClass.setName(global.getClassName());
-                    global.setClassName(null);
-                    mClass.setType(0);
-                    mClass.setId(0);
-                    mClass.setDueDate("");
-                    new InsertClass(TaskCreate.this, mClass).execute();
-                }
-            }
-        });
-    }
-
-    private void refresh(){
-        finish();
-        startActivity(new Intent(this, TaskCreate.class));
-        overridePendingTransition(0, 0);
+    void refresh(){
+        Spinner classChooser = (Spinner) findViewById(R.id.DetailsClassSpinner);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classList);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        classChooser.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
     private static class InsertClass extends AsyncTask<Void, Void,Boolean> {
