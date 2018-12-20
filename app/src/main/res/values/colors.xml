@@ -17,7 +17,7 @@
         <item>@color/priorityHigh</item>
     </array>
 
-    <!--Second theme colors -->
+    <!--Alternative theme colors -->
 
     <color name="colorPrimary2">#49619c</color>
     <color name="colorPrimaryDark2">#4E5F88</color>
@@ -27,7 +27,7 @@
     <color name="priorityLow2">#52a589</color>
     <color name="colorSecondary2">#49619c</color>
 
-    <!--Third theme colors -->
+    <!--Pastel theme colors -->
 
     <color name="priorityHigh3">#e47f80</color>
     <color name="priorityMed3">#ffc16b</color>
@@ -36,7 +36,7 @@
     <color name="colorSecondary3">#fdab9f</color>
     <color name="colorAccent3">#7fffd4</color>
 
-    <!--Fourth theme colors -->
+    <!--Candy theme colors -->
 
     <color name="priorityLow4">#f7e368</color>
     <color name="priorityHigh4">#f9aab7</color>
@@ -44,7 +44,7 @@
     <color name="colorSecondary4">#41b3a3</color>
     <color name="colorAccent4">#957dad</color>
 
-    <!--Fifth theme colors -->
+    <!--Dark theme colors -->
 
     <color name="colorBackground5">#363636</color>
     <color name="priorityHigh5">#e8175d</color>

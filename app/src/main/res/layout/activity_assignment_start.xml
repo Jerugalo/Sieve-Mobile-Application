@@ -50,7 +50,7 @@
         <pl.droidsonroids.gif.GifImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?android:attr/color/colorBackground"
+            android:background="?android:attr/colorBackground"
             android:baselineAligned="false"
             android:src="@drawable/funnyerror" />
 
@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/button_style"
-                android:backgroundTint="?android:attr/colorPrimary "
+                android:backgroundTint="?android:attr/colorPrimary"
                 android:fontFamily="sans-serif-smallcaps"
                 android:onClick="toHomePage"
                 android:text="@string/x"
