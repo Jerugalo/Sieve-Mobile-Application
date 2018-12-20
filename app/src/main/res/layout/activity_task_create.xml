@@ -25,19 +25,16 @@
             <Button
                 android:id="@+id/button6"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/button_style"
-                android:fontFamily="sans-serif-smallcaps"
                 android:onClick="toHomePage"
-                android:text="@string/return_home"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="18sp" />
+                android:text="@string/returnHome" />
 
             <TextView
                 android:id="@+id/AddingTask"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/adding_task"
