@@ -39,6 +39,7 @@ public class ClassCreationDialog extends DialogFragment {
         mButtonCancel = view.findViewById(R.id.action_cancel);
         mInput = view.findViewById(R.id.input);
 
+        /* Closes the dialog when cancel is selected */
         mButtonCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,6 +48,7 @@ public class ClassCreationDialog extends DialogFragment {
             }
         });
 
+        /* Returns the class name when ok is selected */
         mButtonOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

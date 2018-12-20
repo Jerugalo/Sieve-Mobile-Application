@@ -44,7 +44,7 @@ public class TaskCreate extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_create);
 
-        /* Instantiate the ClassDatabase */
+        /* Instantiates the ClassDatabase */
         classDatabase = ClassDatabase.getInstance(this);
         List<Class> clses = classDatabase.classDao().getAll();
         classList.add("Select Class");
@@ -53,7 +53,7 @@ public class TaskCreate extends AppCompatActivity {
         }
         classList.add("Create New Class");
 
-        //Date view shows today's date when user first opens screen
+        /* Shows today's date in the date selection box when user first opens screen */
         final Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
         int month =c.get(Calendar.MONTH);
@@ -62,7 +62,7 @@ public class TaskCreate extends AppCompatActivity {
         String dateText1 = month +"/"+day+"/"+year;
         dateText.setText(dateText1);
 
-        //Slide bar code
+        /* Manages the priority slide bar */
         SeekBar slidey = findViewById(R.id.TaskCreateSeekbar);
         slidey.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -89,7 +89,7 @@ public class TaskCreate extends AppCompatActivity {
             }
         });
 
-        //Class chooser code
+        /* Fills the spinner and allows user to select a class from the class database */
         Spinner classChooser = (Spinner) findViewById(R.id.DetailsClassSpinner);
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -107,7 +107,7 @@ public class TaskCreate extends AppCompatActivity {
             }
         });
 
-        //CreateNewClass();
+        /* Insert the input from the dialog into the class database */
         Class mClass = new Class();
         if (global.getClassName() != null){
             mClass.setName(global.getClassName());
@@ -118,7 +118,7 @@ public class TaskCreate extends AppCompatActivity {
             new InsertClass(TaskCreate.this, mClass).execute();
         }
 
-        //initialize Database:
+        /* initialize Task Database */
         taskDatabase = TaskDatabase.getInstance(TaskCreate.this);
         Button button = findViewById(R.id.CreateButton);
             button.setOnClickListener(new View.OnClickListener(){
@@ -134,6 +134,7 @@ public class TaskCreate extends AppCompatActivity {
             });
     }
 
+    //TODO: create method to notify spinner to update
     void refresh(){
         Spinner classChooser = (Spinner) findViewById(R.id.DetailsClassSpinner);
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classList);
@@ -142,6 +143,7 @@ public class TaskCreate extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
+    /* Puts Class into Class Database */
     private static class InsertClass extends AsyncTask<Void, Void,Boolean> {
         private WeakReference<TaskCreate> activityReference;
         private Class cls;
@@ -164,11 +166,13 @@ public class TaskCreate extends AppCompatActivity {
         }
     }
 
+    /* Close Task Create Activity */
     private void setResultTask(Task task, int flag){
         setResult(flag,new Intent().putExtra("task",task.toString()));
         finish();
     }
 
+    /* Puts Task into Task Database */
     private static class InsertTask extends AsyncTask<Void, Void,Boolean> {
         private WeakReference<TaskCreate> activityReference;
         private Task task;
@@ -195,11 +199,13 @@ public class TaskCreate extends AppCompatActivity {
     public void HabitClick(View view){ typeID=0; }
     public void AssignClick(View view){ typeID=1; }
     public void ProjectClick(View view){ typeID=2; }
-    //Returning Home
+
     public void toHomePage(View view){
         Intent toHomePage = new Intent(this, HomePage.class);
         startActivity(toHomePage);
     }
+
+    /* Shows a Calendar Dialog for user to select a date */
     public void showDatePickerDialog(View view){
         DialogFragment newFragment = new DatePickerFragment();
         newFragment.show(getSupportFragmentManager(),"datePicker");
