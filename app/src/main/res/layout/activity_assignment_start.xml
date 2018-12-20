@@ -84,7 +84,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/button_style"
-                android:backgroundTint="?android:attr/colorPrimary"
                 android:fontFamily="sans-serif-smallcaps"
                 android:onClick="toHomePage"
                 android:text="@string/x"
