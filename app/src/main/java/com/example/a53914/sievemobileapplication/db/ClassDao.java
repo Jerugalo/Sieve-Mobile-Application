@@ -25,4 +25,7 @@ public interface ClassDao {
 
     @Update
     void update(Class cls);
+
+    @Query("DELETE  FROM Class")
+    void deleteAll();
 }
