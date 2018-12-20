@@ -22,7 +22,6 @@
             android:layout_weight="1"
             android:fontFamily="sans-serif-smallcaps"
             android:onClick="toHomePage"
-            android:text="@string/returnHome"
             android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
         <TextView

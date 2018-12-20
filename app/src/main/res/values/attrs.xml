@@ -3,4 +3,10 @@
     <attr name="priorityHigh" format="reference" />
     <attr name="priorityMed" format="reference" />
     <attr name="priorityLow" format="reference" />
+
+    <string-array name="priority">
+        <item>priorityLow</item>
+        <item>priorityMed</item>
+        <item>priorityHigh</item>
+    </string-array>
 </resources>

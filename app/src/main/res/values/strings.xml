@@ -6,11 +6,6 @@
     <string name="create_task">+</string>
     <string name="date">[date]</string>
     <string name="return_home">&#60; Back</string>
-    <string name="TaskName">Task Name</string>
-    <string name="assignment_details">Task Details</string>
-    <string name="not_important">Low Priority</string>
-    <string name="moderately_important">Medium Priority</string>
-    <string name="very_important">High Priority</string>
     <string name="editTask">Edit Task</string>
     <string name="beginTask">Begin &#62;</string>
     <string name="task_details">Task Details</string>

@@ -9,20 +9,18 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.database.DatabaseUtils;
+import android.content.SharedPreferences;
 import android.media.RingtoneManager;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.widget.TimePicker;
 
 import com.example.a53914.sievemobileapplication.db.TaskDatabase;
 import com.example.a53914.sievemobileapplication.db.Task;
@@ -41,26 +39,13 @@ import static java.lang.StrictMath.toIntExact;
  */
 
 public class HomePage extends AppCompatActivity {
-
     GlobalVars global = GlobalVars.getInstance();
-    Task mTask =global.getCurrentTask();
-
-
+    Task mTask = global.getCurrentTask();
 
     /**
      * Creates Activity and sets up the recycler view. Recycler view pulls a list of Task objects
      * from the TaskDao and displays them in a visual list.
      */
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-
-public class HomePage extends AppCompatActivity {
-
     public class SharedPreferencesManager {
         private SharedPreferences themeStorage;
         private Context context;
@@ -275,7 +260,6 @@ public class HomePage extends AppCompatActivity {
         }
     }
 
-}
 
     //Function called when user opens Settings
     public void toSettingsMenu(android.view.View view){

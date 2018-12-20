@@ -91,7 +91,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
-                android:text="@string/task1title"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp" />
 
@@ -127,7 +126,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
-                android:text="@string/task2title"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp" />
 
@@ -163,7 +161,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
-                android:text="@string/task3title"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp" />
 
@@ -200,7 +197,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
-                android:text="@string/task4title"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp" />
 
@@ -236,7 +232,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
-                android:text="@string/task5title"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp" />
 
@@ -272,7 +267,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
-                android:text="@string/task6title"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp" />
 
@@ -308,7 +302,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
-                android:text="@string/task7title"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp" />
 
@@ -345,7 +338,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
-                android:text="@string/task8title"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp" />
 
@@ -367,6 +359,4 @@
                 android:textAlignment="center"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused" />
         </LinearLayout>
-
-    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
