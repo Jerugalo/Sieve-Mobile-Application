@@ -6,6 +6,7 @@
     <color name="defaultHigh">#eb545c</color>
     <color name="defaultMed">#e09965</color>
     <color name="defaultLow">#68b160</color>
+    <color name="textColorDefault">#000000</color>
 
     <!-- Alternative theme colors -->
     <color name="alternativeBackground">#6c81b5</color>

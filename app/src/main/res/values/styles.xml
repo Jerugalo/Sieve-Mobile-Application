@@ -6,6 +6,7 @@
         <item name="android:colorAccent">@color/accent_material_light</item>
         <item name="android:statusBarColor">@color/defaultBar</item>
         <item name="android:colorBackground">@color/defaultBackground</item>
+        <item name="android:textColor">@color/textColorDefault</item>
         <item name="priorityHigh">@color/defaultHigh</item>
         <item name="priorityMed">@color/defaultMed</item>
         <item name="priorityLow">@color/defaultLow</item>
