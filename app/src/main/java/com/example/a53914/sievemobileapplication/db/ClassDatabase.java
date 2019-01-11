@@ -1,6 +1,5 @@
 package com.example.a53914.sievemobileapplication.db;
 
-import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
