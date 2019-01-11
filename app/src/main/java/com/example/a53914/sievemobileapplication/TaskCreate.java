@@ -120,7 +120,6 @@ public class TaskCreate extends AppCompatActivity {
             });
     }
 
-    //TODO: create method to notify spinner to update
     public void refresh(){
         createClassList();
         adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classList);
@@ -129,6 +128,7 @@ public class TaskCreate extends AppCompatActivity {
     }
 
     public void createClassList() {
+        classList.clear();
         classDatabase = ClassDatabase.getInstance(this);
         List<Class> clses = classDatabase.classDao().getAll();
         classList.add("Select Class");
