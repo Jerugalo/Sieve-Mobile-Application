@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <color name="textBlack">#000000</color>
+    <color name="textWhite">#ffffff</color>
+
     <!-- Primary Theme Colors -->
     <color name="defaultBackground">#49a49e</color>
     <color name="defaultBar">#03776f</color>
     <color name="defaultHigh">#eb545c</color>
     <color name="defaultMed">#e09965</color>
     <color name="defaultLow">#68b160</color>
-    <color name="textColorDefault">#000000</color>
+    <color name="defaultButton">#ffffff</color>
 
     <!-- Alternative theme colors -->
     <color name="alternativeBackground">#6c81b5</color>
@@ -14,6 +18,7 @@
     <color name="alternativeHigh">#c96571</color>
     <color name="alternativeMed">#89619e</color>
     <color name="alternativeLow">#52a589</color>
+    <color name="alternativeButton">#ffffff</color>
 
     <!-- Combined Theme Colors -->
     <color name="combinedBackground">#6c81b5</color>
@@ -21,6 +26,7 @@
     <color name="combinedHigh">#eb545c</color>
     <color name="combinedMed">#e09965</color>
     <color name="combinedLow">#68b160</color>
+    <color name="combinedButton">#ffffff</color>
 
     <!-- Dark Theme Colors -->
     <color name="darkBackground">#363636</color>
@@ -28,13 +34,17 @@
     <color name="darkHigh">#e8175d</color>
     <color name="darkMed">#cc527a</color>
     <color name="darkLow">#a8a7a7</color>
+    <color name="darkAccent">#41b3a3</color>
+    <color name="darkButton">#ffffff</color>
 
-    <!-- Pastel Theme Colors -->
-    <color name="pastelBackground">#fdfd96</color>
-    <color name="pastelBar">#fdab9f</color>
-    <color name="pastelHigh">#e47f80</color>
-    <color name="pastelMed">#ffc16b</color>
-    <color name="pastelLow">#b9d870</color>
+    <!-- Simple Theme Colors -->
+    <color name="simpleBackground">#ffffff</color>
+    <color name="simpleBar">#ffdb59</color>
+    <color name="simpleHigh">#FFFB4352</color>
+    <color name="simpleMed">#FFFFBA4E</color>
+    <color name="simpleLow">#FF7CF742</color>
+    <color name="simpleAccent">#ffdb59</color>
+    <color name="simpleButton">#9a9a9a</color>
 
     <!-- Candy Theme Colors -->
     <color name="candyBackground">#76d7d6</color>
@@ -42,4 +52,14 @@
     <color name="candyHigh">#f9aab7</color>
     <color name="candyMed">#e09965</color>
     <color name="candyLow">#f7e368</color>
+    <color name="candyButton">#ffffff</color>
+
+    <!--Twilight theme colors -->
+    <color name="colorBackground6">#181818</color>
+    <color name="twilightAccent">#ff7400</color>
+    <color name="twilightBar">#ff7400</color>
+    <color name="twilightButton">#4d4d4d</color>
+    <color name="twilightHigh">#FA4726</color>
+    <color name="twilightMed">#fc913a</color>
+    <color name="twilightLow">#fef24e</color>
 </resources>

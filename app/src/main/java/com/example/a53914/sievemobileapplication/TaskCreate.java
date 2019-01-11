@@ -2,7 +2,6 @@ package com.example.a53914.sievemobileapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.AsyncTask;
@@ -15,16 +14,9 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.TimePicker;
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.RadioButton;
 
 import com.example.a53914.sievemobileapplication.db.TaskDatabase;
 import com.example.a53914.sievemobileapplication.db.Task;
@@ -33,13 +25,8 @@ import com.example.a53914.sievemobileapplication.fragments.DatePickerFragment;
 import com.example.a53914.sievemobileapplication.fragments.DatePickerFragmentAlarm;
 
 import java.lang.ref.WeakReference;
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 
 public class TaskCreate extends AppCompatActivity {
     private TaskDatabase taskDatabase;
@@ -85,7 +72,7 @@ public class TaskCreate extends AppCompatActivity {
                         setTheme(R.style.SieveDark);
                     }else{
                         if(themeId == 5){
-                            setTheme(R.style.SievePastel);
+                            setTheme(R.style.SieveSimple);
                         }else{
                             setTheme(R.style.SieveCandy);
                         }

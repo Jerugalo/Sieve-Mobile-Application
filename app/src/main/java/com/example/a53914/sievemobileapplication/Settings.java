@@ -4,17 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.RadioButton;
-import android.widget.Switch;
 
 public class Settings extends AppCompatActivity {
     /*
@@ -65,7 +58,7 @@ public class Settings extends AppCompatActivity {
                         setTheme(R.style.SieveDark);
                     }else{
                         if(themeId == 5){
-                            setTheme(R.style.SievePastel);
+                            setTheme(R.style.SieveSimple);
                         }else{
                             setTheme(R.style.SieveCandy);
                         }

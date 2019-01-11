@@ -88,7 +88,7 @@ public class HomePage extends AppCompatActivity {
                         setTheme(R.style.SieveDark);
                     }else{
                         if(themeId == 5){
-                            setTheme(R.style.SievePastel);
+                            setTheme(R.style.SieveSimple);
                         }else{
                             setTheme(R.style.SieveCandy);
                         }
