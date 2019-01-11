@@ -1,5 +1,6 @@
 package com.example.a53914.sievemobileapplication.fragments;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -22,12 +23,13 @@ import com.example.a53914.sievemobileapplication.db.TaskDatabase;
 
 import java.lang.ref.WeakReference;
 
-public class ClassCreationDialog extends DialogFragment {
+public class ClassCreationDialog extends DialogFragment implements DialogInterface.OnDismissListener {
 
     private static final String TAG = "ClassCreationDialog";
 
     private EditText mInput;
     private TextView mButtonOk, mButtonCancel;
+    TaskCreate taskCreate;
 
     GlobalVars global = GlobalVars.getInstance();
 
@@ -38,6 +40,7 @@ public class ClassCreationDialog extends DialogFragment {
         mButtonOk = view.findViewById(R.id.action_ok);
         mButtonCancel = view.findViewById(R.id.action_cancel);
         mInput = view.findViewById(R.id.input);
+        taskCreate = (TaskCreate)getActivity();
 
         /* Closes the dialog when cancel is selected */
         mButtonCancel.setOnClickListener(new View.OnClickListener() {
@@ -58,6 +61,15 @@ public class ClassCreationDialog extends DialogFragment {
                     String input = mInput.getText().toString();
                     Log.d(TAG, input);
                     global.setClassName(input);
+                }
+                Class mClass = new Class();
+                if (global.getClassName() != null){
+                    mClass.setName(global.getClassName());
+                    global.setClassName(null);
+                    mClass.setType(0);
+                    mClass.setId(0);
+                    mClass.setDueDate("");
+                    taskCreate.callInsertClass(mClass);
                 }
                 getDialog().dismiss();
             }

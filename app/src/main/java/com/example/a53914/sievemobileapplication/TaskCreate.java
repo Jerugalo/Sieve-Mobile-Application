@@ -1,5 +1,6 @@
 package com.example.a53914.sievemobileapplication;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -39,19 +40,15 @@ public class TaskCreate extends AppCompatActivity {
     public ClassDatabase classDatabase;
     GlobalVars global = GlobalVars.getInstance();
 
+    public Spinner classChooser;
+    public ArrayAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_create);
 
-        /* Instantiates the ClassDatabase */
-        classDatabase = ClassDatabase.getInstance(this);
-        List<Class> clses = classDatabase.classDao().getAll();
-        classList.add("Select Class");
-        for (Class cls : clses) {
-            classList.add(cls.getName());
-        }
-        classList.add("Create New Class");
+        createClassList();
 
         /* Shows today's date in the date selection box when user first opens screen */
         final Calendar c = Calendar.getInstance();
@@ -90,8 +87,8 @@ public class TaskCreate extends AppCompatActivity {
         });
 
         /* Fills the spinner and allows user to select a class from the class database */
-        Spinner classChooser = (Spinner) findViewById(R.id.DetailsClassSpinner);
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classList);
+        classChooser = (Spinner) findViewById(R.id.DetailsClassSpinner);
+        adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         classChooser.setAdapter(adapter);
         classChooser.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
@@ -106,17 +103,6 @@ public class TaskCreate extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-
-        /* Insert the input from the dialog into the class database */
-        Class mClass = new Class();
-        if (global.getClassName() != null){
-            mClass.setName(global.getClassName());
-            global.setClassName(null);
-            mClass.setType(0);
-            mClass.setId(0);
-            mClass.setDueDate("");
-            new InsertClass(TaskCreate.this, mClass).execute();
-        }
 
         /* initialize Task Database */
         taskDatabase = TaskDatabase.getInstance(TaskCreate.this);
@@ -135,12 +121,26 @@ public class TaskCreate extends AppCompatActivity {
     }
 
     //TODO: create method to notify spinner to update
-    void refresh(){
-        Spinner classChooser = (Spinner) findViewById(R.id.DetailsClassSpinner);
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classList);
+    public void refresh(){
+        createClassList();
+        adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        classChooser.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+    }
+
+    public void createClassList() {
+        classDatabase = ClassDatabase.getInstance(this);
+        List<Class> clses = classDatabase.classDao().getAll();
+        classList.add("Select Class");
+        for (Class cls : clses) {
+            classList.add(cls.getName());
+        }
+        classList.add("Create New Class");
+    }
+
+
+    public void callInsertClass(Class mClass){
+        new InsertClass(TaskCreate.this, mClass).execute();
     }
 
     /* Puts Class into Class Database */
@@ -161,7 +161,7 @@ public class TaskCreate extends AppCompatActivity {
             if(bool){
                 Log.d("TaskCreate","The Async Task has finished!");
                 Log.d("TaskCreate", cls.toString());
-                //activityReference.get().refresh();
+                activityReference.get().refresh();
             }
         }
     }
