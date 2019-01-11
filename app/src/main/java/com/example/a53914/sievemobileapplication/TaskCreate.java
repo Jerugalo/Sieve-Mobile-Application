@@ -1,10 +1,7 @@
 package com.example.a53914.sievemobileapplication;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.AsyncTask;
@@ -33,15 +30,15 @@ import java.util.List;
 public class TaskCreate extends AppCompatActivity {
     private TaskDatabase taskDatabase;
     private Task task;
-    private ArrayList<String> classList = new ArrayList<>();
+    private final ArrayList<String> classList = new ArrayList<>();
     int priorityID;
-    String classes;
+    private String classes;
     int typeID=0;
-    public ClassDatabase classDatabase;
+    private ClassDatabase classDatabase;
     GlobalVars global = GlobalVars.getInstance();
 
-    public Spinner classChooser;
-    public ArrayAdapter adapter;
+    private Spinner classChooser;
+    private ArrayAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +84,7 @@ public class TaskCreate extends AppCompatActivity {
         });
 
         /* Fills the spinner and allows user to select a class from the class database */
-        classChooser = (Spinner) findViewById(R.id.DetailsClassSpinner);
+        classChooser = findViewById(R.id.DetailsClassSpinner);
         adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         classChooser.setAdapter(adapter);
@@ -120,14 +117,14 @@ public class TaskCreate extends AppCompatActivity {
             });
     }
 
-    public void refresh(){
+    private void refresh(){
         createClassList();
         adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapter.notifyDataSetChanged();
     }
 
-    public void createClassList() {
+    private void createClassList() {
         classList.clear();
         classDatabase = ClassDatabase.getInstance(this);
         List<Class> clses = classDatabase.classDao().getAll();
@@ -145,8 +142,8 @@ public class TaskCreate extends AppCompatActivity {
 
     /* Puts Class into Class Database */
     private static class InsertClass extends AsyncTask<Void, Void,Boolean> {
-        private WeakReference<TaskCreate> activityReference;
-        private Class cls;
+        private final WeakReference<TaskCreate> activityReference;
+        private final Class cls;
         InsertClass(TaskCreate context, Class mClass){
             activityReference = new WeakReference<>(context);
             cls = mClass;
@@ -174,8 +171,8 @@ public class TaskCreate extends AppCompatActivity {
 
     /* Puts Task into Task Database */
     private static class InsertTask extends AsyncTask<Void, Void,Boolean> {
-        private WeakReference<TaskCreate> activityReference;
-        private Task task;
+        private final WeakReference<TaskCreate> activityReference;
+        private final Task task;
         InsertTask(TaskCreate context, Task task){
             activityReference=new WeakReference<>(context);
             this.task=task;
