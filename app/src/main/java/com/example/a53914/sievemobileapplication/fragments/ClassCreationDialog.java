@@ -31,8 +31,6 @@ public class ClassCreationDialog extends DialogFragment implements DialogInterfa
     private TextView mButtonOk, mButtonCancel;
     TaskCreate taskCreate;
 
-    GlobalVars global = GlobalVars.getInstance();
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -51,21 +49,17 @@ public class ClassCreationDialog extends DialogFragment implements DialogInterfa
             }
         });
 
-        /* Returns the class name when ok is selected */
+        /* Adds the class when ok is selected */
         mButtonOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: capturing input.");
-
-                if (!mInput.equals("")) {
-                    String input = mInput.getText().toString();
-                    Log.d(TAG, input);
-                    global.setClassName(input);
-                }
+                String input;
                 Class mClass = new Class();
-                if (global.getClassName() != null){
-                    mClass.setName(global.getClassName());
-                    global.setClassName(null);
+                Log.d(TAG, "onClick: capturing input.");
+                if (!mInput.equals("")) {
+                    input = mInput.getText().toString();
+                    Log.d(TAG, input);
+                    mClass.setName(input);
                     mClass.setType(0);
                     mClass.setId(0);
                     mClass.setDueDate("");
