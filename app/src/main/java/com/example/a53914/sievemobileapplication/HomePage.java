@@ -40,7 +40,10 @@ import static java.lang.StrictMath.toIntExact;
 
 public class HomePage extends AppCompatActivity {
     GlobalVars global = GlobalVars.getInstance();
-    Task mTask = global.getCurrentTask();
+    Task mTask =global.getCurrentTask();
+    List <PendingIntent> pendingIntents;
+    AlarmManager alarmManager;
+
 
     /**
      * Creates Activity and sets up the recycler view. Recycler view pulls a list of Task objects
@@ -49,6 +52,7 @@ public class HomePage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        pendingIntents=new ArrayList<>();
         createNotificationChannel();
 
         BroadcastReceiver notificationJava = new Notificationjava();
@@ -76,6 +80,7 @@ public class HomePage extends AppCompatActivity {
             if (delete){
                 taskDatabase.taskDao().delete(mTask);
             }
+
         }
 
         createListofNotifications();
@@ -116,44 +121,17 @@ public class HomePage extends AppCompatActivity {
      * @param hour
      * @param minute
      * @param notificationID
-     * @param taskID
      */
-    public void setAlarm(Context context, int day,int month, int year, int hour, int minute,int notificationID, int taskID){
-        TaskDatabase taskDatabase = TaskDatabase.getInstance(HomePage.this);
-        List<Task> tasks = taskDatabase.taskDao().getAll();
-        String homework = tasks.get(taskID).getNameID();
-
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context,"Sieve App")
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("Sieve App")
-                .setContentText("You have homework to do!")
-                .setStyle(new NotificationCompat.BigTextStyle()
-                    .bigText("Your Homework is " + homework+"!"))
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setAutoCancel(true)
-                .setChannelId("Sieve App Best App")
-                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
-                //Also has the necessary intent to send the user to the app upon tapping the notification, it is just added later.
-
-        Intent intent = new Intent(context, HomePage.class);
-        PendingIntent activity = PendingIntent.getActivity(context,notificationID,intent,PendingIntent.FLAG_CANCEL_CURRENT);
-        mBuilder.setContentIntent(activity);
-
-        Notification notification = mBuilder.build();
-
+    public void setAlarm(Context context, int day,int month, int year, int hour, int minute,int notificationID){
         Intent notificationIntent = new Intent(context,Notificationjava.class);
-        notificationIntent.putExtra(Notificationjava.NOTIFICATION_ID,notificationID);
-        notificationIntent.putExtra(Notificationjava.NOTIFICATION,notification);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, notificationID,notificationIntent,PendingIntent.FLAG_CANCEL_CURRENT);
 
         Calendar alarmCalendar = Calendar.getInstance();
         alarmCalendar.setTimeInMillis(System.currentTimeMillis());
         alarmCalendar.set(year,month,day,hour,minute);
 
-        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        //alarmManager.cancel(pendingIntent);
+        alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.RTC_WAKEUP,alarmCalendar.getTimeInMillis(),pendingIntent);
-
     }
 
     /**
@@ -170,8 +148,6 @@ public class HomePage extends AppCompatActivity {
             notificationManager.createNotificationChannel(channel);
         }
     }
-
-    //Currently Activated by pressing a button, I'll change that now to whenever user goes to homepage
 
     /**
      * Cycles through all tasks and activates notifications for all tasks that have them
@@ -209,7 +185,7 @@ public class HomePage extends AppCompatActivity {
                             }
                         }
                         int LastNotificationID=toIntExact(SystemClock.uptimeMillis()/1000);
-                        setAlarm(this,scheduleDay,scheduleMonth,scheduleYear,scheduleHour,scheduleMinute,LastNotificationID,i);
+                        setAlarm(this,scheduleDay,scheduleMonth,scheduleYear,scheduleHour,scheduleMinute,LastNotificationID);
                         scheduleDay=0;
                         scheduleMonth=0;
                         scheduleYear=0;
