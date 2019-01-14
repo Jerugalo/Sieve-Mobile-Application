@@ -6,7 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:colorBackground">@color/colorBackground</item>
+        <item name="android:colorBackground">@color/defaultBackground</item>
         <item name="android:colorPrimary">@color/priorityHigh</item>
         <item name="android:colorPrimaryDark">@color/priorityMed</item>
         <item name="android:colorAccent">@color/priorityLow</item>
