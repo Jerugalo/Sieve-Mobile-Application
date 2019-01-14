@@ -16,10 +16,13 @@ import com.example.a53914.sievemobileapplication.R;
 import com.example.a53914.sievemobileapplication.TaskCreate;
 import com.example.a53914.sievemobileapplication.db.Class;
 
+/**
+ * Configures the class creation dialog. The ok button is set to take the input and insert it into
+ * the class database. The cancel button closes the dialog.
+ */
+
 public class ClassCreationDialog extends DialogFragment implements DialogInterface.OnDismissListener {
-
     private static final String TAG = "ClassCreationDialog";
-
     private EditText mInput;
     private TaskCreate taskCreate;
 
@@ -58,7 +61,6 @@ public class ClassCreationDialog extends DialogFragment implements DialogInterfa
                 getDialog().dismiss();
             }
         });
-
         return view;
     }
 }
