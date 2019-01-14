@@ -36,6 +36,8 @@
     <string name="display_settings">Display Settings</string>
     <string name="other_settings">Other Settings</string>
     <string name="about">About</string>
+    <string name="Alarm">Alarm:</string>
+    <string name="Alarms">Alarms:</string>
 
 
     <string-array name="classes_array">

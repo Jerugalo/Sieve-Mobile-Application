@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.AsyncTask;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -37,12 +39,22 @@ public class TaskCreate extends AppCompatActivity {
     public String currentTime;
     public String currentDate;
 
+    GlobalVars global = GlobalVars.getInstance();
+
+    RecyclerView recyclerView;
+    AlarmListAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_task_create);
         alarms = new ArrayList<>();
+
+        recyclerView = findViewById(R.id.TaskCreateRV);
+        adapter=new AlarmListAdapter(alarms);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         //Date view shows today's date when user first opens screen
         final Calendar c = Calendar.getInstance();
@@ -114,6 +126,7 @@ public class TaskCreate extends AppCompatActivity {
                 }
             });
     }
+
     private void setResult(Task task, int flag){
         setResult(flag,new Intent().putExtra("task",task.toString()));
         finish();
@@ -173,5 +186,8 @@ public class TaskCreate extends AppCompatActivity {
     public void alarmSet3(View view){
         String alarmTime = currentTime + currentDate +":";
         alarms.add(alarmTime);
+        global.setgAlarms(alarms);
+        adapter.notifyDataSetChanged();
+
     }
 }

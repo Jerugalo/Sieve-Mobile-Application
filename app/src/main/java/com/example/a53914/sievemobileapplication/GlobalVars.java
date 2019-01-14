@@ -5,6 +5,7 @@ import android.app.Application;
 import com.example.a53914.sievemobileapplication.db.Task;
 import com.example.a53914.sievemobileapplication.db.TaskDatabase;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GlobalVars extends Application {
@@ -21,6 +22,8 @@ public class GlobalVars extends Application {
 
     private static List<Task> taskData;
     private static Task currentTask;
+
+    private static ArrayList<String> gAlarms;
 
     public GlobalVars() {
 
@@ -39,5 +42,12 @@ public class GlobalVars extends Application {
     }
     public static void setCurrentTask(Task currentTask) {
         GlobalVars.currentTask = currentTask;
+    }
+
+    public static ArrayList<String> getgAlarms(){
+        return gAlarms;
+    }
+    public static void setgAlarms(ArrayList<String> gAlarms1){
+        GlobalVars.gAlarms=gAlarms1;
     }
 }
