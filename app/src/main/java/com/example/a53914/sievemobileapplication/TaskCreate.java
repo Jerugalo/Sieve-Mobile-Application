@@ -47,7 +47,7 @@ public class TaskCreate extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_task_create);
         alarms = new ArrayList<>();
 
