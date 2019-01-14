@@ -53,11 +53,13 @@ public class ClassCreationDialog extends DialogFragment implements DialogInterfa
                 Log.d(TAG, "onClick: capturing input.");
                 input = mInput.getText().toString();
                 Log.d(TAG, input);
-                mClass.setName(input);
-                mClass.setType(0);
-                mClass.setId(0);
-                mClass.setDueDate("");
-                taskCreate.callInsertClass(mClass);
+                if (input != "") {
+                    mClass.setName(input);
+                    mClass.setType(0);
+                    mClass.setId(0);
+                    mClass.setDueDate("");
+                    taskCreate.callInsertClass(mClass);
+                }
                 getDialog().dismiss();
             }
         });
