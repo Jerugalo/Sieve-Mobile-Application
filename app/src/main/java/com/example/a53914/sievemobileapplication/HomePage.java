@@ -60,6 +60,7 @@ public class HomePage extends AppCompatActivity {
         global.setTaskData(taskDatabase.taskDao().getAll());
 
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_home_page);
 
         RecyclerView rvTasks = findViewById(R.id.TaskList);
