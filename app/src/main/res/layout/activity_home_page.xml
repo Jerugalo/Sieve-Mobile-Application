@@ -34,7 +34,7 @@
             android:fontFamily="sans-serif-smallcaps"
             android:text="@string/sieve_title"
             android:textAlignment="center"
-            android:textColor="?android:attr/textColor"
+            android:textColor="@color/common_google_signin_btn_text_light"
             android:textSize="33sp" />
 
         <Button
@@ -60,7 +60,7 @@
         android:fontFamily="sans-serif-smallcaps"
         android:text="@string/date"
         android:textAlignment="center"
-        android:textColor="?android:attr/textColor"
+        android:textColor="@color/common_google_signin_btn_text_light"
         app:layout_constraintTop_toBottomOf="@+id/TopBar" />
 
 

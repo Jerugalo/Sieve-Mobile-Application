@@ -46,21 +46,11 @@ public class HomePage extends AppCompatActivity {
      * Creates Activity and sets up the recycler view. Recycler view pulls a list of Task objects
      * from the TaskDao and displays them in a visual list.
      */
-    public class SharedPreferencesManager {
-        private SharedPreferences themeStorage;
-        private Context context;
-        SharedPreferencesManager(Context context){
-            this.context = context;
-            themeStorage = PreferenceManager.getDefaultSharedPreferences(context);
-        }
-        int retrieveInt(String tag, int defValue){
-            return themeStorage.getInt(tag, defValue);
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         createNotificationChannel();
+
         BroadcastReceiver notificationJava = new Notificationjava();
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         filter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
@@ -70,33 +60,6 @@ public class HomePage extends AppCompatActivity {
         global.setTaskData(taskDatabase.taskDao().getAll());
 
         super.onCreate(savedInstanceState);
-        /*
-         * The themeId int pulls a "themeId" int from the SPM.
-         * The if/else block calls setTheme based on the value of "themeId".
-         */
-        int themeId = new SharedPreferencesManager(this).retrieveInt("themeId",1);
-        if(themeId == 1){
-            setTheme(R.style.SieveDefault);
-        }else{
-            if(themeId == 2){
-                setTheme(R.style.SieveAlternative);
-            }else{
-                if(themeId == 3){
-                    setTheme(R.style.SieveCombined);
-                }else{
-                    if(themeId == 4){
-                        setTheme(R.style.SieveDark);
-                    }else{
-                        if(themeId == 5){
-                            setTheme(R.style.SievePastel);
-                        }else{
-                            setTheme(R.style.SieveCandy);
-                        }
-                    }
-                }
-            }
-        }
-        getSupportActionBar().hide();
         setContentView(R.layout.activity_home_page);
 
         RecyclerView rvTasks = findViewById(R.id.TaskList);
@@ -261,15 +224,4 @@ public class HomePage extends AppCompatActivity {
     }
 
 
-    //Function called when user opens Settings
-    public void toSettingsMenu(android.view.View view){
-        Intent toSettingsMenu = new Intent(this, Settings.class);
-        startActivity(toSettingsMenu);
-    }
-
-    //The function below is called when user clicks on "+" key on the homepage.
-    public void toAssignmentCreation(View view){
-        Intent toAssignmentCreation = new Intent(this, TaskCreate.class);
-        startActivity(toAssignmentCreation);
-    }
 }

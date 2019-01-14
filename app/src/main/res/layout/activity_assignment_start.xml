@@ -25,7 +25,7 @@
             android:fontFamily="sans-serif-smallcaps"
             android:text="@string/now_working"
             android:textAlignment="center"
-            android:textColor="?android:attr/textColor"
+            android:textColor="@color/common_google_signin_btn_text_light"
             android:textSize="33sp" />
 
         <Space
@@ -37,9 +37,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="@string/TaskName"
             android:textAlignment="center"
-            android:textColor="?android:attr/textColor"
+            android:textColor="@color/common_google_signin_btn_text_light"
             android:textSize="33sp" />
 
         <Space

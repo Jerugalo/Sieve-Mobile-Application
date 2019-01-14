@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <attr name="priorityHigh" format="reference" />
     <attr name="priorityMed" format="reference" />
     <attr name="priorityLow" format="reference" />
@@ -9,4 +10,5 @@
         <item>priorityMed</item>
         <item>priorityHigh</item>
     </string-array>
+
 </resources>

@@ -30,7 +30,6 @@
             android:layout_height="0dp"
             android:background="@drawable/task_border"
             android:color="?attr/priorityHigh"
-            android:contentDescription="@string/very_important"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/ToDetails"
             app:layout_constraintStart_toEndOf="@+id/Title"

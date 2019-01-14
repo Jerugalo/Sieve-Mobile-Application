@@ -25,20 +25,26 @@
             <Button
                 android:id="@+id/button6"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:onClick="toHomePage" />
+
+                android:background="@drawable/button_style"
+                android:fontFamily="sans-serif-smallcaps"
+                android:onClick="toHomePage"
+                android:text="@string/return_home"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textSize="18sp" />
+
 
             <TextView
                 android:id="@+id/AddingTask"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/adding_task"
                 android:textAlignment="center"
-                android:textColor="?android:attr/textColor"
+                android:textColor="@color/common_google_signin_btn_text_light"
                 android:textSize="33sp" />
 
         </LinearLayout>
@@ -57,7 +63,7 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/name"
-                android:textColor="?android:attr/textColor"
+                android:textColor="@color/common_google_signin_btn_text_light"
                 android:textSize="33sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/NameAddText"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -72,7 +78,7 @@
                 android:ems="10"
                 android:fontFamily="sans-serif-smallcaps"
                 android:inputType="textPersonName"
-                android:textColor="?android:attr/textColor"
+                android:textColor="@color/common_google_signin_btn_text_light"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/NameText"
@@ -92,7 +98,7 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/class_name"
-                android:textColor="?android:attr/textColor"
+                android:textColor="@color/common_google_signin_btn_text_light"
                 android:textSize="33sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/DetailsClassSpinner"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -173,7 +179,7 @@
                 android:layout_weight="0"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/priority"
-                android:textColor="?android:attr/textColor"
+                android:textColor="@color/common_google_signin_btn_text_light"
                 android:textSize="33sp"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="256dp" />
@@ -201,7 +207,7 @@
                 android:layout_weight="0"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/date_due"
-                android:textColor="?android:attr/textColor"
+                android:textColor="@color/common_google_signin_btn_text_light"
                 android:textSize="33sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/NameAddText"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -216,7 +222,7 @@
                 android:inputType="date"
                 android:onClick="showDatePickerDialog"
                 android:textAlignment="center"
-                android:textColor="?android:attr/textColor"
+                android:textColor="@color/common_google_signin_btn_text_light"
                 android:textSize="30sp" />
 
         </LinearLayout>
@@ -234,7 +240,7 @@
                 android:layout_weight="0"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="@string/notes_details"
-                android:textColor="?android:attr/textColor"
+                android:textColor="@color/common_google_signin_btn_text_light"
                 android:textSize="33sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/NameAddText"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -247,7 +253,7 @@
                 android:ems="10"
                 android:fontFamily="sans-serif-smallcaps"
                 android:inputType="textMultiLine"
-                android:textColor="?android:attr/textColor"
+                android:textColor="@color/common_google_signin_btn_text_light"
                 android:textSize="24sp" />
         </LinearLayout>
 
