@@ -17,7 +17,7 @@ public class AssignmentStart extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_assignment_start);
         taskTitle = (TextView)findViewById(R.id.TaskNameTitle);
         taskTitle.setText(mTask.getNameID());

@@ -77,7 +77,7 @@ public class HomePage extends AppCompatActivity {
                 taskDatabase.taskDao().delete(mTask);
             }
         }
-
+        getSupportActionBar().hide();
         createListofNotifications();
     }
 
