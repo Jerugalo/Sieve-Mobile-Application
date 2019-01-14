@@ -117,13 +117,15 @@ public class TaskCreate extends AppCompatActivity {
             });
     }
 
-    private void refresh(){
+    /** Creates a new class list and updates the spinner*/
+    private void refreshSpinner(){
         createClassList();
         adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapter.notifyDataSetChanged();
     }
 
+    /** Creates the array of classes that the spinner displays */
     private void createClassList() {
         classList.clear();
         classDatabase = ClassDatabase.getInstance(this);
@@ -135,12 +137,12 @@ public class TaskCreate extends AppCompatActivity {
         classList.add("Create New Class");
     }
 
-
+    /** Calls the AsyncTask InsertClass, that cannot be called from other classes */
     public void callInsertClass(Class mClass){
         new InsertClass(TaskCreate.this, mClass).execute();
     }
 
-    /* Puts Class into Class Database */
+    /** Puts the class into the class database */
     private static class InsertClass extends AsyncTask<Void, Void,Boolean> {
         private final WeakReference<TaskCreate> activityReference;
         private final Class cls;
@@ -158,18 +160,18 @@ public class TaskCreate extends AppCompatActivity {
             if(bool){
                 Log.d("TaskCreate","The Async Task has finished!");
                 Log.d("TaskCreate", cls.toString());
-                activityReference.get().refresh();
+                activityReference.get().refreshSpinner();
             }
         }
     }
 
-    /* Close Task Create Activity */
+    /** Close Task Create Activity */
     private void setResultTask(Task task, int flag){
         setResult(flag,new Intent().putExtra("task",task.toString()));
         finish();
     }
 
-    /* Puts Task into Task Database */
+    /** Puts Task into Task Database */
     private static class InsertTask extends AsyncTask<Void, Void,Boolean> {
         private final WeakReference<TaskCreate> activityReference;
         private final Task task;
@@ -202,7 +204,7 @@ public class TaskCreate extends AppCompatActivity {
         startActivity(toHomePage);
     }
 
-    /* Shows a Calendar Dialog for user to select a date */
+    /** Shows a Calendar Dialog for user to select a date */
     public void showDatePickerDialog(View view){
         DialogFragment newFragment = new DatePickerFragment();
         newFragment.show(getSupportFragmentManager(),"datePicker");
