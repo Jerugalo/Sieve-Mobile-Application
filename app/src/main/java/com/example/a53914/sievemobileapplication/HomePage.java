@@ -82,7 +82,6 @@ public class HomePage extends AppCompatActivity {
             }
 
         }
-        getSupportActionBar().hide();
         createListofNotifications();
     }
 
