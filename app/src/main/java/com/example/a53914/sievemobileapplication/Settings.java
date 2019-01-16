@@ -20,4 +20,8 @@ public class Settings extends AppCompatActivity {
         Intent toHomePage = new Intent(this, HomePage.class);
         startActivity(toHomePage);
     }
+
+    public void onThemeRadio(View view){
+
+    }
 }
