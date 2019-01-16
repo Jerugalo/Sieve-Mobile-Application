@@ -1,10 +1,15 @@
 package com.example.a53914.sievemobileapplication;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.AsyncTask;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,7 +25,9 @@ import com.example.a53914.sievemobileapplication.db.ClassDatabase;
 import com.example.a53914.sievemobileapplication.db.TaskDatabase;
 import com.example.a53914.sievemobileapplication.db.Task;
 import com.example.a53914.sievemobileapplication.fragments.ClassCreationDialog;
+import com.example.a53914.sievemobileapplication.db.TimePickerFragmentAlarm;
 import com.example.a53914.sievemobileapplication.fragments.DatePickerFragment;
+import com.example.a53914.sievemobileapplication.fragments.DatePickerFragmentAlarm;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -28,6 +35,26 @@ import java.util.Calendar;
 import java.util.List;
 
 public class TaskCreate extends AppCompatActivity {
+    public class SharedPreferencesManager{
+        private SharedPreferences themeStorage;
+        private SharedPreferences.Editor sEditor;
+        private Context context;
+        SharedPreferencesManager(Context context){
+            this.context = context;
+            themeStorage = PreferenceManager.getDefaultSharedPreferences(context);
+        }
+        private SharedPreferences.Editor getEditor(){
+            return themeStorage.edit();
+        }
+        int retrieveInt(String tag, int defValue){
+            return themeStorage.getInt(tag, defValue);
+        }
+        void storeInt(String tag, int defValue){
+            sEditor = getEditor();
+            sEditor.putInt(tag, defValue);
+            sEditor.commit();
+        }
+    }
     private TaskDatabase taskDatabase;
     private Task task;
     private final ArrayList<String> classList = new ArrayList<>();
@@ -40,10 +67,25 @@ public class TaskCreate extends AppCompatActivity {
     private Spinner classChooser;
     private ArrayAdapter adapter;
 
+    public ArrayList<String> alarms;
+    public String currentTime;
+    public String currentDate;
+
+    GlobalVars global = GlobalVars.getInstance();
+
+    RecyclerView recyclerView;
+    AlarmListAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_create);
+        alarms = new ArrayList<>();
+
+        recyclerView = findViewById(R.id.TaskCreateRV);
+        adapter=new AlarmListAdapter(alarms);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         createClassList();
 
@@ -107,11 +149,15 @@ public class TaskCreate extends AppCompatActivity {
             button.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view){
+                    String alarmsString="";
                     EditText nameText= (EditText) findViewById(R.id.NameAddText);
                     EditText notesText = (EditText) findViewById(R.id.NotesText);
                     TextView dateText = findViewById(R.id.DateViewer);
+                    for(int i=0; i<alarms.size();i++){
+                        alarmsString= alarmsString + alarms.get(i);
+                    }
                     task = new Task(priorityID,nameText.getText().toString(),classes,dateText.getText().toString(),
-                            notesText.getText().toString(),typeID);
+                            notesText.getText().toString(),typeID,0,alarmsString);
                     new InsertTask(TaskCreate.this,task).execute();
                 }
             });
@@ -165,6 +211,11 @@ public class TaskCreate extends AppCompatActivity {
         }
     }
 
+    protected void onStart(){
+        super.onStart();
+        determineTheme();
+    }
+
     /** Close Task Create Activity */
     private void setResultTask(Task task, int flag){
         setResult(flag,new Intent().putExtra("task",task.toString()));
@@ -209,5 +260,36 @@ public class TaskCreate extends AppCompatActivity {
         DialogFragment newFragment = new DatePickerFragment();
         newFragment.show(getSupportFragmentManager(),"datePicker");
     }
+    public void alarmSet1(View view){
+        DialogFragment newFragment = new TimePickerFragmentAlarm();
+        newFragment.show(getSupportFragmentManager(),"timePicker");
 
+        //DialogFragment newFragment2 = new DatePickerFragmentAlarm();
+        //newFragment2.show(getSupportFragmentManager(),"datePickerA");
+
+        //String alarmTime = currentTime +currentDate + ":";
+        //alarms.add(alarmTime);
+    }
+    public void alarmSet2(View view){
+        DialogFragment newFragment = new DatePickerFragmentAlarm();
+        newFragment.show(getSupportFragmentManager(),"datePickerA");
+
+    }
+    public void alarmSet3(View view){
+        String alarmTime = currentTime + currentDate +":";
+        alarms.add(alarmTime);
+        global.setgAlarms(alarms);
+        adapter.notifyDataSetChanged();
+
+    }
+    public void determineTheme(){
+        int themeId = new SharedPreferencesManager(this).retrieveInt("themeId",1);
+        if(themeId == 1){setTheme(R.style.SieveDefault);}
+        else if(themeId == 2){setTheme(R.style.SieveAlternative);}
+        else if(themeId == 3){setTheme(R.style.SieveCombined);}
+        else if(themeId == 4){setTheme(R.style.SieveDark);}
+        else if(themeId == 5){setTheme(R.style.SieveSimple);}
+        else if(themeId == 6){setTheme(R.style.SieveCandy);}
+        else{setTheme(R.style.SieveDefault);}
+    }
 }

@@ -29,13 +29,12 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/task_border"
-            android:color="@color/priorityHigh"
-            android:contentDescription="@string/very_important"
+            android:color="?attr/priorityHigh"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/ToDetails"
             app:layout_constraintStart_toEndOf="@+id/Title"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@color/priorityHigh" />
+            app:srcCompat="?attr/priorityHigh" />
 
         <Button
             android:id="@+id/ToDetails"

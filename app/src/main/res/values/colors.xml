@@ -1,31 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#03776f</color>
-    <color name="colorPrimaryDark">#205753</color>
-    <color name="colorAccent">#FF68B160</color>
-    <color name="colorBackground">#49a49e</color>
-    <color name="colorSecondary">#03776f</color>
-    <color name="priorityHigh">#eb545c</color>
-    <color name="priorityMed">#e09965</color>
-    <color name="priorityLow">#68b160</color>
 
-    <array name="priority">
-        <item>@color/priorityLow</item>
-        <item>@color/priorityMed</item>
-        <item>@color/priorityHigh</item>
-    </array>
+    <color name="textBlack">#000000</color>
+    <color name="textWhite">#ffffff</color>
 
-    <!--Second theme colors -->
+    <!-- Primary Theme Colors -->
+    <color name="defaultBackground">#49a49e</color>
+    <color name="defaultBar">#03776f</color>
+    <color name="defaultHigh">#eb545c</color>
+    <color name="defaultMed">#e09965</color>
+    <color name="defaultLow">#68b160</color>
+    <color name="defaultButton">#ffffff</color>
 
+    <!-- Alternative theme colors -->
+    <color name="alternativeBackground">#6c81b5</color>
+    <color name="alternativeHigh">#c96571</color>
+    <color name="alternativeMed">#89619e</color>
+    <color name="alternativeLow">#52a589</color>
+    <color name="alternativeButton">#ffffff</color>
 
-    <color name="colorPrimary2">#49619c</color>
-    <color name="colorPrimaryDark2">#4E5F88</color>
-    <color name="colorBackground2">#6c81b5</color>
-    <color name="priorityHigh2">#c96571</color>
-    <color name="priorityMed2">#89619e</color>
-    <color name="priorityLow2">#52a589</color>
-    <color name="colorSecondary2">#49619c</color>
+    <!-- Combined Theme Colors -->
+    <color name="combinedBackground">#6c81b5</color>
+    <color name="combinedHigh">#eb545c</color>
+    <color name="combinedMed">#e09965</color>
+    <color name="combinedLow">#68b160</color>
+    <color name="combinedButton">#ffffff</color>
 
+    <!-- Simple Theme Colors -->
+    <color name="simpleBackground">#ffffff</color>
+    <color name="simpleBar">#ffdb59</color>
+    <color name="simpleHigh">#FFFB4352</color>
+    <color name="simpleMed">#FFFFBA4E</color>
+    <color name="simpleLow">#FF7CF742</color>
+    <color name="simpleAccent">#ffdb59</color>
+    <color name="simpleButton">#c4c4c4</color>
+
+    <!-- Candy theme colors -->
+    <color name="candyBackground">#76d7d6</color>
+    <color name="candyHigh">#f9aab7</color>
+    <color name="candyMed">#e09965</color>
+    <color name="candyLow">#f7e368</color>
+    <color name="candyButton">#ffffff</color>
+    <color name="candyAccent">#957dad</color>
+
+    <!-- Dark theme colors -->
+    <color name="darkBackground">#363636</color>
+    <color name="darkHigh">#e8175d</color>
+    <color name="darkMed">#cc527a</color>
+    <color name="darkLow">#a8a7a7</color>
+    <color name="darkAccent">#41b3a3</color>
+    <color name="darkButton">#b7b7b7</color>
+
+    <!-- Twilight theme colors -->
+    <color name="colorBackground6">#181818</color>
+    <color name="twilightAccent">#ff7400</color>
+    <color name="twilightBar">#ff7400</color>
+    <color name="twilightButton">#4d4d4d</color>
+    <color name="twilightHigh">#FA4726</color>
+    <color name="twilightMed">#fc913a</color>
+    <color name="twilightLow">#fef24e</color>
 
 
 </resources>

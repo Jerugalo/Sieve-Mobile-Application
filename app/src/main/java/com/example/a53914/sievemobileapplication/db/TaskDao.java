@@ -28,6 +28,9 @@ public interface TaskDao {
     @Update
     void update(Task task);
 
+    @Query("SELECT COUNT(name) FROM Task")
+    int getRowCount();
+
     //@Query("SELECT * FROM activities WHERE uid IN (:userIds)")
     //List<Task> loadAllByIds(int[] userIds);
 
