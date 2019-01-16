@@ -24,7 +24,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 * **Ben Harper** - *Programming* - [BenHarperStudent](https://github.com/BenHarperStudent)
 * **Keenan Buckley** - *Programming* - [HFocus](https://github.com/HFocus)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/AKmeier/Sieve-Mobile-Application/contributors) who participated in this project.
 
 ## License
 
