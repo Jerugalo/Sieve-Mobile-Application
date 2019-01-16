@@ -33,7 +33,7 @@
     <color name="simpleMed">#FFFFBA4E</color>
     <color name="simpleLow">#FF7CF742</color>
     <color name="simpleAccent">#ffdb59</color>
-    <color name="simpleButton">#9a9a9a</color>
+    <color name="simpleButton">#c4c4c4</color>
 
     <!-- Candy theme colors -->
     <color name="candyBackground">#76d7d6</color>
@@ -49,7 +49,7 @@
     <color name="darkMed">#cc527a</color>
     <color name="darkLow">#a8a7a7</color>
     <color name="darkAccent">#41b3a3</color>
-    <color name="darkButton">#ffffff</color>
+    <color name="darkButton">#b7b7b7</color>
 
     <!-- Twilight theme colors -->
     <color name="colorBackground6">#181818</color>
