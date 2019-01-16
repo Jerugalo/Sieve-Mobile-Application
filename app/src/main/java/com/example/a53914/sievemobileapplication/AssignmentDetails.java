@@ -104,6 +104,7 @@ public class AssignmentDetails extends AppCompatActivity {
         assignD.setClickable(false);
         projectD.setClickable(false);
         titleText.setClickable(false);
+        titleText.setInputType(0);
         //titleText.setFocusable(false);
         classSpinner.setClickable(false);
         dateText.setClickable(false);
@@ -112,6 +113,7 @@ public class AssignmentDetails extends AppCompatActivity {
         medPCb.setClickable(false);
         highPCb.setClickable(false);
         notesD.setClickable(false);
+        notesD.setInputType(0);
         //notesD.setFocusable(false);
 
         taskID=mTask.getId();
@@ -206,6 +208,7 @@ public class AssignmentDetails extends AppCompatActivity {
             assignD.setClickable(true);
             projectD.setClickable(true);
             titleText.setClickable(true);
+            titleText.setInputType(97);
             //titleText.setFocusable(true);
             classSpinner.setClickable(true);
             dateText.setClickable(true);
@@ -213,6 +216,7 @@ public class AssignmentDetails extends AppCompatActivity {
             medPCb.setClickable(true);
             highPCb.setClickable(true);
             notesD.setClickable(true);
+            notesD.setInputType(97);
             //notesD.setFocusable(true);
             isEditing=true;
         }
@@ -225,6 +229,7 @@ public class AssignmentDetails extends AppCompatActivity {
             projectD.setClickable(false);
             titleText.setClickable(false);
             //titleText.setFocusable(false);
+            titleText.setInputType(0);
             classSpinner.setClickable(false);
             dateText.setClickable(false);
             //dateText.setFocusable(false);
@@ -232,6 +237,7 @@ public class AssignmentDetails extends AppCompatActivity {
             medPCb.setClickable(false);
             highPCb.setClickable(false);
             notesD.setClickable(false);
+            notesD.setInputType(0);
             //notesD.setFocusable(false);
 
             task.setId(taskID);
