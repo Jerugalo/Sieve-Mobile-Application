@@ -39,6 +39,26 @@ import static java.lang.StrictMath.toIntExact;
  */
 
 public class HomePage extends AppCompatActivity {
+    public class SharedPreferencesManager{
+        private SharedPreferences themeStorage;
+        private SharedPreferences.Editor sEditor;
+        private Context context;
+        SharedPreferencesManager(Context context){
+            this.context = context;
+            themeStorage = PreferenceManager.getDefaultSharedPreferences(context);
+        }
+        private SharedPreferences.Editor getEditor(){
+            return themeStorage.edit();
+        }
+        int retrieveInt(String tag, int defValue){
+            return themeStorage.getInt(tag, defValue);
+        }
+        void storeInt(String tag, int defValue){
+            sEditor = getEditor();
+            sEditor.putInt(tag, defValue);
+            sEditor.commit();
+        }
+    }
     GlobalVars global = GlobalVars.getInstance();
     Task mTask =global.getCurrentTask();
     List <PendingIntent> pendingIntents;
@@ -89,7 +109,7 @@ public class HomePage extends AppCompatActivity {
     @Override
     protected void onStart(){
         super.onStart();
-
+        determineTheme();
         TaskDatabase taskDatabase = TaskDatabase.getInstance(HomePage.this);
         RecyclerView rvTasks = findViewById(R.id.TaskList);
         List<Task> tasks = taskDatabase.taskDao().getAll();
@@ -199,5 +219,14 @@ public class HomePage extends AppCompatActivity {
         }
     }
 
-
+    public void determineTheme(){
+        int themeId = new SharedPreferencesManager(this).retrieveInt("themeId",1);
+        if(themeId == 1){setTheme(R.style.SieveDefault);}
+        else if(themeId == 2){setTheme(R.style.SieveAlternative);}
+        else if(themeId == 3){setTheme(R.style.SieveCombined);}
+        else if(themeId == 4){setTheme(R.style.SieveDark);}
+        else if(themeId == 5){setTheme(R.style.SieveSimple);}
+        else if(themeId == 6){setTheme(R.style.SieveCandy);}
+        else{setTheme(R.style.SieveDefault);}
+    }
 }

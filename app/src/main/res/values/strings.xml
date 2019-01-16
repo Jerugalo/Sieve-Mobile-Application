@@ -42,8 +42,8 @@
     <string name="theme2name">Alternative</string>
     <string name="theme3name">Combined</string>
     <string name="theme4name">Dark</string>
-    <string name="theme5name">Candy</string>
-    <string name="theme6name">Pastel</string>
+    <string name="theme5name">Simple</string>
+    <string name="theme6name">Candy</string>
 
 
     <string-array name="classes_array">

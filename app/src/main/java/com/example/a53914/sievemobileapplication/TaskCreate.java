@@ -1,7 +1,10 @@
 package com.example.a53914.sievemobileapplication;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.AsyncTask;
@@ -29,6 +32,26 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class TaskCreate extends AppCompatActivity {
+    public class SharedPreferencesManager{
+        private SharedPreferences themeStorage;
+        private SharedPreferences.Editor sEditor;
+        private Context context;
+        SharedPreferencesManager(Context context){
+            this.context = context;
+            themeStorage = PreferenceManager.getDefaultSharedPreferences(context);
+        }
+        private SharedPreferences.Editor getEditor(){
+            return themeStorage.edit();
+        }
+        int retrieveInt(String tag, int defValue){
+            return themeStorage.getInt(tag, defValue);
+        }
+        void storeInt(String tag, int defValue){
+            sEditor = getEditor();
+            sEditor.putInt(tag, defValue);
+            sEditor.commit();
+        }
+    }
     private TaskDatabase taskDatabase;
     private Task task;
     int priorityID;
@@ -126,6 +149,11 @@ public class TaskCreate extends AppCompatActivity {
             });
     }
 
+    protected void onStart(){
+        super.onStart();
+        determineTheme();
+    }
+
     private void setResult(Task task, int flag){
         setResult(flag,new Intent().putExtra("task",task.toString()));
         finish();
@@ -188,5 +216,15 @@ public class TaskCreate extends AppCompatActivity {
         global.setgAlarms(alarms);
         adapter.notifyDataSetChanged();
 
+    }
+    public void determineTheme(){
+        int themeId = new SharedPreferencesManager(this).retrieveInt("themeId",1);
+        if(themeId == 1){setTheme(R.style.SieveDefault);}
+        else if(themeId == 2){setTheme(R.style.SieveAlternative);}
+        else if(themeId == 3){setTheme(R.style.SieveCombined);}
+        else if(themeId == 4){setTheme(R.style.SieveDark);}
+        else if(themeId == 5){setTheme(R.style.SieveSimple);}
+        else if(themeId == 6){setTheme(R.style.SieveCandy);}
+        else{setTheme(R.style.SieveDefault);}
     }
 }
