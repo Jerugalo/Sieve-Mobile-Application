@@ -65,16 +65,13 @@ public class TaskCreate extends AppCompatActivity {
     GlobalVars global = GlobalVars.getInstance();
 
     private Spinner classChooser;
-    private ArrayAdapter adapter;
+    private ArrayAdapter classAdapter;
 
     public ArrayList<String> alarms;
     public String currentTime;
     public String currentDate;
-
-    GlobalVars global = GlobalVars.getInstance();
-
     RecyclerView recyclerView;
-    AlarmListAdapter adapter;
+    AlarmListAdapter alarmAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,8 +80,8 @@ public class TaskCreate extends AppCompatActivity {
         alarms = new ArrayList<>();
 
         recyclerView = findViewById(R.id.TaskCreateRV);
-        adapter=new AlarmListAdapter(alarms);
-        recyclerView.setAdapter(adapter);
+        alarmAdapter = new AlarmListAdapter(alarms);
+        recyclerView.setAdapter(alarmAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         createClassList();
@@ -127,9 +124,9 @@ public class TaskCreate extends AppCompatActivity {
 
         /* Fills the spinner and allows user to select a class from the class database */
         classChooser = findViewById(R.id.DetailsClassSpinner);
-        adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classList);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        classChooser.setAdapter(adapter);
+        classAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classList);
+        classAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        classChooser.setAdapter(classAdapter);
         classChooser.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 if ((parent.getItemAtPosition(pos)).toString().equals("Create New Class")){
@@ -166,9 +163,9 @@ public class TaskCreate extends AppCompatActivity {
     /** Creates a new class list and updates the spinner*/
     private void refreshSpinner(){
         createClassList();
-        adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classList);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        adapter.notifyDataSetChanged();
+        classAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classList);
+        classAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        classAdapter.notifyDataSetChanged();
     }
 
     /** Creates the array of classes that the spinner displays */
@@ -279,7 +276,7 @@ public class TaskCreate extends AppCompatActivity {
         String alarmTime = currentTime + currentDate +":";
         alarms.add(alarmTime);
         global.setgAlarms(alarms);
-        adapter.notifyDataSetChanged();
+        classAdapter.notifyDataSetChanged();
 
     }
     public void determineTheme(){
