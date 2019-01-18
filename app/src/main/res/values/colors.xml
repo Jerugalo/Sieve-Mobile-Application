@@ -5,12 +5,13 @@
     <color name="textWhite">#ffffff</color>
 
     <!-- Primary Theme Colors -->
-    <color name="defaultBackground">#49a49e</color>
-    <color name="defaultBar">#03776f</color>
+    <color name="defaultBackground">#a3d1ce</color>
+    <color name="defaultBar">#2c4641</color>
     <color name="defaultHigh">#eb545c</color>
     <color name="defaultMed">#e09965</color>
     <color name="defaultLow">#68b160</color>
-    <color name="defaultButton">#ffffff</color>
+    <color name="defaultButton">#cbe1b4</color>
+    <color name="defaultAccent">#553f40</color>
 
     <!-- Alternative theme colors -->
     <color name="alternativeBackground">#6c81b5</color>
@@ -18,6 +19,8 @@
     <color name="alternativeMed">#89619e</color>
     <color name="alternativeLow">#52a589</color>
     <color name="alternativeButton">#ffffff</color>
+    <color name="alternativeAccent">#76d7d6</color>
+    <color name="alternativeBar">#a7a6ba</color>
 
     <!-- Combined Theme Colors -->
     <color name="combinedBackground">#6c81b5</color>
@@ -25,6 +28,7 @@
     <color name="combinedMed">#e09965</color>
     <color name="combinedLow">#68b160</color>
     <color name="combinedButton">#ffffff</color>
+    <color name="combinedAccent">#</color>
 
     <!-- Simple Theme Colors -->
     <color name="simpleBackground">#ffffff</color>
@@ -42,6 +46,7 @@
     <color name="candyLow">#f7e368</color>
     <color name="candyButton">#ffffff</color>
     <color name="candyAccent">#957dad</color>
+    <color name="candyBar">#41b3a3</color>
 
     <!-- Dark theme colors -->
     <color name="darkBackground">#363636</color>
@@ -50,9 +55,10 @@
     <color name="darkLow">#a8a7a7</color>
     <color name="darkAccent">#41b3a3</color>
     <color name="darkButton">#b7b7b7</color>
+    <color name="darkBar">#ffb6c1</color>
 
     <!-- Twilight theme colors -->
-    <color name="colorBackground6">#181818</color>
+    <color name="twilightBackground">#181818</color>
     <color name="twilightAccent">#ff7400</color>
     <color name="twilightBar">#ff7400</color>
     <color name="twilightButton">#4d4d4d</color>

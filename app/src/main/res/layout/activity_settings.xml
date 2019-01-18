@@ -9,7 +9,7 @@
     <LinearLayout
         android:id="@+id/topBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,13 +17,16 @@
 
         <Button
             android:id="@+id/button5"
-            android:layout_width="wrap_content"
+            android:layout_width="12dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/button_style"
+            android:backgroundTint="?android:attr/colorPrimaryDark"
             android:fontFamily="sans-serif-smallcaps"
             android:onClick="toHomePage"
             android:text="@string/return_home"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/SettingsTitle"
@@ -32,7 +35,8 @@
             android:layout_weight="1"
             android:fontFamily="sans-serif-smallcaps"
             android:text="@string/settings"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textAlignment="center"
+            android:textColor="?android:attr/textColor"
             android:textSize="33sp" />
     </LinearLayout>
 
@@ -44,7 +48,8 @@
         android:layout_marginTop="12dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="@string/notification_settings"
-        android:textSize="24sp"
+        android:textColor="?android:attr/textColor"
+        android:textSize="33sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topBar" />
 
@@ -56,7 +61,8 @@
         android:layout_marginTop="12dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="@string/create_schedule"
-        android:textSize="24sp"
+        android:textColor="?android:attr/textColor"
+        android:textSize="33sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/notifSettingsTitle" />
 
@@ -68,7 +74,8 @@
         android:layout_marginTop="12dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="@string/display_settings"
-        android:textSize="24sp"
+        android:textColor="?android:attr/textColor"
+        android:textSize="33sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/schedCreateTitle" />
 
@@ -97,7 +104,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="onThemeRadio"
-                android:text="@string/theme1name" />
+                android:text="@string/theme1name"
+                android:textColor="?android:attr/textColor" />
 
             <RadioButton
                 android:id="@+id/themeAlternative"
@@ -105,7 +113,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="onThemeRadio"
-                android:text="@string/theme2name" />
+                android:text="@string/theme2name"
+                android:textColor="?android:attr/textColor" />
 
         </LinearLayout>
 
@@ -122,7 +131,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="onThemeRadio"
-                android:text="@string/theme3name" />
+                android:text="@string/theme3name"
+                android:textColor="?android:attr/textColor" />
 
             <RadioButton
                 android:id="@+id/themeDark"
@@ -130,7 +140,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="onThemeRadio"
-                android:text="@string/theme4name" />
+                android:text="@string/theme4name"
+                android:textColor="?android:attr/textColor" />
         </LinearLayout>
 
         <LinearLayout
@@ -146,7 +157,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="onThemeRadio"
-                android:text="@string/theme5name" />
+                android:text="@string/theme5name"
+                android:textColor="?android:attr/textColor" />
 
             <RadioButton
                 android:id="@+id/themeCandy"
@@ -154,7 +166,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="onThemeRadio"
-                android:text="@string/theme6name" />
+                android:text="@string/theme6name"
+                android:textColor="?android:attr/textColor" />
         </LinearLayout>
 
     </RadioGroup>

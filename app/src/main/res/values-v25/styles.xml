@@ -11,6 +11,7 @@
         <item name="priorityMed">@color/defaultMed</item>
         <item name="priorityLow">@color/defaultLow</item>
         <item name="android:textColor">@color/textBlack</item>
+        <item name="colorAccent">@color/defaultAccent</item>
     </style>
 
     <!-- Alternative Theme -->
@@ -42,6 +43,8 @@
         <item name="android:textColor">@color/textWhite</item>
         <item name="colorAccent">@color/darkAccent</item>
         <item name="android:colorPrimaryDark">@color/darkButton</item>
+        <item name="android:statusBarColor">@color/darkBar</item>
+        <item name="android:textColorPrimary">@color/textWhite</item>
     </style>
 
     <!-- Simple Theme -->
@@ -64,11 +67,14 @@
         <item name="priorityLow">@color/candyLow</item>
         <item name="android:textColor">@color/textBlack</item>
         <item name="android:colorPrimaryDark">@color/candyButton</item>
+        <item name="colorAccent">@color/candyAccent</item>
+        <item name="colorPrimaryDark">@color/candyButton</item>
+        <item name="android:statusBarColor">@color/candyBar</item>
     </style>
 
     <!-- Twilight Theme -->
     <style name="SieveTwilight" parent="SieveDefault" >
-        <item name="android:colorBackground">@color/colorBackground6</item>
+        <item name="android:colorBackground">@color/twilightBackground</item>
         <item name="colorAccent">@color/twilightAccent</item>
         <item name="android:statusBarColor">@color/twilightBar</item>
         <item name="android:textColor">@color/textWhite</item>
@@ -76,5 +82,7 @@
         <item name="priorityMed">@color/twilightMed</item>
         <item name="priorityLow">@color/twilightLow</item>
         <item name="android:colorPrimaryDark">@color/twilightButton</item>
+        <item name="colorPrimaryDark">@color/twilightButton</item>
+        <item name="android:textColorPrimary">@color/textWhite</item>
     </style>
 </resources>
