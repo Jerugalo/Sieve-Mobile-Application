@@ -80,7 +80,7 @@ public class HomePage extends AppCompatActivity {
         filter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
         this.registerReceiver(notificationJava,filter);
 
-        TaskDatabase taskDatabase = TaskDatabase.getInstance(HomePage.this);
+        TaskDatabase taskDatabase = TaskDatabase.getInstance(this);
         global.setTaskData(taskDatabase.taskDao().getAll());
 
         super.onCreate(savedInstanceState);

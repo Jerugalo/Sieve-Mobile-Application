@@ -8,6 +8,7 @@
     <string name="return_home">&#60; Back</string>
     <string name="editTask">Edit Task</string>
     <string name="beginTask">Begin &#62;</string>
+    <string name="notesDetails">Notes and Details</string>
     <string name="task_details">Task Details</string>
     <string name="task_title">Task Title</string>
     <string name="task_type">Task Type</string>
