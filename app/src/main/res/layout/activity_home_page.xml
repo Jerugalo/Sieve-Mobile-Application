@@ -16,8 +16,10 @@
         <Button
             android:id="@+id/MenuButton"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/button_style"
+            android:backgroundTint="?android:attr/colorPrimaryDark"
             android:fontFamily="sans-serif-smallcaps"
             android:onClick="toSettings"
             android:text="@string/menu_key"
@@ -31,9 +33,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="Sieve"
+            android:text="@string/sieve_title"
             android:textAlignment="center"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textColor="?android:attr/textColor"
             android:textSize="33sp" />
 
         <Button
@@ -41,6 +43,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/button_style"
+            android:backgroundTint="?android:attr/colorPrimaryDark"
             android:fontFamily="sans-serif-smallcaps"
             android:onClick="toTaskCreate"
             android:text="@string/create_task"
@@ -55,9 +59,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:fontFamily="sans-serif-smallcaps"
         android:text="@string/date"
         android:textAlignment="center"
-        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textColor="?android:attr/textColor"
         app:layout_constraintTop_toBottomOf="@+id/TopBar" />
 
 

@@ -1,14 +1,17 @@
 package com.example.a53914.sievemobileapplication;
 
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
@@ -24,7 +27,26 @@ import java.util.Calendar;
  *  Java Class for Assignment Details activity
  */
 public class AssignmentDetails extends AppCompatActivity {
-
+    public class SharedPreferencesManager{
+        private SharedPreferences themeStorage;
+        private SharedPreferences.Editor sEditor;
+        private Context context;
+        SharedPreferencesManager(Context context){
+            this.context = context;
+            themeStorage = PreferenceManager.getDefaultSharedPreferences(context);
+        }
+        private SharedPreferences.Editor getEditor(){
+            return themeStorage.edit();
+        }
+        int retrieveInt(String tag, int defValue){
+            return themeStorage.getInt(tag, defValue);
+        }
+        void storeInt(String tag, int defValue){
+            sEditor = getEditor();
+            sEditor.putInt(tag, defValue);
+            sEditor.commit();
+        }
+    }
     GlobalVars global = GlobalVars.getInstance();
     Task mTask = global.getCurrentTask();
 
@@ -57,6 +79,7 @@ public class AssignmentDetails extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        determineTheme();
         setContentView(R.layout.activity_assignment_details);
         task=mTask;
 
@@ -82,6 +105,7 @@ public class AssignmentDetails extends AppCompatActivity {
         assignD.setClickable(false);
         projectD.setClickable(false);
         titleText.setClickable(false);
+        titleText.setInputType(0);
         //titleText.setFocusable(false);
         classSpinner.setClickable(false);
         dateText.setClickable(false);
@@ -90,6 +114,7 @@ public class AssignmentDetails extends AppCompatActivity {
         medPCb.setClickable(false);
         highPCb.setClickable(false);
         notesD.setClickable(false);
+        notesD.setInputType(0);
         //notesD.setFocusable(false);
 
         taskID=mTask.getId();
@@ -141,7 +166,10 @@ public class AssignmentDetails extends AppCompatActivity {
 
 
     }
-
+    protected void onStart(){
+        super.onStart();
+        determineTheme();
+    }
     /**
      * Takes user back to home page when button clicked
      * @param view
@@ -181,6 +209,7 @@ public class AssignmentDetails extends AppCompatActivity {
             assignD.setClickable(true);
             projectD.setClickable(true);
             titleText.setClickable(true);
+            titleText.setInputType(97);
             //titleText.setFocusable(true);
             classSpinner.setClickable(true);
             dateText.setClickable(true);
@@ -188,6 +217,7 @@ public class AssignmentDetails extends AppCompatActivity {
             medPCb.setClickable(true);
             highPCb.setClickable(true);
             notesD.setClickable(true);
+            notesD.setInputType(97);
             //notesD.setFocusable(true);
             isEditing=true;
         }
@@ -200,6 +230,7 @@ public class AssignmentDetails extends AppCompatActivity {
             projectD.setClickable(false);
             titleText.setClickable(false);
             //titleText.setFocusable(false);
+            titleText.setInputType(0);
             classSpinner.setClickable(false);
             dateText.setClickable(false);
             //dateText.setFocusable(false);
@@ -207,6 +238,7 @@ public class AssignmentDetails extends AppCompatActivity {
             medPCb.setClickable(false);
             highPCb.setClickable(false);
             notesD.setClickable(false);
+            notesD.setInputType(0);
             //notesD.setFocusable(false);
 
             task.setId(taskID);
@@ -287,5 +319,15 @@ public class AssignmentDetails extends AppCompatActivity {
         DialogFragment newFragment = new DatePickerFragmentD();
         newFragment.show(getSupportFragmentManager(),"datePicker");
 
+    }
+    public void determineTheme(){
+        int themeId = new SharedPreferencesManager(this).retrieveInt("themeId",1);
+        if(themeId == 1){setTheme(R.style.SieveDefault);}
+        else if(themeId == 2){setTheme(R.style.SieveAlternative);}
+        else if(themeId == 3){setTheme(R.style.SieveCombined);}
+        else if(themeId == 4){setTheme(R.style.SieveDark);}
+        else if(themeId == 5){setTheme(R.style.SieveSimple);}
+        else if(themeId == 6){setTheme(R.style.SieveCandy);}
+        else{setTheme(R.style.SieveDefault);}
     }
 }

@@ -53,7 +53,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
 
         ImageView imageView = viewHolder.taskPriority;
         TypedArray mPriority = textView.getContext().getResources().obtainTypedArray(R.array.priority);
-        imageView.setImageResource(mPriority.getResourceId(task.getPriority(), -1));
+        imageView.setImageResource(mPriority.getResourceId(task.getPriority(), 0));
         mPriority.recycle();
     }
 
