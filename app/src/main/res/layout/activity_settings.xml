@@ -103,7 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onClick="onThemeRadio"
+                android:onClick="T1RDClicked"
                 android:text="@string/theme1name"
                 android:textColor="?android:attr/textColor" />
 
@@ -112,7 +112,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onClick="onThemeRadio"
+                android:onClick="T2RDClicked"
                 android:text="@string/theme2name"
                 android:textColor="?android:attr/textColor" />
 
@@ -130,7 +130,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onClick="onThemeRadio"
+                android:onClick="T3RDClicked"
                 android:text="@string/theme3name"
                 android:textColor="?android:attr/textColor" />
 
@@ -139,7 +139,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onClick="onThemeRadio"
+                android:onClick="T4RDClicked"
                 android:text="@string/theme4name"
                 android:textColor="?android:attr/textColor" />
         </LinearLayout>
@@ -156,7 +156,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onClick="onThemeRadio"
+                android:onClick="T5RDClicked"
                 android:text="@string/theme5name"
                 android:textColor="?android:attr/textColor" />
 
@@ -165,7 +165,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onClick="onThemeRadio"
+                android:onClick="T6RDClicked"
                 android:text="@string/theme6name"
                 android:textColor="?android:attr/textColor" />
         </LinearLayout>

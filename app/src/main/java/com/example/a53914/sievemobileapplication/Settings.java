@@ -13,6 +13,13 @@ import android.widget.RadioButton;
 import android.widget.Switch;
 
 public class Settings extends AppCompatActivity {
+    RadioButton T1Rd ;
+    RadioButton T2Rd;
+    RadioButton T3Rd;
+    RadioButton T4Rd;
+    RadioButton T5Rd;
+    RadioButton T6Rd;
+    int themeId;
     /*
      * This public class defines a SharedPreferencesManager.
      * The retrieveInt definition allows us to access the themeId rom SPM.
@@ -44,23 +51,15 @@ public class Settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         determineTheme();
         setContentView(R.layout.activity_settings);
+        T1Rd = findViewById(R.id.themeDefault);
+        T2Rd = findViewById(R.id.themeAlternative);
+        T3Rd = findViewById(R.id.themeCombined);
+        T4Rd = findViewById(R.id.themeDark);
+        T5Rd = findViewById(R.id.themeSimple);
+        T6Rd = findViewById(R.id.themeCandy);
     }
 
-    public void onThemeRadio(View view){
-        int themeId;
-        RadioButton T1Rd = findViewById(R.id.themeDefault);
-        RadioButton T2Rd = findViewById(R.id.themeAlternative);
-        RadioButton T3Rd = findViewById(R.id.themeCombined);
-        RadioButton T4Rd = findViewById(R.id.themeDark);
-        RadioButton T5Rd = findViewById(R.id.themeSimple);
-        RadioButton T6Rd = findViewById(R.id.themeCandy);
-        if(T1Rd.isChecked()){themeId = 1;}
-        else if(T2Rd.isChecked()){themeId = 2;}
-        else if(T3Rd.isChecked()){themeId = 3;}
-        else if(T4Rd.isChecked()){themeId = 4;}
-        else if(T5Rd.isChecked()){themeId = 5;}
-        else if(T6Rd.isChecked()){themeId = 6;}
-        else{themeId = 1;}
+    public void onThemeRadio(){
         new SharedPreferencesManager(getApplicationContext()).storeInt("themeId",themeId);
         recreate();
     }
@@ -79,4 +78,66 @@ public class Settings extends AppCompatActivity {
         Intent toHomePage = new Intent(this, HomePage.class);
         startActivity(toHomePage);
     }
+    public void T1RDClicked(View view){
+        themeId = 1;
+        //Manual RadioButton setup, b/c android studio only works with radio groups when RadioButtons are under one Radiogroup and nothing else
+        T1Rd.setChecked(true);
+        T2Rd.setChecked(false);
+        T3Rd.setChecked(false);
+        T4Rd.setChecked(false);
+        T5Rd.setChecked(false);
+        T6Rd.setChecked(false);
+        onThemeRadio();
+    }
+    public void T2RDClicked(View view){
+        themeId = 2;
+        T1Rd.setChecked(false);
+        T2Rd.setChecked(true);
+        T3Rd.setChecked(false);
+        T4Rd.setChecked(false);
+        T5Rd.setChecked(false);
+        T6Rd.setChecked(false);
+        onThemeRadio();
+    }
+    public void T3RDClicked(View view){
+        themeId = 3;
+        T1Rd.setChecked(false);
+        T2Rd.setChecked(false);
+        T3Rd.setChecked(true);
+        T4Rd.setChecked(false);
+        T5Rd.setChecked(false);
+        T6Rd.setChecked(false);
+        onThemeRadio();
+    }
+    public void T4RDClicked(View view){
+        themeId = 4;
+        T1Rd.setChecked(false);
+        T2Rd.setChecked(false);
+        T3Rd.setChecked(false);
+        T4Rd.setChecked(true);
+        T5Rd.setChecked(false);
+        T6Rd.setChecked(false);
+        onThemeRadio();
+    }
+    public void T5RDClicked(View view){
+        themeId = 5;
+        T1Rd.setChecked(false);
+        T2Rd.setChecked(false);
+        T3Rd.setChecked(false);
+        T4Rd.setChecked(false);
+        T5Rd.setChecked(true);
+        T6Rd.setChecked(false);
+        onThemeRadio();
+    }
+    public void T6RDClicked(View view){
+        themeId = 6;
+        T1Rd.setChecked(false);
+        T2Rd.setChecked(false);
+        T3Rd.setChecked(false);
+        T4Rd.setChecked(false);
+        T5Rd.setChecked(false);
+        T6Rd.setChecked(true);
+        onThemeRadio();
+    }
+
 }
