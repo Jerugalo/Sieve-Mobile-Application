@@ -5,13 +5,13 @@
     <color name="textWhite">#ffffff</color>
 
     <!-- Primary Theme Colors -->
-    <color name="defaultBackground">#a3d1ce</color>
-    <color name="defaultBar">#2c4641</color>
+    <color name="defaultBackground">#69aba0</color>
+    <color name="defaultBar">#78dbc2</color>
     <color name="defaultHigh">#eb545c</color>
     <color name="defaultMed">#e09965</color>
     <color name="defaultLow">#68b160</color>
-    <color name="defaultButton">#cbe1b4</color>
-    <color name="defaultAccent">#553f40</color>
+    <color name="defaultButton">#ffffff</color>
+    <color name="defaultAccent">#c2d78a</color>
 
     <!-- Alternative theme colors -->
     <color name="alternativeBackground">#6c81b5</color>
@@ -28,6 +28,8 @@
     <color name="combinedMed">#e09965</color>
     <color name="combinedLow">#68b160</color>
     <color name="combinedButton">#ffffff</color>
+    <color name="combinedAccent">#76d7d6</color>
+    <color name="combinedBar">#a7a6ba</color>
 
     <!-- Simple Theme Colors -->
     <color name="simpleBackground">#ffffff</color>
