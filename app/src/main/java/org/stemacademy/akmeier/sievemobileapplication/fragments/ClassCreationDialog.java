@@ -1,4 +1,4 @@
-package com.example.a53914.sievemobileapplication.fragments;
+package org.stemacademy.akmeier.sievemobileapplication.fragments;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -13,8 +13,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.a53914.sievemobileapplication.R;
-import com.example.a53914.sievemobileapplication.TaskCreate;
-import com.example.a53914.sievemobileapplication.db.Class;
+import org.stemacademy.akmeier.sievemobileapplication.TaskCreate;
+import org.stemacademy.akmeier.sievemobileapplication.db.Class;
 
 /**
  * Configures the class creation dialog. The ok button is set to take the input and insert it into

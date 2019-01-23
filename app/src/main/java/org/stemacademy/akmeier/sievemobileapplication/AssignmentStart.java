@@ -1,4 +1,4 @@
-package com.example.a53914.sievemobileapplication;
+package org.stemacademy.akmeier.sievemobileapplication;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.a53914.sievemobileapplication.db.Task;
+import com.example.a53914.sievemobileapplication.R;
+
+import org.stemacademy.akmeier.sievemobileapplication.db.Task;
 
 public class AssignmentStart extends AppCompatActivity {
     public class SharedPreferencesManager{

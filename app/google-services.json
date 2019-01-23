@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:202460254241:android:97daeeb26d2a36dc",
         "android_client_info": {
-          "package_name": "com.example.a53914.sievemobileapplication"
+          "package_name": "org.stemacademy.akmeier.sievemobileapplication"
         }
       },
       "oauth_client": [

@@ -1,4 +1,4 @@
-package com.example.a53914.sievemobileapplication.fragments;
+package org.stemacademy.akmeier.sievemobileapplication.fragments;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -6,10 +6,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.widget.DatePicker;
-import android.widget.TextView;
 
-import com.example.a53914.sievemobileapplication.R;
-import com.example.a53914.sievemobileapplication.TaskCreate;
+import org.stemacademy.akmeier.sievemobileapplication.TaskCreate;
 
 import java.util.Calendar;
 import java.util.Objects;

@@ -1,6 +1,5 @@
-package com.example.a53914.sievemobileapplication;
+package org.stemacademy.akmeier.sievemobileapplication;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,9 +7,9 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.RadioButton;
-import android.widget.Switch;
+
+import com.example.a53914.sievemobileapplication.R;
 
 public class Settings extends AppCompatActivity {
     RadioButton T1Rd ;

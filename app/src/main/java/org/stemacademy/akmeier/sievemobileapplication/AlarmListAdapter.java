@@ -1,23 +1,15 @@
-package com.example.a53914.sievemobileapplication;
+package org.stemacademy.akmeier.sievemobileapplication;
 
-import android.app.AlarmManager;
 import android.content.Context;
-import android.content.Intent;
-import android.content.res.TypedArray;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.a53914.sievemobileapplication.db.Task;
-
-import org.w3c.dom.Text;
+import com.example.a53914.sievemobileapplication.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;

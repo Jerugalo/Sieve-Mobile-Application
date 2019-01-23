@@ -1,7 +1,6 @@
-package com.example.a53914.sievemobileapplication;
+package org.stemacademy.akmeier.sievemobileapplication;
 
 import android.app.AlarmManager;
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -10,20 +9,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.media.RingtoneManager;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.example.a53914.sievemobileapplication.db.TaskDatabase;
-import com.example.a53914.sievemobileapplication.db.Task;
+import com.example.a53914.sievemobileapplication.R;
+
+import org.stemacademy.akmeier.sievemobileapplication.db.TaskDatabase;
+import org.stemacademy.akmeier.sievemobileapplication.db.Task;
 
 import java.util.ArrayList;
 import java.util.Arrays;

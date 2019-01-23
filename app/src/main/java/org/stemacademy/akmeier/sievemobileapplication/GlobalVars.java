@@ -1,9 +1,8 @@
-package com.example.a53914.sievemobileapplication;
+package org.stemacademy.akmeier.sievemobileapplication;
 
 import android.app.Application;
 
-import com.example.a53914.sievemobileapplication.db.Task;
-import com.example.a53914.sievemobileapplication.db.TaskDatabase;
+import org.stemacademy.akmeier.sievemobileapplication.db.Task;
 
 import java.util.ArrayList;
 import java.util.List;

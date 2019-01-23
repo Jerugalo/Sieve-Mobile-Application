@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.a53914.sievemobileapplication">
+    package="org.stemacademy.akmeier.sievemobileapplication">
 
 
     <application
-        android:name=".GlobalVars"
+        android:name="org.stemacademy.akmeier.sievemobileapplication.GlobalVars"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/SieveDefault">
         <activity
-            android:name=".HomePage"
+            android:name="org.stemacademy.akmeier.sievemobileapplication.HomePage"
             android:theme="@style/SieveDefault">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,16 +20,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Settings" />
-        <activity android:name=".AssignmentStart" />
-        <activity android:name=".TaskCreate" />
-        <activity android:name=".AssignmentDetails" />
+        <activity android:name="org.stemacademy.akmeier.sievemobileapplication.Settings" />
+        <activity android:name="org.stemacademy.akmeier.sievemobileapplication.AssignmentStart" />
+        <activity android:name="org.stemacademy.akmeier.sievemobileapplication.TaskCreate" />
+        <activity android:name="org.stemacademy.akmeier.sievemobileapplication.AssignmentDetails" />
 
         <receiver
-            android:name="com.example.a53914.sievemobileapplication.Notificationjava"
+            android:name="org.stemacademy.akmeier.sievemobileapplication.Notificationjava"
             android:enabled="true"
-            android:exported="false"></receiver>
-        <service android:name="AlarmsIntentService"
+            android:exported="false"></receiver>s
+        <service android:name="org.stemacademy.akmeier.sievemobileapplication.AlarmsIntentService"
             android:exported="false"
             android:permission="android.permission.BIND_JOB_SERVICE">
         </service>

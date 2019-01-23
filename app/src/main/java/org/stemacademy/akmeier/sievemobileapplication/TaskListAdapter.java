@@ -1,10 +1,9 @@
-package com.example.a53914.sievemobileapplication;
+package org.stemacademy.akmeier.sievemobileapplication;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +12,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.a53914.sievemobileapplication.db.Task;
+import com.example.a53914.sievemobileapplication.R;
+
+import org.stemacademy.akmeier.sievemobileapplication.db.Task;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.example.a53914.sievemobileapplication;
+package org.stemacademy.akmeier.sievemobileapplication;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,14 +20,16 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.a53914.sievemobileapplication.db.Class;
-import com.example.a53914.sievemobileapplication.db.ClassDatabase;
-import com.example.a53914.sievemobileapplication.db.TaskDatabase;
-import com.example.a53914.sievemobileapplication.db.Task;
-import com.example.a53914.sievemobileapplication.fragments.ClassCreationDialog;
-import com.example.a53914.sievemobileapplication.db.TimePickerFragmentAlarm;
-import com.example.a53914.sievemobileapplication.fragments.DatePickerFragment;
-import com.example.a53914.sievemobileapplication.fragments.DatePickerFragmentAlarm;
+import com.example.a53914.sievemobileapplication.R;
+
+import org.stemacademy.akmeier.sievemobileapplication.db.Class;
+import org.stemacademy.akmeier.sievemobileapplication.db.ClassDatabase;
+import org.stemacademy.akmeier.sievemobileapplication.db.TaskDatabase;
+import org.stemacademy.akmeier.sievemobileapplication.db.Task;
+import org.stemacademy.akmeier.sievemobileapplication.fragments.ClassCreationDialog;
+import org.stemacademy.akmeier.sievemobileapplication.db.TimePickerFragmentAlarm;
+import org.stemacademy.akmeier.sievemobileapplication.fragments.DatePickerFragment;
+import org.stemacademy.akmeier.sievemobileapplication.fragments.DatePickerFragmentAlarm;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;

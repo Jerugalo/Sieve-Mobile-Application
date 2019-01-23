@@ -1,4 +1,4 @@
-package com.example.a53914.sievemobileapplication;
+package org.stemacademy.akmeier.sievemobileapplication;
 
 
 import android.content.Context;
@@ -17,9 +17,11 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.a53914.sievemobileapplication.db.Task;
-import com.example.a53914.sievemobileapplication.db.TaskDatabase;
-import com.example.a53914.sievemobileapplication.fragments.DatePickerFragmentD;
+//import org.stemacademy.akmeier.sievemobileapplication.R;
+import com.example.a53914.sievemobileapplication.R;
+import org.stemacademy.akmeier.sievemobileapplication.db.Task;
+import org.stemacademy.akmeier.sievemobileapplication.db.TaskDatabase;
+import org.stemacademy.akmeier.sievemobileapplication.fragments.DatePickerFragmentD;
 
 import java.util.Calendar;
 

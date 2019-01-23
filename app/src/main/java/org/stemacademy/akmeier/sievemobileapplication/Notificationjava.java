@@ -1,4 +1,4 @@
-package com.example.a53914.sievemobileapplication;
+package org.stemacademy.akmeier.sievemobileapplication;
 
 
 import android.content.BroadcastReceiver;

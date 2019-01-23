@@ -1,4 +1,4 @@
-package com.example.a53914.sievemobileapplication.fragments;
+package org.stemacademy.akmeier.sievemobileapplication.fragments;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;

@@ -1,4 +1,4 @@
-package com.example.a53914.sievemobileapplication.db;
+package org.stemacademy.akmeier.sievemobileapplication.db;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;

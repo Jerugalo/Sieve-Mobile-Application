@@ -1,16 +1,13 @@
-package com.example.a53914.sievemobileapplication.db;
+package org.stemacademy.akmeier.sievemobileapplication.db;
 
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.view.View;
 import android.widget.TimePicker;
 
-import com.example.a53914.sievemobileapplication.R;
-import com.example.a53914.sievemobileapplication.TaskCreate;
+import org.stemacademy.akmeier.sievemobileapplication.TaskCreate;
 
-import java.text.DateFormat;
 import java.util.Calendar;
 
 public class TimePickerFragmentAlarm extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
