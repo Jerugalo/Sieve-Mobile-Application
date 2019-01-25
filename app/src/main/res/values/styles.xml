@@ -93,4 +93,16 @@
         <item name="colorPrimaryDark">@color/twilightButton</item>
         <item name="android:textColorPrimary">@color/textWhite</item>
     </style>
+
+    <!-- Test Theme -->
+    <style name="SieveTest" parent="SieveDefault" >
+        <item name="android:colorPrimaryDark">@color/testButton</item>
+        <item name="colorAccent">@color/testAccent</item>
+        <item name="android:colorBackground">@color/testBackground</item>
+        <item name="android:statusBarColor">@color/testBar</item>
+        <item name="priorityHigh">@color/testHigh</item>
+        <item name="priorityMed">@color/testMed</item>
+        <item name="priorityLow">@color/testLow</item>
+        <item name="android:textColorPrimary">@color/textBlack</item>
+    </style>
 </resources>

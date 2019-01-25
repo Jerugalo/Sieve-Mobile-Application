@@ -20,7 +20,7 @@
     <color name="alternativeLow">#52a589</color>
     <color name="alternativeButton">#ffffff</color>
     <color name="alternativeAccent">#76d7d6</color>
-    <color name="alternativeBar">#a7a6ba</color>
+    <color name="alternativeBar">#a19fce</color>
 
     <!-- Combined Theme Colors -->
     <color name="combinedBackground">#6c81b5</color>
@@ -51,12 +51,12 @@
 
     <!-- Dark theme colors -->
     <color name="darkBackground">#363636</color>
-    <color name="darkHigh">#e8175d</color>
+    <color name="darkHigh">#bf1f38</color>
     <color name="darkMed">#cc527a</color>
-    <color name="darkLow">#a8a7a7</color>
-    <color name="darkAccent">#41b3a3</color>
+    <color name="darkLow">#ffdd92aa</color>
+    <color name="darkAccent">#d55c5a</color>
     <color name="darkButton">#b7b7b7</color>
-    <color name="darkBar">#ffb6c1</color>
+    <color name="darkBar">#b22230</color>
 
     <!-- Twilight theme colors -->
     <color name="twilightBackground">#181818</color>
@@ -66,6 +66,15 @@
     <color name="twilightHigh">#FA4726</color>
     <color name="twilightMed">#fc913a</color>
     <color name="twilightLow">#fef24e</color>
+
+    <!-- Test theme colors -->
+    <color name="testBackground">#ffffff</color>
+    <color name="testBar">#91b587</color>
+    <color name="testAccent">#bad76e</color>
+    <color name="testButton">#b7b7b7</color>
+    <color name="testHigh">#586a57</color>
+    <color name="testMed">#859e7d</color>
+    <color name="testLow">#bed0c2</color>
 
 
 </resources>
