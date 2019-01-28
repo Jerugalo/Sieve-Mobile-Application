@@ -40,9 +40,11 @@
             android:id="@+id/ToDetails"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:backgroundTint="?android:attr/colorPrimaryDark"
             android:fontFamily="sans-serif-smallcaps"
             android:text="@string/ToDetails"
             android:textAlignment="center"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/Priority"
             app:layout_constraintTop_toTopOf="@+id/Priority" />

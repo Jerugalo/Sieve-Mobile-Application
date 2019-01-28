@@ -5,8 +5,8 @@
     <color name="textWhite">#ffffff</color>
 
     <!-- Primary Theme Colors -->
-    <color name="defaultBackground">#69aba0</color>
-    <color name="defaultBar">#78dbc2</color>
+    <color name="defaultBackground">#76d7d6</color>
+    <color name="defaultBar">#41b3a3</color>
     <color name="defaultHigh">#eb545c</color>
     <color name="defaultMed">#e09965</color>
     <color name="defaultLow">#68b160</color>
