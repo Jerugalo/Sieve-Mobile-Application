@@ -52,8 +52,8 @@
     <!-- Dark theme colors -->
     <color name="darkBackground">#363636</color>
     <color name="darkHigh">#bf1f38</color>
-    <color name="darkMed">#cc527a</color>
-    <color name="darkLow">#ffdd92aa</color>
+    <color name="darkMed">#A67C00</color>
+    <color name="darkLow">#046404</color>
     <color name="darkAccent">#d55c5a</color>
     <color name="darkButton">#b7b7b7</color>
     <color name="darkBar">#b22230</color>
