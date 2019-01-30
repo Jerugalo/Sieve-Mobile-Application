@@ -19,7 +19,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import org.stemacademy.akmeier.sievemobileapplication.R;
+import com.example.a53914.sievemobileapplication.R;
 
 import org.stemacademy.akmeier.sievemobileapplication.db.TaskDatabase;
 import org.stemacademy.akmeier.sievemobileapplication.db.Task;
@@ -87,7 +87,7 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
 
         RecyclerView rvTasks = findViewById(R.id.TaskList);
-        TaskListAdapter adapter = new TaskListAdapter(global.getTaskData(),this);
+        TaskListAdapter adapter = new TaskListAdapter(global.getTaskData());
         rvTasks.setAdapter(adapter);
         rvTasks.setLayoutManager(new LinearLayoutManager(this));
 
@@ -112,7 +112,7 @@ public class HomePage extends AppCompatActivity {
         TaskDatabase taskDatabase = TaskDatabase.getInstance(HomePage.this);
         RecyclerView rvTasks = findViewById(R.id.TaskList);
         List<Task> tasks = taskDatabase.taskDao().getAll();
-        TaskListAdapter adapter = new TaskListAdapter(tasks,this);
+        TaskListAdapter adapter = new TaskListAdapter(tasks);
         rvTasks.setAdapter(adapter);
         rvTasks.setLayoutManager(new LinearLayoutManager(this));
         createListofNotifications();
