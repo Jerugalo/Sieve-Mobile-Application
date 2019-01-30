@@ -24,17 +24,25 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
+        <!--<ImageView
             android:id="@+id/Priority"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/task_border"
-            android:color="?attr/priorityHigh"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ToDetails"
+            app:layout_constraintStart_toEndOf="@+id/Title"
+            app:layout_constraintTop_toTopOf="parent" />-->
+        <View
+            android:id="@+id/Priority"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/ToDetails"
             app:layout_constraintStart_toEndOf="@+id/Title"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="?attr/priorityHigh" />
+            android:background="?attr/priorityLow"/>
 
         <Button
             android:id="@+id/ToDetails"
@@ -45,7 +53,9 @@
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/Priority"
-            app:layout_constraintTop_toTopOf="@+id/Priority" />
+            app:layout_constraintTop_toTopOf="@+id/Priority"
+            android:backgroundTint="?android:attr/colorPrimaryDark"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"/>
     </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

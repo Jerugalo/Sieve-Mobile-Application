@@ -12,6 +12,7 @@
         <item name="priorityLow">@color/defaultLow</item>
         <item name="android:textColor">@color/textBlack</item>
         <item name="colorAccent">@color/defaultAccent</item>
+        <item name="colorPrimaryDark">@color/defaultButton</item>
     </style>
 
     <!-- Alternative Theme -->
@@ -22,6 +23,9 @@
         <item name="priorityLow">@color/alternativeLow</item>
         <item name="android:textColor">@color/textBlack</item>
         <item name="android:colorPrimaryDark">@color/alternativeButton</item>
+        <item name="colorAccent">@color/alternativeAccent</item>
+        <item name="colorPrimaryDark">@color/alternativeButton</item>
+        <item name="android:statusBarColor">@color/alternativeBar</item>
     </style>
 
     <!-- Combined Theme -->
@@ -32,6 +36,9 @@
         <item name="priorityLow">@color/combinedLow</item>
         <item name="android:textColor">@color/textBlack</item>
         <item name="android:colorPrimaryDark">@color/combinedButton</item>
+        <item name="colorAccent">@color/combinedAccent</item>
+        <item name="colorPrimaryDark">@color/combinedButton</item>
+        <item name="android:statusBarColor">@color/combinedBar</item>
     </style>
 
     <!-- Dark Theme -->

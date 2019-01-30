@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.a53914.sievemobileapplication.R;
+import org.stemacademy.akmeier.sievemobileapplication.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
