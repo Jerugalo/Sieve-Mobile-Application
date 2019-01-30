@@ -145,6 +145,7 @@ public class TaskCreate extends AppCompatActivity {
 
         /* initialize Task Database */
         taskDatabase = TaskDatabase.getInstance(TaskCreate.this);
+        /*Add Task to Database*/
         Button button = findViewById(R.id.CreateButton);
             button.setOnClickListener(new View.OnClickListener(){
                 @Override
