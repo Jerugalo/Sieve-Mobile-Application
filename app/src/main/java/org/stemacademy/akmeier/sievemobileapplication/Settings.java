@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
 
-import org.stemacademy.akmeier.sievemobileapplication.R;
+import com.example.a53914.sievemobileapplication.R;
 
 public class Settings extends AppCompatActivity {
     RadioButton T1Rd ;

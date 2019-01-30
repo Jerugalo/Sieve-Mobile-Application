@@ -18,7 +18,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 //import org.stemacademy.akmeier.sievemobileapplication.R;
-import org.stemacademy.akmeier.sievemobileapplication.R;
+import com.example.a53914.sievemobileapplication.R;
 import org.stemacademy.akmeier.sievemobileapplication.db.Task;
 import org.stemacademy.akmeier.sievemobileapplication.db.TaskDatabase;
 import org.stemacademy.akmeier.sievemobileapplication.fragments.DatePickerFragmentD;

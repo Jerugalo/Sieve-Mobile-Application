@@ -8,7 +8,7 @@ import android.support.v4.app.JobIntentService;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 
-import org.stemacademy.akmeier.sievemobileapplication.R;
+import com.example.a53914.sievemobileapplication.R;
 
 public class AlarmsIntentService extends JobIntentService {
     private static final int NOTIFICATION_ID=555;

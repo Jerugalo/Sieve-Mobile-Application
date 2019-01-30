@@ -20,7 +20,7 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import org.stemacademy.akmeier.sievemobileapplication.R;
+import com.example.a53914.sievemobileapplication.R;
 
 import org.stemacademy.akmeier.sievemobileapplication.db.Class;
 import org.stemacademy.akmeier.sievemobileapplication.db.ClassDatabase;
