@@ -6,7 +6,7 @@
     <string name="create_task">+</string>
     <string name="date">[date]</string>
     <string name="return_home">&#60; Back</string>
-    <string name="editTask">Edit Task</string>
+    <string name="edit_task">Edit Task</string>
     <string name="beginTask">Begin &#62;</string>
     <string name="notesDetails">Notes and Details</string>
     <string name="task_details">Task Details</string>
@@ -21,7 +21,6 @@
     <string name="medium_priority">Medium Priority</string>
     <string name="high_priority">High Priority</string>
     <string name="date_due">Date Due</string>
-    <string name="edit_text">Edit Text</string>
     <string name="now_working">You are now working on</string>
     <string name="break_time">Time until break / VRS</string>
     <string name="see_details">See Details</string>
