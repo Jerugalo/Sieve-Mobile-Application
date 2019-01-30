@@ -35,6 +35,7 @@
     <string name="notification_settings">Notification Settings</string>
     <string name="create_schedule">Create a Schedule</string>
     <string name="display_settings">Display Settings</string>
+    <string name="class_options_title">Classes Options</string>
     <string name="other_settings">Other Settings</string>
     <string name="about">About</string>
     <string name="Alarm">Alarm:</string>
