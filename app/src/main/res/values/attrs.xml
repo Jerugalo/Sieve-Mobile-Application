@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <attr name="priorityHigh" format="reference" />
-    <attr name="priorityMed" format="reference" />
-    <attr name="priorityLow" format="reference" />
+    <attr name="priorityHigh" format="color" />
+    <attr name="priorityMed" format="color" />
+    <attr name="priorityLow" format="color" />
 
     <string-array name="priority">
         <item>priorityLow</item>

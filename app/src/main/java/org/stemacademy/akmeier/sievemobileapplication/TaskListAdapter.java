@@ -1,10 +1,20 @@
 package org.stemacademy.akmeier.sievemobileapplication;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,12 +33,15 @@ import java.util.List;
  */
 public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHolder> {
 
+    Context C;
     GlobalVars global = GlobalVars.getInstance();
 
     /** Assigns contents of input database to a local database */
     private final List<Task> mTasks;
-    public TaskListAdapter(List<Task> tasks) {
+    public TaskListAdapter(List<Task> tasks, Context c) {
         mTasks = tasks;
+        this.C=c;
+
     }
 
     /** Creates the ViewHolder */
@@ -46,15 +59,30 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
     public void onBindViewHolder(@NonNull TaskListAdapter.ViewHolder viewHolder, int position) {
         Task task = mTasks.get(position);
 
+
         viewHolder.taskID = position;
 
         TextView textView = viewHolder.taskTitle;
         textView.setText(task.getNameID());
 
-        ImageView imageView = viewHolder.taskPriority;
-        TypedArray mPriority = textView.getContext().getResources().obtainTypedArray(R.array.priority);
-        imageView.setImageResource(mPriority.getResourceId(task.getPriority(), 0));
-        mPriority.recycle();
+        View imageView = viewHolder.taskPriority;
+        //TypedArray mPriority = textView.getContext().getResources().obtainTypedArray(R.array.priority);
+        //int x = mPriority.getResourceId(task.getPriority(),1);
+        //imageView.setImageResource(mPriority.getResourceId(task.getPriority(), 0));
+        //mPriority.recycle();
+
+        if(task.getPriority()==0){
+            imageView.setBackgroundColor(getColorByThemeAttr(C,R.attr.priorityLow,R.color.defaultLow));
+        }
+        else if(task.getPriority()==1){
+            imageView.setBackgroundColor(getColorByThemeAttr(C,R.attr.priorityMed,R.color.defaultMed));
+        }
+        else if(task.getPriority()==2){
+            imageView.setBackgroundColor(getColorByThemeAttr(C,R.attr.priorityHigh,R.color.defaultHigh));
+        }
+        else{
+            imageView.setBackgroundColor(getColorByThemeAttr(C,R.attr.priorityMed,R.color.defaultMed));
+        }
     }
 
     /** Returns the total count of items in the list */
@@ -66,7 +94,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
     /** Assigns layout values to current task item */
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         final TextView taskTitle;
-        final ImageView taskPriority;
+        final View taskPriority;
         final Button detailsButton;
         int taskID;
 
@@ -88,6 +116,12 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
             global.setCurrentTask(mTasks.get(taskID));
             detailsButton.getContext().startActivity(toDetails);
         }
+    }
+    public static int getColorByThemeAttr(Context context,int attr,int defaultColor){
+        TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = context.getTheme();
+        boolean got = theme.resolveAttribute(attr,typedValue,true);
+        return got ? typedValue.data : defaultColor;
     }
 
 }

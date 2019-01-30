@@ -87,7 +87,7 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
 
         RecyclerView rvTasks = findViewById(R.id.TaskList);
-        TaskListAdapter adapter = new TaskListAdapter(global.getTaskData());
+        TaskListAdapter adapter = new TaskListAdapter(global.getTaskData(),this);
         rvTasks.setAdapter(adapter);
         rvTasks.setLayoutManager(new LinearLayoutManager(this));
 
@@ -112,7 +112,7 @@ public class HomePage extends AppCompatActivity {
         TaskDatabase taskDatabase = TaskDatabase.getInstance(HomePage.this);
         RecyclerView rvTasks = findViewById(R.id.TaskList);
         List<Task> tasks = taskDatabase.taskDao().getAll();
-        TaskListAdapter adapter = new TaskListAdapter(tasks);
+        TaskListAdapter adapter = new TaskListAdapter(tasks,this);
         rvTasks.setAdapter(adapter);
         rvTasks.setLayoutManager(new LinearLayoutManager(this));
         createListofNotifications();
