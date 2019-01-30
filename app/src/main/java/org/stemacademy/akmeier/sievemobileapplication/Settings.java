@@ -7,9 +7,18 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 
 import org.stemacademy.akmeier.sievemobileapplication.R;
+import org.stemacademy.akmeier.sievemobileapplication.db.Class;
+import org.stemacademy.akmeier.sievemobileapplication.db.ClassDatabase;
+import org.stemacademy.akmeier.sievemobileapplication.fragments.ClassCreationDialog;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Settings extends AppCompatActivity {
     RadioButton T1Rd ;
@@ -19,6 +28,12 @@ public class Settings extends AppCompatActivity {
     RadioButton T5Rd;
     RadioButton T6Rd;
     int themeId;
+
+    private Spinner classChooser;
+    private ArrayAdapter classAdapter;
+    private final ArrayList<String> classList = new ArrayList<>();
+    private ClassDatabase classDatabase;
+
     /*
      * This public class defines a SharedPreferencesManager.
      * The retrieveInt definition allows us to access the themeId rom SPM.
@@ -56,6 +71,54 @@ public class Settings extends AppCompatActivity {
         T4Rd = findViewById(R.id.themeDark);
         T5Rd = findViewById(R.id.themeSimple);
         T6Rd = findViewById(R.id.themeCandy);
+
+        /* Fills the spinner and allows user to select a class from the class database */
+        classChooser = findViewById(R.id.deleteClassSpinner);
+        classAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classList);
+        classAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        classChooser.setAdapter(classAdapter);
+        classChooser.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                if ((parent.getItemAtPosition(pos)).toString().equals("Delete All Classes")){
+                    classDatabase.cleanUp();
+                } else if (!(parent.getItemAtPosition(pos)).toString().equals("Delete Class")) {
+                    deleteClass((parent.getItemAtPosition(pos)).toString());
+                    refreshSpinner();
+                }
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+    }
+
+    /** Creates a new class list and updates the spinner*/
+    private void refreshSpinner(){
+        createClassList();
+        classAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classList);
+        classAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        classAdapter.notifyDataSetChanged();
+    }
+
+    /** Creates the array of classes that the spinner displays */
+    private void createClassList() {
+        classList.clear();
+        classDatabase = ClassDatabase.getInstance(this);
+        List<Class> clses = classDatabase.classDao().getAll();
+        classList.add("Delete Class");
+        for (Class cls : clses) {
+            classList.add(cls.getName());
+        }
+        classList.add("Delete All Classes");
+    }
+
+    /** Creates the array of classes that the spinner displays */
+    private void deleteClass(String deleteCls) {
+        List<Class> clses = classDatabase.classDao().getAll();
+        for (Class cls : clses) {
+            if (deleteCls == cls.getName()){
+                classDatabase.classDao().delete(cls);
+            }
+        }
     }
 
     public void onThemeRadio(){
