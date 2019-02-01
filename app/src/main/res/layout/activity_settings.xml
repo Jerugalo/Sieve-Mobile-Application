@@ -161,7 +161,7 @@
                 android:textColor="?android:attr/textColor" />
 
             <RadioButton
-                android:id="@+id/themeCandy"
+                android:id="@+id/themeOlive"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

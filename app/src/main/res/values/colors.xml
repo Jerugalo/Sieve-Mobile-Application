@@ -67,14 +67,14 @@
     <color name="twilightMed">#fc913a</color>
     <color name="twilightLow">#fef24e</color>
 
-    <!-- Test theme colors -->
-    <color name="testBackground">#ffffff</color>
-    <color name="testBar">#91b587</color>
-    <color name="testAccent">#bad76e</color>
-    <color name="testButton">#b7b7b7</color>
-    <color name="testHigh">#586a57</color>
-    <color name="testMed">#859e7d</color>
-    <color name="testLow">#bed0c2</color>
+    <!-- Olive theme colors -->
+    <color name="oliveBackground">#ffffff</color>
+    <color name="oliveBar">#91b587</color>
+    <color name="oliveAccent">#bad76e</color>
+    <color name="oliveButton">#c4c4c4</color>
+    <color name="oliveHigh">#586a57</color>
+    <color name="oliveMed">#859e7d</color>
+    <color name="oliveLow">#bed0c2</color>
 
 
 </resources>

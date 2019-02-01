@@ -70,7 +70,7 @@ public class Settings extends AppCompatActivity {
         T3Rd = findViewById(R.id.themeCombined);
         T4Rd = findViewById(R.id.themeDark);
         T5Rd = findViewById(R.id.themeSimple);
-        T6Rd = findViewById(R.id.themeCandy);
+        T6Rd = findViewById(R.id.themeOlive);
 
         /* Fills the spinner and allows user to select a class from the class database */
         createClassList();
@@ -134,7 +134,7 @@ public class Settings extends AppCompatActivity {
         else if(themeId == 3){setTheme(R.style.SieveCombined);}
         else if(themeId == 4){setTheme(R.style.SieveDark);}
         else if(themeId == 5){setTheme(R.style.SieveSimple);}
-        else if(themeId == 6){setTheme(R.style.SieveCandy);}
+        else if(themeId == 6){setTheme(R.style.SieveOlive);}
         else{setTheme(R.style.SieveDefault);}
     }
     //Returning Home

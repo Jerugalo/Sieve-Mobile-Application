@@ -329,7 +329,7 @@ public class AssignmentDetails extends AppCompatActivity {
         else if(themeId == 3){setTheme(R.style.SieveCombined);}
         else if(themeId == 4){setTheme(R.style.SieveDark);}
         else if(themeId == 5){setTheme(R.style.SieveSimple);}
-        else if(themeId == 6){setTheme(R.style.SieveCandy);}
+        else if(themeId == 6){setTheme(R.style.SieveOlive);}
         else{setTheme(R.style.SieveDefault);}
     }
 }

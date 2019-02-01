@@ -94,15 +94,16 @@
         <item name="android:textColorPrimary">@color/textWhite</item>
     </style>
 
-    <!-- Test Theme -->
-    <style name="SieveTest" parent="SieveDefault" >
-        <item name="android:colorPrimaryDark">@color/testButton</item>
-        <item name="colorAccent">@color/testAccent</item>
-        <item name="android:colorBackground">@color/testBackground</item>
-        <item name="android:statusBarColor">@color/testBar</item>
-        <item name="priorityHigh">@color/testHigh</item>
-        <item name="priorityMed">@color/testMed</item>
-        <item name="priorityLow">@color/testLow</item>
+    <!-- Olive Theme -->
+    <style name="SieveOlive" parent="SieveDefault" >
+        <item name="android:colorPrimaryDark">@color/oliveButton</item>
+        <item name="colorAccent">@color/oliveAccent</item>
+        <item name="android:colorBackground">@color/oliveBackground</item>
+        <item name="android:statusBarColor">@color/oliveBar</item>
+        <item name="priorityHigh">@color/oliveHigh</item>
+        <item name="priorityMed">@color/oliveMed</item>
+        <item name="priorityLow">@color/oliveLow</item>
         <item name="android:textColorPrimary">@color/textBlack</item>
+        <item name="colorPrimaryDark">@color/oliveButton</item>
     </style>
 </resources>
