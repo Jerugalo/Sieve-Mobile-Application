@@ -73,6 +73,7 @@ public class Settings extends AppCompatActivity {
         T6Rd = findViewById(R.id.themeCandy);
 
         /* Fills the spinner and allows user to select a class from the class database */
+        createClassList();
         classChooser = findViewById(R.id.deleteClassSpinner);
         classAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classList);
         classAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -80,7 +81,8 @@ public class Settings extends AppCompatActivity {
         classChooser.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 if ((parent.getItemAtPosition(pos)).toString().equals("Delete All Classes")){
-                    classDatabase.cleanUp();
+                    classDatabase.classDao().deleteAll();
+                    refreshSpinner();
                 } else if (!(parent.getItemAtPosition(pos)).toString().equals("Delete Class")) {
                     deleteClass((parent.getItemAtPosition(pos)).toString());
                     refreshSpinner();
@@ -115,7 +117,7 @@ public class Settings extends AppCompatActivity {
     private void deleteClass(String deleteCls) {
         List<Class> clses = classDatabase.classDao().getAll();
         for (Class cls : clses) {
-            if (deleteCls == cls.getName()){
+            if (deleteCls.equals(cls.getName())){
                 classDatabase.classDao().delete(cls);
             }
         }
