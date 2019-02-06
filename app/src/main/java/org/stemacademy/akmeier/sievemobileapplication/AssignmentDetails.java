@@ -191,8 +191,10 @@ public class AssignmentDetails extends AppCompatActivity {
                     ClassCreationDialog dialog = new ClassCreationDialog();
                     dialog.PARENT = "AssignmentDetails";
                     dialog.show(getSupportFragmentManager(), "ClassCreationDialog");
-                } else {
+                } else if (isEditing){
                     classes = (parent.getItemAtPosition(pos)).toString();
+                } else {
+                    classSpinner.setSelection(0);
                 }
             }
             public void onNothingSelected(AdapterView<?> parent) {
