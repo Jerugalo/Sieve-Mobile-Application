@@ -295,6 +295,7 @@ public class AssignmentDetails extends AppCompatActivity {
             taskDatabase.taskDao().update(task);
             global.setCurrentTask(task);
 
+            refreshSpinner();
             isEditing=false;
         }
     }
