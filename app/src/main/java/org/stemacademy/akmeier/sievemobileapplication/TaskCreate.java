@@ -87,8 +87,6 @@ public class TaskCreate extends AppCompatActivity {
         recyclerView.setAdapter(alarmAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        createClassList();
-
         /* Shows today's date in the date selection box when user first opens screen */
         final Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
@@ -126,6 +124,7 @@ public class TaskCreate extends AppCompatActivity {
         });
 
         /* Fills the spinner and allows user to select a class from the class database */
+        createClassList();
         classChooser = findViewById(R.id.DetailsClassSpinner);
         classAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classList);
         classAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -134,6 +133,7 @@ public class TaskCreate extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 if ((parent.getItemAtPosition(pos)).toString().equals("Create New Class")){
                     ClassCreationDialog dialog = new ClassCreationDialog();
+                    dialog.PARENT = "TaskCreate";
                     dialog.show(getSupportFragmentManager(), "ClassCreationDialog");
                 } else {
                     classes = (parent.getItemAtPosition(pos)).toString();

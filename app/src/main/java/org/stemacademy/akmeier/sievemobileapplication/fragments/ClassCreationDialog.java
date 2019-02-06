@@ -1,5 +1,6 @@
 package org.stemacademy.akmeier.sievemobileapplication.fragments;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,9 +13,11 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.stemacademy.akmeier.sievemobileapplication.AssignmentDetails;
 import org.stemacademy.akmeier.sievemobileapplication.R;
 import org.stemacademy.akmeier.sievemobileapplication.TaskCreate;
 import org.stemacademy.akmeier.sievemobileapplication.db.Class;
+import org.stemacademy.akmeier.sievemobileapplication.db.Task;
 
 /**
  * Configures the class creation dialog. The ok button is set to take the input and insert it into
@@ -23,8 +26,10 @@ import org.stemacademy.akmeier.sievemobileapplication.db.Class;
 
 public class ClassCreationDialog extends DialogFragment implements DialogInterface.OnDismissListener {
     private static final String TAG = "ClassCreationDialog";
+    public static String PARENT = "";
     private EditText mInput;
     private TaskCreate taskCreate;
+    private AssignmentDetails assignmentDetails;
 
     @Nullable
     @Override
@@ -33,7 +38,12 @@ public class ClassCreationDialog extends DialogFragment implements DialogInterfa
         TextView mButtonOk = view.findViewById(R.id.action_ok);
         TextView mButtonCancel = view.findViewById(R.id.action_cancel);
         mInput = view.findViewById(R.id.input);
-        taskCreate = (TaskCreate)getActivity();
+        if (PARENT.equals("TaskCreate")){
+            taskCreate = (TaskCreate)getActivity();
+        }
+        if (PARENT.equals("AssignmentDetails")) {
+            assignmentDetails = (AssignmentDetails)getActivity();
+        }
 
         /* Closes the dialog when cancel is selected */
         mButtonCancel.setOnClickListener(new View.OnClickListener() {
@@ -53,12 +63,17 @@ public class ClassCreationDialog extends DialogFragment implements DialogInterfa
                 Log.d(TAG, "onClick: capturing input.");
                 input = mInput.getText().toString();
                 Log.d(TAG, input);
-                if (input != "") {
+                if (!input.equals("")) {
                     mClass.setName(input);
                     mClass.setType(0);
                     mClass.setId(0);
                     mClass.setDueDate("");
-                    taskCreate.callInsertClass(mClass);
+                    if (PARENT.equals("TaskCreate")){
+                        taskCreate.callInsertClass(mClass);
+                    }
+                    if (PARENT.equals("AssignmentDetails")){
+                        assignmentDetails.callInsertClass(mClass);
+                    }
                 }
                 getDialog().dismiss();
             }
