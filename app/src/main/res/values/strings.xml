@@ -37,8 +37,8 @@
     <string name="class_options_title">Classes Options</string>
     <string name="other_settings">Other Settings</string>
     <string name="about">About</string>
-    <string name="Alarm">Alarm:</string>
-    <string name="Alarms">Alarms:</string>
+    <string name="Alarm">Alarm</string>
+    <string name="Alarms">Alarms</string>
     <string name="theme1name">Default</string>
     <string name="theme2name">Alternative</string>
     <string name="theme3name">Combined</string>

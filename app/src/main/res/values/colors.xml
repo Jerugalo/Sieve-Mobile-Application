@@ -11,7 +11,7 @@
     <color name="defaultMed">#e09965</color>
     <color name="defaultLow">#68b160</color>
     <color name="defaultButton">#ffffff</color>
-    <color name="defaultAccent">#c2d78a</color>
+    <color name="defaultAccent">#957dad</color>
 
     <!-- Alternative theme colors -->
     <color name="alternativeBackground">#6c81b5</color>
@@ -51,9 +51,9 @@
 
     <!-- Dark theme colors -->
     <color name="darkBackground">#363636</color>
-    <color name="darkHigh">#bf1f38</color>
-    <color name="darkMed">#A67C00</color>
-    <color name="darkLow">#046404</color>
+    <color name="darkHigh">#8d0101</color>
+    <color name="darkMed">#c62121</color>
+    <color name="darkLow">#FFD63C49</color>
     <color name="darkAccent">#d55c5a</color>
     <color name="darkButton">#b7b7b7</color>
     <color name="darkBar">#b22230</color>
@@ -71,7 +71,7 @@
     <color name="oliveBackground">#ffffff</color>
     <color name="oliveBar">#91b587</color>
     <color name="oliveAccent">#bad76e</color>
-    <color name="oliveButton">#c4c4c4</color>
+    <color name="oliveButton">#d7d7d7</color>
     <color name="oliveHigh">#586a57</color>
     <color name="oliveMed">#859e7d</color>
     <color name="oliveLow">#bed0c2</color>

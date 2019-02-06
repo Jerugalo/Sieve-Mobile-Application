@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-smallcaps"
             android:textAlignment="center"
-            android:textColor="@color/common_google_signin_btn_text_light"
+            android:textColor="?android:attr/textColor"
             android:textSize="33sp" />
 
         <Space

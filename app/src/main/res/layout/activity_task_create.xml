@@ -72,7 +72,7 @@
                     android:fontFamily="sans-serif-smallcaps"
                     android:text="@string/name"
                     android:textColor="?android:attr/textColor"
-                    android:textSize="33sp"
+                    android:textSize="29sp"
                     app:layout_constraintBaseline_toBaselineOf="@+id/NameAddText"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -107,7 +107,7 @@
                     android:fontFamily="sans-serif-smallcaps"
                     android:text="@string/class_name"
                     android:textColor="?android:attr/textColor"
-                    android:textSize="33sp"
+                    android:textSize="29sp"
                     app:layout_constraintBaseline_toBaselineOf="@+id/DetailsClassSpinner"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -191,7 +191,7 @@
                     android:fontFamily="sans-serif-smallcaps"
                     android:text="@string/priority"
                     android:textColor="?android:attr/textColor"
-                    android:textSize="33sp"
+                    android:textSize="29sp"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:layout_editor_absoluteY="256dp" />
 
@@ -220,7 +220,7 @@
                     android:fontFamily="sans-serif-smallcaps"
                     android:text="@string/date_due"
                     android:textColor="?android:attr/textColor"
-                    android:textSize="33sp"
+                    android:textSize="29sp"
                     app:layout_constraintBaseline_toBaselineOf="@+id/NameAddText"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -254,7 +254,7 @@
                     android:fontFamily="sans-serif-smallcaps"
                     android:text="@string/notes_details"
                     android:textColor="?android:attr/textColor"
-                    android:textSize="33sp"
+                    android:textSize="29sp"
                     app:layout_constraintBaseline_toBaselineOf="@+id/NameAddText"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -273,7 +273,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="48dp"
 
                 android:orientation="horizontal">
 
@@ -286,7 +286,7 @@
                     android:fontFamily="sans-serif-smallcaps"
                     android:text="@string/Alarms"
                     android:textColor="?android:attr/textColor"
-                    android:textSize="33sp" />
+                    android:textSize="29sp" />
 
                 <Button
                     android:id="@+id/button"

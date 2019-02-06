@@ -49,7 +49,7 @@
         android:fontFamily="sans-serif-smallcaps"
         android:text="@string/notification_settings"
         android:textColor="?android:attr/textColor"
-        android:textSize="33sp"
+        android:textSize="29sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topBar" />
 
@@ -62,7 +62,7 @@
         android:fontFamily="sans-serif-smallcaps"
         android:text="@string/create_schedule"
         android:textColor="?android:attr/textColor"
-        android:textSize="33sp"
+        android:textSize="29sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/notifSettingsTitle" />
 
@@ -75,7 +75,7 @@
         android:fontFamily="sans-serif-smallcaps"
         android:text="@string/display_settings"
         android:textColor="?android:attr/textColor"
-        android:textSize="33sp"
+        android:textSize="29sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/schedCreateTitle" />
 
@@ -181,7 +181,7 @@
         android:fontFamily="sans-serif-smallcaps"
         android:text="@string/class_options_title"
         android:textColor="?android:attr/textColor"
-        android:textSize="33sp"
+        android:textSize="29sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 

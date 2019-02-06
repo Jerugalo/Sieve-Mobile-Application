@@ -4,7 +4,6 @@
     <style name="SieveDefault" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:colorPrimary" tools:ignore="PrivateResource">@color/primary_material_light</item>
         <item name="android:colorPrimaryDark">@color/defaultButton</item>
-        <item name="android:colorAccent">@color/defaultAccent</item>
         <item name="android:statusBarColor">@color/defaultBar</item>
         <item name="android:colorBackground">@color/defaultBackground</item>
         <item name="priorityHigh">@color/defaultHigh</item>
