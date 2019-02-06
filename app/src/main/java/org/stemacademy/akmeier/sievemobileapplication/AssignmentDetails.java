@@ -194,7 +194,8 @@ public class AssignmentDetails extends AppCompatActivity {
                 } else if (isEditing){
                     classes = (parent.getItemAtPosition(pos)).toString();
                 } else {
-                    classSpinner.setSelection(0);
+                    int spinnerPos = classAdapter.getPosition(task.getClassroom());
+                    classSpinner.setSelection(spinnerPos);
                 }
             }
             public void onNothingSelected(AdapterView<?> parent) {
