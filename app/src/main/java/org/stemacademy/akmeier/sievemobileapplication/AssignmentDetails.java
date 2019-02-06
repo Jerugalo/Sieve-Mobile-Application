@@ -3,14 +3,17 @@ package org.stemacademy.akmeier.sievemobileapplication;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -19,11 +22,17 @@ import android.widget.TextView;
 
 //import org.stemacademy.akmeier.sievemobileapplication.R;
 import org.stemacademy.akmeier.sievemobileapplication.R;
+import org.stemacademy.akmeier.sievemobileapplication.db.Class;
+import org.stemacademy.akmeier.sievemobileapplication.db.ClassDatabase;
 import org.stemacademy.akmeier.sievemobileapplication.db.Task;
 import org.stemacademy.akmeier.sievemobileapplication.db.TaskDatabase;
+import org.stemacademy.akmeier.sievemobileapplication.fragments.ClassCreationDialog;
 import org.stemacademy.akmeier.sievemobileapplication.fragments.DatePickerFragmentD;
 
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 /**
  *  Java Class for Assignment Details activity
@@ -60,6 +69,7 @@ public class AssignmentDetails extends AppCompatActivity {
     RadioButton projectD;
     EditText titleText;
     Spinner classSpinner;
+    ArrayAdapter classAdapter;
     TextView dateText;
     RadioButton lowPCb;
     RadioButton medPCb;
@@ -73,6 +83,9 @@ public class AssignmentDetails extends AppCompatActivity {
     int priorityID;
     String classes;
     int typeID;
+
+    private final ArrayList<String> classList = new ArrayList<>();
+    private ClassDatabase classDatabase;
 
     /**
      * Runs when activity started
@@ -166,7 +179,25 @@ public class AssignmentDetails extends AppCompatActivity {
             projectD.setChecked(false);
         }
 
-
+        /* Fills the spinner and allows user to select a class from the class database */
+        createClassList();
+        classSpinner = findViewById(R.id.DetailsClassSpinner);
+        classAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classList);
+        classAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        classSpinner.setAdapter(classAdapter);
+        classSpinner.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                if ((parent.getItemAtPosition(pos)).toString().equals("Create New Class")){
+                    ClassCreationDialog dialog = new ClassCreationDialog();
+                    dialog.PARENT = "AssignmentDetails";
+                    dialog.show(getSupportFragmentManager(), "ClassCreationDialog");
+                } else {
+                    classes = (parent.getItemAtPosition(pos)).toString();
+                }
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
     }
     protected void onStart(){
         super.onStart();
@@ -207,6 +238,7 @@ public class AssignmentDetails extends AppCompatActivity {
 
             editButton.setText("Save");
 
+            classSpinner.setClickable(true);
             habitD.setClickable(true);
             assignD.setClickable(true);
             projectD.setClickable(true);
@@ -227,6 +259,7 @@ public class AssignmentDetails extends AppCompatActivity {
 
 
             editButton.setText("Edit Text");
+            classSpinner.setClickable(false);
             habitD.setClickable(false);
             assignD.setClickable(false);
             projectD.setClickable(false);
@@ -249,15 +282,6 @@ public class AssignmentDetails extends AppCompatActivity {
 
             task.setNameID(titleText.getText().toString());
 
-            classSpinner.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
-                public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                    classes = (parent.getItemAtPosition(pos)).toString();
-                }
-
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                }
-            });
             task.setClassroom(classes);
 
             task.setDueDate(dateText.getText().toString());
@@ -269,6 +293,54 @@ public class AssignmentDetails extends AppCompatActivity {
             global.setCurrentTask(task);
 
             isEditing=false;
+        }
+    }
+
+    /** Creates a new class list and updates the spinner*/
+    private void refreshSpinner(){
+        createClassList();
+        classAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classList);
+        classAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        classAdapter.notifyDataSetChanged();
+    }
+
+    /** Creates the array of classes that the spinner displays */
+    private void createClassList() {
+        classList.clear();
+        classDatabase = ClassDatabase.getInstance(this);
+        List<Class> clses = classDatabase.classDao().getAll();
+        classList.add(task.getClassroom());
+        for (Class cls : clses) {
+            if (!cls.getName().equals(task.getClassroom())){
+                classList.add(cls.getName());
+            }
+        }
+        classList.add("Create New Class");
+    }
+
+    /** Calls the AsyncTask InsertClass, that cannot be called from other classes */
+    public void callInsertClass(Class mClass){
+        new AssignmentDetails.InsertClass(AssignmentDetails.this, mClass).execute();
+    }
+
+    /** Puts the class into the class database */
+    private static class InsertClass extends AsyncTask<Void, Void,Boolean> {
+        private final WeakReference<AssignmentDetails> activityReference;
+        private final Class cls;
+        InsertClass(AssignmentDetails context, Class mClass){
+            activityReference = new WeakReference<>(context);
+            cls = mClass;
+        }
+        @Override
+        protected Boolean doInBackground(Void...objs){
+            activityReference.get().classDatabase.classDao().insertAll(cls);
+            return true;
+        }
+        @Override
+        protected void onPostExecute(Boolean bool){
+            if(bool){
+                activityReference.get().refreshSpinner();
+            }
         }
     }
 
