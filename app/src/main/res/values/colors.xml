@@ -60,7 +60,7 @@
 
     <!-- Twilight theme colors -->
     <color name="twilightBackground">#181818</color>
-    <color name="twilightAccent">#ff7400</color>
+    <color name="twilightAccent">#b22230</color>
     <color name="twilightBar">#ff7400</color>
     <color name="twilightButton">#4d4d4d</color>
     <color name="twilightHigh">#c8331b</color>
@@ -72,9 +72,9 @@
     <color name="oliveBar">#91b587</color>
     <color name="oliveAccent">#bad76e</color>
     <color name="oliveButton">#d7d7d7</color>
-    <color name="oliveHigh">#586a57</color>
-    <color name="oliveMed">#859e7d</color>
-    <color name="oliveLow">#bed0c2</color>
+    <color name="oliveHigh">#ff772c30</color>
+    <color name="oliveMed">#d98250</color>
+    <color name="oliveLow">#859e7d</color>
 
 
 </resources>
