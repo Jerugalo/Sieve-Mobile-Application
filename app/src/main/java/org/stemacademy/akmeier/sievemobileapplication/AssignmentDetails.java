@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -190,7 +191,13 @@ public class AssignmentDetails extends AppCompatActivity {
                     dialog.PARENT = "AssignmentDetails";
                     dialog.show(getSupportFragmentManager(), "ClassroomCreationDialog");
                 } else if (isEditing){
+
                     currentClassroom = (parent.getItemAtPosition(pos)).toString();
+
+                    if(currentClassroom==null){
+                        currentClassroom="";
+                    }
+
                 } else {
                     int spinnerPos = classroomAdapter.getPosition(task.getClassroom());
                     classroomSpinner.setSelection(spinnerPos);
@@ -278,21 +285,23 @@ public class AssignmentDetails extends AppCompatActivity {
             //notesD.setFocusable(false);
 
             task.setId(taskID);
-
             task.setPriority(priorityID);
-
             task.setNameID(titleText.getText().toString());
 
+
+
+            if(currentClassroom==null){
+                currentClassroom=task.getClassroom();
+                if(currentClassroom==null){
+                    currentClassroom="";
+                }
+            }
             task.setClassroom(currentClassroom);
-
             task.setDueDate(dateText.getText().toString());
-
             task.setNotes(notesD.getText().toString());
-
             task.setTypeID(typeID);
-            taskDatabase.taskDao().update(task);
             global.setCurrentTask(task);
-
+            new InsertTask(this,task);
             refreshSpinner();
             isEditing=false;
         }
@@ -406,4 +415,28 @@ public class AssignmentDetails extends AppCompatActivity {
         else if(themeId == 6){setTheme(R.style.SieveOlive);}
         else{setTheme(R.style.SieveDefault);}
     }
+
+    /** Puts Task into Task Database */
+    private static class InsertTask extends AsyncTask<Void, Void,Boolean> {
+        private final WeakReference<AssignmentDetails> activityReference;
+        private final Task task;
+        InsertTask(AssignmentDetails context, Task task){
+            activityReference=new WeakReference<>(context);
+            this.task=task;
+        }
+        @Override
+        protected Boolean doInBackground(Void...objs){
+            activityReference.get().taskDatabase.taskDao().update(task);
+            return true;
+        }
+        @Override
+        protected void onPostExecute(Boolean bool){
+            if(bool){
+                Log.d("TaskCreate","The Async Task has finished!");
+                Log.d("TaskCreate",task.toString());
+                activityReference.get().finish();
+            }
+        }
+    }
+
 }
