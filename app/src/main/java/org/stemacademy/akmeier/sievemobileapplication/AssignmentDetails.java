@@ -193,6 +193,9 @@ public class AssignmentDetails extends AppCompatActivity {
                     dialog.show(getSupportFragmentManager(), "ClassCreationDialog");
                 } else if (isEditing){
                     classes = (parent.getItemAtPosition(pos)).toString();
+                    if(classes==null){
+                        classes="";
+                    }
                 } else {
                     int spinnerPos = classAdapter.getPosition(task.getClassroom());
                     classSpinner.setSelection(spinnerPos);
@@ -280,21 +283,20 @@ public class AssignmentDetails extends AppCompatActivity {
             //notesD.setFocusable(false);
 
             task.setId(taskID);
-
             task.setPriority(priorityID);
-
             task.setNameID(titleText.getText().toString());
-
+            if(classes==null){
+                classes=task.getClassroom();
+            }
+            if(classes==null){
+                classes="";
+            }
             task.setClassroom(classes);
-
             task.setDueDate(dateText.getText().toString());
-
             task.setNotes(notesD.getText().toString());
-
             task.setTypeID(typeID);
-            taskDatabase.taskDao().update(task);
             global.setCurrentTask(task);
-
+            new InsertTask(this,task);
             refreshSpinner();
             isEditing=false;
         }
@@ -408,4 +410,28 @@ public class AssignmentDetails extends AppCompatActivity {
         else if(themeId == 6){setTheme(R.style.SieveOlive);}
         else{setTheme(R.style.SieveDefault);}
     }
+
+    /** Puts Task into Task Database */
+    private static class InsertTask extends AsyncTask<Void, Void,Boolean> {
+        private final WeakReference<AssignmentDetails> activityReference;
+        private final Task task;
+        InsertTask(AssignmentDetails context, Task task){
+            activityReference=new WeakReference<>(context);
+            this.task=task;
+        }
+        @Override
+        protected Boolean doInBackground(Void...objs){
+            activityReference.get().taskDatabase.taskDao().update(task);
+            return true;
+        }
+        @Override
+        protected void onPostExecute(Boolean bool){
+            if(bool){
+                Log.d("TaskCreate","The Async Task has finished!");
+                Log.d("TaskCreate",task.toString());
+                activityReference.get().finish();
+            }
+        }
+    }
+
 }
