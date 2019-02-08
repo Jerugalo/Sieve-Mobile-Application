@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Settings extends AppCompatActivity {
-    RadioButton T1Rd ;
+    RadioButton T1Rd;
     RadioButton T2Rd;
     RadioButton T3Rd;
     RadioButton T4Rd;
@@ -65,11 +65,11 @@ public class Settings extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
         T1Rd = findViewById(R.id.themeDefault);
         T2Rd = findViewById(R.id.themeAlternative);
-        T3Rd = findViewById(R.id.themeCombined);
+        T3Rd = findViewById(R.id.themeTwilight);
         T4Rd = findViewById(R.id.themeDark);
         T5Rd = findViewById(R.id.themeSimple);
         T6Rd = findViewById(R.id.themeOlive);
-
+        determineCheckedRadioButton();
         /* Fills the spinner and allows user to select a class from the class database */
         createClassroomList();
         classroomChooser = findViewById(R.id.deleteClassSpinner);
@@ -129,17 +129,19 @@ public class Settings extends AppCompatActivity {
         int themeId = new SharedPreferencesManager(this).retrieveInt("themeId",1);
         if(themeId == 1){setTheme(R.style.SieveDefault);}
         else if(themeId == 2){setTheme(R.style.SieveAlternative);}
-        else if(themeId == 3){setTheme(R.style.SieveCombined);}
+        else if(themeId == 3){setTheme(R.style.SieveTwilight);}
         else if(themeId == 4){setTheme(R.style.SieveDark);}
         else if(themeId == 5){setTheme(R.style.SieveSimple);}
         else if(themeId == 6){setTheme(R.style.SieveOlive);}
         else{setTheme(R.style.SieveDefault);}
     }
+
     //Returning Home
     public void toHomePage(View view){
         Intent toHomePage = new Intent(this, HomePage.class);
         startActivity(toHomePage);
     }
+
     public void T1RDClicked(View view){
         themeId = 1;
         //Manual RadioButton setup, b/c android studio only works with radio groups when RadioButtons are under one Radiogroup and nothing else
@@ -202,4 +204,30 @@ public class Settings extends AppCompatActivity {
         onThemeRadio();
     }
 
+
+    public void determineCheckedRadioButton() {
+        int themeId = new SharedPreferencesManager(this).retrieveInt("themeId", 1);
+        if (themeId == 1) {
+            T1Rd.setChecked(true);
+        } else if (themeId == 2) {
+            T2Rd.setChecked(true);
+        } else if (themeId == 3) {
+            T3Rd.setChecked(true);
+        } else if (themeId == 4) {
+            T4Rd.setChecked(true);
+        } else if (themeId == 5) {
+            T5Rd.setChecked(true);
+        } else if (themeId == 6) {
+            T6Rd.setChecked(true);
+        } else {
+            T1Rd.setChecked(true);
+        }
+    }
+
+    public void clearAlarms(View view){
+        Intent intent = new Intent(this, HomePage.class);
+        intent.putExtra("CLEAR_ALARMS", true);
+        startActivity(intent);
+
+    }
 }

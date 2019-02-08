@@ -66,7 +66,7 @@
             android:fontFamily="sans-serif-smallcaps"
             android:onClick="toDetails"
             android:text="@string/see_details"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textColor="?android:attr/textColor"
             android:textSize="18sp" />
 
         <Space
@@ -88,7 +88,7 @@
                 android:fontFamily="sans-serif-smallcaps"
                 android:onClick="toHomePage"
                 android:text="@string/x"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textColor="?android:attr/textColor"
                 android:textSize="18sp" />
 
             <Button
@@ -101,7 +101,7 @@
                 android:fontFamily="sans-serif-smallcaps"
                 android:onClick="completeTask"
                 android:text="@string/check_mark"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textColor="?android:attr/textColor"
                 android:textSize="18sp" />
         </LinearLayout>
 

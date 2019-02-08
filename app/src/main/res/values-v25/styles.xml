@@ -1,10 +1,9 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Default Theme -->
     <style name="SieveDefault" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:colorPrimary">@color/primary_material_light</item>
+        <item name="android:colorPrimary" tools:ignore="PrivateResource">@color/primary_material_light</item>
         <item name="android:colorPrimaryDark">@color/defaultButton</item>
-        <item name="android:colorAccent">@color/accent_material_light</item>
         <item name="android:statusBarColor">@color/defaultBar</item>
         <item name="android:colorBackground">@color/defaultBackground</item>
         <item name="priorityHigh">@color/defaultHigh</item>
@@ -23,9 +22,10 @@
         <item name="priorityLow">@color/alternativeLow</item>
         <item name="android:textColor">@color/textBlack</item>
         <item name="android:colorPrimaryDark">@color/alternativeButton</item>
+        <item name="android:statusBarColor">@color/alternativeBar</item>
+        <item name="android:colorAccent">@color/alternativeAccent</item>
         <item name="colorAccent">@color/alternativeAccent</item>
         <item name="colorPrimaryDark">@color/alternativeButton</item>
-        <item name="android:statusBarColor">@color/alternativeBar</item>
     </style>
 
     <!-- Combined Theme -->
@@ -36,9 +36,10 @@
         <item name="priorityLow">@color/combinedLow</item>
         <item name="android:textColor">@color/textBlack</item>
         <item name="android:colorPrimaryDark">@color/combinedButton</item>
+        <item name="android:colorAccent">@color/combinedAccent</item>
+        <item name="android:statusBarColor">@color/combinedBar</item>
         <item name="colorAccent">@color/combinedAccent</item>
         <item name="colorPrimaryDark">@color/combinedButton</item>
-        <item name="android:statusBarColor">@color/combinedBar</item>
     </style>
 
     <!-- Dark Theme -->
@@ -88,8 +89,20 @@
         <item name="priorityHigh">@color/twilightHigh</item>
         <item name="priorityMed">@color/twilightMed</item>
         <item name="priorityLow">@color/twilightLow</item>
-        <item name="android:colorPrimaryDark">@color/twilightButton</item>
         <item name="colorPrimaryDark">@color/twilightButton</item>
         <item name="android:textColorPrimary">@color/textWhite</item>
+    </style>
+
+    <!-- Olive Theme -->
+    <style name="SieveOlive" parent="SieveDefault" >
+        <item name="android:colorPrimaryDark">@color/oliveButton</item>
+        <item name="colorAccent">@color/oliveAccent</item>
+        <item name="android:colorBackground">@color/oliveBackground</item>
+        <item name="android:statusBarColor">@color/oliveBar</item>
+        <item name="priorityHigh">@color/oliveHigh</item>
+        <item name="priorityMed">@color/oliveMed</item>
+        <item name="priorityLow">@color/oliveLow</item>
+        <item name="android:textColorPrimary">@color/textBlack</item>
+        <item name="colorPrimaryDark">@color/oliveButton</item>
     </style>
 </resources>

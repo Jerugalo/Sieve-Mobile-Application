@@ -38,7 +38,7 @@
                     android:fontFamily="sans-serif-smallcaps"
                     android:onClick="toHomePage"
                     android:text="@string/return_home"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                    android:textColor="?android:attr/textColor"
                     android:textSize="18sp" />
 
                 <TextView
@@ -138,7 +138,7 @@
                     android:fontFamily="sans-serif-smallcaps"
                     android:onClick="HabitClick"
                     android:text="@string/habit"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                    android:textColor="?android:attr/textColor"
                     android:textSize="18sp"
                     app:layout_constraintBaseline_toBaselineOf="@+id/assignButton"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -153,7 +153,7 @@
                     android:fontFamily="sans-serif-smallcaps"
                     android:onClick="AssignClick"
                     android:text="@string/assignment"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                    android:textColor="?android:attr/textColor"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -170,7 +170,7 @@
                     android:fontFamily="sans-serif-smallcaps"
                     android:onClick="ProjectClick"
                     android:text="@string/project"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                    android:textColor="?android:attr/textColor"
                     android:textSize="18sp"
                     app:layout_constraintBaseline_toBaselineOf="@+id/assignButton"
                     app:layout_constraintEnd_toEndOf="parent" />
@@ -298,7 +298,7 @@
                     android:fontFamily="sans-serif-smallcaps"
                     android:onClick="alarmSet1"
                     android:text="Create Alarm"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                    android:textColor="?android:attr/textColor"
                     android:textSize="18sp" />
             </LinearLayout>
 
@@ -320,7 +320,7 @@
         android:backgroundTint="?android:attr/colorPrimaryDark"
         android:fontFamily="sans-serif-smallcaps"
         android:text="@string/task_create"
-        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textColor="?android:attr/textColor"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent" />
 

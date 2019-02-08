@@ -88,7 +88,7 @@ public class TaskCreate extends AppCompatActivity {
         /* Shows today's date in the date selection box when user first opens screen */
         final Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
-        int month =c.get(Calendar.MONTH);
+        int month =c.get(Calendar.MONTH)+1;
         int day = c.get(Calendar.DAY_OF_MONTH);
         TextView dateText = findViewById(R.id.DateViewer);
         String dateText1 = month +"/"+day+"/"+year;
@@ -285,7 +285,7 @@ public class TaskCreate extends AppCompatActivity {
         int themeId = new SharedPreferencesManager(this).retrieveInt("themeId",1);
         if(themeId == 1){setTheme(R.style.SieveDefault);}
         else if(themeId == 2){setTheme(R.style.SieveAlternative);}
-        else if(themeId == 3){setTheme(R.style.SieveCombined);}
+        else if(themeId == 3){setTheme(R.style.SieveTwilight);}
         else if(themeId == 4){setTheme(R.style.SieveDark);}
         else if(themeId == 5){setTheme(R.style.SieveSimple);}
         else if(themeId == 6){setTheme(R.style.SieveOlive);}
