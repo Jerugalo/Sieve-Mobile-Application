@@ -13,19 +13,19 @@ import java.util.List;
  */
 
 @Dao
-public interface ClassDao {
-    @Query("SELECT * FROM Class")
-    List<Class> getAll();
+public interface ClassroomDao {
+    @Query("SELECT * FROM Classroom")
+    List<Classroom> getAll();
 
     @Insert
-    void insertAll(Class cls);
+    void insertAll(Classroom classroom);
 
     @Delete
-    void delete(Class cls);
+    void delete(Classroom classroom);
 
     @Update
-    void update(Class cls);
+    void update(Classroom classroom);
 
-    @Query("DELETE  FROM Class")
+    @Query("DELETE  FROM Classroom")
     void deleteAll();
 }

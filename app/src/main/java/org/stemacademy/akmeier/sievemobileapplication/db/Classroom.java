@@ -5,7 +5,7 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity
-public class Class {
+public class Classroom {
     @PrimaryKey(autoGenerate = true)
     private int id;
 

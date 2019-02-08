@@ -12,10 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 
-import org.stemacademy.akmeier.sievemobileapplication.R;
-import org.stemacademy.akmeier.sievemobileapplication.db.Class;
-import org.stemacademy.akmeier.sievemobileapplication.db.ClassDatabase;
-import org.stemacademy.akmeier.sievemobileapplication.fragments.ClassCreationDialog;
+import org.stemacademy.akmeier.sievemobileapplication.db.Classroom;
+import org.stemacademy.akmeier.sievemobileapplication.db.ClassroomDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,10 +27,10 @@ public class Settings extends AppCompatActivity {
     RadioButton T6Rd;
     int themeId;
 
-    private Spinner classChooser;
-    private ArrayAdapter classAdapter;
-    private final ArrayList<String> classList = new ArrayList<>();
-    private ClassDatabase classDatabase;
+    private Spinner classroomChooser;
+    private ArrayAdapter classroomAdapter;
+    private final ArrayList<String> classroomList = new ArrayList<>();
+    private ClassroomDatabase classroomDatabase;
 
     /*
      * This public class defines a SharedPreferencesManager.
@@ -72,20 +70,20 @@ public class Settings extends AppCompatActivity {
         T5Rd = findViewById(R.id.themeSimple);
         T6Rd = findViewById(R.id.themeOlive);
         determineCheckedRadioButton();
-                /* Fills the spinner and allows user to select a class from the class database */
-        createClassList();
-        classChooser = findViewById(R.id.deleteClassSpinner);
-        classAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classList);
-        classAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        classChooser.setAdapter(classAdapter);
-        classChooser.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
+        /* Fills the spinner and allows user to select a class from the class database */
+        createClassroomList();
+        classroomChooser = findViewById(R.id.deleteClassSpinner);
+        classroomAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classroomList);
+        classroomAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        classroomChooser.setAdapter(classroomAdapter);
+        classroomChooser.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 if ((parent.getItemAtPosition(pos)).toString().equals("Delete All Classes")){
-                    classDatabase.classDao().deleteAll();
-                    refreshSpinner();
+                    classroomDatabase.classroomDao().deleteAll();
+                    refreshClassroomSpinner();
                 } else if (!(parent.getItemAtPosition(pos)).toString().equals("Delete Class")) {
-                    deleteClass((parent.getItemAtPosition(pos)).toString());
-                    refreshSpinner();
+                    deleteClassroom((parent.getItemAtPosition(pos)).toString());
+                    refreshClassroomSpinner();
                 }
             }
             public void onNothingSelected(AdapterView<?> parent) {
@@ -94,31 +92,31 @@ public class Settings extends AppCompatActivity {
     }
 
     /** Creates a new class list and updates the spinner*/
-    private void refreshSpinner(){
-        createClassList();
-        classAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classList);
-        classAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        classAdapter.notifyDataSetChanged();
+    private void refreshClassroomSpinner(){
+        createClassroomList();
+        classroomAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classroomList);
+        classroomAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        classroomAdapter.notifyDataSetChanged();
     }
 
-    /** Creates the array of classes that the spinner displays */
-    private void createClassList() {
-        classList.clear();
-        classDatabase = ClassDatabase.getInstance(this);
-        List<Class> clses = classDatabase.classDao().getAll();
-        classList.add("Delete Class");
-        for (Class cls : clses) {
-            classList.add(cls.getName());
+    /** Creates the array of currentClassroom that the spinner displays */
+    private void createClassroomList() {
+        classroomList.clear();
+        classroomDatabase = ClassroomDatabase.getInstance(this);
+        List<Classroom> classroomList = classroomDatabase.classroomDao().getAll();
+        this.classroomList.add("Delete Classroom");
+        for (Classroom mClassroom : classroomList) {
+            this.classroomList.add(mClassroom.getName());
         }
-        classList.add("Delete All Classes");
+        this.classroomList.add("Delete All Classes");
     }
 
-    /** Creates the array of classes that the spinner displays */
-    private void deleteClass(String deleteCls) {
-        List<Class> clses = classDatabase.classDao().getAll();
-        for (Class cls : clses) {
-            if (deleteCls.equals(cls.getName())){
-                classDatabase.classDao().delete(cls);
+    /** Creates the array of currentClassroom that the spinner displays */
+    private void deleteClassroom(String classroomDelete) {
+        List<Classroom> classrooms = classroomDatabase.classroomDao().getAll();
+        for (Classroom mClassroom : classrooms) {
+            if (classroomDelete.equals(mClassroom.getName())){
+                classroomDatabase.classroomDao().delete(mClassroom);
             }
         }
     }

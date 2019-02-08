@@ -1,6 +1,5 @@
 package org.stemacademy.akmeier.sievemobileapplication.fragments;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,16 +15,15 @@ import android.widget.TextView;
 import org.stemacademy.akmeier.sievemobileapplication.AssignmentDetails;
 import org.stemacademy.akmeier.sievemobileapplication.R;
 import org.stemacademy.akmeier.sievemobileapplication.TaskCreate;
-import org.stemacademy.akmeier.sievemobileapplication.db.Class;
-import org.stemacademy.akmeier.sievemobileapplication.db.Task;
+import org.stemacademy.akmeier.sievemobileapplication.db.Classroom;
 
 /**
  * Configures the class creation dialog. The ok button is set to take the input and insert it into
  * the class database. The cancel button closes the dialog.
  */
 
-public class ClassCreationDialog extends DialogFragment implements DialogInterface.OnDismissListener {
-    private static final String TAG = "ClassCreationDialog";
+public class ClassroomCreationDialog extends DialogFragment implements DialogInterface.OnDismissListener {
+    private static final String TAG = "ClassroomCreationDialog";
     public static String PARENT = "";
     private EditText mInput;
     private TaskCreate taskCreate;
@@ -59,20 +57,20 @@ public class ClassCreationDialog extends DialogFragment implements DialogInterfa
             @Override
             public void onClick(View v) {
                 String input;
-                Class mClass = new Class();
+                Classroom mClassroom = new Classroom();
                 Log.d(TAG, "onClick: capturing input.");
                 input = mInput.getText().toString();
                 Log.d(TAG, input);
                 if (!input.equals("")) {
-                    mClass.setName(input);
-                    mClass.setType(0);
-                    mClass.setId(0);
-                    mClass.setDueDate("");
+                    mClassroom.setName(input);
+                    mClassroom.setType(0);
+                    mClassroom.setId(0);
+                    mClassroom.setDueDate("");
                     if (PARENT.equals("TaskCreate")){
-                        taskCreate.callInsertClass(mClass);
+                        taskCreate.callInsertClassroom(mClassroom);
                     }
                     if (PARENT.equals("AssignmentDetails")){
-                        assignmentDetails.callInsertClass(mClass);
+                        assignmentDetails.callInsertClassroom(mClassroom);
                     }
                 }
                 getDialog().dismiss();
