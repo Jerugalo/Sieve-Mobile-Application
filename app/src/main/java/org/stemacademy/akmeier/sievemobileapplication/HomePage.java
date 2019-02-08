@@ -4,7 +4,11 @@ import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
+import android.arch.persistence.room.Update;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -17,6 +21,7 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import org.stemacademy.akmeier.sievemobileapplication.R;
@@ -60,8 +65,9 @@ public class HomePage extends AppCompatActivity {
     }
     GlobalVars global = GlobalVars.getInstance();
     Task mTask =global.getCurrentTask();
-    List <PendingIntent> pendingIntents;
-    AlarmManager alarmManager;
+    List <Integer> alarmNames;
+    JobScheduler jobScheduler;
+
 
 
     /**
@@ -71,11 +77,12 @@ public class HomePage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        pendingIntents=new ArrayList<>();
+        alarmNames=new ArrayList<>();
         createNotificationChannel();
+        jobScheduler=(JobScheduler) this.getSystemService(this.JOB_SCHEDULER_SERVICE);
 
         BroadcastReceiver notificationJava = new Notificationjava();
-        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
         this.registerReceiver(notificationJava,filter);
 
@@ -98,6 +105,10 @@ public class HomePage extends AppCompatActivity {
             Boolean delete = (Boolean) bd.get("delete");
             if (delete != null && delete){
                 taskDatabase.taskDao().delete(mTask);
+            }
+            Boolean clearAlarms = (Boolean) bd.get("CLEAR_ALARMS");
+            if (clearAlarms !=null && clearAlarms){
+                clearAlarms();
             }
 
         }
@@ -141,15 +152,27 @@ public class HomePage extends AppCompatActivity {
      * @param notificationID
      */
     public void setAlarm(Context context, int day,int month, int year, int hour, int minute,int notificationID){
-        Intent notificationIntent = new Intent(context,Notificationjava.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, notificationID,notificationIntent,PendingIntent.FLAG_CANCEL_CURRENT);
-
         Calendar alarmCalendar = Calendar.getInstance();
         alarmCalendar.setTimeInMillis(System.currentTimeMillis());
         alarmCalendar.set(year,month,day,hour,minute);
+        Calendar otherCalendar = Calendar.getInstance();
+        otherCalendar.setTimeInMillis(System.currentTimeMillis());
 
-        alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.set(AlarmManager.RTC_WAKEUP,alarmCalendar.getTimeInMillis(),pendingIntent);
+
+        ComponentName componentName = new ComponentName(context,AlarmsIntentService.class);
+        long diff = alarmCalendar.getTimeInMillis() - otherCalendar.getTimeInMillis();
+        int alarmNumber=day+month+year+hour+minute;
+
+        if (diff >= 0) {
+            JobInfo jobInfo = new JobInfo.Builder(alarmNumber, componentName)
+                    .setMinimumLatency(diff)
+                    .setOverrideDeadline(180000)
+                    .build();
+            jobScheduler.schedule(jobInfo);
+            alarmNames.add(alarmNumber);
+            Log.d("setAlarm", "Success!");
+        }
+
     }
 
     /**
@@ -214,7 +237,11 @@ public class HomePage extends AppCompatActivity {
                     dates.clear();
                 }
             }
+            else{
+
+            }
             tasks.get(i).setNotified(1);
+            taskDatabase.taskDao().update(tasks.get(i));
         }
     }
 
@@ -227,5 +254,13 @@ public class HomePage extends AppCompatActivity {
         else if(themeId == 5){setTheme(R.style.SieveSimple);}
         else if(themeId == 6){setTheme(R.style.SieveCandy);}
         else{setTheme(R.style.SieveDefault);}
+    }
+
+    public void clearAlarms(){
+        Log.d("clearAlarms","At HomePage");
+        jobScheduler.cancelAll();
+        jobScheduler.getAllPendingJobs();
+        Intent intent = new Intent(this,Settings.class);
+        startActivity(intent);
     }
 }

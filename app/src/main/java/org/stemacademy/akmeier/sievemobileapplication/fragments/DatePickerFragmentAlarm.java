@@ -29,7 +29,6 @@ public class DatePickerFragmentAlarm extends DialogFragment implements DatePicke
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-
         String dateString = year + "/" + month + "/" +dayOfMonth;
 
         taskCreate.currentDate = dateString;

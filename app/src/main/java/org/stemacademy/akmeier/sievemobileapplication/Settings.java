@@ -138,5 +138,9 @@ public class Settings extends AppCompatActivity {
         T6Rd.setChecked(true);
         onThemeRadio();
     }
-
+    public void ClearAlarms(View view){
+        Intent intent = new Intent(this,HomePage.class);
+        intent.putExtra("CLEAR_ALARMS",true);
+        startActivity(intent);
+    }
 }

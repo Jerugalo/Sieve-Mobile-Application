@@ -92,7 +92,7 @@ public class TaskCreate extends AppCompatActivity {
         /* Shows today's date in the date selection box when user first opens screen */
         final Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
-        int month =c.get(Calendar.MONTH);
+        int month =c.get(Calendar.MONTH)+1;
         int day = c.get(Calendar.DAY_OF_MONTH);
         TextView dateText = findViewById(R.id.DateViewer);
         String dateText1 = month +"/"+day+"/"+year;
