@@ -206,14 +206,30 @@ public class Settings extends AppCompatActivity {
         onThemeRadio();
     }
 
-    public void determineCheckedRadioButton(){
-        int themeId = new SharedPreferencesManager(this).retrieveInt("themeId",1);
-        if(themeId == 1){T1Rd.setChecked(true);}
-        else if(themeId == 2){T2Rd.setChecked(true);}
-        else if(themeId == 3){T3Rd.setChecked(true);}
-        else if(themeId == 4){T4Rd.setChecked(true);}
-        else if(themeId == 5){T5Rd.setChecked(true);}
-        else if(themeId == 6){T6Rd.setChecked(true);}
-        else{T1Rd.setChecked(true);}
+
+    public void determineCheckedRadioButton() {
+        int themeId = new SharedPreferencesManager(this).retrieveInt("themeId", 1);
+        if (themeId == 1) {
+            T1Rd.setChecked(true);
+        } else if (themeId == 2) {
+            T2Rd.setChecked(true);
+        } else if (themeId == 3) {
+            T3Rd.setChecked(true);
+        } else if (themeId == 4) {
+            T4Rd.setChecked(true);
+        } else if (themeId == 5) {
+            T5Rd.setChecked(true);
+        } else if (themeId == 6) {
+            T6Rd.setChecked(true);
+        } else {
+            T1Rd.setChecked(true);
+        }
+    }
+
+    public void clearAlarms(View view){
+        Intent intent = new Intent(this, HomePage.class);
+        intent.putExtra("CLEAR_ALARMS", true);
+        startActivity(intent);
+
     }
 }
