@@ -20,13 +20,11 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import org.stemacademy.akmeier.sievemobileapplication.R;
-
-import org.stemacademy.akmeier.sievemobileapplication.db.Class;
-import org.stemacademy.akmeier.sievemobileapplication.db.ClassDatabase;
+import org.stemacademy.akmeier.sievemobileapplication.db.Classroom;
+import org.stemacademy.akmeier.sievemobileapplication.db.ClassroomDatabase;
 import org.stemacademy.akmeier.sievemobileapplication.db.TaskDatabase;
 import org.stemacademy.akmeier.sievemobileapplication.db.Task;
-import org.stemacademy.akmeier.sievemobileapplication.fragments.ClassCreationDialog;
+import org.stemacademy.akmeier.sievemobileapplication.fragments.ClassroomCreationDialog;
 import org.stemacademy.akmeier.sievemobileapplication.db.TimePickerFragmentAlarm;
 import org.stemacademy.akmeier.sievemobileapplication.fragments.DatePickerFragment;
 import org.stemacademy.akmeier.sievemobileapplication.fragments.DatePickerFragmentAlarm;
@@ -59,15 +57,15 @@ public class TaskCreate extends AppCompatActivity {
     }
     private TaskDatabase taskDatabase;
     private Task task;
-    private final ArrayList<String> classList = new ArrayList<>();
+    private final ArrayList<String> classroomList = new ArrayList<>();
     int priorityID;
-    private String classes;
+    private String classroom;
     int typeID=0;
-    private ClassDatabase classDatabase;
+    private ClassroomDatabase classroomDatabase;
     GlobalVars global = GlobalVars.getInstance();
 
-    private Spinner classChooser;
-    private ArrayAdapter classAdapter;
+    private Spinner classroomChooser;
+    private ArrayAdapter classroomAdapter;
 
     public ArrayList<String> alarms;
     public String currentTime;
@@ -124,19 +122,19 @@ public class TaskCreate extends AppCompatActivity {
         });
 
         /* Fills the spinner and allows user to select a class from the class database */
-        createClassList();
-        classChooser = findViewById(R.id.DetailsClassSpinner);
-        classAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classList);
-        classAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        classChooser.setAdapter(classAdapter);
-        classChooser.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
+        createClassroomList();
+        classroomChooser = findViewById(R.id.DetailsClassSpinner);
+        classroomAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classroomList);
+        classroomAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        classroomChooser.setAdapter(classroomAdapter);
+        classroomChooser.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                if ((parent.getItemAtPosition(pos)).toString().equals("Create New Class")){
-                    ClassCreationDialog dialog = new ClassCreationDialog();
+                if ((parent.getItemAtPosition(pos)).toString().equals("Create New Classroom")){
+                    ClassroomCreationDialog dialog = new ClassroomCreationDialog();
                     dialog.PARENT = "TaskCreate";
-                    dialog.show(getSupportFragmentManager(), "ClassCreationDialog");
+                    dialog.show(getSupportFragmentManager(), "ClassroomCreationDialog");
                 } else {
-                    classes = (parent.getItemAtPosition(pos)).toString();
+                    classroom = (parent.getItemAtPosition(pos)).toString();
                 }
             }
             public void onNothingSelected(AdapterView<?> parent) {
@@ -157,7 +155,7 @@ public class TaskCreate extends AppCompatActivity {
                     for(int i=0; i<alarms.size();i++){
                         alarmsString= alarmsString + alarms.get(i);
                     }
-                    task = new Task(priorityID,nameText.getText().toString(),classes,dateText.getText().toString(),
+                    task = new Task(priorityID,nameText.getText().toString(), classroom,dateText.getText().toString(),
                             notesText.getText().toString(),typeID,0,alarmsString);
                     new InsertTask(TaskCreate.this,task).execute();
                 }
@@ -166,40 +164,40 @@ public class TaskCreate extends AppCompatActivity {
 
     /** Creates a new class list and updates the spinner*/
     private void refreshSpinner(){
-        createClassList();
-        classAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classList);
-        classAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        classAdapter.notifyDataSetChanged();
+        createClassroomList();
+        classroomAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classroomList);
+        classroomAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        classroomAdapter.notifyDataSetChanged();
     }
 
-    /** Creates the array of classes that the spinner displays */
-    private void createClassList() {
-        classList.clear();
-        classDatabase = ClassDatabase.getInstance(this);
-        List<Class> clses = classDatabase.classDao().getAll();
-        classList.add("Select Class");
-        for (Class cls : clses) {
-            classList.add(cls.getName());
+    /** Creates the array of currentClassroom that the spinner displays */
+    private void createClassroomList() {
+        classroomList.clear();
+        classroomDatabase = ClassroomDatabase.getInstance(this);
+        List<Classroom> classrooms = classroomDatabase.classroomDao().getAll();
+        classroomList.add("Select Classroom");
+        for (Classroom mClassroom : classrooms) {
+            classroomList.add(mClassroom.getName());
         }
-        classList.add("Create New Class");
+        classroomList.add("Create New Classroom");
     }
 
-    /** Calls the AsyncTask InsertClass, that cannot be called from other classes */
-    public void callInsertClass(Class mClass){
-        new InsertClass(TaskCreate.this, mClass).execute();
+    /** Calls the AsyncTask InsertClass, that cannot be called from other currentClassroom */
+    public void callInsertClassroom(Classroom mClassroom){
+        new InsertClass(TaskCreate.this, mClassroom).execute();
     }
 
     /** Puts the class into the class database */
     private static class InsertClass extends AsyncTask<Void, Void,Boolean> {
         private final WeakReference<TaskCreate> activityReference;
-        private final Class cls;
-        InsertClass(TaskCreate context, Class mClass){
+        private final Classroom cls;
+        InsertClass(TaskCreate context, Classroom mClassroom){
             activityReference = new WeakReference<>(context);
-            cls = mClass;
+            cls = mClassroom;
         }
         @Override
         protected Boolean doInBackground(Void...objs){
-            activityReference.get().classDatabase.classDao().insertAll(cls);
+            activityReference.get().classroomDatabase.classroomDao().insertAll(cls);
             return true;
         }
         @Override
@@ -280,7 +278,7 @@ public class TaskCreate extends AppCompatActivity {
         String alarmTime = currentTime + currentDate +":";
         alarms.add(alarmTime);
         global.setgAlarms(alarms);
-        classAdapter.notifyDataSetChanged();
+        classroomAdapter.notifyDataSetChanged();
 
     }
     public void determineTheme(){
