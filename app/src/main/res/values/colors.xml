@@ -50,13 +50,13 @@
     <color name="candyBar">#41b3a3</color>
 
     <!-- Dark theme colors -->
-    <color name="darkBackground">#363636</color>
-    <color name="darkHigh">#c8331b</color>
-    <color name="darkMed">#e56d31</color>
-    <color name="darkLow">#f4cf47</color>
-    <color name="darkAccent">#d55c5a</color>
-    <color name="darkButton">#b7b7b7</color>
-    <color name="darkBar">#b22230</color>
+    <color name="darkBackground">#202020</color>
+    <color name="darkHigh">#7c0a02</color>
+    <color name="darkMed">#D3560E</color>
+    <color name="darkLow">#133D82</color>
+    <color name="darkAccent">#133D82</color>
+    <color name="darkButton">#363636</color>
+    <color name="darkBar">#063150</color>
 
     <!-- Twilight theme colors -->
     <color name="twilightBackground">#181818</color>

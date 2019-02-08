@@ -26,7 +26,7 @@
             android:onClick="toSettings"
             android:text="@string/menu_key"
             android:textAlignment="center"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textColor="?android:attr/textColor"
             android:textSize="40sp" />
 
         <TextView
@@ -51,7 +51,7 @@
             android:onClick="toTaskCreate"
             android:text="@string/create_task"
             android:textAlignment="center"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textColor="?android:attr/textColor"
             android:textSize="40sp" />
 
     </LinearLayout>

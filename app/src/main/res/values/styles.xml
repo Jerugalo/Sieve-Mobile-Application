@@ -52,7 +52,6 @@
         <item name="colorAccent">@color/darkAccent</item>
         <item name="android:colorPrimaryDark">@color/darkButton</item>
         <item name="android:statusBarColor">@color/darkBar</item>
-        <item name="android:textColorPrimary">@color/textWhite</item>
     </style>
 
     <!-- Simple Theme -->

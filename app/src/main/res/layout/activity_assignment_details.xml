@@ -260,7 +260,7 @@
             android:fontFamily="sans-serif-smallcaps"
             android:onClick="toHomePage"
             android:text="@string/return_home"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textColor="?android:attr/textColor"
             android:textSize="18sp" />
 
         <Button
@@ -273,7 +273,7 @@
             android:fontFamily="sans-serif-smallcaps"
             android:onClick="editTask"
             android:text="@string/edit_task"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textColor="?android:attr/textColor"
             android:textSize="18sp" />
 
         <Button
@@ -286,7 +286,7 @@
             android:fontFamily="sans-serif-smallcaps"
             android:onClick="beginTask"
             android:text="@string/beginTask"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textColor="?android:attr/textColor"
             android:textSize="18sp" />
     </LinearLayout>
 
