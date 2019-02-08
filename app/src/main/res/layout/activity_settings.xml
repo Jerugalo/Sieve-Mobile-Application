@@ -53,6 +53,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topBar" />
 
+    <Button
+        android:id="@+id/ClearAlarmsButton"
+        android:layout_width="128dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/button_style"
+        android:backgroundTint="?android:attr/colorPrimaryDark"
+        android:fontFamily="sans-serif-smallcaps"
+        android:onClick="clearAlarms"
+        android:text="@string/clearAlarms"
+        android:textColor="?android:attr/textColor"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/notifSettingsTitle" />
+
     <TextView
         android:id="@+id/schedCreateTitle"
         android:layout_width="wrap_content"
@@ -192,16 +208,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/classOptionsTitle" />
-
-    <Button
-        android:id="@+id/ClearAlarmsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:onClick="clearAlarms"
-        android:text="@string/clearAlarms"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/notifSettingsTitle" />
 
 </android.support.constraint.ConstraintLayout>

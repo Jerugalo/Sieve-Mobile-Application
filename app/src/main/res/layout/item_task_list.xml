@@ -40,11 +40,13 @@
             android:id="@+id/ToDetails"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:background="@drawable/button_style"
             android:backgroundTint="?android:attr/colorPrimaryDark"
             android:fontFamily="sans-serif-smallcaps"
             android:text="@string/ToDetails"
             android:textAlignment="center"
             android:textColor="?android:attr/textColor"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/Priority"
             app:layout_constraintTop_toTopOf="@+id/Priority" />
