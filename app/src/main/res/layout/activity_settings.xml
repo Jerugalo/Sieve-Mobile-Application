@@ -126,7 +126,7 @@
             android:orientation="vertical">
 
             <RadioButton
-                android:id="@+id/themeCombined"
+                android:id="@+id/themeTwilight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

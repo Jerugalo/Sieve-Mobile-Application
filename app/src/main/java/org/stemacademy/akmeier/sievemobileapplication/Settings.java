@@ -67,7 +67,7 @@ public class Settings extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
         T1Rd = findViewById(R.id.themeDefault);
         T2Rd = findViewById(R.id.themeAlternative);
-        T3Rd = findViewById(R.id.themeCombined);
+        T3Rd = findViewById(R.id.themeTwilight);
         T4Rd = findViewById(R.id.themeDark);
         T5Rd = findViewById(R.id.themeSimple);
         T6Rd = findViewById(R.id.themeOlive);
@@ -131,7 +131,7 @@ public class Settings extends AppCompatActivity {
         int themeId = new SharedPreferencesManager(this).retrieveInt("themeId",1);
         if(themeId == 1){setTheme(R.style.SieveDefault);}
         else if(themeId == 2){setTheme(R.style.SieveAlternative);}
-        else if(themeId == 3){setTheme(R.style.SieveCombined);}
+        else if(themeId == 3){setTheme(R.style.SieveTwilight);}
         else if(themeId == 4){setTheme(R.style.SieveDark);}
         else if(themeId == 5){setTheme(R.style.SieveSimple);}
         else if(themeId == 6){setTheme(R.style.SieveOlive);}
