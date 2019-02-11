@@ -62,7 +62,7 @@
     <color name="twilightBackground">#181818</color>
     <color name="twilightAccent">#b22230</color>
     <color name="twilightBar">#ff7400</color>
-    <color name="twilightButton">#4d4d4d</color>
+    <color name="twilightButton">#FF4D4D4D</color>
     <color name="twilightHigh">#c8331b</color>
     <color name="twilightMed">#e56d31</color>
     <color name="twilightLow">#f4cf47</color>
