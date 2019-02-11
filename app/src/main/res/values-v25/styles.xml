@@ -12,7 +12,24 @@
         <item name="android:textColor">@color/textBlack</item>
         <item name="colorAccent">@color/defaultAccent</item>
         <item name="colorPrimaryDark">@color/defaultButton</item>
+        <item name="android:datePickerDialogTheme">@style/SieveDefaultDatePicker</item>
     </style>
+    <style name="SieveDefaultDatePicker" parent="android:Theme.Material.Light.Dialog">
+        <item name="android:colorAccent">@color/defaultAccent</item>
+        <item name="android:calendarTextColor">@color/textBlack</item>
+        <!--<item name="android:datePickerStyle">@style/MyDatePickerStyle</item>-->
+    </style>
+    <!--<style name="MyDatePickerStyle" parent="@android:style/Widget.Material.Light.DatePicker">
+        <item name ="android:headerBackground">@color/defaultBar</item>
+        <item name ="android:dayOfWeekBackground">@color/defaultBackground</item>
+        <item name ="android:dayOfWeekTextAppearance">@color/textBlack</item>
+        <item name ="android:headerMonthTextAppearance">@color/textBlack</item>
+        <item name ="android:headerDayOfMonthTextAppearance">@color/textBlack</item>
+        <item name="android:headerYearTextAppearance">@color/textBlack</item>
+        <item name="android:yearListItemTextAppearance">@color/defaultBackground</item>
+        <item name="android:yearListSelectorColor">@color/defaultAccent</item>
+        <item name="android:calendarTextColor">@color/textBlack</item>
+    </style>-->
 
     <!-- Alternative Theme -->
     <style name="SieveAlternative" parent="SieveDefault">
