@@ -96,6 +96,7 @@ public class AssignmentDetails extends AppCompatActivity {
         determineTheme();
         setContentView(R.layout.activity_assignment_details);
         task=mTask;
+        taskDatabase=TaskDatabase.getInstance(this);
 
         isEditing = false;
 
@@ -301,7 +302,7 @@ public class AssignmentDetails extends AppCompatActivity {
             task.setNotes(notesD.getText().toString());
             task.setTypeID(typeID);
             global.setCurrentTask(task);
-            new InsertTask(this,task);
+            taskDatabase.taskDao().update(task);
             refreshSpinner();
             isEditing=false;
         }
@@ -416,27 +417,6 @@ public class AssignmentDetails extends AppCompatActivity {
         else{setTheme(R.style.SieveDefault);}
     }
 
-    /** Puts Task into Task Database */
-    private static class InsertTask extends AsyncTask<Void, Void,Boolean> {
-        private final WeakReference<AssignmentDetails> activityReference;
-        private final Task task;
-        InsertTask(AssignmentDetails context, Task task){
-            activityReference=new WeakReference<>(context);
-            this.task=task;
-        }
-        @Override
-        protected Boolean doInBackground(Void...objs){
-            activityReference.get().taskDatabase.taskDao().update(task);
-            return true;
-        }
-        @Override
-        protected void onPostExecute(Boolean bool){
-            if(bool){
-                Log.d("TaskCreate","The Async Task has finished!");
-                Log.d("TaskCreate",task.toString());
-                activityReference.get().finish();
-            }
-        }
-    }
+
 
 }
