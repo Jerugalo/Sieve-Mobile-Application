@@ -19,12 +19,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/button_style"
-            android:backgroundTint="?android:attr/colorPrimaryDark"
+            android:backgroundTint="?attr/colorPrimaryDark"
             android:fontFamily="sans-serif-smallcaps"
             android:onClick="toSettings"
             android:text="@string/menu_key"
             android:textAlignment="center"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textColor="?android:attr/textColor"
             android:textSize="40sp" />
 
         <TextView
@@ -44,18 +44,18 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/button_style"
-            android:backgroundTint="?android:attr/colorPrimaryDark"
+            android:backgroundTint="?attr/colorPrimaryDark"
             android:fontFamily="sans-serif-smallcaps"
             android:onClick="toTaskCreate"
             android:text="@string/create_task"
             android:textAlignment="center"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textColor="?android:attr/textColor"
             android:textSize="40sp" />
 
     </LinearLayout>
 
     <TextView
-        android:id="@+id/dateView"
+        android:id="@+id/dateViewHP"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -78,6 +78,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateView" />
+        app:layout_constraintTop_toBottomOf="@+id/dateViewHP" />
 
 </android.support.constraint.ConstraintLayout>

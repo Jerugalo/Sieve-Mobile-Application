@@ -4,7 +4,6 @@
     <style name="SieveDefault" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:colorPrimary">@color/primary_material_light</item>
         <item name="android:colorPrimaryDark">@color/defaultButton</item>
-        <item name="android:colorAccent">@color/defaultAccent</item>
         <item name="android:statusBarColor">@color/defaultBar</item>
         <item name="android:colorBackground">@color/defaultBackground</item>
         <item name="priorityHigh">@color/defaultHigh</item>
@@ -46,7 +45,6 @@
         <item name="colorAccent">@color/darkAccent</item>
         <item name="android:colorPrimaryDark">@color/darkButton</item>
         <item name="android:statusBarColor">@color/darkBar</item>
-        <item name="android:textColorPrimary">@color/textWhite</item>
     </style>
 
     <!-- Simple Theme -->
@@ -85,5 +83,18 @@
         <item name="priorityLow">@color/twilightLow</item>
         <item name="colorPrimaryDark">@color/twilightButton</item>
         <item name="android:textColorPrimary">@color/textWhite</item>
+    </style>
+
+    <!-- Olive Theme -->
+    <style name="SieveOlive" parent="SieveDefault" >
+        <item name="android:colorPrimaryDark">@color/oliveButton</item>
+        <item name="colorAccent">@color/oliveAccent</item>
+        <item name="android:colorBackground">@color/oliveBackground</item>
+        <item name="android:statusBarColor">@color/oliveBar</item>
+        <item name="priorityHigh">@color/oliveHigh</item>
+        <item name="priorityMed">@color/oliveMed</item>
+        <item name="priorityLow">@color/oliveLow</item>
+        <item name="android:textColorPrimary">@color/textBlack</item>
+        <item name="colorPrimaryDark">@color/oliveButton</item>
     </style>
 </resources>

@@ -16,17 +16,16 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.a53914.sievemobileapplication.R;
-
-import org.stemacademy.akmeier.sievemobileapplication.db.Class;
-import org.stemacademy.akmeier.sievemobileapplication.db.ClassDatabase;
+import org.stemacademy.akmeier.sievemobileapplication.db.Classroom;
+import org.stemacademy.akmeier.sievemobileapplication.db.ClassroomDatabase;
 import org.stemacademy.akmeier.sievemobileapplication.db.TaskDatabase;
 import org.stemacademy.akmeier.sievemobileapplication.db.Task;
-import org.stemacademy.akmeier.sievemobileapplication.fragments.ClassCreationDialog;
+import org.stemacademy.akmeier.sievemobileapplication.fragments.ClassroomCreationDialog;
 import org.stemacademy.akmeier.sievemobileapplication.db.TimePickerFragmentAlarm;
 import org.stemacademy.akmeier.sievemobileapplication.fragments.DatePickerFragment;
 import org.stemacademy.akmeier.sievemobileapplication.fragments.DatePickerFragmentAlarm;
@@ -59,15 +58,15 @@ public class TaskCreate extends AppCompatActivity {
     }
     private TaskDatabase taskDatabase;
     private Task task;
-    private final ArrayList<String> classList = new ArrayList<>();
+    private final ArrayList<String> classroomList = new ArrayList<>();
     int priorityID;
-    private String classes;
+    private String classroom;
     int typeID=0;
-    private ClassDatabase classDatabase;
+    private ClassroomDatabase classroomDatabase;
     GlobalVars global = GlobalVars.getInstance();
 
-    private Spinner classChooser;
-    private ArrayAdapter classAdapter;
+    private Spinner classroomChooser;
+    private ArrayAdapter classroomAdapter;
 
     public ArrayList<String> alarms;
     public String currentTime;
@@ -87,56 +86,29 @@ public class TaskCreate extends AppCompatActivity {
         recyclerView.setAdapter(alarmAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        createClassList();
-
         /* Shows today's date in the date selection box when user first opens screen */
         final Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
-        int month =c.get(Calendar.MONTH);
+        int month =c.get(Calendar.MONTH)+1;
         int day = c.get(Calendar.DAY_OF_MONTH);
         TextView dateText = findViewById(R.id.DateViewer);
         String dateText1 = month +"/"+day+"/"+year;
         dateText.setText(dateText1);
 
-        /* Manages the priority slide bar */
-        SeekBar slidey = findViewById(R.id.TaskCreateSeekbar);
-        slidey.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if(progress>=0&&progress<34){
-                    priorityID=0;
-                }
-                else if (progress>=34&&progress<67){
-                    priorityID=1;
-                }
-                else{
-                    priorityID=2;
-                }
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-
         /* Fills the spinner and allows user to select a class from the class database */
-        classChooser = findViewById(R.id.DetailsClassSpinner);
-        classAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classList);
-        classAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        classChooser.setAdapter(classAdapter);
-        classChooser.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
+        createClassroomList();
+        classroomChooser = findViewById(R.id.DetailsClassSpinner);
+        classroomAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classroomList);
+        classroomAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        classroomChooser.setAdapter(classroomAdapter);
+        classroomChooser.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                if ((parent.getItemAtPosition(pos)).toString().equals("Create New Class")){
-                    ClassCreationDialog dialog = new ClassCreationDialog();
-                    dialog.show(getSupportFragmentManager(), "ClassCreationDialog");
+                if ((parent.getItemAtPosition(pos)).toString().equals("Create New Classroom")){
+                    ClassroomCreationDialog dialog = new ClassroomCreationDialog();
+                    dialog.PARENT = "TaskCreate";
+                    dialog.show(getSupportFragmentManager(), "ClassroomCreationDialog");
                 } else {
-                    classes = (parent.getItemAtPosition(pos)).toString();
+                    classroom = (parent.getItemAtPosition(pos)).toString();
                 }
             }
             public void onNothingSelected(AdapterView<?> parent) {
@@ -145,6 +117,7 @@ public class TaskCreate extends AppCompatActivity {
 
         /* initialize Task Database */
         taskDatabase = TaskDatabase.getInstance(TaskCreate.this);
+        /*Add Task to Database*/
         Button button = findViewById(R.id.CreateButton);
             button.setOnClickListener(new View.OnClickListener(){
                 @Override
@@ -156,7 +129,7 @@ public class TaskCreate extends AppCompatActivity {
                     for(int i=0; i<alarms.size();i++){
                         alarmsString= alarmsString + alarms.get(i);
                     }
-                    task = new Task(priorityID,nameText.getText().toString(),classes,dateText.getText().toString(),
+                    task = new Task(priorityID,nameText.getText().toString(), classroom,dateText.getText().toString(),
                             notesText.getText().toString(),typeID,0,alarmsString);
                     new InsertTask(TaskCreate.this,task).execute();
                 }
@@ -165,40 +138,40 @@ public class TaskCreate extends AppCompatActivity {
 
     /** Creates a new class list and updates the spinner*/
     private void refreshSpinner(){
-        createClassList();
-        classAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classList);
-        classAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        classAdapter.notifyDataSetChanged();
+        createClassroomList();
+        classroomAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classroomList);
+        classroomAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        classroomAdapter.notifyDataSetChanged();
     }
 
-    /** Creates the array of classes that the spinner displays */
-    private void createClassList() {
-        classList.clear();
-        classDatabase = ClassDatabase.getInstance(this);
-        List<Class> clses = classDatabase.classDao().getAll();
-        classList.add("Select Class");
-        for (Class cls : clses) {
-            classList.add(cls.getName());
+    /** Creates the array of currentClassroom that the spinner displays */
+    private void createClassroomList() {
+        classroomList.clear();
+        classroomDatabase = ClassroomDatabase.getInstance(this);
+        List<Classroom> classrooms = classroomDatabase.classroomDao().getAll();
+        classroomList.add("Select Classroom");
+        for (Classroom mClassroom : classrooms) {
+            classroomList.add(mClassroom.getName());
         }
-        classList.add("Create New Class");
+        classroomList.add("Create New Classroom");
     }
 
-    /** Calls the AsyncTask InsertClass, that cannot be called from other classes */
-    public void callInsertClass(Class mClass){
-        new InsertClass(TaskCreate.this, mClass).execute();
+    /** Calls the AsyncTask InsertClass, that cannot be called from other currentClassroom */
+    public void callInsertClassroom(Classroom mClassroom){
+        new InsertClass(TaskCreate.this, mClassroom).execute();
     }
 
     /** Puts the class into the class database */
     private static class InsertClass extends AsyncTask<Void, Void,Boolean> {
         private final WeakReference<TaskCreate> activityReference;
-        private final Class cls;
-        InsertClass(TaskCreate context, Class mClass){
+        private final Classroom cls;
+        InsertClass(TaskCreate context, Classroom mClassroom){
             activityReference = new WeakReference<>(context);
-            cls = mClass;
+            cls = mClassroom;
         }
         @Override
         protected Boolean doInBackground(Void...objs){
-            activityReference.get().classDatabase.classDao().insertAll(cls);
+            activityReference.get().classroomDatabase.classroomDao().insertAll(cls);
             return true;
         }
         @Override
@@ -246,10 +219,6 @@ public class TaskCreate extends AppCompatActivity {
         }
     }
 
-    public void HabitClick(View view){ typeID=0; }
-    public void AssignClick(View view){ typeID=1; }
-    public void ProjectClick(View view){ typeID=2; }
-
     public void toHomePage(View view){
         Intent toHomePage = new Intent(this, HomePage.class);
         startActivity(toHomePage);
@@ -279,17 +248,35 @@ public class TaskCreate extends AppCompatActivity {
         String alarmTime = currentTime + currentDate +":";
         alarms.add(alarmTime);
         global.setgAlarms(alarms);
-        classAdapter.notifyDataSetChanged();
+        classroomAdapter.notifyDataSetChanged();
 
     }
     public void determineTheme(){
         int themeId = new SharedPreferencesManager(this).retrieveInt("themeId",1);
         if(themeId == 1){setTheme(R.style.SieveDefault);}
         else if(themeId == 2){setTheme(R.style.SieveAlternative);}
-        else if(themeId == 3){setTheme(R.style.SieveCombined);}
+        else if(themeId == 3){setTheme(R.style.SieveTwilight);}
         else if(themeId == 4){setTheme(R.style.SieveDark);}
         else if(themeId == 5){setTheme(R.style.SieveSimple);}
-        else if(themeId == 6){setTheme(R.style.SieveCandy);}
+        else if(themeId == 6){setTheme(R.style.SieveOlive);}
         else{setTheme(R.style.SieveDefault);}
+    }
+
+    public void assignmentTypeSet(View view){
+        RadioButton habit = findViewById(R.id.habitRadio);
+        RadioButton assignment = findViewById(R.id.assignmentRadio);
+        RadioButton project = findViewById(R.id.projectRadio);
+        if(habit.isChecked()){typeID = 0;}
+        else if(assignment.isChecked()){typeID = 1;}
+        else if(project.isChecked()){typeID = 2;}
+    }
+
+    public void prioritySet(View view){
+        RadioButton low = findViewById(R.id.lowRadio);
+        RadioButton med = findViewById(R.id.medRadio);
+        RadioButton high = findViewById(R.id.highRadio);
+        if(low.isChecked()){priorityID = 0;}
+        else if(med.isChecked()){priorityID = 1;}
+        else if(high.isChecked()){priorityID = 2;}
     }
 }

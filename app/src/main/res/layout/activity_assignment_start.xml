@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-smallcaps"
             android:textAlignment="center"
-            android:textColor="@color/common_google_signin_btn_text_light"
+            android:textColor="?android:attr/textColor"
             android:textSize="33sp" />
 
         <Space
@@ -62,11 +62,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button_style"
-            android:backgroundTint="?android:attr/colorPrimaryDark"
+            android:backgroundTint="?attr/colorPrimaryDark"
             android:fontFamily="sans-serif-smallcaps"
             android:onClick="toDetails"
             android:text="@string/see_details"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textColor="?android:attr/textColor"
             android:textSize="18sp" />
 
         <Space
@@ -84,11 +84,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/button_style"
-                android:backgroundTint="?android:attr/colorPrimaryDark"
+                android:backgroundTint="?attr/colorPrimaryDark"
                 android:fontFamily="sans-serif-smallcaps"
                 android:onClick="toHomePage"
                 android:text="@string/x"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textColor="?android:attr/textColor"
                 android:textSize="18sp" />
 
             <Button
@@ -97,11 +97,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/button_style"
-                android:backgroundTint="?android:attr/colorPrimaryDark"
+                android:backgroundTint="?attr/colorPrimaryDark"
                 android:fontFamily="sans-serif-smallcaps"
                 android:onClick="completeTask"
                 android:text="@string/check_mark"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textColor="?android:attr/textColor"
                 android:textSize="18sp" />
         </LinearLayout>
 

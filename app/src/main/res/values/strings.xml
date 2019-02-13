@@ -6,7 +6,7 @@
     <string name="create_task">+</string>
     <string name="date">[date]</string>
     <string name="return_home">&#60; Back</string>
-    <string name="editTask">Edit Task</string>
+    <string name="edit_task">Edit Task</string>
     <string name="beginTask">Begin &#62;</string>
     <string name="notesDetails">Notes and Details</string>
     <string name="task_details">Task Details</string>
@@ -16,12 +16,11 @@
     <string name="assignment">Assignment</string>
     <string name="project">Project</string>
     <string name="class_name">Class</string>
-    <string name="priority">Priority</string>
+    <string name="priority">Task Priority</string>
     <string name="low_priority">Low Priority</string>
     <string name="medium_priority">Medium Priority</string>
     <string name="high_priority">High Priority</string>
     <string name="date_due">Date Due</string>
-    <string name="edit_text">Edit Text</string>
     <string name="now_working">You are now working on</string>
     <string name="break_time">Time until break / VRS</string>
     <string name="see_details">See Details</string>
@@ -35,16 +34,18 @@
     <string name="notification_settings">Notification Settings</string>
     <string name="create_schedule">Create a Schedule</string>
     <string name="display_settings">Display Settings</string>
+    <string name="class_options_title">Classes Options</string>
     <string name="other_settings">Other Settings</string>
     <string name="about">About</string>
-    <string name="Alarm">Alarm:</string>
-    <string name="Alarms">Alarms:</string>
+    <string name="Alarm">Alarm</string>
+    <string name="Alarms">Alarms</string>
     <string name="theme1name">Default</string>
     <string name="theme2name">Alternative</string>
-    <string name="theme3name">Combined</string>
+    <string name="theme3name">Twilight</string>
     <string name="theme4name">Dark</string>
     <string name="theme5name">Simple</string>
-    <string name="theme6name">Candy</string>
+    <string name="theme6name">Olive</string>
+    <string name="clearAlarms">Clear Alarms</string>
 
 
     <string-array name="classes_array">

@@ -23,7 +23,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+
             <LinearLayout
+                android:id="@+id/topBarContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -34,11 +36,11 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/button_style"
-                    android:backgroundTint="?android:attr/colorPrimaryDark"
+                    android:backgroundTint="?attr/colorPrimaryDark"
                     android:fontFamily="sans-serif-smallcaps"
                     android:onClick="toHomePage"
                     android:text="@string/return_home"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                    android:textColor="?android:attr/textColor"
                     android:textSize="18sp" />
 
                 <TextView
@@ -57,8 +59,8 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </LinearLayout>
 
-
             <LinearLayout
+                android:id="@+id/taskNameContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -72,7 +74,7 @@
                     android:fontFamily="sans-serif-smallcaps"
                     android:text="@string/name"
                     android:textColor="?android:attr/textColor"
-                    android:textSize="33sp"
+                    android:textSize="29sp"
                     app:layout_constraintBaseline_toBaselineOf="@+id/NameAddText"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -93,7 +95,42 @@
                     tools:layout_editor_absoluteY="64dp" />
             </LinearLayout>
 
+            <RadioGroup
+                android:id="@+id/taskTypes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="assignmentTypeSet"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp">
+
+                <RadioButton
+                    android:id="@+id/habitRadio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="false"
+                    android:text="@string/habit" />
+
+                <RadioButton
+                    android:id="@+id/assignmentRadio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="false"
+                    android:text="@string/assignment" />
+
+                <RadioButton
+                    android:id="@+id/projectRadio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="false"
+                    android:text="@string/project" />
+            </RadioGroup>
+
             <LinearLayout
+                android:id="@+id/classContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -107,7 +144,7 @@
                     android:fontFamily="sans-serif-smallcaps"
                     android:text="@string/class_name"
                     android:textColor="?android:attr/textColor"
-                    android:textSize="33sp"
+                    android:textSize="29sp"
                     app:layout_constraintBaseline_toBaselineOf="@+id/DetailsClassSpinner"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -120,93 +157,60 @@
                     app:layout_constraintEnd_toEndOf="@+id/NameAddText"
                     app:layout_constraintStart_toEndOf="@+id/ClassTextNE"
                     tools:layout_editor_absoluteY="144dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/habitButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/button_style"
-                    android:backgroundTint="?android:attr/colorPrimaryDark"
-                    android:fontFamily="sans-serif-smallcaps"
-                    android:onClick="HabitClick"
-                    android:text="@string/habit"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="18sp"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/assignButton"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <Button
-                    android:id="@+id/assignButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/button_style"
-                    android:backgroundTint="?android:attr/colorPrimaryDark"
-                    android:fontFamily="sans-serif-smallcaps"
-                    android:onClick="AssignClick"
-                    android:text="@string/assignment"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:layout_editor_absoluteY="184dp" />
-
-                <Button
-                    android:id="@+id/projectButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/button_style"
-                    android:backgroundTint="?android:attr/colorPrimaryDark"
-                    android:fontFamily="sans-serif-smallcaps"
-                    android:onClick="ProjectClick"
-                    android:text="@string/project"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="18sp"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/assignButton"
-                    app:layout_constraintEnd_toEndOf="parent" />
 
             </LinearLayout>
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/textView12"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="@string/priority"
+                android:textColor="?android:attr/textColor"
+                android:textSize="29sp"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="256dp" />
+
+            <RadioGroup
+                android:id="@+id/priority"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_weight="0"
+                android:onClick="prioritySet"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/textView12"
+                <RadioButton
+                    android:id="@+id/lowRadio"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="16dp"
-                    android:layout_weight="0"
-                    android:fontFamily="sans-serif-smallcaps"
-                    android:text="@string/priority"
-                    android:textColor="?android:attr/textColor"
-                    android:textSize="33sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:layout_editor_absoluteY="256dp" />
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="false"
+                    android:onClick="prioritySet"
+                    android:text="@string/low_priority" />
 
-                <SeekBar
-                    android:id="@+id/TaskCreateSeekbar"
-                    style="@android:style/Widget.Material.SeekBar.Discrete"
-                    android:layout_width="207dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0"
-                    android:scrollbars="horizontal" />
+                <RadioButton
+                    android:id="@+id/medRadio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="false"
+                    android:onClick="prioritySet"
+                    android:text="@string/medium_priority" />
 
-
-            </LinearLayout>
+                <RadioButton
+                    android:id="@+id/highRadio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="false"
+                    android:onClick="prioritySet"
+                    android:text="@string/high_priority" />
+            </RadioGroup>
 
             <LinearLayout
+                android:id="@+id/dueDateContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -220,7 +224,7 @@
                     android:fontFamily="sans-serif-smallcaps"
                     android:text="@string/date_due"
                     android:textColor="?android:attr/textColor"
-                    android:textSize="33sp"
+                    android:textSize="29sp"
                     app:layout_constraintBaseline_toBaselineOf="@+id/NameAddText"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -241,6 +245,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/notesContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -254,7 +259,7 @@
                     android:fontFamily="sans-serif-smallcaps"
                     android:text="@string/notes_details"
                     android:textColor="?android:attr/textColor"
-                    android:textSize="33sp"
+                    android:textSize="29sp"
                     app:layout_constraintBaseline_toBaselineOf="@+id/NameAddText"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -272,9 +277,10 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/alarmContainer"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
 
+                android:layout_height="48dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -286,7 +292,7 @@
                     android:fontFamily="sans-serif-smallcaps"
                     android:text="@string/Alarms"
                     android:textColor="?android:attr/textColor"
-                    android:textSize="33sp" />
+                    android:textSize="29sp" />
 
                 <Button
                     android:id="@+id/button"
@@ -294,11 +300,11 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/button_style"
-                    android:backgroundTint="?android:attr/colorPrimaryDark"
+                    android:backgroundTint="?attr/colorPrimaryDark"
                     android:fontFamily="sans-serif-smallcaps"
                     android:onClick="alarmSet1"
                     android:text="Create Alarm"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                    android:textColor="?android:attr/textColor"
                     android:textSize="18sp" />
             </LinearLayout>
 
@@ -307,8 +313,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
-
         </LinearLayout>
+
     </ScrollView>
 
     <Button
@@ -317,10 +323,10 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
         android:background="@drawable/button_style"
-        android:backgroundTint="?android:attr/colorPrimaryDark"
+        android:backgroundTint="?attr/colorPrimaryDark"
         android:fontFamily="sans-serif-smallcaps"
         android:text="@string/task_create"
-        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textColor="?android:attr/textColor"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent" />
 

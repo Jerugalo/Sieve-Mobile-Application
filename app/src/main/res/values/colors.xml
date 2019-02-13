@@ -5,22 +5,22 @@
     <color name="textWhite">#ffffff</color>
 
     <!-- Primary Theme Colors -->
-    <color name="defaultBackground">#a3d1ce</color>
-    <color name="defaultBar">#2c4641</color>
+    <color name="defaultBackground">#ffffff</color>
+    <color name="defaultBar">#76d7d6</color>
     <color name="defaultHigh">#eb545c</color>
-    <color name="defaultMed">#e09965</color>
+    <color name="defaultMed">#FFF9AA61</color>
     <color name="defaultLow">#68b160</color>
-    <color name="defaultButton">#cbe1b4</color>
-    <color name="defaultAccent">#553f40</color>
+    <color name="defaultButton">#d7d7d7</color>
+    <color name="defaultAccent">#41b3a3</color>
 
     <!-- Alternative theme colors -->
-    <color name="alternativeBackground">#6c81b5</color>
-    <color name="alternativeHigh">#c96571</color>
-    <color name="alternativeMed">#89619e</color>
-    <color name="alternativeLow">#52a589</color>
-    <color name="alternativeButton">#ffffff</color>
-    <color name="alternativeAccent">#76d7d6</color>
-    <color name="alternativeBar">#a7a6ba</color>
+    <color name="alternativeBackground">#ffffff</color>
+    <color name="alternativeHigh">#db3035</color>
+    <color name="alternativeMed">#fbff51</color>
+    <color name="alternativeLow">#6ec04e</color>
+    <color name="alternativeButton">#d7d7d7</color>
+    <color name="alternativeAccent">#9569c4</color>
+    <color name="alternativeBar">#3e1e53</color>
 
     <!-- Combined Theme Colors -->
     <color name="combinedBackground">#6c81b5</color>
@@ -32,9 +32,9 @@
     <!-- Simple Theme Colors -->
     <color name="simpleBackground">#ffffff</color>
     <color name="simpleBar">#ffdb59</color>
-    <color name="simpleHigh">#FFFB4352</color>
-    <color name="simpleMed">#FFFFBA4E</color>
-    <color name="simpleLow">#FF7CF742</color>
+    <color name="simpleHigh">#FFFF5663</color>
+    <color name="simpleMed">#FFFFBF5A</color>
+    <color name="simpleLow">#FF52C270</color>
     <color name="simpleAccent">#ffdb59</color>
     <color name="simpleButton">#c4c4c4</color>
 
@@ -48,24 +48,31 @@
     <color name="candyBar">#41b3a3</color>
 
     <!-- Dark theme colors -->
-    <color name="darkBackground">#363636</color>
-    <color name="darkHigh">#e8175d</color>
-    <color name="darkMed">#cc527a</color>
-    <color name="darkLow">#a8a7a7</color>
-    <color name="darkAccent">#41b3a3</color>
-    <color name="darkButton">#b7b7b7</color>
-    <color name="darkBar">#ffb6c1</color>
+    <color name="darkBackground">#202020</color>
+    <color name="darkHigh">#7c0a02</color>
+    <color name="darkMed">#D3560E</color>
+    <color name="darkLow">#133D82</color>
+    <color name="darkAccent">#133D82</color>
+    <color name="darkButton">#363636</color>
+    <color name="darkBar">#063150</color>
 
     <!-- Twilight theme colors -->
     <color name="twilightBackground">#181818</color>
-    <color name="twilightAccent">#ff7400</color>
+    <color name="twilightAccent">#b22230</color>
     <color name="twilightBar">#ff7400</color>
-    <color name="twilightButton">#4d4d4d</color>
-    <color name="twilightHigh">#FA4726</color>
-    <color name="twilightMed">#fc913a</color>
-    <color name="twilightLow">#fef24e</color>
+    <color name="twilightButton">#FF4D4D4D</color>
+    <color name="twilightHigh">#c8331b</color>
+    <color name="twilightMed">#e56d31</color>
+    <color name="twilightLow">#f4cf47</color>
+
+    <!-- Olive theme colors -->
+    <color name="oliveBackground">#ffffff</color>
+    <color name="oliveBar">#91b587</color>
+    <color name="oliveAccent">#bad76e</color>
+    <color name="oliveButton">#d7d7d7</color>
+    <color name="oliveHigh">#ff772c30</color>
+    <color name="oliveMed">#d98250</color>
+    <color name="oliveLow">#859e7d</color>
 
 
 </resources>
-
-

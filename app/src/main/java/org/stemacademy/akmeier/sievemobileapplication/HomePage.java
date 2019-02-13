@@ -1,15 +1,15 @@
 package org.stemacademy.akmeier.sievemobileapplication;
 
-import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -17,9 +17,9 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
-
-import com.example.a53914.sievemobileapplication.R;
+import android.widget.TextView;
 
 import org.stemacademy.akmeier.sievemobileapplication.db.TaskDatabase;
 import org.stemacademy.akmeier.sievemobileapplication.db.Task;
@@ -60,8 +60,10 @@ public class HomePage extends AppCompatActivity {
     }
     GlobalVars global = GlobalVars.getInstance();
     Task mTask =global.getCurrentTask();
-    List <PendingIntent> pendingIntents;
-    AlarmManager alarmManager;
+    List <Integer> alarmNames;
+    JobScheduler jobScheduler;
+    TextView dateText;
+
 
 
     /**
@@ -71,11 +73,11 @@ public class HomePage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        pendingIntents=new ArrayList<>();
+        alarmNames=new ArrayList<>();
         createNotificationChannel();
-
+        jobScheduler=(JobScheduler) this.getSystemService(this.JOB_SCHEDULER_SERVICE);
         BroadcastReceiver notificationJava = new Notificationjava();
-        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
         this.registerReceiver(notificationJava,filter);
 
@@ -85,6 +87,8 @@ public class HomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         determineTheme();
         setContentView(R.layout.activity_home_page);
+        dateText= (TextView) findViewById(R.id.dateViewHP);
+        setDate(dateText);
 
         RecyclerView rvTasks = findViewById(R.id.TaskList);
         TaskListAdapter adapter = new TaskListAdapter(global.getTaskData());
@@ -99,9 +103,14 @@ public class HomePage extends AppCompatActivity {
             if (delete != null && delete){
                 taskDatabase.taskDao().delete(mTask);
             }
+            Boolean clearAlarms = (Boolean) bd.get("CLEAR_ALARMS");
+            if (clearAlarms !=null && clearAlarms){
+                clearAlarms();
+            }
 
         }
         createListofNotifications();
+
     }
 
     /** Instates the RecyclerView */
@@ -116,6 +125,7 @@ public class HomePage extends AppCompatActivity {
         rvTasks.setAdapter(adapter);
         rvTasks.setLayoutManager(new LinearLayoutManager(this));
         createListofNotifications();
+        setDate(dateText);
     }
 
     /** Opens Settings activity */
@@ -141,15 +151,27 @@ public class HomePage extends AppCompatActivity {
      * @param notificationID
      */
     public void setAlarm(Context context, int day,int month, int year, int hour, int minute,int notificationID){
-        Intent notificationIntent = new Intent(context,Notificationjava.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, notificationID,notificationIntent,PendingIntent.FLAG_CANCEL_CURRENT);
-
         Calendar alarmCalendar = Calendar.getInstance();
         alarmCalendar.setTimeInMillis(System.currentTimeMillis());
         alarmCalendar.set(year,month,day,hour,minute);
+        Calendar otherCalendar = Calendar.getInstance();
+        otherCalendar.setTimeInMillis(System.currentTimeMillis());
 
-        alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.set(AlarmManager.RTC_WAKEUP,alarmCalendar.getTimeInMillis(),pendingIntent);
+
+        ComponentName componentName = new ComponentName(context,AlarmsIntentService.class);
+        long diff = alarmCalendar.getTimeInMillis() - otherCalendar.getTimeInMillis();
+        int alarmNumber=day+month+year+hour+minute;
+
+        if (diff >= 0) {
+            JobInfo jobInfo = new JobInfo.Builder(alarmNumber, componentName)
+                    .setMinimumLatency(diff)
+                    .setOverrideDeadline(180000)
+                    .build();
+            jobScheduler.schedule(jobInfo);
+            alarmNames.add(alarmNumber);
+            Log.d("setAlarm", "Success!");
+        }
+
     }
 
     /**
@@ -214,7 +236,11 @@ public class HomePage extends AppCompatActivity {
                     dates.clear();
                 }
             }
+            else{
+
+            }
             tasks.get(i).setNotified(1);
+            taskDatabase.taskDao().update(tasks.get(i));
         }
     }
 
@@ -222,10 +248,72 @@ public class HomePage extends AppCompatActivity {
         int themeId = new SharedPreferencesManager(this).retrieveInt("themeId",1);
         if(themeId == 1){setTheme(R.style.SieveDefault);}
         else if(themeId == 2){setTheme(R.style.SieveAlternative);}
-        else if(themeId == 3){setTheme(R.style.SieveCombined);}
+        else if(themeId == 3){setTheme(R.style.SieveTwilight);}
         else if(themeId == 4){setTheme(R.style.SieveDark);}
         else if(themeId == 5){setTheme(R.style.SieveSimple);}
-        else if(themeId == 6){setTheme(R.style.SieveCandy);}
+        else if(themeId == 6){setTheme(R.style.SieveOlive);}
         else{setTheme(R.style.SieveDefault);}
+    }
+
+    public void clearAlarms(){
+        Log.d("clearAlarms","At HomePage");
+        jobScheduler.cancelAll();
+        jobScheduler.getAllPendingJobs();
+        Intent intent = new Intent(this,Settings.class);
+        startActivity(intent);
+    }
+    public void setDate(TextView textView){
+        Calendar calendar=Calendar.getInstance();
+        int dayInt=(calendar.get(Calendar.DAY_OF_WEEK));
+        String dayNameS;
+        if(dayInt==1){
+            dayNameS="Sunday";
+        }else if(dayInt==2){
+            dayNameS="Monday";
+        }else if(dayInt==3){
+            dayNameS="Tuesday";
+        }else if(dayInt==4){
+            dayNameS="Wednesday";
+        }else if(dayInt==5){
+            dayNameS="Thursday";
+        }else if(dayInt==6){
+            dayNameS="Friday";
+        } else if(dayInt==7){
+            dayNameS="Saturday";
+        }else{
+            dayNameS="";
+        }
+        int monthInt=(calendar.get(Calendar.MONTH))+1;
+        String monthName;
+        if(monthInt==1){
+            monthName="January";
+        }else if (monthInt==2){
+            monthName="February";
+        }else if(monthInt==3){
+            monthName="March";
+        }else if(monthInt==4){
+            monthName="April";
+        }else if(monthInt==5){
+            monthName="May";
+        }else if(monthInt==6){
+            monthName="June";
+        }else if(monthInt==7){
+            monthName="July";
+        }else if(monthInt==8){
+            monthName="August";
+        }else if(monthInt==9){
+            monthName="September";
+        }else if(monthInt==10){
+            monthName="October";
+        }else if(monthInt==11){
+            monthName="November";
+        }else if(monthInt==12){
+            monthName="December";
+        }else{
+            monthName="";
+        }
+        int dayNum=calendar.get(Calendar.DAY_OF_MONTH);
+        String dateFull=dayNameS+ ", " + monthName + " " + dayNum;
+        textView.setText(dateFull);
     }
 }

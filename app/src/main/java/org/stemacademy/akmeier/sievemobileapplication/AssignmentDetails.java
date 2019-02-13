@@ -3,14 +3,17 @@ package org.stemacademy.akmeier.sievemobileapplication;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -18,15 +21,20 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 //import org.stemacademy.akmeier.sievemobileapplication.R;
-import com.example.a53914.sievemobileapplication.R;
+import org.stemacademy.akmeier.sievemobileapplication.db.Classroom;
+import org.stemacademy.akmeier.sievemobileapplication.db.ClassroomDatabase;
 import org.stemacademy.akmeier.sievemobileapplication.db.Task;
 import org.stemacademy.akmeier.sievemobileapplication.db.TaskDatabase;
+import org.stemacademy.akmeier.sievemobileapplication.fragments.ClassroomCreationDialog;
 import org.stemacademy.akmeier.sievemobileapplication.fragments.DatePickerFragmentD;
 
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 /**
- *  Java Class for Assignment Details activity
+ *  Java Classroom for Assignment Details activity
  */
 public class AssignmentDetails extends AppCompatActivity {
     public class SharedPreferencesManager{
@@ -59,7 +67,8 @@ public class AssignmentDetails extends AppCompatActivity {
     RadioButton assignD;
     RadioButton projectD;
     EditText titleText;
-    Spinner classSpinner;
+    Spinner classroomSpinner;
+    ArrayAdapter classroomAdapter;
     TextView dateText;
     RadioButton lowPCb;
     RadioButton medPCb;
@@ -71,8 +80,11 @@ public class AssignmentDetails extends AppCompatActivity {
     int taskID;
 
     int priorityID;
-    String classes;
+    String currentClassroom;
     int typeID;
+
+    private final ArrayList<String> classroomList = new ArrayList<>();
+    private ClassroomDatabase classroomDatabase;
 
     /**
      * Runs when activity started
@@ -84,6 +96,7 @@ public class AssignmentDetails extends AppCompatActivity {
         determineTheme();
         setContentView(R.layout.activity_assignment_details);
         task=mTask;
+        taskDatabase=TaskDatabase.getInstance(this);
 
         isEditing = false;
 
@@ -96,7 +109,7 @@ public class AssignmentDetails extends AppCompatActivity {
         assignD = findViewById(R.id.AssignmentButton);
         projectD = findViewById(R.id.ProjectButton);
         titleText =findViewById(R.id.TaskTitle);
-        classSpinner=findViewById(R.id.DetailsClassSpinner);
+        classroomSpinner =findViewById(R.id.DetailsClassSpinner);
         dateText = findViewById(R.id.DateEditTextD);
         lowPCb = findViewById(R.id.LPriorityButton);
         medPCb = findViewById(R.id.MPriorityButton);
@@ -109,7 +122,7 @@ public class AssignmentDetails extends AppCompatActivity {
         titleText.setClickable(false);
         titleText.setInputType(0);
         //titleText.setFocusable(false);
-        classSpinner.setClickable(false);
+        classroomSpinner.setClickable(false);
         dateText.setClickable(false);
         //dateText.setFocusable(false);
         lowPCb.setClickable(false);
@@ -166,7 +179,34 @@ public class AssignmentDetails extends AppCompatActivity {
             projectD.setChecked(false);
         }
 
+        /* Fills the spinner and allows user to select a class from the class database */
+        createClassroomList();
+        classroomSpinner = findViewById(R.id.DetailsClassSpinner);
+        classroomAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classroomList);
+        classroomAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        classroomSpinner.setAdapter(classroomAdapter);
+        classroomSpinner.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                if ((parent.getItemAtPosition(pos)).toString().equals("Create New Classroom")){
+                    ClassroomCreationDialog dialog = new ClassroomCreationDialog();
+                    dialog.PARENT = "AssignmentDetails";
+                    dialog.show(getSupportFragmentManager(), "ClassroomCreationDialog");
+                } else if (isEditing){
 
+                    currentClassroom = (parent.getItemAtPosition(pos)).toString();
+
+                    if(currentClassroom==null){
+                        currentClassroom="";
+                    }
+
+                } else {
+                    int spinnerPos = classroomAdapter.getPosition(task.getClassroom());
+                    classroomSpinner.setSelection(spinnerPos);
+                }
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
     }
     protected void onStart(){
         super.onStart();
@@ -195,7 +235,7 @@ public class AssignmentDetails extends AppCompatActivity {
         assignD = findViewById(R.id.AssignmentButton);
         projectD = findViewById(R.id.ProjectButton);
         titleText =findViewById(R.id.TaskTitle);
-        classSpinner=findViewById(R.id.DetailsClassSpinner);
+        classroomSpinner =findViewById(R.id.DetailsClassSpinner);
         dateText = findViewById(R.id.DateEditTextD);
         lowPCb = findViewById(R.id.LPriorityButton);
         medPCb = findViewById(R.id.MPriorityButton);
@@ -207,13 +247,14 @@ public class AssignmentDetails extends AppCompatActivity {
 
             editButton.setText("Save");
 
+            classroomSpinner.setClickable(true);
             habitD.setClickable(true);
             assignD.setClickable(true);
             projectD.setClickable(true);
             titleText.setClickable(true);
             titleText.setInputType(97);
             //titleText.setFocusable(true);
-            classSpinner.setClickable(true);
+            classroomSpinner.setClickable(true);
             dateText.setClickable(true);
             lowPCb.setClickable(true);
             medPCb.setClickable(true);
@@ -227,13 +268,14 @@ public class AssignmentDetails extends AppCompatActivity {
 
 
             editButton.setText("Edit Text");
+            classroomSpinner.setClickable(false);
             habitD.setClickable(false);
             assignD.setClickable(false);
             projectD.setClickable(false);
             titleText.setClickable(false);
             //titleText.setFocusable(false);
             titleText.setInputType(0);
-            classSpinner.setClickable(false);
+            classroomSpinner.setClickable(false);
             dateText.setClickable(false);
             //dateText.setFocusable(false);
             lowPCb.setClickable(false);
@@ -244,31 +286,73 @@ public class AssignmentDetails extends AppCompatActivity {
             //notesD.setFocusable(false);
 
             task.setId(taskID);
-
             task.setPriority(priorityID);
-
             task.setNameID(titleText.getText().toString());
 
-            classSpinner.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
-                public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                    classes = (parent.getItemAtPosition(pos)).toString();
+
+
+            if(currentClassroom==null){
+                currentClassroom=task.getClassroom();
+                if(currentClassroom==null){
+                    currentClassroom="";
                 }
-
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                }
-            });
-            task.setClassroom(classes);
-
+            }
+            task.setClassroom(currentClassroom);
             task.setDueDate(dateText.getText().toString());
-
             task.setNotes(notesD.getText().toString());
-
             task.setTypeID(typeID);
-            taskDatabase.taskDao().update(task);
             global.setCurrentTask(task);
-
+            taskDatabase.taskDao().update(task);
+            refreshSpinner();
             isEditing=false;
+        }
+    }
+
+    /** Creates a new class list and updates the spinner*/
+    private void refreshSpinner(){
+        createClassroomList();
+        classroomAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classroomList);
+        classroomAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        classroomAdapter.notifyDataSetChanged();
+    }
+
+    /** Creates the array of currentClassroom that the spinner displays */
+    private void createClassroomList() {
+        classroomList.clear();
+        classroomDatabase = ClassroomDatabase.getInstance(this);
+        List<Classroom> clses = classroomDatabase.classroomDao().getAll();
+        classroomList.add(task.getClassroom());
+        for (Classroom cls : clses) {
+            if (!cls.getName().equals(task.getClassroom())){
+                classroomList.add(cls.getName());
+            }
+        }
+        classroomList.add("Create New Classroom");
+    }
+
+    /** Calls the AsyncTask InsertClass, that cannot be called from other currentClassroom */
+    public void callInsertClassroom(Classroom mClassroom){
+        new AssignmentDetails.InsertClass(AssignmentDetails.this, mClassroom).execute();
+    }
+
+    /** Puts the class into the class database */
+    private static class InsertClass extends AsyncTask<Void, Void,Boolean> {
+        private final WeakReference<AssignmentDetails> activityReference;
+        private final Classroom cls;
+        InsertClass(AssignmentDetails context, Classroom mClassroom){
+            activityReference = new WeakReference<>(context);
+            cls = mClassroom;
+        }
+        @Override
+        protected Boolean doInBackground(Void...objs){
+            activityReference.get().classroomDatabase.classroomDao().insertAll(cls);
+            return true;
+        }
+        @Override
+        protected void onPostExecute(Boolean bool){
+            if(bool){
+                activityReference.get().refreshSpinner();
+            }
         }
     }
 
@@ -326,10 +410,13 @@ public class AssignmentDetails extends AppCompatActivity {
         int themeId = new SharedPreferencesManager(this).retrieveInt("themeId",1);
         if(themeId == 1){setTheme(R.style.SieveDefault);}
         else if(themeId == 2){setTheme(R.style.SieveAlternative);}
-        else if(themeId == 3){setTheme(R.style.SieveCombined);}
+        else if(themeId == 3){setTheme(R.style.SieveTwilight);}
         else if(themeId == 4){setTheme(R.style.SieveDark);}
         else if(themeId == 5){setTheme(R.style.SieveSimple);}
-        else if(themeId == 6){setTheme(R.style.SieveCandy);}
+        else if(themeId == 6){setTheme(R.style.SieveOlive);}
         else{setTheme(R.style.SieveDefault);}
     }
+
+
+
 }

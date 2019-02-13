@@ -24,12 +24,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
+
+        <View
             android:id="@+id/Priority"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/task_border"
-            android:color="?attr/priorityHigh"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/ToDetails"
             app:layout_constraintStart_toEndOf="@+id/Title"
@@ -40,9 +40,13 @@
             android:id="@+id/ToDetails"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:background="@drawable/button_style"
+            android:backgroundTint="?attr/colorPrimaryDark"
             android:fontFamily="sans-serif-smallcaps"
             android:text="@string/ToDetails"
             android:textAlignment="center"
+            android:textColor="?android:attr/textColor"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/Priority"
             app:layout_constraintTop_toTopOf="@+id/Priority" />
