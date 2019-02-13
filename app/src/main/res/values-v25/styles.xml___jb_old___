@@ -1,8 +1,8 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Default Theme -->
     <style name="SieveDefault" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:colorPrimary">@color/primary_material_light</item>
+        <item name="android:colorPrimary" tools:ignore="PrivateResource">@color/primary_material_light</item>
         <item name="android:colorPrimaryDark">@color/defaultButton</item>
         <item name="android:statusBarColor">@color/defaultBar</item>
         <item name="android:colorBackground">@color/defaultBackground</item>
@@ -11,7 +11,25 @@
         <item name="priorityLow">@color/defaultLow</item>
         <item name="android:textColor">@color/textBlack</item>
         <item name="colorAccent">@color/defaultAccent</item>
+        <item name="colorPrimaryDark">@color/defaultButton</item>
+        <item name="android:datePickerDialogTheme">@style/SieveDefaultDatePicker</item>
     </style>
+    <style name="SieveDefaultDatePicker" parent="android:Theme.Material.Light.Dialog">
+        <item name="android:colorAccent">@color/defaultAccent</item>
+        <item name="android:calendarTextColor">@color/textBlack</item>
+        <!--<item name="android:datePickerStyle">@style/MyDatePickerStyle</item>-->
+    </style>
+    <!--<style name="MyDatePickerStyle" parent="@android:style/Widget.Material.Light.DatePicker">
+        <item name ="android:headerBackground">@color/defaultBar</item>
+        <item name ="android:dayOfWeekBackground">@color/defaultBackground</item>
+        <item name ="android:dayOfWeekTextAppearance">@color/textBlack</item>
+        <item name ="android:headerMonthTextAppearance">@color/textBlack</item>
+        <item name ="android:headerDayOfMonthTextAppearance">@color/textBlack</item>
+        <item name="android:headerYearTextAppearance">@color/textBlack</item>
+        <item name="android:yearListItemTextAppearance">@color/defaultBackground</item>
+        <item name="android:yearListSelectorColor">@color/defaultAccent</item>
+        <item name="android:calendarTextColor">@color/textBlack</item>
+    </style>-->
 
     <!-- Alternative Theme -->
     <style name="SieveAlternative" parent="SieveDefault">
@@ -23,6 +41,8 @@
         <item name="android:colorPrimaryDark">@color/alternativeButton</item>
         <item name="android:statusBarColor">@color/alternativeBar</item>
         <item name="android:colorAccent">@color/alternativeAccent</item>
+        <item name="colorAccent">@color/alternativeAccent</item>
+        <item name="colorPrimaryDark">@color/alternativeButton</item>
     </style>
 
     <!-- Combined Theme -->
@@ -33,6 +53,10 @@
         <item name="priorityLow">@color/combinedLow</item>
         <item name="android:textColor">@color/textBlack</item>
         <item name="android:colorPrimaryDark">@color/combinedButton</item>
+        <item name="android:colorAccent">@color/combinedAccent</item>
+        <item name="android:statusBarColor">@color/combinedBar</item>
+        <item name="colorAccent">@color/combinedAccent</item>
+        <item name="colorPrimaryDark">@color/combinedButton</item>
     </style>
 
     <!-- Dark Theme -->
@@ -45,6 +69,7 @@
         <item name="colorAccent">@color/darkAccent</item>
         <item name="android:colorPrimaryDark">@color/darkButton</item>
         <item name="android:statusBarColor">@color/darkBar</item>
+        <item name="android:textColorPrimary">@color/textWhite</item>
     </style>
 
     <!-- Simple Theme -->
