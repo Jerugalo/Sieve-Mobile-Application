@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -93,33 +94,6 @@ public class TaskCreate extends AppCompatActivity {
         TextView dateText = findViewById(R.id.DateViewer);
         String dateText1 = month +"/"+day+"/"+year;
         dateText.setText(dateText1);
-
-        /* Manages the priority slide bar */
-        SeekBar slidey = findViewById(R.id.TaskCreateSeekbar);
-        slidey.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if(progress>=0&&progress<34){
-                    priorityID=0;
-                }
-                else if (progress>=34&&progress<67){
-                    priorityID=1;
-                }
-                else{
-                    priorityID=2;
-                }
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
 
         /* Fills the spinner and allows user to select a class from the class database */
         createClassroomList();
@@ -245,10 +219,6 @@ public class TaskCreate extends AppCompatActivity {
         }
     }
 
-    public void HabitClick(View view){ typeID=0; }
-    public void AssignClick(View view){ typeID=1; }
-    public void ProjectClick(View view){ typeID=2; }
-
     public void toHomePage(View view){
         Intent toHomePage = new Intent(this, HomePage.class);
         startActivity(toHomePage);
@@ -290,5 +260,23 @@ public class TaskCreate extends AppCompatActivity {
         else if(themeId == 5){setTheme(R.style.SieveSimple);}
         else if(themeId == 6){setTheme(R.style.SieveOlive);}
         else{setTheme(R.style.SieveDefault);}
+    }
+
+    public void assignmentTypeSet(View view){
+        RadioButton habit = findViewById(R.id.habitRadio);
+        RadioButton assignment = findViewById(R.id.assignmentRadio);
+        RadioButton project = findViewById(R.id.projectRadio);
+        if(habit.isChecked()){typeID = 0;}
+        else if(assignment.isChecked()){typeID = 1;}
+        else if(project.isChecked()){typeID = 2;}
+    }
+
+    public void prioritySet(View view){
+        RadioButton low = findViewById(R.id.lowRadio);
+        RadioButton med = findViewById(R.id.medRadio);
+        RadioButton high = findViewById(R.id.highRadio);
+        if(low.isChecked()){priorityID = 0;}
+        else if(med.isChecked()){priorityID = 1;}
+        else if(high.isChecked()){priorityID = 2;}
     }
 }
