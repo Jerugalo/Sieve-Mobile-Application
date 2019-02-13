@@ -52,6 +52,7 @@
         <item name="colorAccent">@color/darkAccent</item>
         <item name="android:colorPrimaryDark">@color/darkButton</item>
         <item name="android:statusBarColor">@color/darkBar</item>
+        <item name="colorPrimaryDark">@color/darkButton</item>
     </style>
 
     <!-- Simple Theme -->

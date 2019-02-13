@@ -55,7 +55,7 @@
     <color name="darkMed">#D3560E</color>
     <color name="darkLow">#133D82</color>
     <color name="darkAccent">#133D82</color>
-    <color name="darkButton">#363636</color>
+    <color name="darkButton">#FF4D4D4D</color>
     <color name="darkBar">#063150</color>
 
     <!-- Twilight theme colors -->
