@@ -8,7 +8,7 @@
     <color name="defaultBackground">#ffffff</color>
     <color name="defaultBar">#76d7d6</color>
     <color name="defaultHigh">#eb545c</color>
-    <color name="defaultMed">#FFF9AA61</color>
+    <color name="defaultMed">#fff9aa61</color>
     <color name="defaultLow">#68b160</color>
     <color name="defaultButton">#d7d7d7</color>
     <color name="defaultAccent">#41b3a3</color>
@@ -34,9 +34,9 @@
     <!-- Simple Theme Colors -->
     <color name="simpleBackground">#ffffff</color>
     <color name="simpleBar">#ffdb59</color>
-    <color name="simpleHigh">#FFFF5663</color>
-    <color name="simpleMed">#FFFFBF5A</color>
-    <color name="simpleLow">#FF52C270</color>
+    <color name="simpleHigh">#ffff5663</color>
+    <color name="simpleMed">#ffffbf5a</color>
+    <color name="simpleLow">#ff52c270</color>
     <color name="simpleAccent">#ffdb59</color>
     <color name="simpleButton">#c4c4c4</color>
 
@@ -55,14 +55,14 @@
     <color name="darkMed">#D3560E</color>
     <color name="darkLow">#133D82</color>
     <color name="darkAccent">#133D82</color>
-    <color name="darkButton">#FF4D4D4D</color>
+    <color name="darkButton">#ff4d4d4d</color>
     <color name="darkBar">#063150</color>
 
     <!-- Twilight theme colors -->
     <color name="twilightBackground">#181818</color>
     <color name="twilightAccent">#b22230</color>
     <color name="twilightBar">#ff7400</color>
-    <color name="twilightButton">#FF4D4D4D</color>
+    <color name="twilightButton">#ff4d4d4d</color>
     <color name="twilightHigh">#c8331b</color>
     <color name="twilightMed">#e56d31</color>
     <color name="twilightLow">#f4cf47</color>
@@ -72,7 +72,7 @@
     <color name="oliveBar">#91b587</color>
     <color name="oliveAccent">#bad76e</color>
     <color name="oliveButton">#d7d7d7</color>
-    <color name="oliveHigh">#ff772c30</color>
+    <color name="oliveHigh">#ff8e2a2f</color>
     <color name="oliveMed">#d98250</color>
     <color name="oliveLow">#859e7d</color>
 
