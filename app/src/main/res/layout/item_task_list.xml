@@ -34,7 +34,7 @@
             app:layout_constraintEnd_toStartOf="@+id/ToDetails"
             app:layout_constraintStart_toEndOf="@+id/Title"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="?attr/priorityHigh" />
+            android:background="?attr/priorityLow"/>
 
         <Button
             android:id="@+id/ToDetails"
@@ -51,5 +51,4 @@
             app:layout_constraintStart_toEndOf="@+id/Priority"
             app:layout_constraintTop_toTopOf="@+id/Priority" />
     </android.support.constraint.ConstraintLayout>
-
 </android.support.constraint.ConstraintLayout>

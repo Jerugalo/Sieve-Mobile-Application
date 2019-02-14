@@ -9,8 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.a53914.sievemobileapplication.R;
-
 import org.stemacademy.akmeier.sievemobileapplication.db.Task;
 
 public class AssignmentStart extends AppCompatActivity {

@@ -11,8 +11,6 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 
-import com.example.a53914.sievemobileapplication.R;
-
 public class AlarmsIntentService extends JobService {
     private static final int NOTIFICATION_ID=555;
 
