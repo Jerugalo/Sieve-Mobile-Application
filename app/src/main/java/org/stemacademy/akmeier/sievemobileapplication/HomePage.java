@@ -27,6 +27,8 @@ import org.stemacademy.akmeier.sievemobileapplication.db.Task;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import static java.lang.StrictMath.toIntExact;
@@ -121,6 +123,12 @@ public class HomePage extends AppCompatActivity {
         TaskDatabase taskDatabase = TaskDatabase.getInstance(HomePage.this);
         RecyclerView rvTasks = findViewById(R.id.TaskList);
         List<Task> tasks = taskDatabase.taskDao().getAll();
+        Collections.sort(tasks, new Comparator<Task>() {
+            @Override
+            public int compare(Task o1, Task o2) {
+                return o1.getPriority()>o2.getPriority() ? -1:(o1.getPriority()<o2.getPriority()) ? 1: 0;
+            }
+        });
         TaskListAdapter adapter = new TaskListAdapter(tasks, this);
         rvTasks.setAdapter(adapter);
         rvTasks.setLayoutManager(new LinearLayoutManager(this));
