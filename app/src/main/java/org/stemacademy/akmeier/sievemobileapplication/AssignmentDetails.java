@@ -97,6 +97,8 @@ public class AssignmentDetails extends AppCompatActivity {
         setContentView(R.layout.activity_assignment_details);
         task=mTask;
         taskDatabase=TaskDatabase.getInstance(this);
+        priorityID=task.getPriority();
+        typeID=task.getTypeID();
 
         isEditing = false;
 
