@@ -110,7 +110,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:checked="false"
-                    android:text="@string/habit" />
+                    android:fontFamily="sans-serif-smallcaps"
+                    android:text="@string/habit"
+                    android:textColor="?android:attr/textColor" />
 
                 <RadioButton
                     android:id="@+id/assignmentRadio"
@@ -118,7 +120,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:checked="false"
-                    android:text="@string/assignment" />
+                    android:fontFamily="sans-serif-smallcaps"
+                    android:text="@string/assignment"
+                    android:textColor="?android:attr/textColor" />
 
                 <RadioButton
                     android:id="@+id/projectRadio"
@@ -126,7 +130,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:checked="false"
-                    android:text="@string/project" />
+                    android:fontFamily="sans-serif-smallcaps"
+                    android:text="@string/project"
+                    android:textColor="?android:attr/textColor" />
             </RadioGroup>
 
             <LinearLayout
@@ -187,8 +193,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:checked="false"
+                    android:fontFamily="sans-serif-smallcaps"
                     android:onClick="prioritySet"
-                    android:text="@string/low_priority" />
+                    android:text="@string/low_priority"
+                    android:textColor="?android:attr/textColor" />
 
                 <RadioButton
                     android:id="@+id/medRadio"
@@ -196,8 +204,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:checked="false"
+                    android:fontFamily="sans-serif-smallcaps"
                     android:onClick="prioritySet"
-                    android:text="@string/medium_priority" />
+                    android:text="@string/medium_priority"
+                    android:textColor="?android:attr/textColor" />
 
                 <RadioButton
                     android:id="@+id/highRadio"
@@ -205,8 +215,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:checked="false"
+                    android:fontFamily="sans-serif-smallcaps"
                     android:onClick="prioritySet"
-                    android:text="@string/high_priority" />
+                    android:text="@string/high_priority"
+                    android:textColor="?android:attr/textColor" />
             </RadioGroup>
 
             <LinearLayout
