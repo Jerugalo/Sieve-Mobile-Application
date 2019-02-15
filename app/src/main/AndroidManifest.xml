@@ -35,6 +35,10 @@
             android:enabled="true"
             >
         </service>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="ff41e32865bb2ef60652c7e1fd1f71dcc971a315" />
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

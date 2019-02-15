@@ -21,6 +21,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
 import org.stemacademy.akmeier.sievemobileapplication.db.TaskDatabase;
 import org.stemacademy.akmeier.sievemobileapplication.db.Task;
 
@@ -85,6 +87,7 @@ public class HomePage extends AppCompatActivity {
         global.setTaskData(taskDatabase.taskDao().getAll());
 
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         determineTheme();
         setContentView(R.layout.activity_home_page);
         dateText= (TextView) findViewById(R.id.dateViewHP);
