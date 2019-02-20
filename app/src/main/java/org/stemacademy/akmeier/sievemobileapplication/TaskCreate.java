@@ -139,9 +139,8 @@ public class TaskCreate extends AppCompatActivity {
     /** Creates a new class list and updates the spinner*/
     private void refreshSpinner(){
         createClassroomList();
-        classroomAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classroomList);
-        classroomAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         classroomAdapter.notifyDataSetChanged();
+        classroomChooser.setSelection(classroomAdapter.getPosition(classroom));
     }
 
     /** Creates the array of currentClassroom that the spinner displays */
@@ -159,6 +158,7 @@ public class TaskCreate extends AppCompatActivity {
     /** Calls the AsyncTask InsertClass, that cannot be called from other currentClassroom */
     public void callInsertClassroom(Classroom mClassroom){
         new InsertClass(TaskCreate.this, mClassroom).execute();
+        classroom = mClassroom.getName();
     }
 
     /** Puts the class into the class database */
