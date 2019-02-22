@@ -25,20 +25,6 @@
         <item name="android:colorAccent">@color/alternativeAccent</item>
     </style>
 
-    <!-- Combined Theme
-    <style name="SieveCombined" parent="SieveDefault">
-        <item name="android:colorBackground">@color/combinedBackground</item>
-        <item name="priorityHigh">@color/combinedHigh</item>
-        <item name="priorityMed">@color/combinedMed</item>
-        <item name="priorityLow">@color/combinedLow</item>
-        <item name="android:textColor">@color/textBlack</item>
-        <item name="android:colorPrimaryDark">@color/combinedButton</item>
-        <item name="android:colorAccent">@color/combinedAccent</item>
-        <item name="android:statusBarColor">@color/combinedBar</item>
-        <item name="colorAccent">@color/combinedAccent</item>
-        <item name="colorPrimaryDark">@color/combinedButton</item>
-    </style> -->
-
     <!-- Dark Theme -->
     <style name="SieveDark" parent="SieveDefault">
         <item name="android:colorBackground">@color/darkBackground</item>
@@ -63,19 +49,6 @@
         <item name="colorAccent">@color/simpleAccent</item>
         <item name="android:colorPrimaryDark">@color/simpleButton</item>
     </style>
-
-    <!-- Candy Theme
-    <style name="SieveCandy" parent="SieveDefault">
-        <item name="android:colorBackground">@color/candyBackground</item>
-        <item name="priorityHigh">@color/candyHigh</item>
-        <item name="priorityMed">@color/candyMed</item>
-        <item name="priorityLow">@color/candyLow</item>
-        <item name="android:textColor">@color/textBlack</item>
-        <item name="android:colorPrimaryDark">@color/candyButton</item>
-        <item name="colorAccent">@color/candyAccent</item>
-        <item name="colorPrimaryDark">@color/candyButton</item>
-        <item name="android:statusBarColor">@color/candyBar</item>
-    </style> -->
 
     <!-- Twilight Theme -->
     <style name="SieveTwilight" parent="SieveDefault" >
