@@ -65,11 +65,12 @@
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TaskTypeTitle">
+                app:layout_constraintTop_toBottomOf="@+id/TaskTypeTitle"
+                android:paddingLeft="20dp">
 
                 <RadioButton
                     android:id="@+id/HabitButton"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-smallcaps"
@@ -80,7 +81,7 @@
 
                 <RadioButton
                     android:id="@+id/AssignmentButton"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-smallcaps"
@@ -91,7 +92,7 @@
 
                 <RadioButton
                     android:id="@+id/ProjectButton"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-smallcaps"
@@ -256,8 +257,9 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">

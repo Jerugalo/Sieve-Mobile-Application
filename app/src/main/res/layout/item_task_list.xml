@@ -41,7 +41,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:background="@drawable/button_style"
-            android:backgroundTint="?attr/colorPrimaryDark"
+            android:backgroundTint="?android:attr/colorPrimaryDark"
             android:fontFamily="sans-serif-smallcaps"
             android:text="@string/ToDetails"
             android:textAlignment="center"
