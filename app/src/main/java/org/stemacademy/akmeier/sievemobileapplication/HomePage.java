@@ -17,6 +17,7 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -25,6 +26,7 @@ import com.crashlytics.android.Crashlytics;
 import io.fabric.sdk.android.Fabric;
 import org.stemacademy.akmeier.sievemobileapplication.db.TaskDatabase;
 import org.stemacademy.akmeier.sievemobileapplication.db.Task;
+import org.stemacademy.akmeier.sievemobileapplication.utilities.SwipeController;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -118,11 +120,12 @@ public class HomePage extends AppCompatActivity {
 
     }
 
-    /** Instates the RecyclerView */
+    /** Instates the RecyclerView TODO: OUTDATED COMMENT PLEASE UPDATE */
     @Override
     protected void onStart(){
         super.onStart();
         determineTheme();
+        SwipeController swipeController = new SwipeController();
         TaskDatabase taskDatabase = TaskDatabase.getInstance(HomePage.this);
         RecyclerView rvTasks = findViewById(R.id.TaskList);
         List<Task> tasks = taskDatabase.taskDao().getAll();
@@ -132,9 +135,14 @@ public class HomePage extends AppCompatActivity {
                 return o1.getPriority()>o2.getPriority() ? -1:(o1.getPriority()<o2.getPriority()) ? 1: 0;
             }
         });
+
         TaskListAdapter adapter = new TaskListAdapter(tasks, this);
         rvTasks.setAdapter(adapter);
         rvTasks.setLayoutManager(new LinearLayoutManager(this));
+
+        ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeController);
+        itemTouchhelper.attachToRecyclerView(rvTasks);
+
         createListofNotifications();
         setDate(dateText);
     }
