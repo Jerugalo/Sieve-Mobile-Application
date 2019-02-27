@@ -102,7 +102,8 @@
                 android:layout_weight="1"
                 android:onClick="assignmentTypeSet"
                 android:orientation="horizontal"
-                android:paddingLeft="20dp">
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
 
                 <RadioButton
                     android:id="@+id/habitRadio"
@@ -302,7 +303,7 @@
                     android:id="@+id/textView9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-smallcaps"
                     android:text="@string/Alarms"
@@ -310,16 +311,15 @@
                     android:textSize="29sp" />
 
                 <Button
-                    android:id="@+id/button"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
                     android:background="@drawable/button_style"
                     android:backgroundTint="?android:attr/colorPrimaryDark"
                     android:fontFamily="sans-serif-smallcaps"
                     android:onClick="alarmSet1"
-                    android:text="Create Alarm"
+                    android:text="@string/createAlarm"
                     android:textColor="?android:attr/textColor"
                     android:textSize="18sp" />
             </LinearLayout>

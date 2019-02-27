@@ -57,7 +57,7 @@
     <color name="darkBar">#063150</color>
 
     <!-- Twilight theme colors -->
-    <color name="twilightBackground">#181818</color>
+    <color name="twilightBackground">#202020</color>
     <color name="twilightAccent">#b22230</color>
     <color name="twilightBar">#ff7400</color>
     <color name="twilightButton">#ff4d4d4d</color>
