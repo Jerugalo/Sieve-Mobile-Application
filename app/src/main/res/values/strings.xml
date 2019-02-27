@@ -46,6 +46,7 @@
     <string name="theme5name">Simple</string>
     <string name="theme6name">Olive</string>
     <string name="clearAlarms">Clear Alarms</string>
+    <string name="timeBreak">Time Till Break</string>
 
 
     <string-array name="classes_array">
