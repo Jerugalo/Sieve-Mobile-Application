@@ -3,6 +3,7 @@
 
     <color name="textBlack">#000000</color>
     <color name="textWhite">#ffffff</color>
+    <color name="textRed">#ff0000</color>
 
     <!-- Primary Theme Colors -->
     <color name="defaultBackground">#ffffff</color>

@@ -46,7 +46,11 @@
     <string name="theme5name">Simple</string>
     <string name="theme6name">Olive</string>
     <string name="clearAlarms">Clear Alarms</string>
+<<<<<<< HEAD
     <string name="createAlarm">Create Alarm</string>
+=======
+    <string name="DueBar">-----Tasks Due Today or Tomorrow Above!!!-----</string>
+>>>>>>> ListSortingEquationTesting
 
 
     <string-array name="classes_array">
