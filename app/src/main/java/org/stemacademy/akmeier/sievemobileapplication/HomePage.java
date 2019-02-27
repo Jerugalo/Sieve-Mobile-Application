@@ -186,14 +186,35 @@ public class HomePage extends AppCompatActivity {
                 if(days2==0){
                     compare2=100*(o2.getPriority()+1);
                 }
-
-                int sample =((o1.getPriority()+1)*100);
-                int sample2=((o2.getPriority()+1)*100);
-                float sample3=100/(days1+1);
-                float sample4=100/(days2+1);
                 return compare1>compare2 ? -1:(compare1<compare2) ? 1: 0;
             }
         });
+        global.setgDivPos(0);
+        for(int i=0;i<taskDatabase.taskDao().getAll().size();i++){
+            Calendar calendar =Calendar.getInstance();
+            calendar.set(Calendar.MILLISECOND,0);
+            calendar.set(Calendar.SECOND,0);
+            calendar.set(Calendar.MINUTE,0);
+            calendar.set(Calendar.HOUR_OF_DAY,12);
+            calendar.set(Calendar.HOUR,0);
+            calendar.set(Calendar.AM_PM,Calendar.PM);
+            Date date1=calendar.getTime();
+            String incorrectDate=taskDatabase.taskDao().getAll().get(i).getDueDate();
+            List<String> divided1=new ArrayList<>(Arrays.asList(incorrectDate.split("/")));
+            String cTD1=divided1.get(1)+"/"+divided1.get(0)+"/"+divided1.get(2);
+            SimpleDateFormat sdf1=new SimpleDateFormat("dd/MM/yyyy");
+            try {
+                date1=sdf1.parse(cTD1);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            long check=date1.getTime()-calendar.getTime().getTime();
+            int days1=0;
+            days1=abs(toIntExact(TimeUnit.DAYS.convert(check,TimeUnit.MILLISECONDS)));
+            if(days1==0){
+                global.setgDivPos(global.getgDivPos()+1);
+            }
+        }
         TaskListAdapter adapter = new TaskListAdapter(tasks, this);
         rvTasks.setAdapter(adapter);
         rvTasks.setLayoutManager(new LinearLayoutManager(this));
