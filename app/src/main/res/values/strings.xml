@@ -46,12 +46,20 @@
     <string name="theme5name">Simple</string>
     <string name="theme6name">Olive</string>
     <string name="clearAlarms">Clear Alarms</string>
-    <string name="timeBreak">Time Till Break</string>
+    <string name="timeBreak">Time Until Break</string>
+    <string name="timer_duration_title">Work Timer Duration</string>
 
 
     <string-array name="classes_array">
         <item>Math</item>
         <item>English</item>
         <item>Other Class</item>
+    </string-array>
+
+    <string-array name="times_array">
+        <item>15 Minutes</item>
+        <item>30 Minutes</item>
+        <item>45 Minutes</item>
+        <item>60 Minutes</item>
     </string-array>
 </resources>
