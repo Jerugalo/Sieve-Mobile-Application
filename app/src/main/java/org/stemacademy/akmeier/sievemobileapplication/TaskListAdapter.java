@@ -111,11 +111,13 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 break;
             case 1:
                 ViewHolder2 viewHolder2=(ViewHolder2)viewHolder;
-                TextView text=((ViewHolder2) viewHolder).text;
-                text=viewHolder2.text;
+                View dividerView=((ViewHolder2) viewHolder).divider;
+                dividerView=viewHolder2.divider;
+                if(global.getgDivPos() == 0){dividerView.setBackgroundColor(getColorByThemeAttr(C, R.attr.dividerHidden, R.color.defaultBackground));}
+                else{dividerView.setBackgroundColor(getColorByThemeAttr(C, R.attr.dividerColor, R.color.defaultBar));}
                 break;
         }
-}
+   }
 
     /** Returns the total count of items in the list */
     @Override
@@ -124,12 +126,12 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public class ViewHolder2 extends RecyclerView.ViewHolder{
-        final TextView text;
+        final View divider;
 
         ViewHolder2(View itemView){
             super(itemView);
 
-            text=itemView.findViewById(R.id.DueTodayText);
+            divider=itemView.findViewById(R.id.dividerView);
         }
         public void onClick(View v){
 

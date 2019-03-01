@@ -11,39 +11,10 @@
         <item name="priorityLow">@color/defaultLow</item>
         <item name="android:textColor">@color/textBlack</item>
         <item name="colorAccent">@color/defaultAccent</item>
-        <item name="colorPrimaryDark">@color/defaultButton</item>
-        <item name="android:datePickerDialogTheme">@style/SieveDefaultDatePicker</item>
-        <item name="android:datePickerStyle">@style/MyDatePickerStyle</item>
-        <item name="android:timePickerStyle">@style/DefaultTimePickerStyle</item>
-        <item name="android:timePickerDialogTheme">@style/DefaultTimePickerTheme</item>
-    </style>
+        <item name="dividerColor">@color/defaultBar</item>
+        <item name="dividerHidden">@color/defaultBackground</item>
 
-    <!--Start of four necessary xml styles needed for date and time pickers -->
-    <style name="SieveDefaultDatePicker" parent="android:Theme.Material.Light.Dialog">
-        <item name="android:colorAccent">@color/defaultAccent</item><!--Color of the selector for date-->
-        <item name="android:textColor">@color/textBlack</item><!--text color for header and ok and cancel buttons-->
-        <item name="android:textColorSecondary">@color/textBlack</item><!--Text color for day names on calendar-->
-        <item name="android:datePickerStyle">@style/MyDatePickerStyle</item>
-        <item name="android:textColorPrimary">@color/textBlack</item><!--Sets Color for text in calendar-->
     </style>
-    <style name="MyDatePickerStyle" parent="@android:style/Widget.Material.Light.DatePicker">
-        <item name ="android:headerBackground">@color/defaultAccent</item><!--This changes the background color for header-->
-        <item name="android:colorAccent">@color/defaultAccent</item><!--Default color of the top bar in date picker-->
-        <item name="android:background">@color/defaultBackground</item><!--Sets background color for calendar area-->
-    </style>
-    <style name="DefaultTimePickerTheme" parent="@android:style/Theme.Material.Light.Dialog">
-        <item name="android:textColorPrimary">@color/textBlack</item>
-        <item name="android:colorAccent">@color/defaultAccent</item>
-        <item name="android:textColor">@color/textBlack</item>
-        <item name="android:textColorSecondary">@color/textBlack</item>
-        <item name="android:timePickerStyle">@style/DefaultTimePickerStyle</item>
-    </style>
-    <style name="DefaultTimePickerStyle" parent="@android:style/Widget.Material.Light.TimePicker">
-        <item name="android:background">@color/defaultBackground</item>
-        <item name="android:headerDayOfMonthTextAppearance">@color/defaultAccent</item>
-        <item name="android:colorAccent">@color/defaultAccent</item>
-    </style>
-    <!--End of four necessary xml styles needed for date and time pickers-->
 
     <!-- Alternative Theme -->
     <style name="SieveAlternative" parent="SieveDefault">
@@ -55,16 +26,8 @@
         <item name="android:colorPrimaryDark">@color/alternativeButton</item>
         <item name="android:statusBarColor">@color/alternativeBar</item>
         <item name="android:colorAccent">@color/alternativeAccent</item>
-    </style>
-
-    <!-- Combined Theme -->
-    <style name="SieveCombined" parent="SieveDefault">
-        <item name="android:colorBackground">@color/combinedBackground</item>
-        <item name="priorityHigh">@color/combinedHigh</item>
-        <item name="priorityMed">@color/combinedMed</item>
-        <item name="priorityLow">@color/combinedLow</item>
-        <item name="android:textColor">@color/textBlack</item>
-        <item name="android:colorPrimaryDark">@color/combinedButton</item>
+        <item name="dividerColor">@color/alternativeBar</item>
+        <item name="dividerHidden">@color/alternativeBackground</item>
     </style>
 
     <!-- Dark Theme -->
@@ -77,8 +40,9 @@
         <item name="colorAccent">@color/darkAccent</item>
         <item name="android:colorPrimaryDark">@color/darkButton</item>
         <item name="android:statusBarColor">@color/darkBar</item>
-        <item name="android:textColorPrimary">@color/textWhite</item>
         <item name="colorPrimaryDark">@color/darkButton</item>
+        <item name="dividerColor">@color/darkBar</item>
+        <item name="dividerHidden">@color/darkBackground</item>
     </style>
 
     <!-- Simple Theme -->
@@ -91,19 +55,8 @@
         <item name="android:textColor">@color/textBlack</item>
         <item name="colorAccent">@color/simpleAccent</item>
         <item name="android:colorPrimaryDark">@color/simpleButton</item>
-    </style>
-
-    <!-- Candy Theme -->
-    <style name="SieveCandy" parent="SieveDefault">
-        <item name="android:colorBackground">@color/candyBackground</item>
-        <item name="priorityHigh">@color/candyHigh</item>
-        <item name="priorityMed">@color/candyMed</item>
-        <item name="priorityLow">@color/candyLow</item>
-        <item name="android:textColor">@color/textBlack</item>
-        <item name="android:colorPrimaryDark">@color/candyButton</item>
-        <item name="colorAccent">@color/candyAccent</item>
-        <item name="colorPrimaryDark">@color/candyButton</item>
-        <item name="android:statusBarColor">@color/candyBar</item>
+        <item name="dividerColor">@color/simpleBar</item>
+        <item name="dividerHidden">@color/simpleBackground</item>
     </style>
 
     <!-- Twilight Theme -->
@@ -117,6 +70,8 @@
         <item name="priorityLow">@color/twilightLow</item>
         <item name="colorPrimaryDark">@color/twilightButton</item>
         <item name="android:textColorPrimary">@color/textWhite</item>
+        <item name="dividerColor">@color/twilightBar</item>
+        <item name="dividerHidden">@color/twilightBackground</item>
     </style>
 
     <!-- Olive Theme -->
@@ -130,5 +85,7 @@
         <item name="priorityLow">@color/oliveLow</item>
         <item name="android:textColorPrimary">@color/textBlack</item>
         <item name="colorPrimaryDark">@color/oliveButton</item>
+        <item name="dividerColor">@color/oliveBar</item>
+        <item name="dividerHidden">@color/oliveBackground</item>
     </style>
 </resources>

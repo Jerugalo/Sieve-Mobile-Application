@@ -11,6 +11,9 @@
         <item name="priorityLow">@color/defaultLow</item>
         <item name="android:textColor">@color/textBlack</item>
         <item name="colorAccent">@color/defaultAccent</item>
+        <item name="dividerColor">@color/defaultBar</item>
+        <item name="dividerHidden">@color/defaultBackground</item>
+
     </style>
 
     <!-- Alternative Theme -->
@@ -23,6 +26,8 @@
         <item name="android:colorPrimaryDark">@color/alternativeButton</item>
         <item name="android:statusBarColor">@color/alternativeBar</item>
         <item name="android:colorAccent">@color/alternativeAccent</item>
+        <item name="dividerColor">@color/alternativeBar</item>
+        <item name="dividerHidden">@color/alternativeBackground</item>
     </style>
 
     <!-- Dark Theme -->
@@ -36,6 +41,8 @@
         <item name="android:colorPrimaryDark">@color/darkButton</item>
         <item name="android:statusBarColor">@color/darkBar</item>
         <item name="colorPrimaryDark">@color/darkButton</item>
+        <item name="dividerColor">@color/darkBar</item>
+        <item name="dividerHidden">@color/darkBackground</item>
     </style>
 
     <!-- Simple Theme -->
@@ -48,6 +55,8 @@
         <item name="android:textColor">@color/textBlack</item>
         <item name="colorAccent">@color/simpleAccent</item>
         <item name="android:colorPrimaryDark">@color/simpleButton</item>
+        <item name="dividerColor">@color/simpleBar</item>
+        <item name="dividerHidden">@color/simpleBackground</item>
     </style>
 
     <!-- Twilight Theme -->
@@ -61,6 +70,8 @@
         <item name="priorityLow">@color/twilightLow</item>
         <item name="colorPrimaryDark">@color/twilightButton</item>
         <item name="android:textColorPrimary">@color/textWhite</item>
+        <item name="dividerColor">@color/twilightBar</item>
+        <item name="dividerHidden">@color/twilightBackground</item>
     </style>
 
     <!-- Olive Theme -->
@@ -74,5 +85,7 @@
         <item name="priorityLow">@color/oliveLow</item>
         <item name="android:textColorPrimary">@color/textBlack</item>
         <item name="colorPrimaryDark">@color/oliveButton</item>
+        <item name="dividerColor">@color/oliveBar</item>
+        <item name="dividerHidden">@color/oliveBackground</item>
     </style>
 </resources>

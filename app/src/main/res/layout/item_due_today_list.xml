@@ -4,17 +4,9 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/DueTodayText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="100dp"
-        android:layout_marginStart="100dp"
-        android:text="@string/DueBar"
-        android:textColor="@color/textRed"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <View
+        android:id="@+id/dividerView"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="@color/alternativeHigh" />
 </android.support.constraint.ConstraintLayout>
