@@ -100,7 +100,6 @@ public class AssignmentDetails extends AppCompatActivity {
         priorityID=task.getPriority();
         typeID=task.getTypeID();
 
-        isEditing = false;
 
         final Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
@@ -118,21 +117,6 @@ public class AssignmentDetails extends AppCompatActivity {
         highPCb = findViewById(R.id.HPriorityButton);
         notesD = findViewById(R.id.NotesDetails);
 
-        habitD.setClickable(false);
-        assignD.setClickable(false);
-        projectD.setClickable(false);
-        titleText.setClickable(false);
-        titleText.setInputType(0);
-        //titleText.setFocusable(false);
-        classroomSpinner.setClickable(false);
-        dateText.setClickable(false);
-        //dateText.setFocusable(false);
-        lowPCb.setClickable(false);
-        medPCb.setClickable(false);
-        highPCb.setClickable(false);
-        notesD.setClickable(false);
-        notesD.setInputType(0);
-        //notesD.setFocusable(false);
 
         taskID=mTask.getId();
         int initPrior = mTask.getPriority();
@@ -245,69 +229,25 @@ public class AssignmentDetails extends AppCompatActivity {
         notesD = findViewById(R.id.NotesDetails);
 
         taskDatabase = TaskDatabase.getInstance(AssignmentDetails.this);
-        if(isEditing==false){
 
-            editButton.setText("Save");
+        task.setId(taskID);
+        task.setPriority(priorityID);
+        task.setNameID(titleText.getText().toString());
 
-            classroomSpinner.setClickable(true);
-            habitD.setClickable(true);
-            assignD.setClickable(true);
-            projectD.setClickable(true);
-            titleText.setClickable(true);
-            titleText.setInputType(97);
-            //titleText.setFocusable(true);
-            classroomSpinner.setClickable(true);
-            dateText.setClickable(true);
-            lowPCb.setClickable(true);
-            medPCb.setClickable(true);
-            highPCb.setClickable(true);
-            notesD.setClickable(true);
-            notesD.setInputType(97);
-            //notesD.setFocusable(true);
-            isEditing=true;
-        }
-        else{
-
-
-            editButton.setText("Edit Text");
-            classroomSpinner.setClickable(false);
-            habitD.setClickable(false);
-            assignD.setClickable(false);
-            projectD.setClickable(false);
-            titleText.setClickable(false);
-            //titleText.setFocusable(false);
-            titleText.setInputType(0);
-            classroomSpinner.setClickable(false);
-            dateText.setClickable(false);
-            //dateText.setFocusable(false);
-            lowPCb.setClickable(false);
-            medPCb.setClickable(false);
-            highPCb.setClickable(false);
-            notesD.setClickable(false);
-            notesD.setInputType(0);
-            //notesD.setFocusable(false);
-
-            task.setId(taskID);
-            task.setPriority(priorityID);
-            task.setNameID(titleText.getText().toString());
-
-
-
+        if(currentClassroom==null){
+            currentClassroom=task.getClassroom();
             if(currentClassroom==null){
-                currentClassroom=task.getClassroom();
-                if(currentClassroom==null){
-                    currentClassroom="";
-                }
+                currentClassroom="";
             }
-            task.setClassroom(currentClassroom);
-            task.setDueDate(dateText.getText().toString());
-            task.setNotes(notesD.getText().toString());
-            task.setTypeID(typeID);
-            global.setCurrentTask(task);
-            taskDatabase.taskDao().update(task);
-            refreshSpinner();
-            isEditing=false;
         }
+        task.setClassroom(currentClassroom);
+        task.setDueDate(dateText.getText().toString());
+        task.setNotes(notesD.getText().toString());
+        task.setTypeID(typeID);
+        global.setCurrentTask(task);
+        taskDatabase.taskDao().update(task);
+        refreshSpinner();
+
     }
 
     /** Creates a new class list and updates the spinner*/
