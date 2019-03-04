@@ -276,7 +276,8 @@
             android:onClick="toHomePage"
             android:text="@string/return_home"
             android:textColor="?android:attr/textColor"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            style="?android:attr/borderlessButtonStyle"/>
 
         <Button
             android:id="@+id/editButton"
@@ -289,7 +290,8 @@
             android:onClick="editTask"
             android:text="@string/edit_task"
             android:textColor="?android:attr/textColor"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            style="?android:attr/borderlessButtonStyle"/>
 
         <Button
             android:id="@+id/beginButton"
@@ -302,7 +304,8 @@
             android:onClick="beginTask"
             android:text="@string/beginTask"
             android:textColor="?android:attr/textColor"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            style="?android:attr/borderlessButtonStyle"/>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

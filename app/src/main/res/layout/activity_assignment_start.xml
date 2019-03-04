@@ -74,7 +74,8 @@
         android:text="@string/see_details"
         android:textColor="?android:attr/textColor"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonContainer" />
+        app:layout_constraintBottom_toTopOf="@+id/buttonContainer"
+        style="?android:attr/borderlessButtonStyle"/>
 
     <LinearLayout
         android:id="@+id/buttonContainer"
@@ -95,7 +96,8 @@
             android:onClick="toHomePage"
             android:text="@string/x"
             android:textColor="?android:attr/textColor"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            style="?android:attr/borderlessButtonStyle"/>
 
         <Button
             android:id="@+id/DoneButton"
@@ -108,7 +110,8 @@
             android:onClick="completeTask"
             android:text="@string/check_mark"
             android:textColor="?android:attr/textColor"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            style="?android:attr/borderlessButtonStyle"/>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
