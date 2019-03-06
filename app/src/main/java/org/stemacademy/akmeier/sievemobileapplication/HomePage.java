@@ -259,7 +259,7 @@ public class HomePage extends AppCompatActivity {
         if (diff >= 0) {
             JobInfo jobInfo = new JobInfo.Builder(alarmNumber, componentName)
                     .setMinimumLatency(diff)
-                    .setOverrideDeadline(180000)
+                    .setOverrideDeadline(diff+180000)
                     .build();
             jobScheduler.schedule(jobInfo);
             alarmNames.add(alarmNumber);
