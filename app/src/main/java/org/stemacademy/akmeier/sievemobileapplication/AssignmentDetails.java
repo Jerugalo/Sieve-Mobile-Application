@@ -26,6 +26,7 @@ import org.stemacademy.akmeier.sievemobileapplication.db.ClassroomDatabase;
 import org.stemacademy.akmeier.sievemobileapplication.db.Task;
 import org.stemacademy.akmeier.sievemobileapplication.db.TaskDatabase;
 import org.stemacademy.akmeier.sievemobileapplication.fragments.ClassroomCreationDialog;
+import org.stemacademy.akmeier.sievemobileapplication.fragments.ConfirmExitWithoutSaving;
 import org.stemacademy.akmeier.sievemobileapplication.fragments.DatePickerFragmentD;
 
 import java.lang.ref.WeakReference;
@@ -85,6 +86,7 @@ public class AssignmentDetails extends AppCompatActivity {
 
     private final ArrayList<String> classroomList = new ArrayList<>();
     private ClassroomDatabase classroomDatabase;
+    private boolean saved=true;
 
     /**
      * Runs when activity started
@@ -177,17 +179,11 @@ public class AssignmentDetails extends AppCompatActivity {
                     ClassroomCreationDialog dialog = new ClassroomCreationDialog();
                     dialog.PARENT = "AssignmentDetails";
                     dialog.show(getSupportFragmentManager(), "ClassroomCreationDialog");
-                } else if (isEditing){
-
+                } else{
                     currentClassroom = (parent.getItemAtPosition(pos)).toString();
-
                     if(currentClassroom==null){
                         currentClassroom="";
                     }
-
-                } else {
-                    int spinnerPos = classroomAdapter.getPosition(task.getClassroom());
-                    classroomSpinner.setSelection(spinnerPos);
                 }
             }
             public void onNothingSelected(AdapterView<?> parent) {
@@ -203,6 +199,17 @@ public class AssignmentDetails extends AppCompatActivity {
      * @param view
      */
     public void toHomePage(View view){
+        if(saved) {
+            Intent toHomePage = new Intent(this, HomePage.class);
+            startActivity(toHomePage);
+        }else{
+            ConfirmExitWithoutSaving.PARENT = "AssignmentDetails";
+            ConfirmExitWithoutSaving.NEXT = "HomePage";
+            DialogFragment newFragment = new ConfirmExitWithoutSaving();
+            newFragment.show(getSupportFragmentManager(), "confirmExitWithoutSaving");
+        }
+    }
+    public void toHomePageIntent(){
         Intent toHomePage = new Intent(this, HomePage.class);
         startActivity(toHomePage);
     }
@@ -213,10 +220,8 @@ public class AssignmentDetails extends AppCompatActivity {
      */
     public void editTask(View view){
         task=mTask;
-        //Intent editTask = new Intent (this, TaskCreate.class);
-        //startActivity(editTask);
         Button editButton = (Button) findViewById(R.id.editButton);
-
+        saved=true;
         habitD = findViewById(R.id.HabitButton);
         assignD = findViewById(R.id.AssignmentButton);
         projectD = findViewById(R.id.ProjectButton);
@@ -300,7 +305,7 @@ public class AssignmentDetails extends AppCompatActivity {
 
     public void onTypeButtonClicked(View view){
         boolean checked = ((RadioButton) view ).isChecked();
-
+        saved=false;
         switch(view.getId()){
             case R.id.HabitButton:
                 if(checked)
@@ -318,7 +323,7 @@ public class AssignmentDetails extends AppCompatActivity {
     }
     public void onPriorityButtonClicked(View view){
         boolean checked = ((RadioButton) view).isChecked();
-
+        saved=false;
         switch(view.getId()){
             case R.id.LPriorityButton:
                 if (checked)
@@ -340,13 +345,24 @@ public class AssignmentDetails extends AppCompatActivity {
      * @param view
      */
     public void beginTask(View view){
+        if(saved){
+            Intent beginTask = new Intent(this, AssignmentStart.class);
+            startActivity(beginTask);
+        }else {
+            ConfirmExitWithoutSaving.PARENT = "AssignmentDetails";
+            ConfirmExitWithoutSaving.NEXT = "AssignmentStart";
+            DialogFragment newFragment = new ConfirmExitWithoutSaving();
+            newFragment.show(getSupportFragmentManager(), "confirmExitWithoutSaving");
+        }
+    }
+    public void beginTaskIntent(){
         Intent beginTask = new Intent(this, AssignmentStart.class);
         startActivity(beginTask);
     }
     public void showDatePickerDialog(View view){
         DialogFragment newFragment = new DatePickerFragmentD();
         newFragment.show(getSupportFragmentManager(),"datePicker");
-
+        saved=false;
     }
     public void determineTheme(){
         int themeId = new SharedPreferencesManager(this).retrieveInt("themeId",1);
@@ -358,7 +374,9 @@ public class AssignmentDetails extends AppCompatActivity {
         else if(themeId == 6){setTheme(R.style.SieveOlive);}
         else{setTheme(R.style.SieveDefault);}
     }
-
+    public void somethingClicked(View view){
+        saved=false;
+    }
 
 
 }

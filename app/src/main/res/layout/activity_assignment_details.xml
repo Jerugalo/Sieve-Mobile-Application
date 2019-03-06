@@ -39,6 +39,7 @@
                 android:hint="@string/task_title"
                 android:imeOptions="actionNone"
                 android:inputType="text"
+                android:onClick="somethingClicked"
                 android:text="@string/task_title"
                 android:textColor="?android:attr/textColor"
                 android:textSize="24sp"
@@ -245,7 +246,9 @@
                 android:ems="10"
                 android:fontFamily="sans-serif-smallcaps"
                 android:gravity="top|clip_horizontal"
+                android:hint="Notes"
                 android:inputType="textMultiLine"
+                android:onClick="somethingClicked"
                 android:textColor="?android:attr/textColor"
                 android:textSize="24sp" />
 

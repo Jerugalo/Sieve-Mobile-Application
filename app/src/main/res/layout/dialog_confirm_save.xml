@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/ConfirmSave"
+        android:layout_width="274dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="23dp"
+        android:text="@string/ConfirmExitWOSave"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:singleLine="true"
+        android:textColor="#000" />
+
+    <TextView
+        android:id="@+id/YesButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="63dp"
+        android:layout_marginTop="75dp"
+        android:text="@string/Yes"
+        android:textColor="#33bbff"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/NoButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/YesButton"
+        android:layout_marginEnd="31dp"
+        android:text="@string/No"
+        android:textColor="#33bbff"
+        android:textSize="18sp"
+        android:layout_alignEnd="@id/YesButton"/>
+
+</RelativeLayout>

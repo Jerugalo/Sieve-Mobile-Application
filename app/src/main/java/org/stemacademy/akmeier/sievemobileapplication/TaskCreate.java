@@ -27,6 +27,7 @@ import org.stemacademy.akmeier.sievemobileapplication.db.TaskDatabase;
 import org.stemacademy.akmeier.sievemobileapplication.db.Task;
 import org.stemacademy.akmeier.sievemobileapplication.fragments.ClassroomCreationDialog;
 import org.stemacademy.akmeier.sievemobileapplication.db.TimePickerFragmentAlarm;
+import org.stemacademy.akmeier.sievemobileapplication.fragments.ConfirmExitWithoutSaving;
 import org.stemacademy.akmeier.sievemobileapplication.fragments.DatePickerFragment;
 import org.stemacademy.akmeier.sievemobileapplication.fragments.DatePickerFragmentAlarm;
 
@@ -73,6 +74,7 @@ public class TaskCreate extends AppCompatActivity {
     public String currentDate;
     RecyclerView recyclerView;
     AlarmListAdapter alarmAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -220,6 +222,12 @@ public class TaskCreate extends AppCompatActivity {
     }
 
     public void toHomePage(View view){
+        ConfirmExitWithoutSaving.PARENT="TaskCreate";
+        DialogFragment newFragment=new ConfirmExitWithoutSaving();
+        newFragment.show(getSupportFragmentManager(),"confirmExitWithoutSaving");
+
+    }
+    public void intentToHomePage(){
         Intent toHomePage = new Intent(this, HomePage.class);
         startActivity(toHomePage);
     }
