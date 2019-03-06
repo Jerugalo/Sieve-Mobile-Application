@@ -26,6 +26,7 @@ import org.stemacademy.akmeier.sievemobileapplication.db.ClassroomDatabase;
 import org.stemacademy.akmeier.sievemobileapplication.db.Task;
 import org.stemacademy.akmeier.sievemobileapplication.db.TaskDatabase;
 import org.stemacademy.akmeier.sievemobileapplication.fragments.ClassroomCreationDialog;
+import org.stemacademy.akmeier.sievemobileapplication.fragments.ConfirmExitWithoutSaving;
 import org.stemacademy.akmeier.sievemobileapplication.fragments.DatePickerFragmentD;
 
 import java.lang.ref.WeakReference;
@@ -85,6 +86,7 @@ public class AssignmentDetails extends AppCompatActivity {
 
     private final ArrayList<String> classroomList = new ArrayList<>();
     private ClassroomDatabase classroomDatabase;
+    private boolean saved=true;
 
     /**
      * Runs when activity started
@@ -100,7 +102,6 @@ public class AssignmentDetails extends AppCompatActivity {
         priorityID=task.getPriority();
         typeID=task.getTypeID();
 
-        isEditing = false;
 
         final Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
@@ -118,21 +119,6 @@ public class AssignmentDetails extends AppCompatActivity {
         highPCb = findViewById(R.id.HPriorityButton);
         notesD = findViewById(R.id.NotesDetails);
 
-        habitD.setClickable(false);
-        assignD.setClickable(false);
-        projectD.setClickable(false);
-        titleText.setClickable(false);
-        titleText.setInputType(0);
-        //titleText.setFocusable(false);
-        classroomSpinner.setClickable(false);
-        dateText.setClickable(false);
-        //dateText.setFocusable(false);
-        lowPCb.setClickable(false);
-        medPCb.setClickable(false);
-        highPCb.setClickable(false);
-        notesD.setClickable(false);
-        notesD.setInputType(0);
-        //notesD.setFocusable(false);
 
         taskID=mTask.getId();
         int initPrior = mTask.getPriority();
@@ -193,17 +179,11 @@ public class AssignmentDetails extends AppCompatActivity {
                     ClassroomCreationDialog dialog = new ClassroomCreationDialog();
                     dialog.PARENT = "AssignmentDetails";
                     dialog.show(getSupportFragmentManager(), "ClassroomCreationDialog");
-                } else if (isEditing){
-
+                } else{
                     currentClassroom = (parent.getItemAtPosition(pos)).toString();
-
                     if(currentClassroom==null){
                         currentClassroom="";
                     }
-
-                } else {
-                    int spinnerPos = classroomAdapter.getPosition(task.getClassroom());
-                    classroomSpinner.setSelection(spinnerPos);
                 }
             }
             public void onNothingSelected(AdapterView<?> parent) {
@@ -219,6 +199,17 @@ public class AssignmentDetails extends AppCompatActivity {
      * @param view
      */
     public void toHomePage(View view){
+        if(saved) {
+            Intent toHomePage = new Intent(this, HomePage.class);
+            startActivity(toHomePage);
+        }else{
+            ConfirmExitWithoutSaving.PARENT = "AssignmentDetails";
+            ConfirmExitWithoutSaving.NEXT = "HomePage";
+            DialogFragment newFragment = new ConfirmExitWithoutSaving();
+            newFragment.show(getSupportFragmentManager(), "confirmExitWithoutSaving");
+        }
+    }
+    public void toHomePageIntent(){
         Intent toHomePage = new Intent(this, HomePage.class);
         startActivity(toHomePage);
     }
@@ -229,10 +220,8 @@ public class AssignmentDetails extends AppCompatActivity {
      */
     public void editTask(View view){
         task=mTask;
-        //Intent editTask = new Intent (this, TaskCreate.class);
-        //startActivity(editTask);
         Button editButton = (Button) findViewById(R.id.editButton);
-
+        saved=true;
         habitD = findViewById(R.id.HabitButton);
         assignD = findViewById(R.id.AssignmentButton);
         projectD = findViewById(R.id.ProjectButton);
@@ -245,69 +234,25 @@ public class AssignmentDetails extends AppCompatActivity {
         notesD = findViewById(R.id.NotesDetails);
 
         taskDatabase = TaskDatabase.getInstance(AssignmentDetails.this);
-        if(isEditing==false){
 
-            editButton.setText("Save");
+        task.setId(taskID);
+        task.setPriority(priorityID);
+        task.setNameID(titleText.getText().toString());
 
-            classroomSpinner.setClickable(true);
-            habitD.setClickable(true);
-            assignD.setClickable(true);
-            projectD.setClickable(true);
-            titleText.setClickable(true);
-            titleText.setInputType(97);
-            //titleText.setFocusable(true);
-            classroomSpinner.setClickable(true);
-            dateText.setClickable(true);
-            lowPCb.setClickable(true);
-            medPCb.setClickable(true);
-            highPCb.setClickable(true);
-            notesD.setClickable(true);
-            notesD.setInputType(97);
-            //notesD.setFocusable(true);
-            isEditing=true;
-        }
-        else{
-
-
-            editButton.setText("Edit Text");
-            classroomSpinner.setClickable(false);
-            habitD.setClickable(false);
-            assignD.setClickable(false);
-            projectD.setClickable(false);
-            titleText.setClickable(false);
-            //titleText.setFocusable(false);
-            titleText.setInputType(0);
-            classroomSpinner.setClickable(false);
-            dateText.setClickable(false);
-            //dateText.setFocusable(false);
-            lowPCb.setClickable(false);
-            medPCb.setClickable(false);
-            highPCb.setClickable(false);
-            notesD.setClickable(false);
-            notesD.setInputType(0);
-            //notesD.setFocusable(false);
-
-            task.setId(taskID);
-            task.setPriority(priorityID);
-            task.setNameID(titleText.getText().toString());
-
-
-
+        if(currentClassroom==null){
+            currentClassroom=task.getClassroom();
             if(currentClassroom==null){
-                currentClassroom=task.getClassroom();
-                if(currentClassroom==null){
-                    currentClassroom="";
-                }
+                currentClassroom="";
             }
-            task.setClassroom(currentClassroom);
-            task.setDueDate(dateText.getText().toString());
-            task.setNotes(notesD.getText().toString());
-            task.setTypeID(typeID);
-            global.setCurrentTask(task);
-            taskDatabase.taskDao().update(task);
-            refreshSpinner();
-            isEditing=false;
         }
+        task.setClassroom(currentClassroom);
+        task.setDueDate(dateText.getText().toString());
+        task.setNotes(notesD.getText().toString());
+        task.setTypeID(typeID);
+        global.setCurrentTask(task);
+        taskDatabase.taskDao().update(task);
+        refreshSpinner();
+
     }
 
     /** Creates a new class list and updates the spinner*/
@@ -360,7 +305,7 @@ public class AssignmentDetails extends AppCompatActivity {
 
     public void onTypeButtonClicked(View view){
         boolean checked = ((RadioButton) view ).isChecked();
-
+        saved=false;
         switch(view.getId()){
             case R.id.HabitButton:
                 if(checked)
@@ -378,7 +323,7 @@ public class AssignmentDetails extends AppCompatActivity {
     }
     public void onPriorityButtonClicked(View view){
         boolean checked = ((RadioButton) view).isChecked();
-
+        saved=false;
         switch(view.getId()){
             case R.id.LPriorityButton:
                 if (checked)
@@ -400,13 +345,24 @@ public class AssignmentDetails extends AppCompatActivity {
      * @param view
      */
     public void beginTask(View view){
+        if(saved){
+            Intent beginTask = new Intent(this, AssignmentStart.class);
+            startActivity(beginTask);
+        }else {
+            ConfirmExitWithoutSaving.PARENT = "AssignmentDetails";
+            ConfirmExitWithoutSaving.NEXT = "AssignmentStart";
+            DialogFragment newFragment = new ConfirmExitWithoutSaving();
+            newFragment.show(getSupportFragmentManager(), "confirmExitWithoutSaving");
+        }
+    }
+    public void beginTaskIntent(){
         Intent beginTask = new Intent(this, AssignmentStart.class);
         startActivity(beginTask);
     }
     public void showDatePickerDialog(View view){
         DialogFragment newFragment = new DatePickerFragmentD();
         newFragment.show(getSupportFragmentManager(),"datePicker");
-
+        saved=false;
     }
     public void determineTheme(){
         int themeId = new SharedPreferencesManager(this).retrieveInt("themeId",1);
@@ -418,7 +374,9 @@ public class AssignmentDetails extends AppCompatActivity {
         else if(themeId == 6){setTheme(R.style.SieveOlive);}
         else{setTheme(R.style.SieveDefault);}
     }
-
+    public void somethingClicked(View view){
+        saved=false;
+    }
 
 
 }
