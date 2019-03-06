@@ -64,6 +64,7 @@
 
     <Button
         android:id="@+id/DetailsTitle"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
@@ -72,10 +73,9 @@
         android:fontFamily="sans-serif-smallcaps"
         android:onClick="toDetails"
         android:text="@string/see_details"
-        android:textColor="?android:attr/textColor"
+        android:textColor="?android:attr/textColorPrimary"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonContainer"
-        style="?android:attr/borderlessButtonStyle"/>
+        app:layout_constraintBottom_toTopOf="@+id/buttonContainer" />
 
     <LinearLayout
         android:id="@+id/buttonContainer"
@@ -87,6 +87,7 @@
 
         <Button
             android:id="@+id/CancelButton"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -95,12 +96,12 @@
             android:fontFamily="sans-serif-smallcaps"
             android:onClick="toHomePage"
             android:text="@string/x"
-            android:textColor="?android:attr/textColor"
-            android:textSize="18sp"
-            style="?android:attr/borderlessButtonStyle"/>
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/DoneButton"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -109,9 +110,8 @@
             android:fontFamily="sans-serif-smallcaps"
             android:onClick="completeTask"
             android:text="@string/check_mark"
-            android:textColor="?android:attr/textColor"
-            android:textSize="18sp"
-            style="?android:attr/borderlessButtonStyle"/>
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="18sp" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

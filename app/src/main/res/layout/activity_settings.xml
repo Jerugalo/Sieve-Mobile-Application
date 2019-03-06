@@ -25,7 +25,7 @@
             android:fontFamily="sans-serif-smallcaps"
             android:onClick="toHomePage"
             android:text="@string/return_home"
-            android:textColor="?android:attr/textColor"
+            android:textColor="?android:attr/textColorPrimary"
             android:textSize="18sp" />
 
         <TextView
@@ -66,7 +66,7 @@
         android:fontFamily="sans-serif-smallcaps"
         android:onClick="clearAlarms"
         android:text="@string/clearAlarms"
-        android:textColor="?android:attr/textColor"
+        android:textColor="?android:attr/textColorPrimary"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/notifSettingsTitle" />

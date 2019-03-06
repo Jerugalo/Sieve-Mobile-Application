@@ -10,6 +10,7 @@
         <item name="priorityMed">@color/defaultMed</item>
         <item name="priorityLow">@color/defaultLow</item>
         <item name="android:textColor">@color/textBlack</item>
+        <item name="android:textColorPrimary">@color/textBlack</item>
         <item name="colorAccent">@color/defaultAccent</item>
         <item name="dividerColor">@color/defaultBar</item>
         <item name="dividerHidden">@color/defaultBackground</item>
@@ -23,6 +24,7 @@
         <item name="priorityMed">@color/alternativeMed</item>
         <item name="priorityLow">@color/alternativeLow</item>
         <item name="android:textColor">@color/textBlack</item>
+        <item name="android:textColorPrimary">@color/textBlack</item>
         <item name="android:colorPrimaryDark">@color/alternativeButton</item>
         <item name="android:statusBarColor">@color/alternativeBar</item>
         <item name="android:colorAccent">@color/alternativeAccent</item>
@@ -37,6 +39,7 @@
         <item name="priorityMed">@color/darkMed</item>
         <item name="priorityLow">@color/darkLow</item>
         <item name="android:textColor">@color/textWhite</item>
+        <item name="android:textColorPrimary">@color/textWhite</item>
         <item name="colorAccent">@color/darkAccent</item>
         <item name="android:colorPrimaryDark">@color/darkButton</item>
         <item name="android:statusBarColor">@color/darkBar</item>
@@ -69,7 +72,7 @@
         <item name="priorityMed">@color/twilightMed</item>
         <item name="priorityLow">@color/twilightLow</item>
         <item name="colorPrimaryDark">@color/twilightButton</item>
-        <item name="android:textColorPrimary">@color/textWhite</item>
+        <item name="android:textColorPrimary">@color/textBlack</item>
         <item name="dividerColor">@color/twilightBar</item>
         <item name="dividerHidden">@color/twilightBackground</item>
     </style>
@@ -83,6 +86,7 @@
         <item name="priorityHigh">@color/oliveHigh</item>
         <item name="priorityMed">@color/oliveMed</item>
         <item name="priorityLow">@color/oliveLow</item>
+        <item name="android:textColor">@color/textBlack</item>
         <item name="android:textColorPrimary">@color/textBlack</item>
         <item name="colorPrimaryDark">@color/oliveButton</item>
         <item name="dividerColor">@color/oliveBar</item>

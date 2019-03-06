@@ -40,7 +40,7 @@
                     android:fontFamily="sans-serif-smallcaps"
                     android:onClick="toHomePage"
                     android:text="@string/return_home"
-                    android:textColor="?android:attr/textColor"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:textSize="18sp" />
 
                 <TextView
@@ -320,7 +320,7 @@
                     android:fontFamily="sans-serif-smallcaps"
                     android:onClick="alarmSet1"
                     android:text="@string/createAlarm"
-                    android:textColor="?android:attr/textColor"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:textSize="18sp" />
             </LinearLayout>
 
@@ -344,7 +344,7 @@
         android:backgroundTint="?android:attr/colorPrimaryDark"
         android:fontFamily="sans-serif-smallcaps"
         android:text="@string/task_create"
-        android:textColor="?android:attr/textColor"
+        android:textColor="?android:attr/textColorPrimary"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent" />
 

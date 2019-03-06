@@ -45,7 +45,7 @@
             android:fontFamily="sans-serif-smallcaps"
             android:text="@string/ToDetails"
             android:textAlignment="center"
-            android:textColor="?android:attr/textColor"
+            android:textColor="?android:attr/textColorPrimary"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/Priority"

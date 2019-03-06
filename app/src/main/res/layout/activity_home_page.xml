@@ -24,7 +24,7 @@
             android:onClick="toSettings"
             android:text="@string/menu_key"
             android:textAlignment="center"
-            android:textColor="?android:attr/textColor"
+            android:textColor="?android:attr/textColorPrimary"
             android:textSize="40sp" />
 
         <TextView
@@ -49,7 +49,7 @@
             android:onClick="toTaskCreate"
             android:text="@string/create_task"
             android:textAlignment="center"
-            android:textColor="?android:attr/textColor"
+            android:textColor="?android:attr/textColorPrimary"
             android:textSize="40sp" />
 
     </LinearLayout>
