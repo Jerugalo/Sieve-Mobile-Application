@@ -305,5 +305,7 @@
             android:textColor="?android:attr/textColorPrimary"
             android:textSize="18sp" />
     </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>
