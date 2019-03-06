@@ -10,6 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:paddingBottom="2dp"
+        android:paddingTop="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -29,20 +31,28 @@
             android:id="@+id/Priority"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginStart="2dp"
+            android:background="?attr/priorityLow"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/ToDetails"
             app:layout_constraintStart_toEndOf="@+id/Title"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="?attr/priorityLow"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/ToDetails"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginEnd="2dp"
+            android:layout_marginStart="2dp"
             android:background="@drawable/button_style"
             android:backgroundTint="?android:attr/colorPrimaryDark"
             android:fontFamily="sans-serif-smallcaps"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
             android:text="@string/ToDetails"
             android:textAlignment="center"
             android:textColor="?android:attr/textColorPrimary"
