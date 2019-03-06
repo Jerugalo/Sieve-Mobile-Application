@@ -14,6 +14,10 @@
         <item name="colorAccent">@color/defaultAccent</item>
         <item name="dividerColor">@color/defaultBar</item>
         <item name="dividerHidden">@color/defaultBackground</item>
+        <item name="android:datePickerDialogTheme">@style/SieveDefaultDatePicker</item>
+        <item name="android:datePickerStyle">@style/MyDatePickerStyle</item>
+        <item name="android:timePickerStyle">@style/DefaultTimePickerStyle</item>
+        <item name="android:timePickerDialogTheme">@style/DefaultTimePickerTheme</item>
         
 
     </style>
