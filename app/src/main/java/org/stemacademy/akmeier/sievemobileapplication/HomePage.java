@@ -461,6 +461,11 @@ public class HomePage extends AppCompatActivity {
         textView.setText(dateFull);
     }
 
+    /**
+     * Makes the checkmark for completion of a task visible or invisible
+     * Added 3/8/2019
+     * @param setInvisible If true, this will make the checkmark gif on HomePage disappear
+     */
     public void EnableDisableCheckmark(Boolean setInvisible) {
         GifImageView checkmark = (GifImageView) findViewById(R.id.CheckMarkView);
         if(setInvisible){
@@ -472,6 +477,11 @@ public class HomePage extends AppCompatActivity {
             TimerForCheckmark();
         }
     }
+
+    /**
+     * Functions as a timer for how long the checkmark will be displayed
+     * Added 3/8/2019
+     */
     public void TimerForCheckmark(){
         new CountDownTimer(2000,100){
             @Override
