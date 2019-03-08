@@ -27,6 +27,7 @@ import io.fabric.sdk.android.Fabric;
 import org.stemacademy.akmeier.sievemobileapplication.db.TaskDatabase;
 import org.stemacademy.akmeier.sievemobileapplication.db.Task;
 import org.stemacademy.akmeier.sievemobileapplication.utilities.SwipeController;
+import org.stemacademy.akmeier.sievemobileapplication.utilities.SwipeControllerActions;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -69,8 +70,10 @@ public class HomePage extends AppCompatActivity {
     List <Integer> alarmNames;
     JobScheduler jobScheduler;
     TextView dateText;
+    TaskDatabase taskDatabase;
 
-
+    TaskListAdapter adapter;
+    List<Task> tasks;
 
     /**
      * Creates Activity and sets up the recycler view. Recycler view pulls a list of Task objects
@@ -87,7 +90,7 @@ public class HomePage extends AppCompatActivity {
         filter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
         this.registerReceiver(notificationJava,filter);
 
-        TaskDatabase taskDatabase = TaskDatabase.getInstance(this);
+        taskDatabase = TaskDatabase.getInstance(this);
         global.setTaskData(taskDatabase.taskDao().getAll());
 
         super.onCreate(savedInstanceState);
@@ -125,10 +128,10 @@ public class HomePage extends AppCompatActivity {
     protected void onStart(){
         super.onStart();
         determineTheme();
-        SwipeController swipeController = new SwipeController();
+        SwipeController swipeController;
         TaskDatabase taskDatabase = TaskDatabase.getInstance(HomePage.this);
         RecyclerView rvTasks = findViewById(R.id.TaskList);
-        List<Task> tasks = taskDatabase.taskDao().getAll();
+        tasks = taskDatabase.taskDao().getAll();
         Collections.sort(tasks, new Comparator<Task>() {
             @Override
             public int compare(Task o1, Task o2) {
@@ -136,15 +139,31 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
-        TaskListAdapter adapter = new TaskListAdapter(tasks, this);
+        adapter = new TaskListAdapter(tasks, this);
         rvTasks.setAdapter(adapter);
         rvTasks.setLayoutManager(new LinearLayoutManager(this));
 
+        swipeController = new SwipeController(new SwipeControllerActions() {
+            @Override
+            public void onRightClicked(int position) {
+                //Delete Task
+            }
+            public void onLeftClicked(int position) {
+                ToDetails(position);
+            }
+        });
         ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeController);
         itemTouchhelper.attachToRecyclerView(rvTasks);
 
         createListofNotifications();
         setDate(dateText);
+    }
+
+    /** Opens Settings activity */
+    public void ToDetails(int position) {
+        Intent toDetails = new Intent(this, AssignmentDetails.class);
+        global.setCurrentTask(tasks.get(position));
+        startActivity(toDetails);
     }
 
     /** Opens Settings activity */
@@ -157,6 +176,10 @@ public class HomePage extends AppCompatActivity {
     public void toTaskCreate(View view) {
         Intent toTaskCreate = new Intent(this, TaskCreate.class);
         startActivity(toTaskCreate);
+    }
+
+    public void deleteTask(Task task){
+        taskDatabase.taskDao().delete(mTask);
     }
 
     /**
