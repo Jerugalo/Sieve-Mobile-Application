@@ -19,7 +19,6 @@ public class GlobalVars extends Application {
         GlobalVars.instance = instance;
     }
 
-    private static List<Task> taskData;
     private static Task currentTask;
 
     private static ArrayList<String> gAlarms;
@@ -28,14 +27,6 @@ public class GlobalVars extends Application {
 
     public GlobalVars() {
 
-    }
-
-
-    public static List<Task> getTaskData() {
-        return taskData;
-    }
-    public static void setTaskData(List<Task> taskData) {
-        GlobalVars.taskData = taskData;
     }
 
     public static Task getCurrentTask() {

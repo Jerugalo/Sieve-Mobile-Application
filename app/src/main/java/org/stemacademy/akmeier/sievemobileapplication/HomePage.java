@@ -96,7 +96,6 @@ public class HomePage extends AppCompatActivity {
         this.registerReceiver(notificationJava,filter);
 
         taskDatabase = TaskDatabase.getInstance(this);
-        global.setTaskData(taskDatabase.taskDao().getAll());
 
         super.onCreate(savedInstanceState);
         Fabric.with(this, new Crashlytics());
@@ -106,7 +105,7 @@ public class HomePage extends AppCompatActivity {
         setDate(dateText);
 
         RecyclerView rvTasks = findViewById(R.id.TaskList);
-        TaskListAdapter adapter = new TaskListAdapter(global.getTaskData(),this);
+        adapter = new TaskListAdapter(tasks,this);
         rvTasks.setAdapter(adapter);
         rvTasks.setLayoutManager(new LinearLayoutManager(this));
 
