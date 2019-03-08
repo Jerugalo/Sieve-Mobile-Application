@@ -71,7 +71,7 @@ public class HomePage extends AppCompatActivity {
         }
     }
     GlobalVars global = GlobalVars.getInstance();
-    Task mTask =global.getCurrentTask();
+    Task mTask = global.getCurrentTask();
     List <Integer> alarmNames;
     JobScheduler jobScheduler;
     TextView dateText;
@@ -116,7 +116,7 @@ public class HomePage extends AppCompatActivity {
         {
             Boolean delete = (Boolean) bd.get("delete");
             if (delete != null && delete){
-                taskDatabase.taskDao().delete(mTask);
+                deleteTask(mTask);
             }
             Boolean clearAlarms = (Boolean) bd.get("CLEAR_ALARMS");
             if (clearAlarms !=null && clearAlarms){
@@ -134,7 +134,7 @@ public class HomePage extends AppCompatActivity {
         super.onStart();
         determineTheme();
         SwipeController swipeController;
-        TaskDatabase taskDatabase = TaskDatabase.getInstance(HomePage.this);
+        final TaskDatabase taskDatabase = TaskDatabase.getInstance(HomePage.this);
         RecyclerView rvTasks = findViewById(R.id.TaskList);
         tasks = taskDatabase.taskDao().getAll();
         Collections.sort(tasks, new Comparator<Task>() {
@@ -228,9 +228,11 @@ public class HomePage extends AppCompatActivity {
         swipeController = new SwipeController(new SwipeControllerActions() {
             @Override
             public void onRightClicked(int position) {
-                //Delete Task
+                position--;
+                deleteTask(tasks.get(position));
             }
             public void onLeftClicked(int position) {
+                position--;
                 ToDetails(position);
             }
         });
@@ -241,7 +243,7 @@ public class HomePage extends AppCompatActivity {
         setDate(dateText);
     }
 
-    /** Opens Settings activity */
+    /** Opens Details activity */
     public void ToDetails(int position) {
         Intent toDetails = new Intent(this, AssignmentDetails.class);
         global.setCurrentTask(tasks.get(position));
@@ -260,8 +262,14 @@ public class HomePage extends AppCompatActivity {
         startActivity(toTaskCreate);
     }
 
+    /**
+     * Deletes a task from the homepage.
+     *
+     * @param task The task to be deleted. Needs to be a copy of the one you want to delete in
+     *             the database.
+     */
     public void deleteTask(Task task){
-        taskDatabase.taskDao().delete(mTask);
+        taskDatabase.taskDao().delete(task);
     }
 
     /**
