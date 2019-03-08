@@ -1,27 +1,16 @@
 package org.stemacademy.akmeier.sievemobileapplication;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.res.Resources;
-import android.content.res.TypedArray;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
-import org.stemacademy.akmeier.sievemobileapplication.R;
 
 import org.stemacademy.akmeier.sievemobileapplication.db.Task;
 
@@ -38,11 +27,11 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     boolean add1=false;
 
     /** Assigns contents of input database to a local database */
-    private final List<Task> mTasks;
+    public final List<Task> tasks;
     public TaskListAdapter(List<Task> tasks, Context c) {
-        mTasks = tasks;
+        this.tasks = tasks;
         Task task=new Task(0,"Name","Class","3/3/3","Thingy",1,0,"Alert");
-        mTasks.add(task);
+        tasks.add(task);
         this.C=c;
 
     }
@@ -86,7 +75,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     position=position-1;
                 }
 
-                Task task = mTasks.get(position);
+                Task task = tasks.get(position);
 
                 ((ViewHolder) viewHolder).taskID = position;
 
@@ -122,7 +111,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     /** Returns the total count of items in the list */
     @Override
     public int getItemCount() {
-        return mTasks.size();
+        return tasks.size();
     }
 
     public class ViewHolder2 extends RecyclerView.ViewHolder{
@@ -139,10 +128,9 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     /** Assigns layout values to current task item */
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         final TextView taskTitle;
         final View taskPriority;
-        final Button detailsButton;
         int taskID;
 
         ViewHolder(View itemView, int taskID) {
@@ -152,16 +140,6 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             taskTitle = itemView.findViewById(R.id.Title);
             taskPriority = itemView.findViewById(R.id.Priority);
-            detailsButton = itemView.findViewById(R.id.ToDetails);
-
-            detailsButton.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View v) {
-            Intent toDetails = new Intent(detailsButton.getContext(), AssignmentDetails.class);
-            global.setCurrentTask(mTasks.get(taskID));
-            detailsButton.getContext().startActivity(toDetails);
         }
     }
     public static int getColorByThemeAttr(Context context,int attr,int defaultColor){
@@ -170,5 +148,4 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         boolean got = theme.resolveAttribute(attr,typedValue,true);
         return got ? typedValue.data : defaultColor;
     }
-
 }
