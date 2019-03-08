@@ -12,18 +12,24 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewTreeObserver;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.crashlytics.android.Crashlytics;
 import io.fabric.sdk.android.Fabric;
+import pl.droidsonroids.gif.GifImageView;
+
 import org.stemacademy.akmeier.sievemobileapplication.db.TaskDatabase;
 import org.stemacademy.akmeier.sievemobileapplication.db.Task;
 import org.stemacademy.akmeier.sievemobileapplication.utilities.SwipeController;
@@ -124,8 +130,22 @@ public class HomePage extends AppCompatActivity {
             }
 
         }
+        final Bundle bundle=bd;
         createListofNotifications();
-
+        final ConstraintLayout layout =(ConstraintLayout) findViewById(R.id.HomeView);
+        ViewTreeObserver vTO=layout.getViewTreeObserver();
+        vTO.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                if(bundle != null) {
+                    Boolean delete = (Boolean) bundle.get("delete");
+                    if (delete != null && delete) {
+                        layout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                        EnableDisableCheckmark(false);
+                    }
+                }
+            }
+        });
     }
 
     /** Instates the RecyclerView TODO: OUTDATED COMMENT PLEASE UPDATE */
@@ -439,5 +459,29 @@ public class HomePage extends AppCompatActivity {
         int dayNum=calendar.get(Calendar.DAY_OF_MONTH);
         String dateFull=dayNameS+ ", " + monthName + " " + dayNum;
         textView.setText(dateFull);
+    }
+
+    public void EnableDisableCheckmark(Boolean setInvisible) {
+        GifImageView checkmark = (GifImageView) findViewById(R.id.CheckMarkView);
+        if(setInvisible){
+            checkmark.setVisibility(View.GONE);
+            checkmark.setElevation(-1);
+        }else{
+            checkmark.setVisibility(View.VISIBLE);
+            checkmark.setElevation(10);
+            TimerForCheckmark();
+        }
+    }
+    public void TimerForCheckmark(){
+        new CountDownTimer(2000,100){
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+            @Override
+            public void onFinish() {
+                EnableDisableCheckmark(true);
+            }
+        }.start();
     }
 }
