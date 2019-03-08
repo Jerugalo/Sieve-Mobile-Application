@@ -48,6 +48,7 @@
     <string name="clearAlarms">Clear Alarms</string>
     <string name="timeBreak">Time Until Break</string>
     <string name="timer_duration_title">Work Timer Duration</string>
+    <string name="contWork">Continue &#xa; Working</string>
 
 
     <string-array name="classes_array">

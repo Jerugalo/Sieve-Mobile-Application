@@ -3,13 +3,20 @@ package org.stemacademy.akmeier.sievemobileapplication;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.CountDownTimer;
+import android.os.VibrationEffect;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
+import android.os.Vibrator;
 
 import org.stemacademy.akmeier.sievemobileapplication.db.Task;
+
+import java.util.concurrent.TimeUnit;
 
 public class AssignmentStart extends AppCompatActivity {
     public class SharedPreferencesManager{
@@ -35,6 +42,9 @@ public class AssignmentStart extends AppCompatActivity {
     GlobalVars global = GlobalVars.getInstance();
     Task mTask = global.getCurrentTask();
     TextView taskTitle;
+    TextView timerText;
+    Button contWork;
+    Vibrator v;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +53,12 @@ public class AssignmentStart extends AppCompatActivity {
         setContentView(R.layout.activity_assignment_start);
         taskTitle = (TextView)findViewById(R.id.TaskNameTitle);
         taskTitle.setText(mTask.getNameID());
+        timerText = findViewById(R.id.TimerCountdownText);
+        timeUntilBreak.start();
+        contWork = findViewById(R.id.contWorkButton);
+        contWork.setVisibility(View.INVISIBLE);
+        v = (Vibrator)getSystemService(VIBRATOR_SERVICE);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
     protected void onStart(){
         super.onStart();
@@ -54,11 +70,13 @@ public class AssignmentStart extends AppCompatActivity {
     }
 
     public void toHomePage(View view){
+        timeUntilBreak.cancel();
         Intent toHomePage = new Intent(this, HomePage.class);
         startActivity(toHomePage);
     }
 
     public void completeTask(View view){
+        timeUntilBreak.cancel();
         Intent toHomePage = new Intent(this, HomePage.class);
         toHomePage.putExtra("delete", true);
         startActivity(toHomePage);
@@ -72,5 +90,23 @@ public class AssignmentStart extends AppCompatActivity {
         else if(themeId == 5){setTheme(R.style.SieveSimple);}
         else if(themeId == 6){setTheme(R.style.SieveOlive);}
         else{setTheme(R.style.SieveDefault);}
+    }
+    CountDownTimer timeUntilBreak = new CountDownTimer(900000, 1000){
+        public void onTick(long millisUntilFinished) {
+            timerText.setText(""+String.format("%d:%d",
+                    TimeUnit.MILLISECONDS.toMinutes( millisUntilFinished),
+                    TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
+        }
+        public void onFinish() {
+            timerText.setText("Break Time!");
+            contWork.setVisibility(View.VISIBLE);
+            v.vibrate(500);
+
+        }
+    }.start();
+
+    public void continueWork(View view){
+        timeUntilBreak.start();
+        contWork.setVisibility(View.INVISIBLE);
     }
 }

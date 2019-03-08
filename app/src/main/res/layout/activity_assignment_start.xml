@@ -67,7 +67,7 @@
 
     <TextView
         android:id="@+id/TimerCountdownText"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -77,8 +77,22 @@
         android:textColor="?android:attr/textColor"
         android:textSize="33sp"
         app:layout_constraintBottom_toTopOf="@+id/DetailsTitle"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/contWorkButton"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/contWorkButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/button_style"
+        android:backgroundTint="?attr/colorPrimaryDark"
+        android:fontFamily="sans-serif-smallcaps"
+        android:onClick="continueWork"
+        android:text="@string/contWork"
+        app:layout_constraintBottom_toTopOf="@+id/DetailsTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/TimerCountdownText" />
 
     <Button
         android:id="@+id/DetailsTitle"
