@@ -32,31 +32,38 @@ public class Settings extends AppCompatActivity {
     private final ArrayList<String> classroomList = new ArrayList<>();
     private ClassroomDatabase classroomDatabase;
 
+    private Spinner workDurationSetter;
+    private ArrayAdapter workDurationAdapter;
+    private final ArrayList<String> durationList = new ArrayList<>();
+
     /*
      * This public class defines a SharedPreferencesManager.
      * The retrieveInt definition allows us to access the themeId rom SPM.
      * The storeInt method allows us to write to the SharedPreferencesManager.
      */
     public class SharedPreferencesManager {
-        private SharedPreferences themeStorage;
+        private SharedPreferences prefsManager;
         private SharedPreferences.Editor sEditor;
+
         private Context context;
         SharedPreferencesManager(Context context){
             this.context = context;
-            themeStorage = PreferenceManager.getDefaultSharedPreferences(context);
+            prefsManager = PreferenceManager.getDefaultSharedPreferences(context);
         }
-        private SharedPreferences.Editor getEditor(){
-            return themeStorage.edit();
+
+        private SharedPreferences.Editor getsEditor(){
+            return prefsManager.edit();
         }
         int retrieveInt(String tag, int defValue){
-            return themeStorage.getInt(tag, defValue);
+            return prefsManager.getInt(tag, defValue);
         }
         void storeInt(String tag, int defValue){
-            sEditor = getEditor();
+            sEditor = getsEditor();
             sEditor.putInt(tag, defValue);
             sEditor.commit();
         }
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +77,7 @@ public class Settings extends AppCompatActivity {
         T5Rd = findViewById(R.id.themeSimple);
         T6Rd = findViewById(R.id.themeOlive);
         determineCheckedRadioButton();
+
         /* Fills the spinner and allows user to select a class from the class database */
         createClassroomList();
         classroomChooser = findViewById(R.id.deleteClassSpinner);
@@ -86,9 +94,29 @@ public class Settings extends AppCompatActivity {
                     refreshClassroomSpinner();
                 }
             }
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
+            public void onNothingSelected(AdapterView<?> parent) {}
         });
+
+
+        workDurationSetter = findViewById(R.id.timerSpinner);
+        workDurationAdapter = ArrayAdapter.createFromResource(this, R.array.times_array, android.R.layout.simple_spinner_dropdown_item);
+        workDurationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        workDurationSetter.setAdapter(workDurationAdapter);
+        workDurationSetter.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                if(parent.getItemAtPosition(pos).toString().equals("15 Minutes")) {new SharedPreferencesManager(getApplicationContext()).storeInt("workDuration",15);}
+                else if (parent.getItemAtPosition(pos).toString().equals("30 Minutes")) {new SharedPreferencesManager(getApplicationContext()).storeInt("workDuration",30);}
+                else if (parent.getItemAtPosition(pos).toString().equals("45 Minutes" )) {new SharedPreferencesManager(getApplicationContext()).storeInt("workDuration",45);}
+                else if (parent.getItemAtPosition(pos).toString().equals("60 Minutes")) {new SharedPreferencesManager(getApplicationContext()).storeInt("workDuration",60);}
+            }
+            public void onNothingSelected(AdapterView<?> parent) { }
+        });
+
+        int durationChecked = new SharedPreferencesManager(getApplicationContext()).retrieveInt("workDuration", 30);
+        if(durationChecked == 15){workDurationSetter.setSelection(0);}
+        else if (durationChecked == 30) {workDurationSetter.setSelection(1);}
+        else if (durationChecked == 45) {workDurationSetter.setSelection(2);}
+        else if (durationChecked == 60) {workDurationSetter.setSelection(3);}
     }
 
     /** Creates a new class list and updates the spinner*/
@@ -203,7 +231,6 @@ public class Settings extends AppCompatActivity {
         T6Rd.setChecked(true);
         onThemeRadio();
     }
-
 
     public void determineCheckedRadioButton() {
         int themeId = new SharedPreferencesManager(this).retrieveInt("themeId", 1);

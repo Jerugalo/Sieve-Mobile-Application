@@ -8,26 +8,27 @@
 
     <TextView
         android:id="@+id/WorkingOnTitle"
-        android:layout_width="310dp"
+        android:layout_width="234dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="@string/now_working"
         android:textAlignment="center"
         android:textColor="?android:attr/textColor"
         android:textSize="33sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/TaskNameTitle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:fontFamily="sans-serif-smallcaps"
         android:textAlignment="center"
         android:textColor="?android:attr/textColor"
@@ -36,31 +37,62 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/WorkingOnTitle" />
 
-    <Space
-        android:id="@+id/spacer1"
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/gifImageView"
         android:layout_width="match_parent"
-        android:layout_height="47dp"
+        android:layout_height="242dp"
+        android:background="?android:attr/colorBackground"
+        android:baselineAligned="false"
+        android:src="@drawable/workanim1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TaskNameTitle" />
 
-    <pl.droidsonroids.gif.GifImageView
+    <TextView
+        android:id="@+id/TimeTillBreakTitle"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="?android:attr/colorBackground"
-        android:baselineAligned="false"
-        android:src="@drawable/workanim1"
-        app:layout_constraintBottom_toTopOf="@+id/spacer2"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/timeBreak"
+        android:textColor="?android:attr/textColor"
+        android:textSize="33sp"
+        app:layout_constraintBottom_toTopOf="@+id/TimerCountdownText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spacer1"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/gifImageView" />
 
-    <Space
-        android:id="@+id/spacer2"
-        android:layout_width="match_parent"
-        android:layout_height="47dp"
-        app:layout_constraintBottom_toTopOf="@+id/DetailsTitle" />
+    <TextView
+        android:id="@+id/TimerCountdownText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_weight="1"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textAlignment="center"
+        android:textColor="?android:attr/textColor"
+        android:textSize="33sp"
+        app:layout_constraintBottom_toTopOf="@+id/DetailsTitle"
+        app:layout_constraintEnd_toStartOf="@+id/contWorkButton"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/contWorkButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/button_style"
+        android:backgroundTint="?attr/colorPrimaryDark"
+        android:fontFamily="sans-serif-smallcaps"
+        android:onClick="continueWork"
+        android:text="@string/contWork"
+        app:layout_constraintBottom_toTopOf="@+id/DetailsTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/TimerCountdownText" />
 
     <Button
         android:id="@+id/DetailsTitle"
@@ -85,7 +117,7 @@
         android:id="@+id/buttonContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:orientation="horizontal"

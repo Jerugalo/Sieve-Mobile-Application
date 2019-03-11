@@ -53,11 +53,21 @@
     <string name="No">No</string>
     <string name="SaveNow">Save Now</string>
 
+    <string name="timeBreak">Time Until Break</string>
+    <string name="timer_duration_title">Work Timer Duration</string>
+    <string name="contWork">Continue &#xa; Working</string>
 
 
     <string-array name="classes_array">
         <item>Math</item>
         <item>English</item>
         <item>Other Class</item>
+    </string-array>
+
+    <string-array name="times_array">
+        <item>15 Minutes</item>
+        <item>30 Minutes</item>
+        <item>45 Minutes</item>
+        <item>60 Minutes</item>
     </string-array>
 </resources>
