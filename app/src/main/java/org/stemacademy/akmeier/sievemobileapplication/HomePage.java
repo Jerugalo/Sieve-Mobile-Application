@@ -79,6 +79,7 @@ public class HomePage extends AppCompatActivity {
 
     TaskListAdapter adapter;
     List<Task> tasks;
+    RecyclerView rvTasks;
 
     /**
      * Creates Activity and sets up the recycler view. Recycler view pulls a list of Task objects
@@ -104,7 +105,7 @@ public class HomePage extends AppCompatActivity {
         taskDatabase = TaskDatabase.getInstance(this);
         tasks = taskDatabase.taskDao().getAll();
         sortTasks();
-        RecyclerView rvTasks = findViewById(R.id.TaskList);
+        rvTasks = findViewById(R.id.TaskList);
         adapter = new TaskListAdapter(tasks,this);
         rvTasks.setAdapter(adapter);
         rvTasks.setLayoutManager(new LinearLayoutManager(this));
@@ -272,6 +273,7 @@ public class HomePage extends AppCompatActivity {
         sortTasks();
         adapter = new TaskListAdapter(tasks,this);
         adapter.notifyDataSetChanged();
+
     }
 
     /**
