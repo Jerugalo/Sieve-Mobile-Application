@@ -86,7 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:background="@drawable/button_style"
-        android:backgroundTint="?attr/colorPrimaryDark"
+        android:backgroundTint="?android:attr/colorPrimaryDark"
         android:fontFamily="sans-serif-smallcaps"
         android:onClick="continueWork"
         android:text="@string/contWork"
