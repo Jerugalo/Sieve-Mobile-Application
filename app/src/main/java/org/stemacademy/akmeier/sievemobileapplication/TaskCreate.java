@@ -274,9 +274,15 @@ public class TaskCreate extends AppCompatActivity {
         RadioButton habit = findViewById(R.id.habitRadio);
         RadioButton assignment = findViewById(R.id.assignmentRadio);
         RadioButton project = findViewById(R.id.projectRadio);
-        if(habit.isChecked()){typeID = 0;}
-        else if(assignment.isChecked()){typeID = 1;}
-        else if(project.isChecked()){typeID = 2;}
+        if(habit.isChecked()){
+            typeID = 0;
+        }
+        else if(assignment.isChecked()){
+            typeID = 1;
+        }
+        else if(project.isChecked()){
+            typeID = 2;
+        }
     }
 
     public void prioritySet(View view){

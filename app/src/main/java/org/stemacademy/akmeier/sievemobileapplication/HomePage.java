@@ -207,10 +207,21 @@ public class HomePage extends AppCompatActivity {
                     compare2=0;
                 }
                 if(days1==0){
-                    compare1=100*(o1.getPriority()+1);
+                    compare1=(100*(o1.getPriority()+1))+1000;
                 }
                 if(days2==0){
-                    compare2=100*(o2.getPriority()+1);
+                    compare2=(100*(o2.getPriority()+1))+1000;
+                }
+                if(o1.getTypeID()==0){
+                    compare1+=500;
+                }
+                else if(o1.getTypeID()==2){
+                    compare1+=250;
+                }
+                if(o2.getTypeID()==0){
+                    compare2+=500;
+                }else if(o1.getTypeID()==2){
+                    compare2+=250;
                 }
                 return compare1>compare2 ? -1:(compare1<compare2) ? 1: 0;
             }
