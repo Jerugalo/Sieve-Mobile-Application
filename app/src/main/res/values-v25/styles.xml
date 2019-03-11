@@ -100,20 +100,20 @@
         <item name="dividerHidden">@color/oliveBackground</item>
     </style>
 
-    <!-- Analog Themes -->
-    <style name="SieveDefaultDatePicker" parent="android:Theme.Material.Light.Dialog">
+    <!-- Dialog Themes -->
+    <style name="DatePickerDefault" parent="android:Theme.Material.Light.Dialog">
         <item name="android:colorAccent">@color/defaultAccent</item><!--Color of the selector for date-->
         <item name="android:textColor">@color/textBlack</item><!--text color for header and ok and cancel buttons-->
         <item name="android:textColorSecondary">@color/textBlack</item><!--Text color for day names on calendar-->
         <item name="android:datePickerStyle">@style/MyDatePickerStyle</item>
         <item name="android:textColorPrimary">@color/textBlack</item><!--Sets Color for text in calendar-->
     </style>
-    <style name="MyDatePickerStyle" parent="@android:style/Widget.Material.Light.DatePicker">
+    <style name="DatePickerDefaultStyle" parent="@android:style/Widget.Material.Light.DatePicker">
         <item name ="android:headerBackground">@color/defaultAccent</item><!--This changes the background color for header-->
         <item name="android:colorAccent">@color/defaultAccent</item><!--Default color of the top bar in date picker-->
         <item name="android:background">@color/defaultBackground</item><!--Sets background color for calendar area-->
     </style>
-    <style name="DefaultTimePickerTheme" parent="@android:style/Theme.Material.Light.Dialog">
+    <style name="TimePickerDefault" parent="@android:style/Theme.Material.Light.Dialog">
         <item name="android:textColorPrimary">@color/textBlack</item>
         <item name="android:colorAccent">@color/defaultAccent</item>
         <item name="android:textColor">@color/textBlack</item>
