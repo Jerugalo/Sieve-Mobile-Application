@@ -77,7 +77,7 @@ public class HomePage extends AppCompatActivity {
         }
     }
     GlobalVars global = GlobalVars.getInstance();
-    Task mTask =global.getCurrentTask();
+    Task mTask = global.getCurrentTask();
     List <Integer> alarmNames;
     JobScheduler jobScheduler;
     TextView dateText;
@@ -85,12 +85,12 @@ public class HomePage extends AppCompatActivity {
 
     TaskListAdapter adapter;
     List<Task> tasks;
+    RecyclerView rvTasks;
 
     /**
      * Creates Activity and sets up the recycler view. Recycler view pulls a list of Task objects
      * from the TaskDao and displays them in a visual list.
      */
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         alarmNames=new ArrayList<>();
@@ -101,9 +101,6 @@ public class HomePage extends AppCompatActivity {
         filter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
         this.registerReceiver(notificationJava,filter);
 
-        taskDatabase = TaskDatabase.getInstance(this);
-        global.setTaskData(taskDatabase.taskDao().getAll());
-
         super.onCreate(savedInstanceState);
         Fabric.with(this, new Crashlytics());
         determineTheme();
@@ -111,8 +108,11 @@ public class HomePage extends AppCompatActivity {
         dateText= (TextView) findViewById(R.id.dateViewHP);
         setDate(dateText);
 
-        RecyclerView rvTasks = findViewById(R.id.TaskList);
-        TaskListAdapter adapter = new TaskListAdapter(global.getTaskData(),this);
+        taskDatabase = TaskDatabase.getInstance(this);
+        tasks = taskDatabase.taskDao().getAll();
+        sortTasks();
+        rvTasks = findViewById(R.id.TaskList);
+        adapter = new TaskListAdapter(tasks,this);
         rvTasks.setAdapter(adapter);
         rvTasks.setLayoutManager(new LinearLayoutManager(this));
 
@@ -122,7 +122,7 @@ public class HomePage extends AppCompatActivity {
         {
             Boolean delete = (Boolean) bd.get("delete");
             if (delete != null && delete){
-                taskDatabase.taskDao().delete(mTask);
+                deleteTask(mTask);
             }
             Boolean clearAlarms = (Boolean) bd.get("CLEAR_ALARMS");
             if (clearAlarms !=null && clearAlarms){
@@ -154,9 +154,77 @@ public class HomePage extends AppCompatActivity {
         super.onStart();
         determineTheme();
         SwipeController swipeController;
-        TaskDatabase taskDatabase = TaskDatabase.getInstance(HomePage.this);
+        final TaskDatabase taskDatabase = TaskDatabase.getInstance(HomePage.this);
         RecyclerView rvTasks = findViewById(R.id.TaskList);
-        tasks = taskDatabase.taskDao().getAll();
+
+        global.setgDivPos(0);
+        for(int i=0;i<taskDatabase.taskDao().getAll().size();i++){
+            Calendar calendar =Calendar.getInstance();
+            calendar.set(Calendar.MILLISECOND,0);
+            calendar.set(Calendar.SECOND,0);
+            calendar.set(Calendar.MINUTE,0);
+            calendar.set(Calendar.HOUR_OF_DAY,12);
+            calendar.set(Calendar.HOUR,0);
+            calendar.set(Calendar.AM_PM,Calendar.PM);
+            Date date1=calendar.getTime();
+            String incorrectDate=taskDatabase.taskDao().getAll().get(i).getDueDate();
+            List<String> divided1=new ArrayList<>(Arrays.asList(incorrectDate.split("/")));
+            String cTD1=divided1.get(1)+"/"+divided1.get(0)+"/"+divided1.get(2);
+            SimpleDateFormat sdf1=new SimpleDateFormat("dd/MM/yyyy");
+            try {
+                date1=sdf1.parse(cTD1);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            long check=date1.getTime()-calendar.getTime().getTime();
+            int days1=0;
+            days1=abs(toIntExact(TimeUnit.DAYS.convert(check,TimeUnit.MILLISECONDS)));
+            if(days1==0){
+                global.setgDivPos(global.getgDivPos()+1);
+            }
+        }
+
+        swipeController = new SwipeController(new SwipeControllerActions() {
+            @Override
+            public void onRightClicked(int position) {
+                position--;
+                deleteTask(tasks.get(position));
+            }
+            public void onLeftClicked(int position) {
+                position--;
+                ToDetails(position);
+            }
+        });
+        ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeController);
+        itemTouchhelper.attachToRecyclerView(rvTasks);
+
+        createListofNotifications();
+        setDate(dateText);
+    }
+
+    /** Opens Details activity */
+    public void ToDetails(int position) {
+        Intent toDetails = new Intent(this, AssignmentDetails.class);
+        global.setCurrentTask(tasks.get(position));
+        startActivity(toDetails);
+    }
+
+    /** Opens Settings activity */
+    public void toSettings(android.view.View view) {
+        Intent toSettings = new Intent(this, Settings.class);
+        startActivity(toSettings);
+    }
+
+    /** Opens TaskCreate activity */
+    public void toTaskCreate(View view) {
+        Intent toTaskCreate = new Intent(this, TaskCreate.class);
+        startActivity(toTaskCreate);
+    }
+
+    /**
+     * TODO: Come up with an adequate description of the function
+     */
+    private void sortTasks(){
         Collections.sort(tasks, new Comparator<Task>() {
             @Override
             public int compare(Task o1, Task o2) {
@@ -226,73 +294,29 @@ public class HomePage extends AppCompatActivity {
                 return compare1>compare2 ? -1:(compare1<compare2) ? 1: 0;
             }
         });
-        global.setgDivPos(0);
-        for(int i=0;i<taskDatabase.taskDao().getAll().size();i++){
-            Calendar calendar =Calendar.getInstance();
-            calendar.set(Calendar.MILLISECOND,0);
-            calendar.set(Calendar.SECOND,0);
-            calendar.set(Calendar.MINUTE,0);
-            calendar.set(Calendar.HOUR_OF_DAY,12);
-            calendar.set(Calendar.HOUR,0);
-            calendar.set(Calendar.AM_PM,Calendar.PM);
-            Date date1=calendar.getTime();
-            String incorrectDate=taskDatabase.taskDao().getAll().get(i).getDueDate();
-            List<String> divided1=new ArrayList<>(Arrays.asList(incorrectDate.split("/")));
-            String cTD1=divided1.get(1)+"/"+divided1.get(0)+"/"+divided1.get(2);
-            SimpleDateFormat sdf1=new SimpleDateFormat("dd/MM/yyyy");
-            try {
-                date1=sdf1.parse(cTD1);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            long check=date1.getTime()-calendar.getTime().getTime();
-            int days1=0;
-            days1=abs(toIntExact(TimeUnit.DAYS.convert(check,TimeUnit.MILLISECONDS)));
-            if(days1==0){
-                global.setgDivPos(global.getgDivPos()+1);
-            }
-        }
-        adapter = new TaskListAdapter(tasks, this);
-        rvTasks.setAdapter(adapter);
-        rvTasks.setLayoutManager(new LinearLayoutManager(this));
-
-        swipeController = new SwipeController(new SwipeControllerActions() {
-            @Override
-            public void onRightClicked(int position) {
-                //Delete Task
-            }
-            public void onLeftClicked(int position) {
-                ToDetails(position);
-            }
-        });
-        ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeController);
-        itemTouchhelper.attachToRecyclerView(rvTasks);
-
-        createListofNotifications();
-        setDate(dateText);
     }
 
-    /** Opens Settings activity */
-    public void ToDetails(int position) {
-        Intent toDetails = new Intent(this, AssignmentDetails.class);
-        global.setCurrentTask(tasks.get(position));
-        startActivity(toDetails);
+    /**
+     * Refreshes the recycler view with a new set of data from the database.
+     */
+    private void refreshRecycler(){
+        taskDatabase = TaskDatabase.getInstance(this);
+        tasks = taskDatabase.taskDao().getAll();
+        sortTasks();
+        adapter = new TaskListAdapter(tasks,this);
+        adapter.notifyDataSetChanged();
+
     }
 
-    /** Opens Settings activity */
-    public void toSettings(android.view.View view) {
-        Intent toSettings = new Intent(this, Settings.class);
-        startActivity(toSettings);
-    }
-
-    /** Opens TaskCreate activity */
-    public void toTaskCreate(View view) {
-        Intent toTaskCreate = new Intent(this, TaskCreate.class);
-        startActivity(toTaskCreate);
-    }
-
+    /**
+     * Deletes a task from the homepage.
+     *
+     * @param task The task to be deleted. Needs to be a copy of the one you want to delete in
+     *             the database.
+     */
     public void deleteTask(Task task){
-        taskDatabase.taskDao().delete(mTask);
+        taskDatabase.taskDao().delete(task);
+        refreshRecycler();
     }
 
     /**
