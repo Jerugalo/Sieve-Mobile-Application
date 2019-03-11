@@ -115,6 +115,7 @@
                     android:layout_weight="1"
                     android:checked="false"
                     android:fontFamily="sans-serif-smallcaps"
+                    android:onClick="assignmentTypeSet"
                     android:text="@string/habit"
                     android:textColor="?android:attr/textColor" />
 
@@ -125,6 +126,7 @@
                     android:layout_weight="1"
                     android:checked="false"
                     android:fontFamily="sans-serif-smallcaps"
+                    android:onClick="assignmentTypeSet"
                     android:text="@string/assignment"
                     android:textColor="?android:attr/textColor" />
 
@@ -135,6 +137,7 @@
                     android:layout_weight="1"
                     android:checked="false"
                     android:fontFamily="sans-serif-smallcaps"
+                    android:onClick="assignmentTypeSet"
                     android:text="@string/project"
                     android:textColor="?android:attr/textColor" />
             </RadioGroup>
