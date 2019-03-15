@@ -99,9 +99,14 @@ public class AssignmentStart extends AppCompatActivity {
     }
     CountDownTimer timeUntilBreak = new CountDownTimer(900000, 1000){
         public void onTick(long millisUntilFinished) {
-            timerText.setText(""+String.format("%d:%d",
-                    TimeUnit.MILLISECONDS.toMinutes( millisUntilFinished),
-                    TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
+            long minute = TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished);
+            String minuteS =minute+"";
+            long second =TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished));
+            String secondS=second+"";
+            if(second<10){
+                secondS="0"+second;
+            }
+            timerText.setText(""+String.format(minuteS+":"+secondS));
         }
         public void onFinish() {
             timerText.setText("Break Time!");
