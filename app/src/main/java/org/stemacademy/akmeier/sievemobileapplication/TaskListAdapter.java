@@ -33,7 +33,6 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         Task task=new Task(0,"Name","Class","3/3/3","Thingy",1,0,"Alert");
         tasks.add(task);
         this.C=c;
-
     }
 
     @Override
@@ -58,7 +57,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         View dividerView=inflater.inflate(R.layout.item_due_today_list,parent,false);
         switch(viewType) {
             case 0:
-                return new ViewHolder(taskView, 1);
+                return new ViewHolder(taskView);
             case 1:
                 return new ViewHolder2(dividerView);
         }
@@ -76,28 +75,20 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 }
 
                 Task task = tasks.get(position);
-
                 ((ViewHolder) viewHolder).taskID = position;
 
                 TextView textView = ((ViewHolder) viewHolder).taskTitle;
                 textView.setText(task.getNameID());
 
                 View imageView = ((ViewHolder) viewHolder).taskPriority;
-                //TypedArray mPriority = textView.getContext().getResources().obtainTypedArray(R.array.priority);
-                //int x = mPriority.getResourceId(task.getPriority(),1);
-                //imageView.setImageResource(mPriority.getResourceId(task.getPriority(), 0));
-                //mPriority.recycle();
-
-                if (task.getPriority() == 0) {
-                    imageView.setBackgroundColor(getColorByThemeAttr(C, R.attr.priorityLow, R.color.defaultLow));
-                } else if (task.getPriority() == 1) {
-                    imageView.setBackgroundColor(getColorByThemeAttr(C, R.attr.priorityMed, R.color.defaultMed));
-                } else if (task.getPriority() == 2) {
-                    imageView.setBackgroundColor(getColorByThemeAttr(C, R.attr.priorityHigh, R.color.defaultHigh));
-                } else {
-                    imageView.setBackgroundColor(getColorByThemeAttr(C, R.attr.priorityMed, R.color.defaultMed));
+                switch (task.getPriority()) {
+                    case 0: imageView.setBackgroundColor(getColorByThemeAttr(C, R.attr.priorityLow, R.color.defaultLow));
+                    case 1: imageView.setBackgroundColor(getColorByThemeAttr(C, R.attr.priorityMed, R.color.defaultMed));
+                    case 2: imageView.setBackgroundColor(getColorByThemeAttr(C, R.attr.priorityHigh, R.color.defaultHigh));
+                    default: imageView.setBackgroundColor(getColorByThemeAttr(C, R.attr.priorityMed, R.color.defaultMed));
                 }
                 break;
+
             case 1:
                 ViewHolder2 viewHolder2=(ViewHolder2)viewHolder;
                 View dividerView=((ViewHolder2) viewHolder).divider;
@@ -133,13 +124,14 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         final View taskPriority;
         int taskID;
 
-        ViewHolder(View itemView, int taskID) {
+        ViewHolder(View itemView) {
             // Stores the itemView in a public final member variable that can be used
             // to access the context from any ViewHolder instance.
             super(itemView);
 
             taskTitle = itemView.findViewById(R.id.Title);
             taskPriority = itemView.findViewById(R.id.Priority);
+            itemView.setTag(,taskID);
         }
     }
     public static int getColorByThemeAttr(Context context,int attr,int defaultColor){

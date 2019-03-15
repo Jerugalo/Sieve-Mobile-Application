@@ -155,7 +155,7 @@ public class HomePage extends AppCompatActivity {
         determineTheme();
         SwipeController swipeController;
         final TaskDatabase taskDatabase = TaskDatabase.getInstance(HomePage.this);
-        RecyclerView rvTasks = findViewById(R.id.TaskList);
+        rvTasks = findViewById(R.id.TaskList);
 
         global.setgDivPos(0);
         for(int i=0;i<taskDatabase.taskDao().getAll().size();i++){
