@@ -62,7 +62,7 @@ public class AssignmentStart extends AppCompatActivity {
         timerText = findViewById(R.id.TimerCountdownText);
         timeUntilBreak.start();
         contWork = findViewById(R.id.contWorkButton);
-        contWork.setVisibility(View.INVISIBLE);
+        contWork.setVisibility(View.GONE);
         v = (Vibrator)getSystemService(VIBRATOR_SERVICE);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
@@ -118,7 +118,7 @@ public class AssignmentStart extends AppCompatActivity {
 
     public void continueWork(View view){
         timeUntilBreak.start();
-        contWork.setVisibility(View.INVISIBLE);
+        contWork.setVisibility(View.GONE);
         pausePlayAnimation(false);
     }
 
