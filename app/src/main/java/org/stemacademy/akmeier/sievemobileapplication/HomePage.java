@@ -187,12 +187,12 @@ public class HomePage extends AppCompatActivity {
         swipeController = new SwipeController(new SwipeControllerActions() {
             @Override
             public void onRightClicked(int position) {
-                position--;
-                deleteTask(tasks.get(position));
+                deleteTask(tasks.get((int)rvTasks.findViewHolderForAdapterPosition(position)
+                        .itemView.getTag()));
             }
             public void onLeftClicked(int position) {
-                position--;
-                ToDetails(position);
+                ToDetails((int)rvTasks.findViewHolderForAdapterPosition(position)
+                        .itemView.getTag());
             }
         });
         ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeController);
@@ -204,9 +204,11 @@ public class HomePage extends AppCompatActivity {
 
     /** Opens Details activity */
     public void ToDetails(int position) {
-        Intent toDetails = new Intent(this, AssignmentDetails.class);
-        global.setCurrentTask(tasks.get(position));
-        startActivity(toDetails);
+        if (position > 0){
+            Intent toDetails = new Intent(this, AssignmentDetails.class);
+            global.setCurrentTask(tasks.get(position));
+            startActivity(toDetails);
+        }
     }
 
     /** Opens Settings activity */
