@@ -10,12 +10,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.MediaController;
 import android.widget.TextView;
 import android.os.Vibrator;
 
 import org.stemacademy.akmeier.sievemobileapplication.db.Task;
 
 import java.util.concurrent.TimeUnit;
+
+import pl.droidsonroids.gif.GifDrawable;
+import pl.droidsonroids.gif.GifImageView;
 
 public class AssignmentStart extends AppCompatActivity {
     public class SharedPreferencesManager{
@@ -44,6 +48,8 @@ public class AssignmentStart extends AppCompatActivity {
     TextView timerText;
     Button contWork;
     Vibrator v;
+    GifImageView gIF;
+    GifDrawable gD;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +61,7 @@ public class AssignmentStart extends AppCompatActivity {
         timerText = findViewById(R.id.TimerCountdownText);
         timeUntilBreak.start();
         contWork = findViewById(R.id.contWorkButton);
-        contWork.setVisibility(View.INVISIBLE);
+        contWork.setVisibility(View.GONE);
         v = (Vibrator)getSystemService(VIBRATOR_SERVICE);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
@@ -92,20 +98,36 @@ public class AssignmentStart extends AppCompatActivity {
     }
     CountDownTimer timeUntilBreak = new CountDownTimer(900000, 1000){
         public void onTick(long millisUntilFinished) {
-            timerText.setText(""+String.format("%d:%d",
-                    TimeUnit.MILLISECONDS.toMinutes( millisUntilFinished),
-                    TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
+            long minute = TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished);
+            String minuteS =minute+"";
+            long second =TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished));
+            String secondS=second+"";
+            if(second<10){
+                secondS="0"+second;
+            }
+            timerText.setText(""+String.format(minuteS+":"+secondS));
         }
         public void onFinish() {
             timerText.setText("Break Time!");
             contWork.setVisibility(View.VISIBLE);
             v.vibrate(500);
-
+            pausePlayAnimation(true);
         }
     }.start();
 
     public void continueWork(View view){
         timeUntilBreak.start();
-        contWork.setVisibility(View.INVISIBLE);
+        contWork.setVisibility(View.GONE);
+        pausePlayAnimation(false);
+    }
+
+    public void pausePlayAnimation(boolean pause){
+        gIF=(GifImageView)findViewById(R.id.gifImageView);
+        gD=(GifDrawable)gIF.getDrawable();
+        if(pause){
+            gD.stop();
+        }else{
+            gD.start();
+        }
     }
 }
