@@ -108,14 +108,6 @@ public class HomePage extends AppCompatActivity {
         dateText= (TextView) findViewById(R.id.dateViewHP);
         setDate(dateText);
 
-        taskDatabase = TaskDatabase.getInstance(this);
-        tasks = taskDatabase.taskDao().getAll();
-        sortTasks();
-        rvTasks = findViewById(R.id.TaskList);
-        adapter = new TaskListAdapter(tasks,this);
-        rvTasks.setAdapter(adapter);
-        rvTasks.setLayoutManager(new LinearLayoutManager(this));
-
         Intent intent = getIntent();
         Bundle bd = intent.getExtras();
         if(bd != null)
@@ -154,8 +146,14 @@ public class HomePage extends AppCompatActivity {
         super.onStart();
         determineTheme();
         SwipeController swipeController;
-        final TaskDatabase taskDatabase = TaskDatabase.getInstance(HomePage.this);
+
+        taskDatabase = TaskDatabase.getInstance(this);
+        tasks = taskDatabase.taskDao().getAll();
+        sortTasks();
         rvTasks = findViewById(R.id.TaskList);
+        adapter = new TaskListAdapter(tasks,this);
+        rvTasks.setAdapter(adapter);
+        rvTasks.setLayoutManager(new LinearLayoutManager(this));
 
         global.setgDivPos(0);
         for(int i=0;i<taskDatabase.taskDao().getAll().size();i++){
@@ -306,8 +304,7 @@ public class HomePage extends AppCompatActivity {
         tasks = taskDatabase.taskDao().getAll();
         sortTasks();
         adapter = new TaskListAdapter(tasks,this);
-        adapter.notifyDataSetChanged();
-
+        //adapter.notifyDataSetChanged();
     }
 
     /**
