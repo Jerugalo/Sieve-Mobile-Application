@@ -47,13 +47,10 @@
     <string name="theme6name">Olive</string>
     <string name="clearAlarms">Clear Alarms</string>
     <string name="createAlarm">Create Alarm</string>
-    <string name="DueBar">-----Tasks Due Today or Tomorrow Above!!!-----</string>
-    <string name="ConfirmExitWOSave">Confirm Exiting Without Saving?</string>
+    <string name="ConfirmExitWOSave">Exit Without Saving?</string>
     <string name="Yes">Yes</string>
     <string name="No">No</string>
     <string name="SaveNow">Save Now</string>
-
-
 
     <string-array name="classes_array">
         <item>Math</item>
