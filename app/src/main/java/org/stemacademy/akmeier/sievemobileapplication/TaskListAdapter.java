@@ -123,7 +123,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             // to access the context from any TaskViewHolder instance.
             super(itemView);
 
-            taskTitle = itemView.findViewById(R.id.Title);
+            taskTitle = itemView.findViewById(R.id.taskTitle);
             taskPriority = itemView.findViewById(R.id.Priority);
         }
     }
