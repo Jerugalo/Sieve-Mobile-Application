@@ -5,61 +5,50 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/Task"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
-            android:id="@+id/taskTitle"
+            android:id="@+id/Title"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_weight="1"
+            android:layout_height="0dp"
             android:fontFamily="sans-serif-smallcaps"
-            android:gravity="center_vertical"
-            android:text="Task Title"
-            android:textColor="?android:attr/textColor"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/Priority"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
 
         <View
             android:id="@+id/Priority"
             android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_weight="1"
-            android:background="?attr/priorityLow"
-            android:paddingLeft="2dp"
-            android:paddingRight="2dp"
+            android:layout_height="0dp"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@+id/taskTitle"
-            app:layout_constraintRight_toLeftOf="@+id/taskType"
+            app:layout_constraintEnd_toStartOf="@+id/ToDetails"
+            app:layout_constraintStart_toEndOf="@+id/Title"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            android:background="?attr/priorityLow"/>
 
-        <TextView
-            android:id="@+id/taskType"
+        <Button
+            android:id="@+id/ToDetails"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginEnd="8dp"
-            android:layout_weight="1"
+            android:background="@drawable/button_style"
+            android:backgroundTint="?attr/colorPrimaryDark"
             android:fontFamily="sans-serif-smallcaps"
-            android:gravity="center_vertical"
-            android:text="Task Type"
+            android:text="@string/ToDetails"
+            android:textAlignment="center"
             android:textColor="?android:attr/textColor"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </LinearLayout>
-
+            app:layout_constraintStart_toEndOf="@+id/Priority"
+            app:layout_constraintTop_toTopOf="@+id/Priority" />
+    </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

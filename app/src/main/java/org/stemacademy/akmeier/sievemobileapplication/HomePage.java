@@ -12,41 +12,25 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewTreeObserver;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.crashlytics.android.Crashlytics;
 import io.fabric.sdk.android.Fabric;
-import pl.droidsonroids.gif.GifImageView;
-
 import org.stemacademy.akmeier.sievemobileapplication.db.TaskDatabase;
 import org.stemacademy.akmeier.sievemobileapplication.db.Task;
-import org.stemacademy.akmeier.sievemobileapplication.utilities.SwipeController;
-import org.stemacademy.akmeier.sievemobileapplication.utilities.SwipeControllerActions;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-import static java.lang.StrictMath.abs;
 import static java.lang.StrictMath.toIntExact;
 
 /**
@@ -81,10 +65,8 @@ public class HomePage extends AppCompatActivity {
     List <Integer> alarmNames;
     JobScheduler jobScheduler;
     TextView dateText;
-    TaskDatabase taskDatabase;
 
-    TaskListAdapter adapter;
-    List<Task> tasks;
+
 
     /**
      * Creates Activity and sets up the recycler view. Recycler view pulls a list of Task objects
@@ -101,7 +83,7 @@ public class HomePage extends AppCompatActivity {
         filter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
         this.registerReceiver(notificationJava,filter);
 
-        taskDatabase = TaskDatabase.getInstance(this);
+        TaskDatabase taskDatabase = TaskDatabase.getInstance(this);
         global.setTaskData(taskDatabase.taskDao().getAll());
 
         super.onCreate(savedInstanceState);
@@ -130,142 +112,23 @@ public class HomePage extends AppCompatActivity {
             }
 
         }
-        final Bundle bundle=bd;
         createListofNotifications();
-        final ConstraintLayout layout =(ConstraintLayout) findViewById(R.id.HomeView);
-        ViewTreeObserver vTO=layout.getViewTreeObserver();
-        vTO.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                if(bundle != null) {
-                    Boolean delete = (Boolean) bundle.get("delete");
-                    if (delete != null && delete) {
-                        layout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                        EnableDisableCheckmark(false);
-                    }
-                }
-            }
-        });
+
     }
 
-    /** Instates the RecyclerView TODO: OUTDATED COMMENT PLEASE UPDATE */
+    /** Instates the RecyclerView */
     @Override
     protected void onStart(){
         super.onStart();
         determineTheme();
-        SwipeController swipeController;
         TaskDatabase taskDatabase = TaskDatabase.getInstance(HomePage.this);
         RecyclerView rvTasks = findViewById(R.id.TaskList);
-        tasks = taskDatabase.taskDao().getAll();
-        Collections.sort(tasks, new Comparator<Task>() {
-            @Override
-            public int compare(Task o1, Task o2) {
-                float compare1;
-                float compare2;
-                float days1=0;
-                float days2=0;
-                Calendar calendar =Calendar.getInstance();
-                calendar.set(Calendar.MILLISECOND,0);
-                calendar.set(Calendar.SECOND,0);
-                calendar.set(Calendar.MINUTE,0);
-                calendar.set(Calendar.HOUR_OF_DAY,12);
-                calendar.set(Calendar.HOUR,0);
-                calendar.set(Calendar.AM_PM,Calendar.PM);
-                Date date1=calendar.getTime();
-                Date date2=calendar.getTime();
-                String incorrectTaskDate1=o1.getDueDate();
-                String incorrectTaskDate2=o2.getDueDate();
-                List<String> divided1=new ArrayList<>(Arrays.asList(incorrectTaskDate1.split("/")));
-                String cTD1=divided1.get(1)+"/"+divided1.get(0)+"/"+divided1.get(2);
-                List<String> divided2=new ArrayList<>(Arrays.asList(incorrectTaskDate2.split("/")));
-                String cTD2=divided2.get(1)+"/"+divided2.get(0)+"/"+divided2.get(2);
-                SimpleDateFormat sdf1=new SimpleDateFormat("dd/MM/yyyy");
-                try {
-                    date1=sdf1.parse(cTD1);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                SimpleDateFormat sdf2=new SimpleDateFormat("dd/MM/yyyy");
-                try {
-                    date2=sdf2.parse(cTD2);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                if(date1!=null&&date2!=null){
-                    long diff1= date1.getTime()-calendar.getTime().getTime();
-                    long diff2= date2.getTime()-calendar.getTime().getTime();
-                    days1=abs(TimeUnit.DAYS.convert(diff1,TimeUnit.MILLISECONDS));
-                    days2=abs(TimeUnit.DAYS.convert(diff2,TimeUnit.MILLISECONDS));
-                }
-                if(days1!=0&&days2!=0){
-                    int sample=o1.getPriority();
-                    int sample2= o2.getPriority();
-                    compare1=((o1.getPriority()+1)*10)/((days1+1)*50);
-                    compare2=((o2.getPriority()+1)*10)/((days2+1)*50);
-                }else{
-                    compare1=0;
-                    compare2=0;
-                }
-                if(days1==0){
-                    compare1=100*(o1.getPriority()+1);
-                }
-                if(days2==0){
-                    compare2=100*(o2.getPriority()+1);
-                }
-                return compare1>compare2 ? -1:(compare1<compare2) ? 1: 0;
-            }
-        });
-        global.setgDivPos(0);
-        for(int i=0;i<taskDatabase.taskDao().getAll().size();i++){
-            Calendar calendar =Calendar.getInstance();
-            calendar.set(Calendar.MILLISECOND,0);
-            calendar.set(Calendar.SECOND,0);
-            calendar.set(Calendar.MINUTE,0);
-            calendar.set(Calendar.HOUR_OF_DAY,12);
-            calendar.set(Calendar.HOUR,0);
-            calendar.set(Calendar.AM_PM,Calendar.PM);
-            Date date1=calendar.getTime();
-            String incorrectDate=taskDatabase.taskDao().getAll().get(i).getDueDate();
-            List<String> divided1=new ArrayList<>(Arrays.asList(incorrectDate.split("/")));
-            String cTD1=divided1.get(1)+"/"+divided1.get(0)+"/"+divided1.get(2);
-            SimpleDateFormat sdf1=new SimpleDateFormat("dd/MM/yyyy");
-            try {
-                date1=sdf1.parse(cTD1);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            long check=date1.getTime()-calendar.getTime().getTime();
-            int days1=0;
-            days1=abs(toIntExact(TimeUnit.DAYS.convert(check,TimeUnit.MILLISECONDS)));
-            if(days1==0){
-                global.setgDivPos(global.getgDivPos()+1);
-            }
-        }
-        adapter = new TaskListAdapter(tasks, this);
+        List<Task> tasks = taskDatabase.taskDao().getAll();
+        TaskListAdapter adapter = new TaskListAdapter(tasks, this);
         rvTasks.setAdapter(adapter);
         rvTasks.setLayoutManager(new LinearLayoutManager(this));
-
-        swipeController = new SwipeController(new SwipeControllerActions() {
-            @Override
-            public void onRightClicked(int position) {
-                //Delete Task
-            }
-            public void onLeftClicked(int position) {
-                ToDetails(position);
-            }
-        });
-        ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeController);
-        itemTouchhelper.attachToRecyclerView(rvTasks);
-
         createListofNotifications();
         setDate(dateText);
-    }
-
-    /** Opens Settings activity */
-    public void ToDetails(int position) {
-        Intent toDetails = new Intent(this, AssignmentDetails.class);
-        global.setCurrentTask(tasks.get(position));
-        startActivity(toDetails);
     }
 
     /** Opens Settings activity */
@@ -278,10 +141,6 @@ public class HomePage extends AppCompatActivity {
     public void toTaskCreate(View view) {
         Intent toTaskCreate = new Intent(this, TaskCreate.class);
         startActivity(toTaskCreate);
-    }
-
-    public void deleteTask(Task task){
-        taskDatabase.taskDao().delete(mTask);
     }
 
     /**
@@ -309,7 +168,7 @@ public class HomePage extends AppCompatActivity {
         if (diff >= 0) {
             JobInfo jobInfo = new JobInfo.Builder(alarmNumber, componentName)
                     .setMinimumLatency(diff)
-                    .setOverrideDeadline(diff+180000)
+                    .setOverrideDeadline(180000)
                     .build();
             jobScheduler.schedule(jobInfo);
             alarmNames.add(alarmNumber);
@@ -459,39 +318,5 @@ public class HomePage extends AppCompatActivity {
         int dayNum=calendar.get(Calendar.DAY_OF_MONTH);
         String dateFull=dayNameS+ ", " + monthName + " " + dayNum;
         textView.setText(dateFull);
-    }
-
-    /**
-     * Makes the checkmark for completion of a task visible or invisible
-     * Added 3/8/2019
-     * @param setInvisible If true, this will make the checkmark gif on HomePage disappear
-     */
-    public void EnableDisableCheckmark(Boolean setInvisible) {
-        GifImageView checkmark = (GifImageView) findViewById(R.id.CheckMarkView);
-        if(setInvisible){
-            checkmark.setVisibility(View.GONE);
-            checkmark.setElevation(-1);
-        }else{
-            checkmark.setVisibility(View.VISIBLE);
-            checkmark.setElevation(10);
-            TimerForCheckmark();
-        }
-    }
-
-    /**
-     * Functions as a timer for how long the checkmark will be displayed
-     * Added 3/8/2019
-     */
-    public void TimerForCheckmark(){
-        new CountDownTimer(2000,100){
-            @Override
-            public void onTick(long millisUntilFinished) {
-
-            }
-            @Override
-            public void onFinish() {
-                EnableDisableCheckmark(true);
-            }
-        }.start();
     }
 }
