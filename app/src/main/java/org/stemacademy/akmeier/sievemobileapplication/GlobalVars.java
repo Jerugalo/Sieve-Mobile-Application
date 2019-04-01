@@ -24,8 +24,6 @@ public class GlobalVars extends Application {
 
     private static ArrayList<String> gAlarms;
 
-    private static int gDivPos;
-
     public GlobalVars() {
 
     }
@@ -51,7 +49,4 @@ public class GlobalVars extends Application {
     public static void setgAlarms(ArrayList<String> gAlarms1){
         GlobalVars.gAlarms=gAlarms1;
     }
-
-    public static int getgDivPos(){return gDivPos;}
-    public static void setgDivPos(int gDivPos1){GlobalVars.gDivPos=gDivPos1;}
 }

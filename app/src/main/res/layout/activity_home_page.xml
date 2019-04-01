@@ -2,7 +2,6 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/HomeView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="org.stemacademy.akmeier.sievemobileapplication.HomePage">
@@ -11,14 +10,8 @@
         android:id="@+id/TopBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
         android:clickable="false"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/MenuButton"
@@ -26,12 +19,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/button_style"
-            android:backgroundTint="?android:attr/colorPrimaryDark"
+            android:backgroundTint="?attr/colorPrimaryDark"
             android:fontFamily="sans-serif-smallcaps"
             android:onClick="toSettings"
             android:text="@string/menu_key"
             android:textAlignment="center"
-            android:textColor="?android:attr/textColorPrimary"
+            android:textColor="?android:attr/textColor"
             android:textSize="40sp" />
 
         <TextView
@@ -51,12 +44,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/button_style"
-            android:backgroundTint="?android:attr/colorPrimaryDark"
+            android:backgroundTint="?attr/colorPrimaryDark"
             android:fontFamily="sans-serif-smallcaps"
             android:onClick="toTaskCreate"
             android:text="@string/create_task"
             android:textAlignment="center"
-            android:textColor="?android:attr/textColorPrimary"
+            android:textColor="?android:attr/textColor"
             android:textSize="40sp" />
 
     </LinearLayout>
@@ -65,31 +58,13 @@
         android:id="@+id/dateViewHP"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:ems="10"
         android:fontFamily="sans-serif-smallcaps"
         android:text="@string/date"
         android:textAlignment="center"
         android:textColor="?android:attr/textColor"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TopBar" />
 
-
-    <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/CheckMarkView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:baselineAligned="false"
-        android:src="@drawable/checkmark"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/TaskList"

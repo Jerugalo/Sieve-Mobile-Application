@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TaskCreate"
-    android:background="?attr/dialogBackground">
+    tools:context="com.example.a53914.sievemobileapplication.org.example.a53914.sievemobileapplication.TaskCreate"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -17,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Class Creation"
-            android:textColor="?android:attr/textColor"
+            android:textColor="#000"
             android:textSize="18sp" />
 
         <EditText
@@ -26,11 +27,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/heading"
             android:layout_marginTop="20dp"
+            android:background="@null"
             android:hint="Enter class name..."
             android:inputType="textShortMessage"
             android:singleLine="true"
-            android:textColor="?android:attr/textColor"
-            />
+            android:textColor="#000" />
 
         <TextView
             android:id="@+id/action_ok"
@@ -40,7 +41,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="20dp"
             android:text="OK"
-            android:textColor="?attr/colorAccent"
+            android:textColor="#33bbff"
             android:textSize="18sp" />
 
         <TextView
@@ -51,7 +52,11 @@
             android:layout_alignParentLeft="true"
             android:layout_marginRight="20dp"
             android:text="CANCEL"
-            android:textColor="?attr/colorAccent"
+            android:textColor="#33bbff"
             android:textSize="18sp" />
+
     </RelativeLayout>
+
+
+
 </RelativeLayout>

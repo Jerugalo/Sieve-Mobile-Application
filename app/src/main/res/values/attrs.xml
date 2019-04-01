@@ -5,11 +5,6 @@
     <attr name="priorityMed" format="reference" />
     <attr name="priorityLow" format="reference" />
 
-    <attr name="dividerColor" format="reference" />
-    <attr name="dividerHidden" format="reference" />
-
-    <attr name="dialogBackground" format="reference" />
-
     <string-array name="priority">
         <item>priorityLow</item>
         <item>priorityMed</item>
