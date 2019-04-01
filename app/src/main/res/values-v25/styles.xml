@@ -14,6 +14,7 @@
         <item name="colorAccent">@color/defaultAccent</item>
         <item name="dividerColor">@color/defaultBar</item>
         <item name="dividerHidden">@color/defaultBackground</item>
+        <item name="dialogBackground">@color/defaultBackground</item>
         <item name="android:datePickerDialogTheme">@style/DatePickerDefault</item>
         <item name="android:datePickerStyle">@style/DatePickerDefaultStyle</item>
         <item name="android:timePickerStyle">@style/TimePickerDefaultStyle</item>
@@ -33,6 +34,7 @@
         <item name="android:colorAccent">@color/alternativeAccent</item>
         <item name="dividerColor">@color/alternativeBar</item>
         <item name="dividerHidden">@color/alternativeBackground</item>
+        <item name="dialogBackground">@color/alternativeBackground</item>
         <item name="android:datePickerDialogTheme">@style/DatePickerAlternative</item>
         <item name="android:datePickerStyle">@style/DatePickerAlternativeStyle</item>
         <item name="android:timePickerStyle">@style/TimePickerAlternativeStyle</item>
@@ -53,6 +55,7 @@
         <item name="colorPrimaryDark">@color/darkButton</item>
         <item name="dividerColor">@color/darkBar</item>
         <item name="dividerHidden">@color/darkBackground</item>
+        <item name="dialogBackground">@color/darkBackground</item>
         <item name="android:datePickerDialogTheme">@style/DatePickerDark</item>
         <item name="android:datePickerStyle">@style/DatePickerDarkStyle</item>
         <item name="android:timePickerStyle">@style/TimePickerDarkStyle</item>
@@ -71,6 +74,7 @@
         <item name="android:colorPrimaryDark">@color/simpleButton</item>
         <item name="dividerColor">@color/simpleBar</item>
         <item name="dividerHidden">@color/simpleBackground</item>
+        <item name="dialogBackground">@color/simpleBackground</item>
         <item name="android:datePickerDialogTheme">@style/DatePickerSimple</item>
         <item name="android:datePickerStyle">@style/DatePickerSimpleStyle</item>
         <item name="android:timePickerStyle">@style/TimePickerSimpleStyle</item>
@@ -90,6 +94,7 @@
         <item name="android:textColorPrimary">@color/textBlack</item>
         <item name="dividerColor">@color/twilightBar</item>
         <item name="dividerHidden">@color/twilightBackground</item>
+        <item name="dialogBackground">@color/twilightBackground</item>
         <item name="android:datePickerDialogTheme">@style/DatePickerTwilight</item>
         <item name="android:datePickerStyle">@style/DatePickerTwilightStyle</item>
         <item name="android:timePickerStyle">@style/TimePickerTwilightStyle</item>
@@ -110,6 +115,7 @@
         <item name="colorPrimaryDark">@color/oliveButton</item>
         <item name="dividerColor">@color/oliveBar</item>
         <item name="dividerHidden">@color/oliveBackground</item>
+        <item name="dialogBackground">@color/oliveBackground</item>
         <item name="android:datePickerDialogTheme">@style/DatePickerOlive</item>
         <item name="android:datePickerStyle">@style/DatePickerOliveStyle</item>
         <item name="android:timePickerStyle">@style/TimePickerOliveStyle</item>
