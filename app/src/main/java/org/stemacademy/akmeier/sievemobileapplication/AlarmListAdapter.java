@@ -25,7 +25,7 @@ public class AlarmListAdapter extends RecyclerView.Adapter<AlarmListAdapter.View
     }
 
 
-    /** Creates the ViewHolder */
+    /** Creates the TaskViewHolder */
     @NonNull
     @Override
     public AlarmListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -91,7 +91,7 @@ public class AlarmListAdapter extends RecyclerView.Adapter<AlarmListAdapter.View
 
         ViewHolder(View itemView, int alarmID) {
             // Stores the itemView in a public final member variable that can be used
-            // to access the context from any ViewHolder instance.
+            // to access the context from any TaskViewHolder instance.
             super(itemView);
 
             alarmTitle = itemView.findViewById(R.id.alarmTitle);
