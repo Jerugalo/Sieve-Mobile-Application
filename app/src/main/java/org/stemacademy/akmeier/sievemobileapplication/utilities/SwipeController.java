@@ -5,11 +5,16 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.support.annotation.ColorInt;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.support.v7.widget.helper.ItemTouchHelper.Callback;
+import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
+
+import org.stemacademy.akmeier.sievemobileapplication.HomePage;
+import org.stemacademy.akmeier.sievemobileapplication.R;
 
 import static android.support.v7.widget.helper.ItemTouchHelper.*;
 
@@ -175,17 +180,24 @@ public class SwipeController extends ItemTouchHelper.Callback {
     private void drawButtons(Canvas c, RecyclerView.ViewHolder viewHolder) {
         float buttonWidthWithoutPadding = buttonWidth - 20;
         float corners = 16;
+        
+        TypedValue colorManager = new TypedValue();
+        HomePage.getContext().getTheme().resolveAttribute(R.attr.dividerColor,colorManager,true);
+        @ColorInt int detailsColor = colorManager.data;
+
+        HomePage.getContext().getTheme().resolveAttribute(R.attr.priorityHigh,colorManager,true);
+        @ColorInt int deleteColor = colorManager.data;
 
         View itemView = viewHolder.itemView;
         Paint p = new Paint();
 
         RectF leftButton = new RectF(itemView.getLeft(), itemView.getTop(), itemView.getLeft() + buttonWidthWithoutPadding, itemView.getBottom());
-        p.setColor(Color.BLUE);
+        p.setColor(detailsColor);
         c.drawRoundRect(leftButton, corners, corners, p);
         drawText("DETAILS", c, leftButton, p);
 
         RectF rightButton = new RectF(itemView.getRight() - buttonWidthWithoutPadding, itemView.getTop(), itemView.getRight(), itemView.getBottom());
-        p.setColor(Color.RED);
+        p.setColor(deleteColor);
         c.drawRoundRect(rightButton, corners, corners, p);
         drawText("DELETE", c, rightButton, p);
 

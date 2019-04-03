@@ -56,6 +56,7 @@ import static java.lang.StrictMath.toIntExact;
  */
 
 public class HomePage extends AppCompatActivity {
+    private static Context context;
     public class SharedPreferencesManager{
         private SharedPreferences themeStorage;
         private SharedPreferences.Editor sEditor;
@@ -102,6 +103,7 @@ public class HomePage extends AppCompatActivity {
         this.registerReceiver(notificationJava,filter);
 
         super.onCreate(savedInstanceState);
+        context = this;
         Fabric.with(this, new Crashlytics());
         determineTheme();
         setContentView(R.layout.activity_home_page);
@@ -527,5 +529,9 @@ public class HomePage extends AppCompatActivity {
                 EnableDisableCheckmark(true);
             }
         }.start();
+    }
+
+    public static Context getContext(){
+        return context;
     }
 }
