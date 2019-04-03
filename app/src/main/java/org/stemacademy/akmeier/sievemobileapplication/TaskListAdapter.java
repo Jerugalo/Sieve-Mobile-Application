@@ -53,11 +53,10 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             case 0:
                 TaskViewHolder taskViewHolder = (TaskViewHolder)viewHolder;
                 if(add1){
-                    position=position-1;
+                    //position=position-1;
                 }
 
                 Task task = tasks.get(position);
-                taskViewHolder.itemView.setTag(position);
 
                 TextView textView = taskViewHolder.taskTitle;
                 textView.setText(task.getNameID());
@@ -78,7 +77,6 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             case 1:
                 DividerViewHolder dividerViewHolder = (DividerViewHolder)viewHolder;
                 View dividerView = dividerViewHolder.divider;
-                dividerViewHolder.itemView.setTag(-1);
                 if(global.getgDivPos() == 0){
                     dividerView.setBackgroundColor(getColorByThemeAttr(C, R.attr.dividerHidden,
                             R.color.defaultBackground));
@@ -107,7 +105,12 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
-    public static int getColorByThemeAttr(Context context,int attr,int defaultColor){
+    public void deleteTask(Task task){
+        tasks.remove(task);
+        notifyItemRemoved(tasks.indexOf(task));
+    }
+
+    private static int getColorByThemeAttr(Context context,int attr,int defaultColor){
         TypedValue typedValue = new TypedValue();
         Resources.Theme theme = context.getTheme();
         boolean got = theme.resolveAttribute(attr,typedValue,true);
