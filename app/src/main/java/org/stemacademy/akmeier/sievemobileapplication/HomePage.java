@@ -13,6 +13,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
@@ -23,7 +24,6 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.crashlytics.android.Crashlytics;
@@ -44,6 +44,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 import static java.lang.StrictMath.abs;
@@ -187,8 +190,10 @@ public class HomePage extends AppCompatActivity {
         swipeController = new SwipeController(new SwipeControllerActions() {
             @Override
             public void onRightClicked(int position) {
-                deleteTask(tasks.get((int)rvTasks.findViewHolderForAdapterPosition(position)
+                deleteTask(tasks.get((int)
+                        Objects.requireNonNull(rvTasks.findViewHolderForAdapterPosition(position))
                         .itemView.getTag()));
+                queueAssignTags();
             }
             public void onLeftClicked(int position) {
                 ToDetails((int)rvTasks.findViewHolderForAdapterPosition(position)
@@ -200,6 +205,37 @@ public class HomePage extends AppCompatActivity {
 
         createListofNotifications();
         setDate(dateText);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        queueAssignTags();
+    }
+
+    public void queueAssignTags(){
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                assignTags();
+            }
+        }, 2000);
+    }
+
+    public void assignTags() {
+        int taskIndex = 0;
+        int rvCount = rvTasks.getChildCount();
+        for (int i = 0; i < rvCount; i++) {
+            int tag = (rvTasks.findViewHolderForAdapterPosition(i)).getItemViewType();
+            if (tag == 0) {
+                (Objects.requireNonNull(rvTasks.findViewHolderForAdapterPosition(i))).itemView.setTag(taskIndex);
+                taskIndex++;
+            } else if (tag == 1) {
+                (Objects.requireNonNull(rvTasks.findViewHolderForAdapterPosition(i))).itemView.setTag(-1);
+            }
+        }
     }
 
     /** Opens Details activity */
@@ -316,8 +352,8 @@ public class HomePage extends AppCompatActivity {
      *             the database.
      */
     public void deleteTask(Task task){
+        adapter.deleteTask(task);
         taskDatabase.taskDao().delete(task);
-        refreshRecycler();
     }
 
     /**
