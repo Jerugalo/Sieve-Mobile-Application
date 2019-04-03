@@ -6,8 +6,10 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
+        android:id="@+id/Task"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="2dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,7 +19,6 @@
             android:id="@+id/taskTitle"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginBottom="8dp"
             android:layout_marginStart="8dp"
             android:layout_weight="1"
             android:fontFamily="sans-serif-smallcaps"
@@ -33,12 +34,12 @@
             android:id="@+id/Priority"
             android:layout_width="0dp"
             android:layout_height="48dp"
+            android:layout_marginBottom="2dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
+            android:layout_marginTop="2dp"
             android:layout_weight="1"
             android:background="?attr/priorityLow"
-            android:paddingLeft="2dp"
-            android:paddingRight="2dp"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/taskTitle"

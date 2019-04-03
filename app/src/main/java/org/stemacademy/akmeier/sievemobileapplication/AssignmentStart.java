@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.MediaController;
 import android.widget.TextView;
 import android.os.Vibrator;
 
@@ -122,7 +121,7 @@ public class AssignmentStart extends AppCompatActivity {
     }
 
     public void pausePlayAnimation(boolean pause){
-        gIF=(GifImageView)findViewById(R.id.gifImageView);
+        gIF=(GifImageView)findViewById(R.id.SieveAnimation);
         gD=(GifDrawable)gIF.getDrawable();
         if(pause){
             gD.stop();
