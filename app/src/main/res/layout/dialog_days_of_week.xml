@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="125dp"
+    android:padding="5dp">
+
+    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ToggleButton
+            android:id="@+id/toggleButtonSun"
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="0dp"
+            android:layout_weight="1"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeMinTextSize="3sp"
+            android:autoSizeStepGranularity="1sp"
+            android:autoSizeTextType="uniform"
+            android:text="ToggleButton"
+            android:textOff="S"
+            android:textOn="S" />
+
+        <ToggleButton
+            android:id="@+id/toggleButtonMon"
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="0dp"
+            android:layout_weight="1"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeMinTextSize="3sp"
+            android:autoSizeStepGranularity="1sp"
+            android:autoSizeTextType="uniform"
+            android:text="ToggleButton"
+            android:textOff="M"
+            android:textOn="M" />
+
+        <ToggleButton
+            android:id="@+id/toggleButtonTue"
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeMinTextSize="3sp"
+            android:autoSizeStepGranularity="1sp"
+            android:autoSizeTextType="uniform"
+            android:text="ToggleButton"
+            android:textOff="T"
+            android:textOn="T" />
+
+        <ToggleButton
+            android:id="@+id/toggleButtonWed"
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeMinTextSize="3sp"
+            android:autoSizeStepGranularity="1sp"
+            android:autoSizeTextType="uniform"
+            android:text="ToggleButton"
+            android:textOff="W"
+            android:textOn="W" />
+
+        <ToggleButton
+            android:id="@+id/toggleButtonThu"
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="0dp"
+            android:layout_weight="1"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeMinTextSize="3sp"
+            android:autoSizeStepGranularity="1sp"
+            android:autoSizeTextType="uniform"
+            android:text="ToggleButton"
+            android:textOff="T"
+            android:textOn="T" />
+
+        <ToggleButton
+            android:id="@+id/toggleButtonFri"
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeMinTextSize="3sp"
+            android:autoSizeStepGranularity="1sp"
+            android:autoSizeTextType="uniform"
+            android:text="ToggleButton"
+            android:textOff="F"
+            android:textOn="F" />
+
+        <ToggleButton
+            android:id="@+id/toggleButtonSat"
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeMinTextSize="3sp"
+            android:autoSizeStepGranularity="1sp"
+            android:autoSizeTextType="uniform"
+            android:text="ToggleButton"
+            android:textOff="S"
+            android:textOn="S" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/DoneButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="48dp"
+        android:layout_marginTop="71dp"
+        android:text="Done"
+        android:textColor="#33bbff"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/CancelButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentTop="false"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="71dp"
+        android:text="Cancel"
+        android:textColor="#33bbff"
+        android:textSize="18sp" />
+
+</RelativeLayout>

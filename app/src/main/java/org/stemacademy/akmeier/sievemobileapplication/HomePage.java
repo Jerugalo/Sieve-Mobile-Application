@@ -10,9 +10,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.os.BaseBundle;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.PersistableBundle;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
@@ -43,6 +45,9 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.Dictionary;
+import java.util.Enumeration;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -87,6 +92,9 @@ public class HomePage extends AppCompatActivity {
     List<Task> tasks;
     RecyclerView rvTasks;
 
+    Context gContext;
+    Dictionary<Integer,List<Integer>> AlarmDicts;
+
     /**
      * Creates Activity and sets up the recycler view. Recycler view pulls a list of Task objects
      * from the TaskDao and displays them in a visual list.
@@ -100,6 +108,42 @@ public class HomePage extends AppCompatActivity {
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
         this.registerReceiver(notificationJava,filter);
+        AlarmDicts=new Dictionary<Integer, List<Integer>>() {
+            @Override
+            public int size() {
+                return 0;
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return false;
+            }
+
+            @Override
+            public Enumeration<Integer> keys() {
+                return null;
+            }
+
+            @Override
+            public Enumeration<List<Integer>> elements() {
+                return null;
+            }
+
+            @Override
+            public List<Integer> get(Object key) {
+                return null;
+            }
+
+            @Override
+            public List<Integer> put(Integer key, List<Integer> value) {
+                return null;
+            }
+
+            @Override
+            public List<Integer> remove(Object key) {
+                return null;
+            }
+        };
 
         super.onCreate(savedInstanceState);
         Fabric.with(this, new Crashlytics());
@@ -116,12 +160,23 @@ public class HomePage extends AppCompatActivity {
         rvTasks.setAdapter(adapter);
         rvTasks.setLayoutManager(new LinearLayoutManager(this));
 
+
+        gContext=this;
+
         Intent intent = getIntent();
         Bundle bd = intent.getExtras();
         if(bd != null)
         {
             Boolean delete = (Boolean) bd.get("delete");
             if (delete != null && delete){
+                if(mTask.getTypeID()==0){
+                    List<Integer> ints= AlarmDicts.get(mTask.getId());
+                    if(ints!=null) {
+                        for (int i = 0; i < ints.size(); i++) {
+                            jobScheduler.cancel(ints.get(i));
+                        }
+                    }else{}
+                }
                 deleteTask(mTask);
             }
             Boolean clearAlarms = (Boolean) bd.get("CLEAR_ALARMS");
@@ -156,43 +211,44 @@ public class HomePage extends AppCompatActivity {
         SwipeController swipeController;
         final TaskDatabase taskDatabase = TaskDatabase.getInstance(HomePage.this);
         rvTasks = findViewById(R.id.TaskList);
-
         global.setgDivPos(0);
         for(int i=0;i<taskDatabase.taskDao().getAll().size();i++){
-            Calendar calendar =Calendar.getInstance();
-            calendar.set(Calendar.MILLISECOND,0);
-            calendar.set(Calendar.SECOND,0);
-            calendar.set(Calendar.MINUTE,0);
-            calendar.set(Calendar.HOUR_OF_DAY,12);
-            calendar.set(Calendar.HOUR,0);
-            calendar.set(Calendar.AM_PM,Calendar.PM);
-            Date date1=calendar.getTime();
-            String incorrectDate=taskDatabase.taskDao().getAll().get(i).getDueDate();
-            List<String> divided1=new ArrayList<>(Arrays.asList(incorrectDate.split("/")));
-            String cTD1=divided1.get(1)+"/"+divided1.get(0)+"/"+divided1.get(2);
-            SimpleDateFormat sdf1=new SimpleDateFormat("dd/MM/yyyy");
-            try {
-                date1=sdf1.parse(cTD1);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            long check=date1.getTime()-calendar.getTime().getTime();
-            int days1=0;
-            days1=abs(toIntExact(TimeUnit.DAYS.convert(check,TimeUnit.MILLISECONDS)));
-            if(days1==0){
-                global.setgDivPos(global.getgDivPos()+1);
+            if(taskDatabase.taskDao().getAll().get(i).getTypeID()!=0) {
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(Calendar.MILLISECOND, 0);
+                calendar.set(Calendar.SECOND, 0);
+                calendar.set(Calendar.MINUTE, 0);
+                calendar.set(Calendar.HOUR_OF_DAY, 12);
+                calendar.set(Calendar.HOUR, 0);
+                calendar.set(Calendar.AM_PM, Calendar.PM);
+                Date date1 = calendar.getTime();
+                String incorrectDate = taskDatabase.taskDao().getAll().get(i).getDueDate();
+                List<String> divided1 = new ArrayList<>(Arrays.asList(incorrectDate.split("/")));
+                String cTD1 = divided1.get(1) + "/" + divided1.get(0) + "/" + divided1.get(2);
+                SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
+                try {
+                    date1 = sdf1.parse(cTD1);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                long check = date1.getTime() - calendar.getTime().getTime();
+                int days1 = 0;
+                days1 = abs(toIntExact(TimeUnit.DAYS.convert(check, TimeUnit.MILLISECONDS)));
+                if (days1 == 0) {
+                    global.setgDivPos(global.getgDivPos() + 1);
+                }
             }
         }
 
         swipeController = new SwipeController(new SwipeControllerActions() {
             @Override
             public void onRightClicked(int position) {
-                position--;
-                deleteTask(tasks.get(position));
+                deleteTask(tasks.get((int)rvTasks.findViewHolderForAdapterPosition(position)
+                        .itemView.getTag()));
             }
             public void onLeftClicked(int position) {
-                position--;
-                ToDetails(position);
+                ToDetails((int)rvTasks.findViewHolderForAdapterPosition(position)
+                        .itemView.getTag());
             }
         });
         ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeController);
@@ -200,6 +256,7 @@ public class HomePage extends AppCompatActivity {
 
         createListofNotifications();
         setDate(dateText);
+        refreshRecycler();
     }
 
     /** Opens Details activity */
@@ -241,24 +298,33 @@ public class HomePage extends AppCompatActivity {
                 calendar.set(Calendar.AM_PM,Calendar.PM);
                 Date date1=calendar.getTime();
                 Date date2=calendar.getTime();
-                String incorrectTaskDate1=o1.getDueDate();
-                String incorrectTaskDate2=o2.getDueDate();
-                List<String> divided1=new ArrayList<>(Arrays.asList(incorrectTaskDate1.split("/")));
-                String cTD1=divided1.get(1)+"/"+divided1.get(0)+"/"+divided1.get(2);
-                List<String> divided2=new ArrayList<>(Arrays.asList(incorrectTaskDate2.split("/")));
-                String cTD2=divided2.get(1)+"/"+divided2.get(0)+"/"+divided2.get(2);
-                SimpleDateFormat sdf1=new SimpleDateFormat("dd/MM/yyyy");
-                try {
-                    date1=sdf1.parse(cTD1);
-                } catch (ParseException e) {
-                    e.printStackTrace();
+                String incorrectTaskDate1;
+                String incorrectTaskDate2;
+                String cTD1;
+                String cTD2;
+                if(o1.getTypeID()!=0) {
+                    incorrectTaskDate1=o1.getDueDate();
+                    List<String> divided1 = new ArrayList<>(Arrays.asList(incorrectTaskDate1.split("/")));
+                    cTD1 = divided1.get(1) + "/" + divided1.get(0) + "/" + divided1.get(2);
+                    SimpleDateFormat sdf1=new SimpleDateFormat("dd/MM/yyyy");
+                    try {
+                        date1=sdf1.parse(cTD1);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
                 }
-                SimpleDateFormat sdf2=new SimpleDateFormat("dd/MM/yyyy");
-                try {
-                    date2=sdf2.parse(cTD2);
-                } catch (ParseException e) {
-                    e.printStackTrace();
+                if(o2.getTypeID()!=0) {
+                    incorrectTaskDate2=o2.getDueDate();
+                    List<String> divided2 = new ArrayList<>(Arrays.asList(incorrectTaskDate2.split("/")));
+                    cTD2 = divided2.get(1) + "/" + divided2.get(0) + "/" + divided2.get(2);
+                    SimpleDateFormat sdf2=new SimpleDateFormat("dd/MM/yyyy");
+                    try {
+                        date2=sdf2.parse(cTD2);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
                 }
+
                 if(date1!=null&&date2!=null){
                     long diff1= date1.getTime()-calendar.getTime().getTime();
                     long diff2= date2.getTime()-calendar.getTime().getTime();
@@ -305,7 +371,6 @@ public class HomePage extends AppCompatActivity {
         sortTasks();
         adapter = new TaskListAdapter(tasks,this);
         adapter.notifyDataSetChanged();
-
     }
 
     /**
@@ -353,6 +418,155 @@ public class HomePage extends AppCompatActivity {
 
     }
 
+    public class setRepeatingAlarm{
+        public void setRepeatingAlarm(boolean[] dateArray,int hour,int minute,int taskID,String name){
+            Calendar c=Calendar.getInstance();
+            Calendar presDate=Calendar.getInstance();
+            ComponentName cN=new ComponentName(gContext,AlarmsIntentService.class);
+            List<Integer> ids=new ArrayList<>();
+
+            if(dateArray[0]){
+                Calendar randomizer=Calendar.getInstance();
+                while(c.get(Calendar.DAY_OF_WEEK)!=Calendar.SUNDAY){
+                    c.add(Calendar.DATE,1);
+                }
+                c.set(Calendar.HOUR,hour);
+                c.set(Calendar.MINUTE,minute);
+                long diff=c.getTimeInMillis()-presDate.getTimeInMillis();
+                int id=randomizer.get(Calendar.MILLISECOND)+randomizer.get(Calendar.YEAR)+randomizer.get(Calendar.DAY_OF_MONTH);
+                ids.add(id);
+                PersistableBundle pB = createPersistableBundle(hour,minute,0,taskID,id,name);
+                if(diff>=0){
+                    JobInfo jobInfo=new JobInfo.Builder(id,cN).setMinimumLatency(diff)
+                            .setExtras(pB)
+                            .build();
+                    jobScheduler.schedule(jobInfo);
+                }
+            }
+            if(dateArray[1]){
+                Calendar randomizer=Calendar.getInstance();
+                while(c.get(Calendar.DAY_OF_WEEK)!=Calendar.MONDAY){
+                    c.add(Calendar.DATE,1);
+                }
+                c.set(Calendar.HOUR,hour);
+                c.set(Calendar.MINUTE,minute);
+                long diff=c.getTimeInMillis()-presDate.getTimeInMillis();
+                int id=randomizer.get(Calendar.MILLISECOND)+randomizer.get(Calendar.YEAR)+randomizer.get(Calendar.DAY_OF_MONTH);
+                ids.add(id);
+                PersistableBundle pB = createPersistableBundle(hour,minute,1,taskID,id,name);
+                if(diff>=0){
+                    JobInfo jobInfo=new JobInfo.Builder(id,cN).setMinimumLatency(diff)
+                            .setExtras(pB)
+                            .build();
+                    jobScheduler.schedule(jobInfo);
+                }
+            }
+            if(dateArray[2]){
+                Calendar randomizer=Calendar.getInstance();
+                while(c.get(Calendar.DAY_OF_WEEK)!=Calendar.TUESDAY){
+                    c.add(Calendar.DATE,1);
+                }
+                c.set(Calendar.HOUR,hour);
+                c.set(Calendar.MINUTE,minute);
+                long diff=c.getTimeInMillis()-presDate.getTimeInMillis();
+                int id=randomizer.get(Calendar.MILLISECOND)+randomizer.get(Calendar.YEAR)+randomizer.get(Calendar.DAY_OF_MONTH);
+                ids.add(id);
+                PersistableBundle pB = createPersistableBundle(hour,minute,2,taskID,id,name);
+                if(diff>=0){
+                    JobInfo jobInfo=new JobInfo.Builder(id,cN).setMinimumLatency(diff)
+                            .setExtras(pB)
+                            .build();
+                    jobScheduler.schedule(jobInfo);
+                }
+            }
+            if(dateArray[3]){
+                Calendar randomizer=Calendar.getInstance();
+                while(c.get(Calendar.DAY_OF_WEEK)!=Calendar.WEDNESDAY){
+                    c.add(Calendar.DATE,1);
+                }
+                c.set(Calendar.HOUR,hour);
+                c.set(Calendar.MINUTE,minute);
+                long diff=c.getTimeInMillis()-presDate.getTimeInMillis();
+                int id=randomizer.get(Calendar.MILLISECOND)+randomizer.get(Calendar.YEAR)+randomizer.get(Calendar.DAY_OF_MONTH);
+                ids.add(id);
+                PersistableBundle pB = createPersistableBundle(hour,minute,3,taskID,id,name);
+                if(diff>=0){
+                    JobInfo jobInfo=new JobInfo.Builder(id,cN).setMinimumLatency(diff)
+                            .setExtras(pB)
+                            .build();
+                    jobScheduler.schedule(jobInfo);
+                }
+            }
+            if(dateArray[4]){
+                Calendar randomizer=Calendar.getInstance();
+                while(c.get(Calendar.DAY_OF_WEEK)!=Calendar.THURSDAY){
+                    c.add(Calendar.DATE,1);
+                }
+                c.set(Calendar.HOUR,hour);
+                c.set(Calendar.MINUTE,minute);
+                long diff=c.getTimeInMillis()-presDate.getTimeInMillis();
+                int id=randomizer.get(Calendar.MILLISECOND)+randomizer.get(Calendar.YEAR)+randomizer.get(Calendar.DAY_OF_MONTH);
+                ids.add(id);
+                PersistableBundle pB = createPersistableBundle(hour,minute,4,taskID,id,name);
+                if(diff>=0){
+                    JobInfo jobInfo=new JobInfo.Builder(id,cN).setMinimumLatency(diff)
+                            .setExtras(pB)
+                            .build();
+                    jobScheduler.schedule(jobInfo);
+                }
+            }
+            if(dateArray[5]){
+                Calendar randomizer=Calendar.getInstance();
+                while(c.get(Calendar.DAY_OF_WEEK)!=Calendar.FRIDAY){
+                    c.add(Calendar.DATE,1);
+                }
+                c.set(Calendar.HOUR,hour);
+                c.set(Calendar.MINUTE,minute);
+                long diff=c.getTimeInMillis()-presDate.getTimeInMillis();
+                int id=randomizer.get(Calendar.MILLISECOND)+randomizer.get(Calendar.YEAR)+randomizer.get(Calendar.DAY_OF_MONTH);
+                ids.add(id);
+                PersistableBundle pB = createPersistableBundle(hour,minute,5,taskID,id,name);
+                if(diff>=0){
+                    JobInfo jobInfo=new JobInfo.Builder(id,cN).setMinimumLatency(diff)
+                            .setExtras(pB)
+                            .build();
+                    jobScheduler.schedule(jobInfo);
+                }
+            }
+            if(dateArray[6]){
+                Calendar randomizer=Calendar.getInstance();
+                while(c.get(Calendar.DAY_OF_WEEK)!=Calendar.SATURDAY){
+                    c.add(Calendar.DATE,1);
+                }
+                c.set(Calendar.HOUR,hour);
+                c.set(Calendar.MINUTE,minute);
+                long diff=c.getTimeInMillis()-presDate.getTimeInMillis();
+                int id=randomizer.get(Calendar.MILLISECOND)+randomizer.get(Calendar.YEAR)+randomizer.get(Calendar.DAY_OF_MONTH);
+                ids.add(id);
+                PersistableBundle pB = createPersistableBundle(hour,minute,6,taskID,id,name);
+                if(diff>=0){
+                    JobInfo jobInfo=new JobInfo.Builder(id,cN).setMinimumLatency(diff)
+                            .setExtras(pB)
+                            .build();
+                    jobScheduler.schedule(jobInfo);
+                }
+            }
+            AlarmDicts.put(taskID,ids);
+        }
+    }
+
+    public PersistableBundle createPersistableBundle(Integer hour,Integer minute, Integer day,Integer taskID,Integer id,String name){
+        PersistableBundle pB=new PersistableBundle();
+        pB.putBoolean("ISREPEAT",true);
+        pB.putInt("HOUR",hour);
+        pB.putInt("MINUTE",minute);
+        pB.putInt("DAY",day);
+        pB.putInt("TASKID",taskID);
+        pB.putInt("ID",id);
+        pB.putString("NAME",name);
+        return pB;
+    }
+
     /**
      * Creates a notification channel for the app, as required by android post SDK 26(?)
      */
@@ -372,7 +586,6 @@ public class HomePage extends AppCompatActivity {
      * Cycles through all tasks and activates notifications for all tasks that have them
      */
     public void createListofNotifications(){
-        int today =Calendar.DAY_OF_YEAR;
         TaskDatabase taskDatabase = TaskDatabase.getInstance(this);
         List<Task> tasks = taskDatabase.taskDao().getAll();
         int scheduleDay=0;
@@ -382,41 +595,72 @@ public class HomePage extends AppCompatActivity {
         int scheduleMinute=0;
         for(int i = 0; i<taskDatabase.taskDao().getRowCount(); i++){
             Task task =tasks.get(i);
-            if(task.getNotified() == 0){
-                String AlertList =task.getAlertList();
-                if(AlertList==null || AlertList.length()<1) {
-                    //Oops
-                }else {
-                    List<String> dates=new ArrayList<>(Arrays.asList(AlertList.split(":")));
-                    for(int iI=0;iI<dates.size();iI++){
-                        List<String> alarmseparate= new ArrayList<>(Arrays.asList(dates.get(iI).split("/")));
-                        for(int II = 0; II<alarmseparate.size(); II++){
-                            if(II==0){
-                                scheduleHour = Integer.parseInt(alarmseparate.get(II));
-                            }else if(II==1){
-                                scheduleMinute = Integer.parseInt(alarmseparate.get(II));
-                            }else if (II ==2){
-                                scheduleYear = Integer.parseInt(alarmseparate.get(II));
-                            }else if (II == 3){
-                                scheduleMonth = Integer.parseInt(alarmseparate.get(II));
-                            }else if(II==4){
-                                scheduleDay = Integer.parseInt(alarmseparate.get(II));
+            if(task.getTypeID()==0){
+                if(task.getNotified()==0){
+                    String daysOfWeekString=task.getAlertList();
+                    String alarmTime=task.getDueDate();
+                    if(daysOfWeekString==null||daysOfWeekString.length()<1){
+
+                    }else{
+                        boolean[] bools=new boolean[7];
+                        List<String> daysSeparate=new ArrayList<>(Arrays.asList(daysOfWeekString.split(";")));
+                        int hour;
+                        int minute;
+                        for(int II=0;II<daysSeparate.size();II++){
+                            String tester=daysSeparate.get(II);
+                            int testnum=Integer.parseInt(tester);
+                            if(testnum==1){
+                                bools[II]=true;
+                            }else{
+                                bools[II]=false;
                             }
                         }
-                        int LastNotificationID=toIntExact(SystemClock.uptimeMillis()/1000);
-                        setAlarm(this,scheduleDay,scheduleMonth,scheduleYear,scheduleHour,scheduleMinute,LastNotificationID);
-                        scheduleDay=0;
-                        scheduleMonth=0;
-                        scheduleYear=0;
-                        scheduleHour=0;
-                        scheduleMinute=0;
-                        alarmseparate.clear();
+                        List<String> alarmTimes =new ArrayList<>(Arrays.asList(alarmTime.split(":")));
+                        hour=Integer.parseInt(alarmTimes.get(0));
+                        minute=Integer.parseInt(alarmTimes.get(1));
+                        setRepeatingAlarm s = new setRepeatingAlarm();
+                        s.setRepeatingAlarm(bools,hour,minute,task.getId(),task.getNameID());
                     }
-                    dates.clear();
+                }else{
+                    //Fill in checker for date here as opposed to day listed in getNotified
                 }
             }
-            else{
+            else {
+                if (task.getNotified() == 0) {
+                    String AlertList = task.getAlertList();
+                    if (AlertList == null || AlertList.length() < 1) {
+                        //Oops
+                    } else {
+                        List<String> dates = new ArrayList<>(Arrays.asList(AlertList.split(":")));
+                        for (int iI = 0; iI < dates.size(); iI++) {
+                            List<String> alarmseparate = new ArrayList<>(Arrays.asList(dates.get(iI).split("/")));
+                            for (int II = 0; II < alarmseparate.size(); II++) {
+                                if (II == 0) {
+                                    scheduleHour = Integer.parseInt(alarmseparate.get(II));
+                                } else if (II == 1) {
+                                    scheduleMinute = Integer.parseInt(alarmseparate.get(II));
+                                } else if (II == 2) {
+                                    scheduleYear = Integer.parseInt(alarmseparate.get(II));
+                                } else if (II == 3) {
+                                    scheduleMonth = Integer.parseInt(alarmseparate.get(II));
+                                } else if (II == 4) {
+                                    scheduleDay = Integer.parseInt(alarmseparate.get(II));
+                                }
+                            }
+                            int LastNotificationID = toIntExact(SystemClock.uptimeMillis() / 1000);
+                            setAlarm(this, scheduleDay, scheduleMonth, scheduleYear, scheduleHour, scheduleMinute, LastNotificationID);
+                            scheduleDay = 0;
+                            scheduleMonth = 0;
+                            scheduleYear = 0;
+                            scheduleHour = 0;
+                            scheduleMinute = 0;
+                            alarmseparate.clear();
+                        }
+                        dates.clear();
+                    }
+                } else {
 
+                }
             }
             tasks.get(i).setNotified(1);
             taskDatabase.taskDao().update(tasks.get(i));

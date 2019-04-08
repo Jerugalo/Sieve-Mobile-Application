@@ -30,6 +30,8 @@ import org.stemacademy.akmeier.sievemobileapplication.db.TimePickerFragmentAlarm
 import org.stemacademy.akmeier.sievemobileapplication.fragments.ConfirmExitWithoutSaving;
 import org.stemacademy.akmeier.sievemobileapplication.fragments.DatePickerFragment;
 import org.stemacademy.akmeier.sievemobileapplication.fragments.DatePickerFragmentAlarm;
+import org.stemacademy.akmeier.sievemobileapplication.fragments.DaysOfWeekDialog;
+import org.stemacademy.akmeier.sievemobileapplication.fragments.TimePickerFragmentHabits;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -74,7 +76,10 @@ public class TaskCreate extends AppCompatActivity {
     public String currentDate;
     RecyclerView recyclerView;
     AlarmListAdapter alarmAdapter;
-
+    TextView alarmText;
+    Button alarmButton;
+    TextView dateDueText;
+    public boolean[] dayOfWeekBools;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +87,10 @@ public class TaskCreate extends AppCompatActivity {
         determineTheme();
         setContentView(R.layout.activity_task_create);
         alarms = new ArrayList<>();
+        alarmText=findViewById(R.id.textView9);
+        alarmButton=findViewById(R.id.alarmButton);
+        dateDueText=findViewById(R.id.textView2);
+        dayOfWeekBools=new boolean[7];
 
         recyclerView = findViewById(R.id.TaskCreateRV);
         alarmAdapter = new AlarmListAdapter(alarms);
@@ -125,14 +134,32 @@ public class TaskCreate extends AppCompatActivity {
                 @Override
                 public void onClick(View view){
                     String alarmsString="";
+                    String daysString="";
                     EditText nameText= (EditText) findViewById(R.id.NameAddText);
                     EditText notesText = (EditText) findViewById(R.id.NotesText);
                     TextView dateText = findViewById(R.id.DateViewer);
                     for(int i=0; i<alarms.size();i++){
                         alarmsString= alarmsString + alarms.get(i);
                     }
-                    task = new Task(priorityID,nameText.getText().toString(), classroom,dateText.getText().toString(),
-                            notesText.getText().toString(),typeID,0,alarmsString);
+                    if(typeID==0){
+                        for(int i=0;i<dayOfWeekBools.length-1;i++){
+                            if(dayOfWeekBools[i]){
+                                daysString=daysString+"1;";
+                            }else{
+                                daysString=daysString+"0;";
+                            }
+                        }
+                        if(dayOfWeekBools[6]){
+                            daysString=daysString+"1";
+                        }else{
+                            daysString=daysString+"0";
+                        }
+                        task=new Task(priorityID, nameText.getText().toString(), classroom, dateText.getText().toString(),
+                                notesText.getText().toString(),typeID,0,daysString);
+                    }else {
+                        task = new Task(priorityID, nameText.getText().toString(), classroom, dateText.getText().toString(),
+                                notesText.getText().toString(), typeID, 0, alarmsString);
+                    }
                     new InsertTask(TaskCreate.this,task).execute();
                 }
             });
@@ -234,18 +261,22 @@ public class TaskCreate extends AppCompatActivity {
 
     /** Shows a Calendar Dialog for user to select a date */
     public void showDatePickerDialog(View view){
-        DialogFragment newFragment = new DatePickerFragment();
-        newFragment.show(getSupportFragmentManager(),"datePicker");
+        if(typeID==0){
+            DialogFragment fragment=new TimePickerFragmentHabits();
+            fragment.show(getSupportFragmentManager(),"timePickerHabits");
+        }else {
+            DialogFragment newFragment = new DatePickerFragment();
+            newFragment.show(getSupportFragmentManager(), "datePicker");
+        }
     }
     public void alarmSet1(View view){
-        DialogFragment newFragment = new TimePickerFragmentAlarm();
-        newFragment.show(getSupportFragmentManager(),"timePicker");
-
-        //DialogFragment newFragment2 = new DatePickerFragmentAlarm();
-        //newFragment2.show(getSupportFragmentManager(),"datePickerA");
-
-        //String alarmTime = currentTime +currentDate + ":";
-        //alarms.add(alarmTime);
+        if(typeID==0){
+            DaysOfWeekDialog newFragment=new DaysOfWeekDialog();
+            newFragment.show(getSupportFragmentManager(),"DayOfWeekPicker");
+        }else {
+            DialogFragment newFragment = new TimePickerFragmentAlarm();
+            newFragment.show(getSupportFragmentManager(), "timePicker");
+        }
     }
     public void alarmSet2(View view){
         DialogFragment newFragment = new DatePickerFragmentAlarm();
@@ -276,12 +307,28 @@ public class TaskCreate extends AppCompatActivity {
         RadioButton project = findViewById(R.id.projectRadio);
         if(habit.isChecked()){
             typeID = 0;
+            recyclerView.setVisibility(View.GONE);
+            dateDueText.setText("Time For Alarm");
+            alarmButton.setText("Set Alarm Days");
+            alarmText.setText("Alarm Days");
         }
         else if(assignment.isChecked()){
             typeID = 1;
+            recyclerView.setVisibility(View.VISIBLE);
+            alarmButton.setVisibility(View.VISIBLE);
+            alarmText.setVisibility(View.VISIBLE);
+            alarmButton.setText("Create Alarm");
+            alarmText.setText("Alarms");
+            dateDueText.setText("Due Date");
         }
         else if(project.isChecked()){
             typeID = 2;
+            recyclerView.setVisibility(View.VISIBLE);
+            alarmButton.setVisibility(View.VISIBLE);
+            alarmText.setVisibility(View.VISIBLE);
+            alarmButton.setText("Create Alarm");
+            alarmText.setText("Alarms");
+            dateDueText.setText("Due Date");
         }
     }
 
