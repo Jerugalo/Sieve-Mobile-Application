@@ -47,7 +47,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return null;
     }
 
-    @Override
+   @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder viewHolder, int position) {
         switch(viewHolder.getItemViewType()) {
             case 0:

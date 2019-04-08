@@ -209,8 +209,15 @@ public class HomePage extends AppCompatActivity {
         super.onStart();
         determineTheme();
         SwipeController swipeController;
-        final TaskDatabase taskDatabase = TaskDatabase.getInstance(HomePage.this);
+
+        taskDatabase = TaskDatabase.getInstance(this);
+        tasks = taskDatabase.taskDao().getAll();
+        sortTasks();
         rvTasks = findViewById(R.id.TaskList);
+        adapter = new TaskListAdapter(tasks,this);
+        rvTasks.setAdapter(adapter);
+        rvTasks.setLayoutManager(new LinearLayoutManager(this));
+
         global.setgDivPos(0);
         for(int i=0;i<taskDatabase.taskDao().getAll().size();i++){
             if(taskDatabase.taskDao().getAll().get(i).getTypeID()!=0) {
@@ -261,9 +268,11 @@ public class HomePage extends AppCompatActivity {
 
     /** Opens Details activity */
     public void ToDetails(int position) {
-        Intent toDetails = new Intent(this, AssignmentDetails.class);
-        global.setCurrentTask(tasks.get(position));
-        startActivity(toDetails);
+        if (position > 0){
+            Intent toDetails = new Intent(this, AssignmentDetails.class);
+            global.setCurrentTask(tasks.get(position));
+            startActivity(toDetails);
+        }
     }
 
     /** Opens Settings activity */
