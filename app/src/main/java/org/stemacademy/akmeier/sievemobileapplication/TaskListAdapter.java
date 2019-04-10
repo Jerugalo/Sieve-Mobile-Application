@@ -3,6 +3,7 @@ package org.stemacademy.akmeier.sievemobileapplication;
 import android.content.Context;
 import android.content.res.Resources;
 import android.support.annotation.NonNull;
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -11,8 +12,19 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.stemacademy.akmeier.sievemobileapplication.db.Task;
+import org.stemacademy.akmeier.sievemobileapplication.db.TaskDatabase;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import static java.lang.StrictMath.abs;
+import static java.lang.StrictMath.toIntExact;
 
 /**
  * Receives values from the SQL database and assigns the code to multiple views. These views are
@@ -20,15 +32,49 @@ import java.util.List;
  */
 public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    Context C;
-    GlobalVars global = GlobalVars.getInstance();
+    private Context C;
     boolean add1=false;
     public static final int TASK_ID = 1;
-    public final List<Task> tasks;
+    public List<Task> items;
+    private TaskDatabase taskDatabase;
+    private final Task DIVIDER = new Task(0, "", "", "" ,
+            "", -1, 0, "");
 
-    public TaskListAdapter(List<Task> tasks, Context c) {
-        this.tasks = tasks;
-        this.C=c;
+
+    public TaskListAdapter(Context C) {
+        this.C=C;
+        items = new ArrayList<>();
+        taskDatabase = TaskDatabase.getInstance(C);
+    }
+
+    public void updateItems(final List<Task> newItems){
+        final List oldItems = new ArrayList<>(this.items);
+        this.items.clear();
+        if (newItems != null) {
+            newItems.add(dividerPosition(), DIVIDER);
+            this.items.addAll(newItems);
+        }
+        DiffUtil.calculateDiff(new DiffUtil.Callback() {
+            @Override
+            public int getOldListSize() {
+                return oldItems.size();
+            }
+
+            @Override
+            public int getNewListSize() {
+                return items.size();
+            }
+
+            @Override
+            public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
+                return oldItems.get(oldItemPosition).equals(newItems.get(newItemPosition));
+            }
+
+            @Override
+            public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
+                return oldItems.get(oldItemPosition).equals(newItems.get(newItemPosition));
+            }
+        }).dispatchUpdatesTo(this);
     }
 
     @NonNull
@@ -48,66 +94,34 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
    @Override
-    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder viewHolder, int position) {
-        switch(viewHolder.getItemViewType()) {
-            case 0:
-                TaskViewHolder taskViewHolder = (TaskViewHolder)viewHolder;
-                if(add1){
-                    //position=position-1;
-                }
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, int position) {
+        if (holder.getItemViewType() == 0) {
+            TaskViewHolder taskViewHolder = (TaskViewHolder) holder;
+            taskViewHolder.setItem(items.get(position));
+        } else if (holder.getItemViewType() == 1) {
+            DividerViewHolder dividerViewHolder = (DividerViewHolder) holder;
+            dividerViewHolder.setItem(items.get(position));
+        }
+   }
 
-                Task task = tasks.get(position);
-
-                TextView textView = taskViewHolder.taskTitle;
-                textView.setText(task.getNameID());
-
-                View imageView = taskViewHolder.taskPriority;
-                switch (task.getPriority()) {
-                    case 0: imageView.setBackgroundColor(getColorByThemeAttr(C, R.attr.priorityLow,
-                            R.color.defaultLow)); break;
-                    case 1: imageView.setBackgroundColor(getColorByThemeAttr(C, R.attr.priorityMed,
-                            R.color.defaultMed)); break;
-                    case 2: imageView.setBackgroundColor(getColorByThemeAttr(C, R.attr.priorityHigh,
-                            R.color.defaultHigh)); break;
-                    default: imageView.setBackgroundColor(getColorByThemeAttr(C, R.attr.priorityMed,
-                            R.color.defaultMed)); break;
-                }
-                break;
-
-            case 1:
-                DividerViewHolder dividerViewHolder = (DividerViewHolder)viewHolder;
-                View dividerView = dividerViewHolder.divider;
-                if(global.getgDivPos() == 0){
-                    dividerView.setBackgroundColor(getColorByThemeAttr(C, R.attr.dividerHidden,
-                            R.color.defaultBackground));
-                }else{
-                    dividerView.setBackgroundColor(getColorByThemeAttr(C, R.attr.dividerColor,
-                            R.color.defaultBar));
-                }
-                break;
+   @Override
+   public int getItemViewType(int position){
+        if(items.get(position).getTypeID() != -1){
+            return 0;
+        }
+        else{
+            return 1;
         }
    }
 
     @Override
     public int getItemCount() {
-        return tasks.size();
-    }
-
-    @Override
-    public int getItemViewType(int position){
-        if(position!=GlobalVars.getgDivPos()){
-            return 0;
-        }
-        else{
-            int checker=GlobalVars.getgDivPos();
-            add1=true;
-            return 1;
-        }
+        return items.size();
     }
 
     public void deleteTask(Task task){
-        tasks.remove(task);
-        notifyItemRemoved(tasks.indexOf(task));
+        items.remove(task);
+        notifyItemRemoved(items.indexOf(task));
     }
 
     private static int getColorByThemeAttr(Context context,int attr,int defaultColor){
@@ -117,9 +131,41 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return got ? typedValue.data : defaultColor;
     }
 
+    public int dividerPosition() {
+        int adapterPos = 0;
+        for (int i = 0; i < taskDatabase.taskDao().getAll().size(); i++) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.MILLISECOND, 0);
+            calendar.set(Calendar.SECOND, 0);
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.HOUR_OF_DAY, 12);
+            calendar.set(Calendar.HOUR, 0);
+            calendar.set(Calendar.AM_PM, Calendar.PM);
+            Date date1 = calendar.getTime();
+            String incorrectDate = taskDatabase.taskDao().getAll().get(i).getDueDate();
+            List<String> divided1 = new ArrayList<>(Arrays.asList(incorrectDate.split("/")));
+            String cTD1 = divided1.get(1) + "/" + divided1.get(0) + "/" + divided1.get(2);
+            SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
+            try {
+                date1 = sdf1.parse(cTD1);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            long check = date1.getTime() - calendar.getTime().getTime();
+            int days1 = 0;
+            days1 = abs(toIntExact(TimeUnit.DAYS.convert(check, TimeUnit.MILLISECONDS)));
+            if (days1 == 0) {
+                adapterPos += 1;
+            }
+        }
+        return adapterPos;
+    }
+
+    /* Task Item ViewHolder */
     public class TaskViewHolder extends RecyclerView.ViewHolder {
         final TextView taskTitle;
         final View taskPriority;
+        Task task;
 
         TaskViewHolder(View itemView) {
             // Stores the itemView in a public final member variable that can be used
@@ -129,10 +175,28 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             taskTitle = itemView.findViewById(R.id.taskTitle);
             taskPriority = itemView.findViewById(R.id.Priority);
         }
+        public void setItem(Task task) {
+            this.task = task;
+            taskTitle.setText(task.getNameID());
+            switch (task.getPriority()) {
+                case 0: taskPriority.setBackgroundColor(getColorByThemeAttr(C, R.attr.priorityLow,
+                        R.color.defaultLow)); break;
+                case 1: taskPriority.setBackgroundColor(getColorByThemeAttr(C, R.attr.priorityMed,
+                        R.color.defaultMed)); break;
+                case 2: taskPriority.setBackgroundColor(getColorByThemeAttr(C, R.attr.priorityHigh,
+                        R.color.defaultHigh)); break;
+                default: taskPriority.setBackgroundColor(getColorByThemeAttr(C, R.attr.priorityMed,
+                        R.color.defaultMed)); break;
+            }
+        }
     }
 
+
+
+    /* Divider ViewHolder */
     public class DividerViewHolder extends RecyclerView.ViewHolder{
         final View divider;
+        Task task;
 
         DividerViewHolder(View itemView){
             super(itemView);
@@ -141,6 +205,17 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
         public void onClick(View v){
 
+        }
+
+        public void setItem(Task task){
+            this.task = task;
+            if(GlobalVars.getgDivPos() == 0){
+                divider.setBackgroundColor(getColorByThemeAttr(C, R.attr.dividerHidden,
+                        R.color.defaultBackground));
+            }else{
+                divider.setBackgroundColor(getColorByThemeAttr(C, R.attr.dividerColor,
+                        R.color.defaultBar));
+            }
         }
     }
 }

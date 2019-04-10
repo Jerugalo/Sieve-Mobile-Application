@@ -41,7 +41,7 @@ public class Task {
     @ColumnInfo(name = "notes")
     private String Notes;
 
-    //0 is habit, 1 is assignment, 2 is project
+    // -1 is divider, 0 is habit, 1 is assignment, 2 is project
     private int TypeID;
 
     @NonNull
