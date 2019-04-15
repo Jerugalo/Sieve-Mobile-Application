@@ -156,48 +156,18 @@ public class HomePage extends AppCompatActivity {
         tasks = taskDatabase.taskDao().getAll();
         sortTasks();
         rvTasks = findViewById(R.id.TaskList);
-        adapter = new TaskListAdapter(tasks,this);
+        adapter = new TaskListAdapter(this);
         rvTasks.setAdapter(adapter);
         rvTasks.setLayoutManager(new LinearLayoutManager(this));
-
-        global.setgDivPos(0);
-        for(int i=0;i<taskDatabase.taskDao().getAll().size();i++){
-            Calendar calendar =Calendar.getInstance();
-            calendar.set(Calendar.MILLISECOND,0);
-            calendar.set(Calendar.SECOND,0);
-            calendar.set(Calendar.MINUTE,0);
-            calendar.set(Calendar.HOUR_OF_DAY,12);
-            calendar.set(Calendar.HOUR,0);
-            calendar.set(Calendar.AM_PM,Calendar.PM);
-            Date date1=calendar.getTime();
-            String incorrectDate=taskDatabase.taskDao().getAll().get(i).getDueDate();
-            List<String> divided1=new ArrayList<>(Arrays.asList(incorrectDate.split("/")));
-            String cTD1=divided1.get(1)+"/"+divided1.get(0)+"/"+divided1.get(2);
-            SimpleDateFormat sdf1=new SimpleDateFormat("dd/MM/yyyy");
-            try {
-                date1=sdf1.parse(cTD1);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            long check=date1.getTime()-calendar.getTime().getTime();
-            int days1=0;
-            days1=abs(toIntExact(TimeUnit.DAYS.convert(check,TimeUnit.MILLISECONDS)));
-            if(days1==0){
-                global.setgDivPos(global.getgDivPos()+1);
-            }
-        }
+        adapter.updateItems(tasks);
 
         swipeController = new SwipeController(new SwipeControllerActions() {
             @Override
             public void onRightClicked(int position) {
-                deleteTask(tasks.get((int)
-                        Objects.requireNonNull(rvTasks.findViewHolderForAdapterPosition(position))
-                        .itemView.getTag()));
-                queueAssignTags();
+                deleteTask(adapter.items.get(position));
             }
             public void onLeftClicked(int position) {
-                ToDetails((int)rvTasks.findViewHolderForAdapterPosition(position)
-                        .itemView.getTag());
+                ToDetails(adapter.items.get(position));
             }
         });
         ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeController);
@@ -210,39 +180,14 @@ public class HomePage extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
-        queueAssignTags();
-    }
-
-    public void queueAssignTags(){
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                assignTags();
-            }
-        }, 2000);
-    }
-
-    public void assignTags() {
-        int taskIndex = 0;
-        int rvCount = rvTasks.getChildCount();
-        for (int i = 0; i < rvCount; i++) {
-            int tag = (rvTasks.findViewHolderForAdapterPosition(i)).getItemViewType();
-            if (tag == 0) {
-                (Objects.requireNonNull(rvTasks.findViewHolderForAdapterPosition(i))).itemView.setTag(taskIndex);
-                taskIndex++;
-            } else if (tag == 1) {
-                (Objects.requireNonNull(rvTasks.findViewHolderForAdapterPosition(i))).itemView.setTag(-1);
-            }
-        }
+        //queueAssignTags();
     }
 
     /** Opens Details activity */
-    public void ToDetails(int position) {
-        if (position > 0){
+    public void ToDetails(Task task) {
+        if (task.getTypeID() != -1){
             Intent toDetails = new Intent(this, AssignmentDetails.class);
-            global.setCurrentTask(tasks.get(position));
+            global.setCurrentTask(task);
             startActivity(toDetails);
         }
     }
@@ -337,13 +282,13 @@ public class HomePage extends AppCompatActivity {
     /**
      * Refreshes the recycler view with a new set of data from the database.
      */
-    private void refreshRecycler(){
-        taskDatabase = TaskDatabase.getInstance(this);
-        tasks = taskDatabase.taskDao().getAll();
-        sortTasks();
-        adapter = new TaskListAdapter(tasks,this);
-        //adapter.notifyDataSetChanged();
-    }
+    //private void refreshRecycler(){
+    //    taskDatabase = TaskDatabase.getInstance(this);
+    //    tasks = taskDatabase.taskDao().getAll();
+    //    sortTasks();
+    //    adapter = new TaskListAdapter(this);
+    //    adapter.updateItems(tasks);
+    //}
 
     /**
      * Deletes a task from the homepage.
@@ -352,9 +297,14 @@ public class HomePage extends AppCompatActivity {
      *             the database.
      */
     public void deleteTask(Task task){
-        adapter.deleteTask(task);
-        taskDatabase.taskDao().delete(task);
+        if (task.getTypeID() != -1){
+            tasks.remove(task);
+            taskDatabase.taskDao().delete(task);
+            adapter.updateItems(tasks);
+        }
     }
+
+    ///TODO: rework how the tasks list is pulled and used
 
     /**
      * Creates an alarm to be triggered to send a notification, also built here
