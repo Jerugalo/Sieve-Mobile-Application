@@ -29,6 +29,7 @@
         android:layout_height="0dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="sans-serif-smallcaps"
         android:textAlignment="center"
         android:textColor="?android:attr/textColor"
@@ -39,11 +40,14 @@
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/SieveAnimation"
-        android:layout_width="match_parent"
-        android:layout_height="226dp"
+        android:layout_width="394dp"
+        android:layout_height="249dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
         android:background="?android:attr/colorBackground"
         android:baselineAligned="false"
         android:src="@drawable/workanim1"
+        app:layout_constraintBottom_toTopOf="@+id/TimeTillBreakTitle"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TaskNameTitle" />
