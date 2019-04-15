@@ -50,8 +50,10 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void updateItems(final List<Task> newItems){
         final List oldItems = new ArrayList<>(this.items);
         this.items.clear();
+        newItems.remove(DIVIDER);
         if (newItems != null) {
-            newItems.add(dividerPosition(), DIVIDER);
+            int divPos = dividerPosition();
+            if (divPos != 0) newItems.add(dividerPosition(), DIVIDER);
             this.items.addAll(newItems);
         }
         DiffUtil.calculateDiff(new DiffUtil.Callback() {
@@ -208,13 +210,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         public void setItem(Task task, int position){
             this.task = task;
-            if(position == 0){
-                divider.setBackgroundColor(getColorByThemeAttr(C, R.attr.dividerHidden,
-                        R.color.defaultBackground));
-            }else{
-                divider.setBackgroundColor(getColorByThemeAttr(C, R.attr.dividerColor,
-                        R.color.defaultBar));
-            }
+            divider.setBackgroundColor(getColorByThemeAttr(C, R.attr.dividerColor, R.color.defaultBar));
         }
     }
 }

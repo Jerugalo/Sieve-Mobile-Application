@@ -282,13 +282,13 @@ public class HomePage extends AppCompatActivity {
     /**
      * Refreshes the recycler view with a new set of data from the database.
      */
-    private void refreshRecycler(){
-        taskDatabase = TaskDatabase.getInstance(this);
-        tasks = taskDatabase.taskDao().getAll();
-        sortTasks();
-        adapter = new TaskListAdapter(this);
-        adapter.updateItems(tasks);
-    }
+    //private void refreshRecycler(){
+    //    taskDatabase = TaskDatabase.getInstance(this);
+    //    tasks = taskDatabase.taskDao().getAll();
+    //    sortTasks();
+    //    adapter = new TaskListAdapter(this);
+    //    adapter.updateItems(tasks);
+    //}
 
     /**
      * Deletes a task from the homepage.
@@ -298,10 +298,9 @@ public class HomePage extends AppCompatActivity {
      */
     public void deleteTask(Task task){
         if (task.getTypeID() != -1){
-            List<Task> items = tasks;
-            items.remove(task);
-            adapter.updateItems(items);
+            tasks.remove(task);
             taskDatabase.taskDao().delete(task);
+            adapter.updateItems(tasks);
         }
     }
 
