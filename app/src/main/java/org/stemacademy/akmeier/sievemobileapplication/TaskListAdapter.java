@@ -100,7 +100,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             taskViewHolder.setItem(items.get(position));
         } else if (holder.getItemViewType() == 1) {
             DividerViewHolder dividerViewHolder = (DividerViewHolder) holder;
-            dividerViewHolder.setItem(items.get(position));
+            dividerViewHolder.setItem(items.get(position), position);
         }
    }
 
@@ -152,8 +152,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 e.printStackTrace();
             }
             long check = date1.getTime() - calendar.getTime().getTime();
-            int days1 = 0;
-            days1 = abs(toIntExact(TimeUnit.DAYS.convert(check, TimeUnit.MILLISECONDS)));
+            int days1 = abs(toIntExact(TimeUnit.DAYS.convert(check, TimeUnit.MILLISECONDS)));
             if (days1 == 0) {
                 adapterPos += 1;
             }
@@ -207,9 +206,9 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         }
 
-        public void setItem(Task task){
+        public void setItem(Task task, int position){
             this.task = task;
-            if(GlobalVars.getgDivPos() == 0){
+            if(position == 0){
                 divider.setBackgroundColor(getColorByThemeAttr(C, R.attr.dividerHidden,
                         R.color.defaultBackground));
             }else{

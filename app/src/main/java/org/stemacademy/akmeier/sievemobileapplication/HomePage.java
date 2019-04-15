@@ -305,7 +305,7 @@ public class HomePage extends AppCompatActivity {
         }
     }
 
-    ///TODO: Fix adapter so it has color, and rework how the tasks list is pulled and used
+    ///TODO: rework how the tasks list is pulled and used
 
     /**
      * Creates an alarm to be triggered to send a notification, also built here
