@@ -180,7 +180,6 @@ public class HomePage extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        //queueAssignTags();
     }
 
     /** Opens Details activity */
@@ -205,7 +204,7 @@ public class HomePage extends AppCompatActivity {
     }
 
     /**
-     * TODO: Come up with an adequate description of the function
+     *
      */
     private void sortTasks(){
         Collections.sort(tasks, new Comparator<Task>() {
@@ -280,17 +279,6 @@ public class HomePage extends AppCompatActivity {
     }
 
     /**
-     * Refreshes the recycler view with a new set of data from the database.
-     */
-    //private void refreshRecycler(){
-    //    taskDatabase = TaskDatabase.getInstance(this);
-    //    tasks = taskDatabase.taskDao().getAll();
-    //    sortTasks();
-    //    adapter = new TaskListAdapter(this);
-    //    adapter.updateItems(tasks);
-    //}
-
-    /**
      * Deletes a task from the homepage.
      *
      * @param task The task to be deleted. Needs to be a copy of the one you want to delete in
@@ -304,11 +292,9 @@ public class HomePage extends AppCompatActivity {
         }
     }
 
-    ///TODO: rework how the tasks list is pulled and used
-
     /**
      * Creates an alarm to be triggered to send a notification, also built here
-     * @param context
+     * @param context put context of calling class
      * @param day
      * @param month
      * @param year
@@ -428,6 +414,11 @@ public class HomePage extends AppCompatActivity {
         Intent intent = new Intent(this,Settings.class);
         startActivity(intent);
     }
+
+    /**
+     * Sets the date on a text view
+     * @param textView the textView you want to write the date to
+     */
     public void setDate(TextView textView){
         Calendar calendar=Calendar.getInstance();
         int dayInt=(calendar.get(Calendar.DAY_OF_WEEK));
