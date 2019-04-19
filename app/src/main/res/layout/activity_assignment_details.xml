@@ -77,17 +77,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/TaskTypeTitle">
 
                 <RadioButton
-                    android:id="@+id/HabitButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:fontFamily="sans-serif-smallcaps"
-                    android:onClick="onTypeButtonClicked"
-                    android:text="@string/habit"
-                    android:textColor="?android:attr/textColor"
-                    android:textSize="14sp" />
-
-                <RadioButton
                     android:id="@+id/AssignmentButton"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"

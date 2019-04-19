@@ -112,17 +112,6 @@
                 android:paddingRight="20dp">
 
                 <RadioButton
-                    android:id="@+id/habitRadio"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:checked="false"
-                    android:fontFamily="sans-serif-smallcaps"
-                    android:onClick="assignmentTypeSet"
-                    android:text="@string/habit"
-                    android:textColor="?android:attr/textColor" />
-
-                <RadioButton
                     android:id="@+id/assignmentRadio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
