@@ -74,30 +74,17 @@
         app:layout_constraintTop_toBottomOf="@+id/notifSettingsTitle" />
 
     <TextView
-        android:id="@+id/schedCreateTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="sans-serif-smallcaps"
-        android:text="@string/create_schedule"
-        android:textColor="?android:attr/textColor"
-        android:textSize="29sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ClearAlarmsButton" />
-
-    <TextView
         android:id="@+id/dispSettingsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="@string/display_settings"
         android:textColor="?android:attr/textColor"
         android:textSize="29sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/schedCreateTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/ClearAlarmsButton" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
