@@ -53,6 +53,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         newItems.remove(DIVIDER);
         if (newItems != null) {
             int divPos = dividerPosition();
+            GlobalVars.setgDivPos(divPos);
             if (divPos != 0) newItems.add(dividerPosition(), DIVIDER);
             this.items.addAll(newItems);
         }
@@ -102,7 +103,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             taskViewHolder.setItem(items.get(position));
         } else if (holder.getItemViewType() == 1) {
             DividerViewHolder dividerViewHolder = (DividerViewHolder) holder;
-            dividerViewHolder.setItem(items.get(position), position);
+            dividerViewHolder.setItem(items.get(position));
         }
    }
 
@@ -208,7 +209,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         }
 
-        public void setItem(Task task, int position){
+        public void setItem(Task task){
             this.task = task;
             divider.setBackgroundColor(getColorByThemeAttr(C, R.attr.dividerColor, R.color.defaultBar));
         }
