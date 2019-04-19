@@ -166,6 +166,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     /* Task Item ViewHolder */
     public class TaskViewHolder extends RecyclerView.ViewHolder {
         final TextView taskTitle;
+        final TextView taskType;
         final View taskPriority;
         Task task;
 
@@ -175,6 +176,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             super(itemView);
 
             taskTitle = itemView.findViewById(R.id.taskTitle);
+            taskType = itemView.findViewById(R.id.taskType);
             taskPriority = itemView.findViewById(R.id.Priority);
         }
         public void setItem(Task task) {
@@ -189,6 +191,11 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                         R.color.defaultHigh)); break;
                 default: taskPriority.setBackgroundColor(getColorByThemeAttr(C, R.attr.priorityMed,
                         R.color.defaultMed)); break;
+            }
+            switch (task.getTypeID()){
+                case 0: taskType.setText(R.string.habit); break;
+                case 1: taskType.setText(R.string.assignment); break;
+                case 2: taskType.setText(R.string.project); break;
             }
         }
     }
