@@ -85,16 +85,11 @@ public class HomePage extends AppCompatActivity {
     List <Integer> alarmNames;
     JobScheduler jobScheduler;
     TextView dateText;
-    TaskDatabase taskDatabase;
-
-    TaskListAdapter adapter;
-    List<Task> tasks;
+    static TaskDatabase taskDatabase;
+    static TaskListAdapter adapter;
+    static List<Task> tasks;
     RecyclerView rvTasks;
 
-    /**
-     * Creates Activity and sets up the recycler view. Recycler view pulls a list of Task objects
-     * from the TaskDao and displays them in a visual list.
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         alarmNames=new ArrayList<>();
@@ -112,45 +107,20 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
         dateText= (TextView) findViewById(R.id.dateViewHP);
         setDate(dateText);
-
-        Intent intent = getIntent();
-        Bundle bd = intent.getExtras();
-        if(bd != null)
-        {
-            Boolean delete = (Boolean) bd.get("delete");
-            if (delete != null && delete){
-                deleteTask(mTask);
-            }
-            Boolean clearAlarms = (Boolean) bd.get("CLEAR_ALARMS");
-            if (clearAlarms !=null && clearAlarms){
-                clearAlarms();
-            }
-
-        }
-        final Bundle bundle=bd;
-        createListofNotifications();
-        final ConstraintLayout layout =(ConstraintLayout) findViewById(R.id.HomeView);
-        ViewTreeObserver vTO=layout.getViewTreeObserver();
-        vTO.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                if(bundle != null) {
-                    Boolean delete = (Boolean) bundle.get("delete");
-                    if (delete != null && delete) {
-                        layout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                        EnableDisableCheckmark(false);
-                    }
-                }
-            }
-        });
     }
 
-    /** Instates the RecyclerView TODO: OUTDATED COMMENT PLEASE UPDATE */
     @Override
     protected void onStart(){
         super.onStart();
         determineTheme();
-        SwipeController swipeController;
+
+        createListofNotifications();
+        setDate(dateText);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
         taskDatabase = TaskDatabase.getInstance(this);
         tasks = taskDatabase.taskDao().getAll();
@@ -161,6 +131,7 @@ public class HomePage extends AppCompatActivity {
         rvTasks.setLayoutManager(new LinearLayoutManager(this));
         adapter.updateItems(tasks);
 
+        SwipeController swipeController;
         swipeController = new SwipeController(new SwipeControllerActions() {
             @Override
             public void onRightClicked(int position) {
@@ -173,16 +144,36 @@ public class HomePage extends AppCompatActivity {
         ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeController);
         itemTouchhelper.attachToRecyclerView(rvTasks);
 
+        Intent intent = getIntent();
+        final Bundle bd = intent.getExtras();
         createListofNotifications();
-        setDate(dateText);
+        final ConstraintLayout layout =(ConstraintLayout) findViewById(R.id.HomeView);
+        ViewTreeObserver vTO=layout.getViewTreeObserver();
+        vTO.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                if(bd != null) {
+                    Boolean delete = (Boolean) bd.get("complete");
+                    if (delete != null && delete) {
+                        layout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                        EnableDisableCheckmark(false);
+                    }
+                }
+            }
+        });
+        if(bd != null)
+        {
+            Boolean clearAlarms = (Boolean) bd.get("CLEAR_ALARMS");
+            if (clearAlarms != null && clearAlarms){
+                clearAlarms();
+            }
+        }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    /** Opens Details activity */
+    /**
+     * Opens Details activity
+     * @param task the task to be opened
+     * */
     public void ToDetails(Task task) {
         if (task.getTypeID() != -1){
             Intent toDetails = new Intent(this, AssignmentDetails.class);
@@ -284,7 +275,7 @@ public class HomePage extends AppCompatActivity {
      * @param task The task to be deleted. Needs to be a copy of the one you want to delete in
      *             the database.
      */
-    public void deleteTask(Task task){
+    public static void deleteTask(Task task){
         if (task.getTypeID() != -1){
             tasks.remove(task);
             taskDatabase.taskDao().delete(task);
