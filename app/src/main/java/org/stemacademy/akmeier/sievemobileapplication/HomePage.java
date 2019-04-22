@@ -34,6 +34,7 @@ import org.stemacademy.akmeier.sievemobileapplication.db.TaskDatabase;
 import org.stemacademy.akmeier.sievemobileapplication.db.Task;
 import org.stemacademy.akmeier.sievemobileapplication.utilities.SwipeController;
 import org.stemacademy.akmeier.sievemobileapplication.utilities.SwipeControllerActions;
+import org.stemacademy.akmeier.sievemobileapplication.utilities.TaskListManager;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -154,7 +155,7 @@ public class HomePage extends AppCompatActivity {
 
         taskDatabase = TaskDatabase.getInstance(this);
         tasks = taskDatabase.taskDao().getAll();
-        sortTasks();
+        tasks = TaskListManager.getSortedList(tasks);
         rvTasks = findViewById(R.id.TaskList);
         adapter = new TaskListAdapter(this);
         rvTasks.setAdapter(adapter);
