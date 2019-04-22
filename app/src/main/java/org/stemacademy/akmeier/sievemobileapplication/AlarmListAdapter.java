@@ -36,6 +36,7 @@ public class AlarmListAdapter extends RecyclerView.Adapter<AlarmListAdapter.View
 
     }
 
+
     /** Gets values from the Task list*/
     @Override
     public void onBindViewHolder(@NonNull AlarmListAdapter.ViewHolder viewHolder, int position) {
@@ -63,18 +64,9 @@ public class AlarmListAdapter extends RecyclerView.Adapter<AlarmListAdapter.View
         }
         int LastNotificationID = toIntExact(SystemClock.uptimeMillis() / 1000);
         String AlarmText = scheduleHour + ":" + scheduleMinute + " " + (scheduleMonth + 1) + "/" + scheduleDay + "/" + scheduleYear;
-        scheduleDay = 0;
-        scheduleMonth = 0;
-        scheduleYear = 0;
-        scheduleHour = 0;
-        scheduleMinute = 0;
         TextView textView = viewHolder.alarmContent;
         textView.setText(AlarmText);
         alarmseparate.clear();
-
-
-
-
     }
 
     /** Returns the total count of items in the list */
@@ -97,11 +89,18 @@ public class AlarmListAdapter extends RecyclerView.Adapter<AlarmListAdapter.View
             alarmTitle = itemView.findViewById(R.id.alarmTitle);
             alarmContent = itemView.findViewById(R.id.alarmContent);
 
+            itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-
+            removeAlarm(getAdapterPosition());
         }
+    }
+
+    public void removeAlarm(int position){
+        mAlarms.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position,mAlarms.size());
     }
 }

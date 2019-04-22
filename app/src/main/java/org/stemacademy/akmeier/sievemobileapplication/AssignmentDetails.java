@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -31,6 +32,7 @@ import org.stemacademy.akmeier.sievemobileapplication.fragments.DatePickerFragme
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -88,6 +90,9 @@ public class AssignmentDetails extends AppCompatActivity {
     private ClassroomDatabase classroomDatabase;
     private boolean saved=true;
 
+    private ArrayList<String> Alarms;
+    RecyclerView rV;
+
     /**
      * Runs when activity started
      * @param savedInstanceState
@@ -102,6 +107,8 @@ public class AssignmentDetails extends AppCompatActivity {
         priorityID=task.getPriority();
         typeID=task.getTypeID();
 
+        Alarms=new ArrayList<>();
+        rV=findViewById(R.id.AlarmsRecyclerAD);
 
         final Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
@@ -189,6 +196,9 @@ public class AssignmentDetails extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
+        Alarms=createAlarmList(task.getAlertList());
+        rV.setAdapter(new AlarmListAdapter(Alarms));
     }
     protected void onStart(){
         super.onStart();
@@ -378,5 +388,14 @@ public class AssignmentDetails extends AppCompatActivity {
         saved=false;
     }
 
+    public ArrayList<String> createAlarmList(String alarmsString) {
+        ArrayList<String> alarms;
+        if (alarmsString == null || alarmsString.length() < 1) {
+            return null;
+        } else {
+            alarms = new ArrayList<>(Arrays.asList(alarmsString.split(":")));
+            return alarms;
+        }
+    }
 
 }

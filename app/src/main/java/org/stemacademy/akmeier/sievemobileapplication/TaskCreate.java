@@ -240,12 +240,6 @@ public class TaskCreate extends AppCompatActivity {
     public void alarmSet1(View view){
         DialogFragment newFragment = new TimePickerFragmentAlarm();
         newFragment.show(getSupportFragmentManager(),"timePicker");
-
-        //DialogFragment newFragment2 = new DatePickerFragmentAlarm();
-        //newFragment2.show(getSupportFragmentManager(),"datePickerA");
-
-        //String alarmTime = currentTime +currentDate + ":";
-        //alarms.add(alarmTime);
     }
     public void alarmSet2(View view){
         DialogFragment newFragment = new DatePickerFragmentAlarm();
@@ -257,6 +251,7 @@ public class TaskCreate extends AppCompatActivity {
         alarms.add(alarmTime);
         global.setgAlarms(alarms);
         classroomAdapter.notifyDataSetChanged();
+        alarmAdapter.notifyItemInserted(alarms.size()-1);
 
     }
     public void determineTheme(){
@@ -293,4 +288,6 @@ public class TaskCreate extends AppCompatActivity {
         else if(med.isChecked()){priorityID = 1;}
         else if(high.isChecked()){priorityID = 2;}
     }
+
+
 }

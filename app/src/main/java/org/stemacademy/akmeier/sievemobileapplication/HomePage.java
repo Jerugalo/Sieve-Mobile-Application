@@ -13,6 +13,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Debug;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
@@ -43,6 +44,8 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.Dictionary;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Objects;
 import java.util.Timer;
@@ -82,7 +85,6 @@ public class HomePage extends AppCompatActivity {
     }
     GlobalVars global = GlobalVars.getInstance();
     Task mTask = global.getCurrentTask();
-    List <Integer> alarmNames;
     JobScheduler jobScheduler;
     TextView dateText;
     TaskDatabase taskDatabase;
@@ -91,19 +93,29 @@ public class HomePage extends AppCompatActivity {
     List<Task> tasks;
     RecyclerView rvTasks;
 
+    Integer currentID;
+    Dictionary<Integer, List<Integer>> AlarmsDict;
+    List<Integer> alarmsForTask;
+
     /**
      * Creates Activity and sets up the recycler view. Recycler view pulls a list of Task objects
      * from the TaskDao and displays them in a visual list.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        alarmNames=new ArrayList<>();
         createNotificationChannel();
         jobScheduler=(JobScheduler) this.getSystemService(this.JOB_SCHEDULER_SERVICE);
         BroadcastReceiver notificationJava = new Notificationjava();
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
         this.registerReceiver(notificationJava,filter);
+
+        if(global.getgAlarmDict()==null){
+            global.setgAlarmDict(new Hashtable<Integer, List<Integer>>());
+        }
+        AlarmsDict=global.getgAlarmDict();
+        currentID=-1;
+        alarmsForTask=new ArrayList<Integer>();
 
         super.onCreate(savedInstanceState);
         context = this;
@@ -352,6 +364,14 @@ public class HomePage extends AppCompatActivity {
      *             the database.
      */
     public void deleteTask(Task task){
+        List<Integer> alarms=AlarmsDict.get(task.getId());
+        if(alarms!=null) {
+            for (int i = 0; i < alarms.size(); i++) {
+                Integer alarm = alarms.get(i);
+                jobScheduler.cancel(alarm);
+
+            }
+        }
         adapter.deleteTask(task);
         taskDatabase.taskDao().delete(task);
     }
@@ -364,15 +384,14 @@ public class HomePage extends AppCompatActivity {
      * @param year
      * @param hour
      * @param minute
-     * @param notificationID
+     * @param taskID
      */
-    public void setAlarm(Context context, int day,int month, int year, int hour, int minute,int notificationID){
+    public void setAlarm(Context context, int day,int month, int year, int hour, int minute,int taskID){
         Calendar alarmCalendar = Calendar.getInstance();
         alarmCalendar.setTimeInMillis(System.currentTimeMillis());
         alarmCalendar.set(year,month,day,hour,minute);
         Calendar otherCalendar = Calendar.getInstance();
         otherCalendar.setTimeInMillis(System.currentTimeMillis());
-
 
         ComponentName componentName = new ComponentName(context,AlarmsIntentService.class);
         long diff = alarmCalendar.getTimeInMillis() - otherCalendar.getTimeInMillis();
@@ -384,7 +403,26 @@ public class HomePage extends AppCompatActivity {
                     .setOverrideDeadline(diff+180000)
                     .build();
             jobScheduler.schedule(jobInfo);
-            alarmNames.add(alarmNumber);
+            alarmsForTask.add(alarmNumber);
+            if(currentID!=taskID){
+                if(currentID!=-1) {
+                    AlarmsDict.put(currentID, alarmsForTask);
+                    currentID=taskID;
+                    alarmsForTask.clear();
+                }else{
+                    currentID=taskID;
+                    Integer cIDInteger=new Integer(taskID);
+                    if (alarmsForTask!=null){
+                        Log.d("HomePage_CreateAlarms","alarmsForTask is not null!");
+                        AlarmsDict.put(cIDInteger,alarmsForTask);
+                    }else{
+                        Log.d("HomePage_CreateAlarms","alarmsForTask is null, we've got a problem");
+                    }
+                }
+            }else{
+                AlarmsDict.remove(currentID);
+                AlarmsDict.put(currentID,alarmsForTask);
+            }
             Log.d("setAlarm", "Success!");
         }
 
@@ -440,8 +478,7 @@ public class HomePage extends AppCompatActivity {
                                 scheduleDay = Integer.parseInt(alarmseparate.get(II));
                             }
                         }
-                        int LastNotificationID=toIntExact(SystemClock.uptimeMillis()/1000);
-                        setAlarm(this,scheduleDay,scheduleMonth,scheduleYear,scheduleHour,scheduleMinute,LastNotificationID);
+                        setAlarm(this,scheduleDay,scheduleMonth,scheduleYear,scheduleHour,scheduleMinute,task.getId());
                         scheduleDay=0;
                         scheduleMonth=0;
                         scheduleYear=0;
