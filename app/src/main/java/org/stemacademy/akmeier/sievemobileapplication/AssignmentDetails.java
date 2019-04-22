@@ -108,7 +108,7 @@ public class AssignmentDetails extends AppCompatActivity {
         int month =c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
 
-        habitD = findViewById(R.id.HabitButton);
+        //habitD = findViewById(R.id.HabitButton);
         assignD = findViewById(R.id.AssignmentButton);
         projectD = findViewById(R.id.ProjectButton);
         titleText =findViewById(R.id.TaskTitle);
@@ -222,7 +222,7 @@ public class AssignmentDetails extends AppCompatActivity {
         task=mTask;
         Button editButton = (Button) findViewById(R.id.editButton);
         saved=true;
-        habitD = findViewById(R.id.HabitButton);
+        //habitD = findViewById(R.id.HabitButton);
         assignD = findViewById(R.id.AssignmentButton);
         projectD = findViewById(R.id.ProjectButton);
         titleText =findViewById(R.id.TaskTitle);
@@ -307,10 +307,10 @@ public class AssignmentDetails extends AppCompatActivity {
         boolean checked = ((RadioButton) view ).isChecked();
         saved=false;
         switch(view.getId()){
-            case R.id.HabitButton:
-                if(checked)
-                    typeID=0;
-                break;
+            //case R.id.HabitButton:
+                //if(checked)
+                //    typeID=0;
+                //break;
             case R.id.AssignmentButton:
                 if(checked)
                     typeID=1;
