@@ -1,10 +1,12 @@
 package org.stemacademy.akmeier.sievemobileapplication.utilities;
 
 import android.annotation.SuppressLint;
+import android.drm.DrmStore;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.provider.Settings;
 import android.support.annotation.ColorInt;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -13,8 +15,10 @@ import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 
+import org.stemacademy.akmeier.sievemobileapplication.GlobalVars;
 import org.stemacademy.akmeier.sievemobileapplication.HomePage;
 import org.stemacademy.akmeier.sievemobileapplication.R;
+import org.stemacademy.akmeier.sievemobileapplication.TaskListAdapter;
 
 import static android.support.v7.widget.helper.ItemTouchHelper.*;
 
@@ -44,7 +48,14 @@ public class SwipeController extends ItemTouchHelper.Callback {
 
     @Override
     public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-        return makeMovementFlags(0, LEFT | RIGHT);
+        int swipeFlags = LEFT | RIGHT;
+        switch (viewHolder.getItemViewType()) {
+            case 0:
+                return makeMovementFlags(0, swipeFlags);
+            case 1:
+                return makeMovementFlags(0, 0);
+        }
+        return 0;
     }
 
     @Override

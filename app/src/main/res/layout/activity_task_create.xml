@@ -28,6 +28,7 @@
                 android:id="@+id/topBarContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:orientation="horizontal"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
@@ -66,6 +67,7 @@
                 android:id="@+id/taskNameContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -102,22 +104,12 @@
                 android:id="@+id/taskTypes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:layout_weight="1"
                 android:onClick="assignmentTypeSet"
                 android:orientation="horizontal"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp">
-
-                <RadioButton
-                    android:id="@+id/habitRadio"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:checked="false"
-                    android:fontFamily="sans-serif-smallcaps"
-                    android:onClick="assignmentTypeSet"
-                    android:text="@string/habit"
-                    android:textColor="?android:attr/textColor" />
 
                 <RadioButton
                     android:id="@+id/assignmentRadio"
@@ -146,6 +138,7 @@
                 android:id="@+id/ClassContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -191,6 +184,7 @@
                 android:id="@+id/PriorityType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:layout_weight="0"
                 android:onClick="prioritySet"
                 android:orientation="horizontal">
@@ -233,6 +227,7 @@
                 android:id="@+id/dueDateContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -268,6 +263,7 @@
                 android:id="@+id/NotesContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -286,7 +282,7 @@
                 <EditText
                     android:id="@+id/NotesText"
                     android:layout_width="match_parent"
-                    android:layout_height="94dp"
+                    android:layout_height="100dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_weight="0"

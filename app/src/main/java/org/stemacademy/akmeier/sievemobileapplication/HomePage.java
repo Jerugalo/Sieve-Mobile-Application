@@ -63,34 +63,39 @@ import static java.lang.StrictMath.toIntExact;
 
 public class HomePage extends AppCompatActivity {
     private static Context context;
-    public class SharedPreferencesManager{
+
+    public class SharedPreferencesManager {
         private SharedPreferences themeStorage;
         private SharedPreferences.Editor sEditor;
         private Context context;
-        SharedPreferencesManager(Context context){
+
+        SharedPreferencesManager(Context context) {
             this.context = context;
             themeStorage = PreferenceManager.getDefaultSharedPreferences(context);
         }
-        private SharedPreferences.Editor getEditor(){
+
+        private SharedPreferences.Editor getEditor() {
             return themeStorage.edit();
         }
-        int retrieveInt(String tag, int defValue){
+
+        int retrieveInt(String tag, int defValue) {
             return themeStorage.getInt(tag, defValue);
         }
-        void storeInt(String tag, int defValue){
+
+        void storeInt(String tag, int defValue) {
             sEditor = getEditor();
             sEditor.putInt(tag, defValue);
             sEditor.commit();
         }
     }
+
     GlobalVars global = GlobalVars.getInstance();
     Task mTask = global.getCurrentTask();
     JobScheduler jobScheduler;
     TextView dateText;
-    TaskDatabase taskDatabase;
-
-    TaskListAdapter adapter;
-    List<Task> tasks;
+    static TaskDatabase taskDatabase;
+    static TaskListAdapter adapter;
+    static List<Task> tasks;
     RecyclerView rvTasks;
 
     Integer currentID;
@@ -104,116 +109,32 @@ public class HomePage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         createNotificationChannel();
-        jobScheduler=(JobScheduler) this.getSystemService(this.JOB_SCHEDULER_SERVICE);
+        jobScheduler = (JobScheduler) this.getSystemService(this.JOB_SCHEDULER_SERVICE);
         BroadcastReceiver notificationJava = new Notificationjava();
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
-        this.registerReceiver(notificationJava,filter);
+        this.registerReceiver(notificationJava, filter);
 
-        if(global.getgAlarmDict()==null){
+        if (global.getgAlarmDict() == null) {
             global.setgAlarmDict(new Hashtable<Integer, List<Integer>>());
         }
-        AlarmsDict=global.getgAlarmDict();
-        currentID=-1;
-        alarmsForTask=new ArrayList<Integer>();
+        AlarmsDict = global.getgAlarmDict();
+        currentID = -1;
+        alarmsForTask = new ArrayList<Integer>();
 
         super.onCreate(savedInstanceState);
         context = this;
         Fabric.with(this, new Crashlytics());
         determineTheme();
         setContentView(R.layout.activity_home_page);
-        dateText= (TextView) findViewById(R.id.dateViewHP);
+        dateText = (TextView) findViewById(R.id.dateViewHP);
         setDate(dateText);
-
-        Intent intent = getIntent();
-        Bundle bd = intent.getExtras();
-        if(bd != null)
-        {
-            Boolean delete = (Boolean) bd.get("delete");
-            if (delete != null && delete){
-                deleteTask(mTask);
-            }
-            Boolean clearAlarms = (Boolean) bd.get("CLEAR_ALARMS");
-            if (clearAlarms !=null && clearAlarms){
-                clearAlarms();
-            }
-
-        }
-        final Bundle bundle=bd;
-        createListofNotifications();
-        final ConstraintLayout layout =(ConstraintLayout) findViewById(R.id.HomeView);
-        ViewTreeObserver vTO=layout.getViewTreeObserver();
-        vTO.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                if(bundle != null) {
-                    Boolean delete = (Boolean) bundle.get("delete");
-                    if (delete != null && delete) {
-                        layout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                        EnableDisableCheckmark(false);
-                    }
-                }
-            }
-        });
     }
 
-    /** Instates the RecyclerView TODO: OUTDATED COMMENT PLEASE UPDATE */
     @Override
-    protected void onStart(){
+    protected void onStart() {
         super.onStart();
         determineTheme();
-        SwipeController swipeController;
-
-        taskDatabase = TaskDatabase.getInstance(this);
-        tasks = taskDatabase.taskDao().getAll();
-        sortTasks();
-        rvTasks = findViewById(R.id.TaskList);
-        adapter = new TaskListAdapter(tasks,this);
-        rvTasks.setAdapter(adapter);
-        rvTasks.setLayoutManager(new LinearLayoutManager(this));
-
-        global.setgDivPos(0);
-        for(int i=0;i<taskDatabase.taskDao().getAll().size();i++){
-            Calendar calendar =Calendar.getInstance();
-            calendar.set(Calendar.MILLISECOND,0);
-            calendar.set(Calendar.SECOND,0);
-            calendar.set(Calendar.MINUTE,0);
-            calendar.set(Calendar.HOUR_OF_DAY,12);
-            calendar.set(Calendar.HOUR,0);
-            calendar.set(Calendar.AM_PM,Calendar.PM);
-            Date date1=calendar.getTime();
-            String incorrectDate=taskDatabase.taskDao().getAll().get(i).getDueDate();
-            List<String> divided1=new ArrayList<>(Arrays.asList(incorrectDate.split("/")));
-            String cTD1=divided1.get(1)+"/"+divided1.get(0)+"/"+divided1.get(2);
-            SimpleDateFormat sdf1=new SimpleDateFormat("dd/MM/yyyy");
-            try {
-                date1=sdf1.parse(cTD1);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            long check=date1.getTime()-calendar.getTime().getTime();
-            int days1=0;
-            days1=abs(toIntExact(TimeUnit.DAYS.convert(check,TimeUnit.MILLISECONDS)));
-            if(days1==0){
-                global.setgDivPos(global.getgDivPos()+1);
-            }
-        }
-
-        swipeController = new SwipeController(new SwipeControllerActions() {
-            @Override
-            public void onRightClicked(int position) {
-                deleteTask(tasks.get((int)
-                        Objects.requireNonNull(rvTasks.findViewHolderForAdapterPosition(position))
-                        .itemView.getTag()));
-                queueAssignTags();
-            }
-            public void onLeftClicked(int position) {
-                ToDetails((int)rvTasks.findViewHolderForAdapterPosition(position)
-                        .itemView.getTag());
-            }
-        });
-        ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeController);
-        itemTouchhelper.attachToRecyclerView(rvTasks);
 
         createListofNotifications();
         setDate(dateText);
@@ -223,162 +144,195 @@ public class HomePage extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        queueAssignTags();
-    }
+        taskDatabase = TaskDatabase.getInstance(this);
+        tasks = taskDatabase.taskDao().getAll();
+        sortTasks();
+        rvTasks = findViewById(R.id.TaskList);
+        adapter = new TaskListAdapter(this);
+        rvTasks.setAdapter(adapter);
+        rvTasks.setLayoutManager(new LinearLayoutManager(this));
+        adapter.updateItems(tasks);
 
-    public void queueAssignTags(){
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
+        SwipeController swipeController;
+        swipeController = new SwipeController(new SwipeControllerActions() {
             @Override
-            public void run() {
-                assignTags();
+            public void onRightClicked(int position) {
+               DeleteTask dt= new DeleteTask();//adapter.items.get(position)
+                dt.main(adapter.items.get(position));
             }
-        }, 2000);
-    }
 
-    public void assignTags() {
-        int taskIndex = 0;
-        int rvCount = rvTasks.getChildCount();
-        for (int i = 0; i < rvCount; i++) {
-            int tag = (rvTasks.findViewHolderForAdapterPosition(i)).getItemViewType();
-            if (tag == 0) {
-                (Objects.requireNonNull(rvTasks.findViewHolderForAdapterPosition(i))).itemView.setTag(taskIndex);
-                taskIndex++;
-            } else if (tag == 1) {
-                (Objects.requireNonNull(rvTasks.findViewHolderForAdapterPosition(i))).itemView.setTag(-1);
+            public void onLeftClicked(int position) {
+                ToDetails(adapter.items.get(position));
+            }
+        });
+        ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeController);
+        itemTouchhelper.attachToRecyclerView(rvTasks);
+
+        Intent intent = getIntent();
+        final Bundle bd = intent.getExtras();
+        createListofNotifications();
+        final ConstraintLayout layout = (ConstraintLayout) findViewById(R.id.HomeView);
+        ViewTreeObserver vTO = layout.getViewTreeObserver();
+        vTO.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                if (bd != null) {
+                    Boolean delete = (Boolean) bd.get("complete");
+                    if (delete != null && delete) {
+                        layout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                        EnableDisableCheckmark(false);
+                    }
+                }
+            }
+        });
+        if (bd != null) {
+            Boolean clearAlarms = (Boolean) bd.get("CLEAR_ALARMS");
+            if (clearAlarms != null && clearAlarms) {
+                clearAlarms();
             }
         }
     }
 
-    /** Opens Details activity */
-    public void ToDetails(int position) {
-        if (position > 0){
+    /**
+     * Opens Details activity
+     *
+     * @param task the task to be opened
+     */
+    public void ToDetails(Task task) {
+        if (task.getTypeID() != -1) {
             Intent toDetails = new Intent(this, AssignmentDetails.class);
-            global.setCurrentTask(tasks.get(position));
+            global.setCurrentTask(task);
             startActivity(toDetails);
         }
     }
 
-    /** Opens Settings activity */
+    /**
+     * Opens Settings activity
+     */
     public void toSettings(android.view.View view) {
         Intent toSettings = new Intent(this, Settings.class);
         startActivity(toSettings);
     }
 
-    /** Opens TaskCreate activity */
+    /**
+     * Opens TaskCreate activity
+     */
     public void toTaskCreate(View view) {
         Intent toTaskCreate = new Intent(this, TaskCreate.class);
         startActivity(toTaskCreate);
     }
 
     /**
-     * TODO: Come up with an adequate description of the function
+     *
      */
-    private void sortTasks(){
+    private void sortTasks() {
         Collections.sort(tasks, new Comparator<Task>() {
             @Override
             public int compare(Task o1, Task o2) {
                 float compare1;
                 float compare2;
-                float days1=0;
-                float days2=0;
-                Calendar calendar =Calendar.getInstance();
-                calendar.set(Calendar.MILLISECOND,0);
-                calendar.set(Calendar.SECOND,0);
-                calendar.set(Calendar.MINUTE,0);
-                calendar.set(Calendar.HOUR_OF_DAY,12);
-                calendar.set(Calendar.HOUR,0);
-                calendar.set(Calendar.AM_PM,Calendar.PM);
-                Date date1=calendar.getTime();
-                Date date2=calendar.getTime();
-                String incorrectTaskDate1=o1.getDueDate();
-                String incorrectTaskDate2=o2.getDueDate();
-                List<String> divided1=new ArrayList<>(Arrays.asList(incorrectTaskDate1.split("/")));
-                String cTD1=divided1.get(1)+"/"+divided1.get(0)+"/"+divided1.get(2);
-                List<String> divided2=new ArrayList<>(Arrays.asList(incorrectTaskDate2.split("/")));
-                String cTD2=divided2.get(1)+"/"+divided2.get(0)+"/"+divided2.get(2);
-                SimpleDateFormat sdf1=new SimpleDateFormat("dd/MM/yyyy");
+                float days1 = 0;
+                float days2 = 0;
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(Calendar.MILLISECOND, 0);
+                calendar.set(Calendar.SECOND, 0);
+                calendar.set(Calendar.MINUTE, 0);
+                calendar.set(Calendar.HOUR_OF_DAY, 12);
+                calendar.set(Calendar.HOUR, 0);
+                calendar.set(Calendar.AM_PM, Calendar.PM);
+                Date date1 = calendar.getTime();
+                Date date2 = calendar.getTime();
+                String incorrectTaskDate1 = o1.getDueDate();
+                String incorrectTaskDate2 = o2.getDueDate();
+                List<String> divided1 = new ArrayList<>(Arrays.asList(incorrectTaskDate1.split("/")));
+                String cTD1 = divided1.get(1) + "/" + divided1.get(0) + "/" + divided1.get(2);
+                List<String> divided2 = new ArrayList<>(Arrays.asList(incorrectTaskDate2.split("/")));
+                String cTD2 = divided2.get(1) + "/" + divided2.get(0) + "/" + divided2.get(2);
+                SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
                 try {
-                    date1=sdf1.parse(cTD1);
+                    date1 = sdf1.parse(cTD1);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                SimpleDateFormat sdf2=new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy");
                 try {
-                    date2=sdf2.parse(cTD2);
+                    date2 = sdf2.parse(cTD2);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                if(date1!=null&&date2!=null){
-                    long diff1= date1.getTime()-calendar.getTime().getTime();
-                    long diff2= date2.getTime()-calendar.getTime().getTime();
-                    days1=abs(TimeUnit.DAYS.convert(diff1,TimeUnit.MILLISECONDS));
-                    days2=abs(TimeUnit.DAYS.convert(diff2,TimeUnit.MILLISECONDS));
+                if (date1 != null && date2 != null) {
+                    long diff1 = date1.getTime() - calendar.getTime().getTime();
+                    long diff2 = date2.getTime() - calendar.getTime().getTime();
+                    days1 = abs(TimeUnit.DAYS.convert(diff1, TimeUnit.MILLISECONDS));
+                    days2 = abs(TimeUnit.DAYS.convert(diff2, TimeUnit.MILLISECONDS));
                 }
-                if(days1!=0&&days2!=0){
-                    int sample=o1.getPriority();
-                    int sample2= o2.getPriority();
-                    compare1=((o1.getPriority()+1)*10)/((days1+1)*50);
-                    compare2=((o2.getPriority()+1)*10)/((days2+1)*50);
-                }else{
-                    compare1=0;
-                    compare2=0;
+                if (days1 != 0 && days2 != 0) {
+                    int sample = o1.getPriority();
+                    int sample2 = o2.getPriority();
+                    compare1 = ((o1.getPriority() + 1) * 10) / ((days1 + 1) * 50);
+                    compare2 = ((o2.getPriority() + 1) * 10) / ((days2 + 1) * 50);
+                } else {
+                    compare1 = 0;
+                    compare2 = 0;
                 }
-                if(days1==0){
-                    compare1=(100*(o1.getPriority()+1))+1000;
+                if (days1 == 0) {
+                    compare1 = (100 * (o1.getPriority() + 1)) + 1000;
                 }
-                if(days2==0){
-                    compare2=(100*(o2.getPriority()+1))+1000;
+                if (days2 == 0) {
+                    compare2 = (100 * (o2.getPriority() + 1)) + 1000;
                 }
-                if(o1.getTypeID()==0){
-                    compare1+=500;
+                if (o1.getTypeID() == 0) {
+                    compare1 += 500;
+                } else if (o1.getTypeID() == 2) {
+                    compare1 += 250;
                 }
-                else if(o1.getTypeID()==2){
-                    compare1+=250;
+                if (o2.getTypeID() == 0) {
+                    compare2 += 500;
+                } else if (o1.getTypeID() == 2) {
+                    compare2 += 250;
                 }
-                if(o2.getTypeID()==0){
-                    compare2+=500;
-                }else if(o1.getTypeID()==2){
-                    compare2+=250;
-                }
-                return compare1>compare2 ? -1:(compare1<compare2) ? 1: 0;
+                return compare1 > compare2 ? -1 : (compare1 < compare2) ? 1 : 0;
             }
         });
     }
 
-    /**
-     * Refreshes the recycler view with a new set of data from the database.
-     */
-    private void refreshRecycler(){
-        taskDatabase = TaskDatabase.getInstance(this);
-        tasks = taskDatabase.taskDao().getAll();
-        sortTasks();
-        adapter = new TaskListAdapter(tasks,this);
-        //adapter.notifyDataSetChanged();
-    }
 
-    /**
-     * Deletes a task from the homepage.
-     *
-     * @param task The task to be deleted. Needs to be a copy of the one you want to delete in
-     *             the database.
-     */
-    public void deleteTask(Task task){
-        List<Integer> alarms=AlarmsDict.get(task.getId());
-        if(alarms!=null) {
-            for (int i = 0; i < alarms.size(); i++) {
-                Integer alarm = alarms.get(i);
-                jobScheduler.cancel(alarm);
+    class DeleteTask {
 
+        /**
+         * Deletes a task from the homepage.
+         *
+         * @param task The task to be deleted. Needs to be a copy of the one you want to delete in
+         *             the database.
+         */
+        //public DeleteTask(Task task) {
+            //DeleteTask deleteTask=new DeleteTask(task);
+            //deleteTask.deleteTask(task);
+       // }
+        public void main(Task task){
+            DeleteTask dT= new DeleteTask();
+            dT.deleteTask(task);
+        }
+
+        public void deleteTask(Task task){
+            if (task.getTypeID() != -1) {
+                List<Integer> alarms = AlarmsDict.get(task.getId());
+                if (alarms != null) {
+                    for (int i = 0; i < alarms.size(); i++) {
+                        Integer alarm = alarms.get(i);
+                        jobScheduler.cancel(alarm);
+                    }
+                }
+                tasks.remove(task);
+                taskDatabase.taskDao().delete(task);
+                adapter.updateItems(tasks);
             }
         }
-        adapter.deleteTask(task);
-        taskDatabase.taskDao().delete(task);
     }
 
     /**
      * Creates an alarm to be triggered to send a notification, also built here
-     * @param context
+     * @param context put context of calling class
      * @param day
      * @param month
      * @param year
@@ -515,6 +469,11 @@ public class HomePage extends AppCompatActivity {
         Intent intent = new Intent(this,Settings.class);
         startActivity(intent);
     }
+
+    /**
+     * Sets the date on a text view
+     * @param textView the textView you want to write the date to
+     */
     public void setDate(TextView textView){
         Calendar calendar=Calendar.getInstance();
         int dayInt=(calendar.get(Calendar.DAY_OF_WEEK));
