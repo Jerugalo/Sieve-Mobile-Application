@@ -222,9 +222,13 @@ public class TaskCreate extends AppCompatActivity {
     }
 
     public void toHomePage(View view){
-        ConfirmExitWithoutSaving.PARENT="TaskCreate";
-        DialogFragment newFragment=new ConfirmExitWithoutSaving();
-        newFragment.show(getSupportFragmentManager(),"confirmExitWithoutSaving");
+        EditText nameText= (EditText) findViewById(R.id.NameAddText);
+        String typed = nameText.getText().toString();
+        if(!typed.equals("")){
+            ConfirmExitWithoutSaving.PARENT="TaskCreate";
+            DialogFragment newFragment=new ConfirmExitWithoutSaving();
+            newFragment.show(getSupportFragmentManager(),"confirmExitWithoutSaving");
+        }else{intentToHomePage();}
 
     }
     public void intentToHomePage(){
@@ -271,13 +275,9 @@ public class TaskCreate extends AppCompatActivity {
     }
 
     public void assignmentTypeSet(View view){
-        RadioButton habit = findViewById(R.id.habitRadio);
         RadioButton assignment = findViewById(R.id.assignmentRadio);
         RadioButton project = findViewById(R.id.projectRadio);
-        if(habit.isChecked()){
-            typeID = 0;
-        }
-        else if(assignment.isChecked()){
+        if(assignment.isChecked()){
             typeID = 1;
         }
         else if(project.isChecked()){
