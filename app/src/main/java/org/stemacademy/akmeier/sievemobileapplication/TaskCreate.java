@@ -62,7 +62,7 @@ public class TaskCreate extends AppCompatActivity {
     private final ArrayList<String> classroomList = new ArrayList<>();
     int priorityID;
     private String classroom;
-    int typeID=0;
+    Task.TypeID typeID = Task.TypeID.ASSIGNMENT;
     private ClassroomDatabase classroomDatabase;
     GlobalVars global = GlobalVars.getInstance();
 
@@ -274,10 +274,10 @@ public class TaskCreate extends AppCompatActivity {
         RadioButton assignment = findViewById(R.id.assignmentRadio);
         RadioButton project = findViewById(R.id.projectRadio);
         if(assignment.isChecked()){
-            typeID = 1;
+            typeID = Task.TypeID.ASSIGNMENT;
         }
         else if(project.isChecked()){
-            typeID = 2;
+            typeID = Task.TypeID.PROJECT;
         }
     }
 

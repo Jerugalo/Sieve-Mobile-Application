@@ -5,11 +5,7 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import com.google.gson.reflect.TypeToken;
 
 /**
  * Object that holds the values for each task in the database. Provides getters and setters for
@@ -42,7 +38,8 @@ public class Task {
     private String Notes;
 
     // -1 is divider, 0 is habit, 1 is assignment, 2 is project
-    private int TypeID;
+    public enum TypeID {DIVIDER, ASSIGNMENT, PROJECT}
+    private TypeID typeID;
 
     @NonNull
     @ColumnInfo(name = "IsNotified")
@@ -52,13 +49,13 @@ public class Task {
     private String AlertList;//Format here, should be HH/MM/YY/MonthMonth/DD:HH/MM(etc)
 
     /** Initialisation */
-    public Task(int Priority, String NameID, String Classroom, String DueDate, String Notes, int TypeID, int Notified, String AlertList) {
+    public Task(int Priority, String NameID, String Classroom, String DueDate, String Notes, TypeID typeID, int Notified, String AlertList) {
         this.Priority = Priority;
         this.NameID = NameID;
         this.Classroom = Classroom;
         this.DueDate = DueDate;
         this.Notes = Notes;
-        this.TypeID = TypeID;
+        this.typeID = typeID;
         this.Notified = Notified;
         this.AlertList = AlertList;
     }
@@ -100,11 +97,9 @@ public class Task {
     public void setNotes(String notes) {
         Notes = notes;
     }
-    public int getTypeID() {
-        return TypeID;
-    }
-    public void setTypeID(int type) {
-        TypeID = type;
+    public TypeID getTypeID() { return typeID; }
+    public void setTypeID(TypeID type) {
+        typeID = type;
     }
     public int getId(){
         return id;

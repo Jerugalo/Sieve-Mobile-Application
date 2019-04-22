@@ -30,6 +30,7 @@ import org.stemacademy.akmeier.sievemobileapplication.fragments.ConfirmExitWitho
 import org.stemacademy.akmeier.sievemobileapplication.fragments.DatePickerFragmentD;
 
 import java.lang.ref.WeakReference;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -82,7 +83,7 @@ public class AssignmentDetails extends AppCompatActivity {
 
     int priorityID;
     String currentClassroom;
-    int typeID;
+    Task.TypeID typeID;
 
     private final ArrayList<String> classroomList = new ArrayList<>();
     private ClassroomDatabase classroomDatabase;
@@ -100,7 +101,7 @@ public class AssignmentDetails extends AppCompatActivity {
         task=mTask;
         taskDatabase=TaskDatabase.getInstance(this);
         priorityID=task.getPriority();
-        typeID=task.getTypeID();
+        typeID = task.getTypeID();
 
 
         final Calendar c = Calendar.getInstance();
@@ -126,7 +127,7 @@ public class AssignmentDetails extends AppCompatActivity {
         String initClass = mTask.getClassroom();
         String initDDate = mTask.getDueDate();
         String initNotes = mTask.getNotes();
-        int initType = mTask.getTypeID();
+        Task.TypeID initType = mTask.getTypeID();
 
         titleText.setText(initName);
         dateText.setText(initDDate);
@@ -149,15 +150,11 @@ public class AssignmentDetails extends AppCompatActivity {
             highPCb.setChecked(false);
         }
 
-        if (initType == 0) {
-            habitD.setChecked(true);
-            assignD.setChecked(false);
-            projectD.setChecked(false);
-        }else if (initType == 1) {
+        if (initType == Task.TypeID.ASSIGNMENT) {
             habitD.setChecked(false);
             assignD.setChecked(true);
             projectD.setChecked(false);
-        }else if (initType == 2) {
+        }else if (initType == Task.TypeID.PROJECT) {
             habitD.setChecked(false);
             assignD.setChecked(false);
             projectD.setChecked(true);
@@ -313,11 +310,11 @@ public class AssignmentDetails extends AppCompatActivity {
                 //break;
             case R.id.AssignmentButton:
                 if(checked)
-                    typeID=1;
+                    typeID = Task.TypeID.ASSIGNMENT;
                 break;
             case R.id.ProjectButton:
                 if(checked)
-                    typeID=2;
+                    typeID = Task.TypeID.PROJECT;
                 break;
         }
     }

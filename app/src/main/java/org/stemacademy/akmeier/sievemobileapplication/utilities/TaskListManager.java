@@ -3,6 +3,7 @@ package org.stemacademy.akmeier.sievemobileapplication.utilities;
 
 import org.stemacademy.akmeier.sievemobileapplication.db.Task;
 
+import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,8 +26,14 @@ public class TaskListManager {
     }
 
     public static List<Task> getProjectList(List<Task> tasks){
-        tasks = getSortedList(tasks);
-        return tasks;
+        List<Task> projects = null;
+        for (Task task : tasks) {
+            if (task.getTypeID() == Task.TypeID.PROJECT){
+                projects.add(task);
+            }
+        }
+        projects = getSortedList(projects);
+        return projects;
     }
 
     public static List<Task> getProjectChildrenList(List<Task> tasks, Task task){
@@ -90,15 +97,10 @@ public class TaskListManager {
                 if(days2==0){
                     compare2=(100*(o2.getPriority()+1))+1000;
                 }
-                if(o1.getTypeID()==0){
-                    compare1+=500;
-                }
-                else if(o1.getTypeID()==2){
+                if(o1.getTypeID() == Task.TypeID.PROJECT){
                     compare1+=250;
                 }
-                if(o2.getTypeID()==0){
-                    compare2+=500;
-                }else if(o1.getTypeID()==2){
+                if(o2.getTypeID()== Task.TypeID.PROJECT ){
                     compare2+=250;
                 }
                 return compare1>compare2 ? -1:(compare1<compare2) ? 1: 0;
