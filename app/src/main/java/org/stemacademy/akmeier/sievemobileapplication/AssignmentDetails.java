@@ -151,15 +151,12 @@ public class AssignmentDetails extends AppCompatActivity {
         }
 
         if (initType == 1) {
-            habitD.setChecked(false);
             assignD.setChecked(true);
             projectD.setChecked(false);
         }else if (initType == 2) {
-            habitD.setChecked(false);
             assignD.setChecked(false);
             projectD.setChecked(true);
         }else{
-            habitD.setChecked(false);
             assignD.setChecked(true);
             projectD.setChecked(false);
         }
