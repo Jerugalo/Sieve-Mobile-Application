@@ -157,8 +157,7 @@ public class HomePage extends AppCompatActivity {
         swipeController = new SwipeController(new SwipeControllerActions() {
             @Override
             public void onRightClicked(int position) {
-               DeleteTask dt= new DeleteTask();//adapter.items.get(position)
-                dt.main(adapter.items.get(position));
+               deleteTask(adapter.items.get(position));//adapter.items.get(position)
             }
 
             public void onLeftClicked(int position) {
@@ -297,36 +296,29 @@ public class HomePage extends AppCompatActivity {
     }
 
 
-    class DeleteTask {
 
-        /**
-         * Deletes a task from the homepage.
-         *
-         * @param task The task to be deleted. Needs to be a copy of the one you want to delete in
-         *             the database.
-         */
-        //public DeleteTask(Task task) {
-            //DeleteTask deleteTask=new DeleteTask(task);
-            //deleteTask.deleteTask(task);
-       // }
-        public void main(Task task){
-            DeleteTask dT= new DeleteTask();
-            dT.deleteTask(task);
+    /**
+     * Deletes a task from the homepage.
+     *
+     * @param task The task to be deleted. Needs to be a copy of the one you want to delete in
+     *             the database.
+     */
+    public void deleteTask(Task task){
+        if (global.getgAlarmDict() == null) {
+            global.setgAlarmDict(new Hashtable<Integer, List<Integer>>());
         }
-
-        public void deleteTask(Task task){
-            if (task.getTypeID() != -1) {
-                List<Integer> alarms = AlarmsDict.get(task.getId());
-                if (alarms != null) {
-                    for (int i = 0; i < alarms.size(); i++) {
-                        Integer alarm = alarms.get(i);
-                        jobScheduler.cancel(alarm);
-                    }
+        AlarmsDict = global.getgAlarmDict();
+        if (task.getTypeID() != -1) {
+            List<Integer> alarms = AlarmsDict.get(task.getId());
+            if (alarms != null) {
+                for (int i = 0; i < alarms.size(); i++) {
+                    Integer alarm = alarms.get(i);
+                    jobScheduler.cancel(alarm);
                 }
-                tasks.remove(task);
-                taskDatabase.taskDao().delete(task);
-                adapter.updateItems(tasks);
             }
+            tasks.remove(task);
+            taskDatabase.taskDao().delete(task);
+            adapter.updateItems(tasks);
         }
     }
 
@@ -378,6 +370,7 @@ public class HomePage extends AppCompatActivity {
                 AlarmsDict.put(currentID,alarmsForTask);
             }
             Log.d("setAlarm", "Success!");
+            global.setgAlarmDict(AlarmsDict);
         }
 
     }

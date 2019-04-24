@@ -66,7 +66,6 @@ public class AssignmentDetails extends AppCompatActivity {
     boolean isEditing = false;
 
     /** Below variables are all View objects stored in convenient location */
-    RadioButton habitD;
     RadioButton assignD;
     RadioButton projectD;
     EditText titleText;
@@ -115,7 +114,6 @@ public class AssignmentDetails extends AppCompatActivity {
         int month =c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
 
-        habitD = findViewById(R.id.HabitButton);
         assignD = findViewById(R.id.AssignmentButton);
         projectD = findViewById(R.id.ProjectButton);
         titleText =findViewById(R.id.TaskTitle);
@@ -157,19 +155,15 @@ public class AssignmentDetails extends AppCompatActivity {
         }
 
         if (initType == 0) {
-            habitD.setChecked(true);
             assignD.setChecked(false);
             projectD.setChecked(false);
         }else if (initType == 1) {
-            habitD.setChecked(false);
             assignD.setChecked(true);
             projectD.setChecked(false);
         }else if (initType == 2) {
-            habitD.setChecked(false);
             assignD.setChecked(false);
             projectD.setChecked(true);
         }else{
-            habitD.setChecked(false);
             assignD.setChecked(true);
             projectD.setChecked(false);
         }
@@ -232,7 +226,6 @@ public class AssignmentDetails extends AppCompatActivity {
         task=mTask;
         Button editButton = (Button) findViewById(R.id.editButton);
         saved=true;
-        habitD = findViewById(R.id.HabitButton);
         assignD = findViewById(R.id.AssignmentButton);
         projectD = findViewById(R.id.ProjectButton);
         titleText =findViewById(R.id.TaskTitle);
@@ -317,10 +310,6 @@ public class AssignmentDetails extends AppCompatActivity {
         boolean checked = ((RadioButton) view ).isChecked();
         saved=false;
         switch(view.getId()){
-            case R.id.HabitButton:
-                if(checked)
-                    typeID=0;
-                break;
             case R.id.AssignmentButton:
                 if(checked)
                     typeID=1;
