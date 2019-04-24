@@ -156,6 +156,7 @@ public class HomePage extends AppCompatActivity {
         taskDatabase = TaskDatabase.getInstance(this);
         tasks = taskDatabase.taskDao().getAll();
         tasks = TaskListManager.getSortedList(tasks);
+        TaskListManager.setTasks(tasks);
         rvTasks = findViewById(R.id.TaskList);
         adapter = new TaskListAdapter(this);
         rvTasks.setAdapter(adapter);
@@ -214,6 +215,7 @@ public class HomePage extends AppCompatActivity {
         if (task.getTypeID() != -1){
             tasks.remove(task);
             taskDatabase.taskDao().delete(task);
+            TaskListManager.setTasks(tasks);
             adapter.updateItems(tasks);
         }
     }

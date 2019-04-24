@@ -17,7 +17,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -30,6 +29,7 @@ import org.stemacademy.akmeier.sievemobileapplication.db.TimePickerFragmentAlarm
 import org.stemacademy.akmeier.sievemobileapplication.fragments.ConfirmExitWithoutSaving;
 import org.stemacademy.akmeier.sievemobileapplication.fragments.DatePickerFragment;
 import org.stemacademy.akmeier.sievemobileapplication.fragments.DatePickerFragmentAlarm;
+import org.stemacademy.akmeier.sievemobileapplication.utilities.TaskListManager;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -60,6 +60,7 @@ public class TaskCreate extends AppCompatActivity {
     private TaskDatabase taskDatabase;
     private Task task;
     private final ArrayList<String> classroomList = new ArrayList<>();
+    private final ArrayList<String> projectList = new ArrayList<>();
     private int priorityID;
     private String classroom;
     private int typeID = 1;
@@ -69,6 +70,8 @@ public class TaskCreate extends AppCompatActivity {
 
     private Spinner classroomChooser;
     private ArrayAdapter classroomAdapter;
+    private Spinner projectChooser;
+    private ArrayAdapter projectAdapter;
 
     public ArrayList<String> alarms;
     public String currentTime;
@@ -92,13 +95,29 @@ public class TaskCreate extends AppCompatActivity {
         /* Shows today's date in the date selection box when user first opens screen */
         final Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
-        int month =c.get(Calendar.MONTH)+1;
+        int month = c.get(Calendar.MONTH)+1;
         int day = c.get(Calendar.DAY_OF_MONTH);
         TextView dateText = findViewById(R.id.DateViewer);
         String dateText1 = month +"/"+day+"/"+year;
         dateText.setText(dateText1);
 
-        /* Fills the spinner and allows user to select a class from the class database */
+        /* Fills the project spinner and allows user to select a project from the class database */
+        createProjectList();
+        projectChooser = findViewById(R.id.DetailsProjectSpinner);
+        projectAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, projectList);
+        projectAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        projectChooser.setAdapter(projectAdapter);
+        projectChooser.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                if (!(parent.getItemAtPosition(pos)).toString().equals("Select Parent Project")) {
+                    parentProject = (parent.getItemAtPosition(pos)).toString();
+                }
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        /* Fills the classroom spinner and allows user to select a class from the class database */
         createClassroomList();
         classroomChooser = findViewById(R.id.DetailsClassSpinner);
         classroomAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, classroomList);
@@ -139,8 +158,20 @@ public class TaskCreate extends AppCompatActivity {
             });
     }
 
+    /** Creates the array of projects that the spinner displays */
+    private void createProjectList() {
+        projectList.clear();
+        List<Task> projects = TaskListManager.getProjectList();
+        if (projects != null){
+            projectList.add("Select Parent Project");
+            for (Task project : projects) {
+                projectList.add(project.getNameID());
+            }
+        }
+    }
+
     /** Creates a new class list and updates the spinner*/
-    private void refreshSpinner(){
+    private void refreshClassSpinner(){
         createClassroomList();
         classroomAdapter.notifyDataSetChanged();
         classroomChooser.setSelection(classroomAdapter.getPosition(classroom));
@@ -182,7 +213,7 @@ public class TaskCreate extends AppCompatActivity {
             if(bool){
                 Log.d("TaskCreate","The Async Task has finished!");
                 Log.d("TaskCreate", cls.toString());
-                activityReference.get().refreshSpinner();
+                activityReference.get().refreshClassSpinner();
             }
         }
     }
