@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -34,7 +33,6 @@ import org.stemacademy.akmeier.sievemobileapplication.fragments.DatePickerFragme
 import org.stemacademy.akmeier.sievemobileapplication.fragments.DatePickerFragmentD;
 
 import java.lang.ref.WeakReference;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
