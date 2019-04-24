@@ -13,9 +13,6 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Debug;
-import android.os.Handler;
-import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -47,13 +44,9 @@ import java.util.Date;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.List;
-import java.util.Objects;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 import static java.lang.StrictMath.abs;
-import static java.lang.StrictMath.toIntExact;
 
 /**
  * Default activity for app. Displays a list of events created by user, links to settings menu
@@ -310,15 +303,23 @@ public class HomePage extends AppCompatActivity {
         AlarmsDict = global.getgAlarmDict();
         if (task.getTypeID() != -1) {
             List<Integer> alarms = AlarmsDict.get(task.getId());
-            if (alarms != null) {
-                for (int i = 0; i < alarms.size(); i++) {
-                    Integer alarm = alarms.get(i);
-                    jobScheduler.cancel(alarm);
-                }
-            }
+            deleteAlarmsFromTask(alarms);
             tasks.remove(task);
             taskDatabase.taskDao().delete(task);
             adapter.updateItems(tasks);
+        }
+    }
+
+    /**
+     * Deletes all alarms from one task
+     * @param alarms
+     */
+    public void deleteAlarmsFromTask(List<Integer> alarms){
+        if (alarms != null) {
+            for (int i = 0; i < alarms.size(); i++) {
+                Integer alarm = alarms.get(i);
+                jobScheduler.cancel(alarm);
+            }
         }
     }
 
@@ -436,9 +437,39 @@ public class HomePage extends AppCompatActivity {
                     dates.clear();
                 }
             }
-            else{
-
-            }
+            else if (task.getNotified()==2){
+                deleteAlarmsFromTask(global.getgAlarmDict().get(task));
+                String AlertList =task.getAlertList();
+                if(AlertList==null || AlertList.length()<1) {
+                    //Oops
+                }else {
+                    List<String> dates=new ArrayList<>(Arrays.asList(AlertList.split(":")));
+                    for(int iI=0;iI<dates.size();iI++){
+                        List<String> alarmseparate= new ArrayList<>(Arrays.asList(dates.get(iI).split("/")));
+                        for(int II = 0; II<alarmseparate.size(); II++){
+                            if(II==0){
+                                scheduleHour = Integer.parseInt(alarmseparate.get(II));
+                            }else if(II==1){
+                                scheduleMinute = Integer.parseInt(alarmseparate.get(II));
+                            }else if (II ==2){
+                                scheduleYear = Integer.parseInt(alarmseparate.get(II));
+                            }else if (II == 3){
+                                scheduleMonth = Integer.parseInt(alarmseparate.get(II));
+                            }else if(II==4){
+                                scheduleDay = Integer.parseInt(alarmseparate.get(II));
+                            }
+                        }
+                        setAlarm(this,scheduleDay,scheduleMonth,scheduleYear,scheduleHour,scheduleMinute,task.getId());
+                        scheduleDay=0;
+                        scheduleMonth=0;
+                        scheduleYear=0;
+                        scheduleHour=0;
+                        scheduleMinute=0;
+                        alarmseparate.clear();
+                    }
+                    dates.clear();
+                }
+            }else{}
             tasks.get(i).setNotified(1);
             taskDatabase.taskDao().update(tasks.get(i));
         }
