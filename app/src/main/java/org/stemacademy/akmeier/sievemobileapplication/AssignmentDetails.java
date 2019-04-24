@@ -79,11 +79,11 @@ public class AssignmentDetails extends AppCompatActivity {
 
     TaskDatabase taskDatabase;
     Task task;
+    int typeID;
     int taskID;
 
     int priorityID;
     String currentClassroom;
-    Task.TypeID typeID;
 
     private final ArrayList<String> classroomList = new ArrayList<>();
     private ClassroomDatabase classroomDatabase;
@@ -127,7 +127,7 @@ public class AssignmentDetails extends AppCompatActivity {
         String initClass = mTask.getClassroom();
         String initDDate = mTask.getDueDate();
         String initNotes = mTask.getNotes();
-        Task.TypeID initType = mTask.getTypeID();
+        int initType = mTask.getTypeID();
 
         titleText.setText(initName);
         dateText.setText(initDDate);
@@ -150,11 +150,11 @@ public class AssignmentDetails extends AppCompatActivity {
             highPCb.setChecked(false);
         }
 
-        if (initType == Task.TypeID.ASSIGNMENT) {
+        if (initType == 1) {
             habitD.setChecked(false);
             assignD.setChecked(true);
             projectD.setChecked(false);
-        }else if (initType == Task.TypeID.PROJECT) {
+        }else if (initType == 2) {
             habitD.setChecked(false);
             assignD.setChecked(false);
             projectD.setChecked(true);
@@ -310,11 +310,11 @@ public class AssignmentDetails extends AppCompatActivity {
                 //break;
             case R.id.AssignmentButton:
                 if(checked)
-                    typeID = Task.TypeID.ASSIGNMENT;
+                    typeID = 1;
                 break;
             case R.id.ProjectButton:
                 if(checked)
-                    typeID = Task.TypeID.PROJECT;
+                    typeID = 2;
                 break;
         }
     }

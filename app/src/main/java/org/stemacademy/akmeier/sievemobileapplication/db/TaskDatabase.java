@@ -26,7 +26,7 @@ public abstract class TaskDatabase extends RoomDatabase {
 
         if (taskDB==null){
            taskDB = Room.databaseBuilder(context, TaskDatabase.class, "TaskDatabase")
-                   .addMigrations(MIGRATION_1_2,MIGRATION_2_3,MIGRATION_3_4,MIGRATION_4_5).allowMainThreadQueries().build();
+                   .addMigrations(MIGRATION_1_2,MIGRATION_2_3,MIGRATION_3_4,MIGRATION_4_5,MIGRATION_5_6).allowMainThreadQueries().build();
        }
        return taskDB;
     }
@@ -51,6 +51,12 @@ public abstract class TaskDatabase extends RoomDatabase {
     static Migration MIGRATION_4_5=new Migration(4,5){
         @Override
         public void migrate(SupportSQLiteDatabase database){database.execSQL("ALTER TABLE Task ADD COLUMN alertList TEXT");}
+    };
+    static Migration MIGRATION_5_6=new Migration(5,6){
+        @Override
+        public void migrate(SupportSQLiteDatabase database){
+            database.execSQL("ALTER TABLE Task ADD COLUMN parentProject TEXT")
+            ;}
     };
 
     /** Wipes the database */

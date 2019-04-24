@@ -60,9 +60,10 @@ public class TaskCreate extends AppCompatActivity {
     private TaskDatabase taskDatabase;
     private Task task;
     private final ArrayList<String> classroomList = new ArrayList<>();
-    int priorityID;
+    private int priorityID;
     private String classroom;
-    Task.TypeID typeID = Task.TypeID.ASSIGNMENT;
+    private int typeID = 1;
+    private String parentProject;
     private ClassroomDatabase classroomDatabase;
     GlobalVars global = GlobalVars.getInstance();
 
@@ -132,7 +133,7 @@ public class TaskCreate extends AppCompatActivity {
                         alarmsString= alarmsString + alarms.get(i);
                     }
                     task = new Task(priorityID,nameText.getText().toString(), classroom,dateText.getText().toString(),
-                            notesText.getText().toString(),typeID,0,alarmsString);
+                            notesText.getText().toString(),typeID,0,alarmsString,parentProject);
                     new InsertTask(TaskCreate.this,task).execute();
                 }
             });
@@ -274,10 +275,10 @@ public class TaskCreate extends AppCompatActivity {
         RadioButton assignment = findViewById(R.id.assignmentRadio);
         RadioButton project = findViewById(R.id.projectRadio);
         if(assignment.isChecked()){
-            typeID = Task.TypeID.ASSIGNMENT;
+            typeID = 1;
         }
         else if(project.isChecked()){
-            typeID = Task.TypeID.PROJECT;
+            typeID = 2;
         }
     }
 

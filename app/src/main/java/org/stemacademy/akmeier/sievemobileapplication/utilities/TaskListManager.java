@@ -28,7 +28,7 @@ public class TaskListManager {
     public static List<Task> getProjectList(List<Task> tasks){
         List<Task> projects = null;
         for (Task task : tasks) {
-            if (task.getTypeID() == Task.TypeID.PROJECT){
+            if (task.getTypeID() == 2){
                 projects.add(task);
             }
         }
@@ -97,10 +97,10 @@ public class TaskListManager {
                 if(days2==0){
                     compare2=(100*(o2.getPriority()+1))+1000;
                 }
-                if(o1.getTypeID() == Task.TypeID.PROJECT){
+                if(o1.getTypeID() == 2){
                     compare1+=250;
                 }
-                if(o2.getTypeID()== Task.TypeID.PROJECT ){
+                if(o2.getTypeID()== 2){
                     compare2+=250;
                 }
                 return compare1>compare2 ? -1:(compare1<compare2) ? 1: 0;

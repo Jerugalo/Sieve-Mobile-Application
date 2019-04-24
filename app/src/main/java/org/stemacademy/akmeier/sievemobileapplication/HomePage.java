@@ -185,7 +185,7 @@ public class HomePage extends AppCompatActivity {
 
     /** Opens Details activity */
     public void ToDetails(Task task) {
-        if (task.getTypeID() != Task.TypeID.DIVIDER){
+        if (task.getTypeID() != -1){
             Intent toDetails = new Intent(this, AssignmentDetails.class);
             global.setCurrentTask(task);
             startActivity(toDetails);
@@ -211,7 +211,7 @@ public class HomePage extends AppCompatActivity {
      *             the database.
      */
     public void deleteTask(Task task){
-        if (task.getTypeID() != Task.TypeID.DIVIDER){
+        if (task.getTypeID() != -1){
             tasks.remove(task);
             taskDatabase.taskDao().delete(task);
             adapter.updateItems(tasks);

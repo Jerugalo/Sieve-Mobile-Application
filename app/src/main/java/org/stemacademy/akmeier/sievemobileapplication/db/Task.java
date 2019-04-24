@@ -32,14 +32,12 @@ public class Task {
     //@ColumnInfo(name="timeEst")
     //private float TimeEst;
 
-
-
     @ColumnInfo(name = "notes")
     private String Notes;
 
-    // -1 is divider, 0 is habit, 1 is assignment, 2 is project
-    public enum TypeID {DIVIDER, ASSIGNMENT, PROJECT}
-    private TypeID typeID;
+    //public enum typeID {DIVIDER, ASSIGNMENT, PROJECT}
+    // -1 is DIVIDER, 1 is ASSIGNMENT, 2 is PROJECT
+    private int typeID;
 
     @NonNull
     @ColumnInfo(name = "IsNotified")
@@ -48,8 +46,12 @@ public class Task {
     @ColumnInfo(name = "alertList")
     private String AlertList;//Format here, should be HH/MM/YY/MonthMonth/DD:HH/MM(etc)
 
+    @ColumnInfo(name = "parentProject")
+    private String parentProject;
+
     /** Initialisation */
-    public Task(int Priority, String NameID, String Classroom, String DueDate, String Notes, TypeID typeID, int Notified, String AlertList) {
+    public Task(int Priority, String NameID, String Classroom, String DueDate, String Notes,
+                int typeID, int Notified, String AlertList, String parentProject) {
         this.Priority = Priority;
         this.NameID = NameID;
         this.Classroom = Classroom;
@@ -58,6 +60,7 @@ public class Task {
         this.typeID = typeID;
         this.Notified = Notified;
         this.AlertList = AlertList;
+        this.parentProject = parentProject;
     }
 
     /** Getters and Setters */
@@ -97,8 +100,8 @@ public class Task {
     public void setNotes(String notes) {
         Notes = notes;
     }
-    public TypeID getTypeID() { return typeID; }
-    public void setTypeID(TypeID type) {
+    public int getTypeID() { return typeID; }
+    public void setTypeID(int type) {
         typeID = type;
     }
     public int getId(){
@@ -116,5 +119,11 @@ public class Task {
     @Override
     public String toString(){
         return "Note{"+"id="+id+"NameID="+NameID+"}";
+    }
+    public String getParentProject() {
+        return parentProject;
+    }
+    public void setParentProject(String name) {
+        parentProject = name;
     }
 }
