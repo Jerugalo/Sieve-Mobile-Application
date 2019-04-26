@@ -11,7 +11,7 @@ import android.content.Context;
  * Fetches the database.
  */
 
-@Database(entities = {Task.class}, version = 5)
+@Database(entities = {Task.class}, version = 6)
 public abstract class TaskDatabase extends RoomDatabase {
 
     public abstract TaskDao taskDao();

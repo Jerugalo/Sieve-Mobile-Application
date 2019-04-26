@@ -10,7 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.util.Log;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -25,14 +26,17 @@ import org.stemacademy.akmeier.sievemobileapplication.db.Classroom;
 import org.stemacademy.akmeier.sievemobileapplication.db.ClassroomDatabase;
 import org.stemacademy.akmeier.sievemobileapplication.db.Task;
 import org.stemacademy.akmeier.sievemobileapplication.db.TaskDatabase;
+import org.stemacademy.akmeier.sievemobileapplication.db.TimePickerFragmentAlarm;
 import org.stemacademy.akmeier.sievemobileapplication.fragments.ClassroomCreationDialog;
 import org.stemacademy.akmeier.sievemobileapplication.fragments.ConfirmExitWithoutSaving;
+import org.stemacademy.akmeier.sievemobileapplication.fragments.DatePickerFragmentAlarm;
 import org.stemacademy.akmeier.sievemobileapplication.fragments.DatePickerFragmentD;
 import org.stemacademy.akmeier.sievemobileapplication.utilities.TaskListManager;
 
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -93,6 +97,12 @@ public class AssignmentDetails extends AppCompatActivity {
     private ArrayAdapter projectAdapter;
     private String parentProject;
     private final ArrayList<String> projectList = new ArrayList<>();
+      
+    private ArrayList<String> Alarms;
+    RecyclerView rV;
+    AlarmListAdapter aLA;
+    public String currentTime;
+    public String currentDate;
 
     /**
      * Runs when activity started
@@ -108,6 +118,8 @@ public class AssignmentDetails extends AppCompatActivity {
         priorityID=task.getPriority();
         typeID = task.getTypeID();
 
+        Alarms=new ArrayList<>();
+        rV=findViewById(R.id.AlarmsRecyclerAD);
 
         final Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
@@ -165,12 +177,16 @@ public class AssignmentDetails extends AppCompatActivity {
             projectD.setChecked(false);
         }
 
-        /* Fills the project spinner and allows user to select a project from the class database */
+        /* Fills the project spinner and allows user to select a project from the class database*/
         createProjectList();
         projectChooser = findViewById(R.id.DetailsProjectSpinner);
-        projectAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, projectList);
-        projectAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        projectChooser.setAdapter(projectAdapter);
+        if(projectList!=null) {
+            projectAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, projectList);
+            projectAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        }
+        if(projectAdapter!=null) {
+            projectChooser.setAdapter(projectAdapter);
+        }
         projectChooser.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 if (!(parent.getItemAtPosition(pos)).toString().equals("Select Parent Project")) {
@@ -203,6 +219,11 @@ public class AssignmentDetails extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
+        Alarms=createAlarmList(task.getAlertList());
+        aLA=new AlarmListAdapter(Alarms);
+        rV.setAdapter(aLA);
+        rV.setLayoutManager(new LinearLayoutManager(this));
     }
     protected void onStart(){
         super.onStart();
@@ -271,6 +292,14 @@ public class AssignmentDetails extends AppCompatActivity {
         task.setDueDate(dateText.getText().toString());
         task.setNotes(notesD.getText().toString());
         task.setTypeID(typeID);
+        String alarmsString="";
+        for(int i=0; i<Alarms.size();i++){
+            alarmsString= alarmsString + Alarms.get(i);
+        }
+        if(alarmsString!=task.getAlertList()){
+            task.setAlertList(alarmsString);
+            task.setNotified(2);
+        }
         global.setCurrentTask(task);
         taskDatabase.taskDao().update(task);
         refreshSpinner();
@@ -409,5 +438,36 @@ public class AssignmentDetails extends AppCompatActivity {
         saved=false;
     }
 
+    public ArrayList<String> createAlarmList(String alarmsString) {
+        ArrayList<String> alarms;
+        if (alarmsString == null || alarmsString.length() < 1) {
+            return null;
+        } else {
+            alarms = new ArrayList<>(Arrays.asList(alarmsString.split(":")));
+            for(int i=0;i<alarms.size();i++){
+                String mAlarm=alarms.get(i)+":";
+                alarms.set(i,mAlarm);
+            }
+            return alarms;
+        }
+    }
 
+    public void alarmSet1D(View view){
+        TimePickerFragmentAlarm.PARENT="AssignmentDetails";
+        DialogFragment newFragment = new TimePickerFragmentAlarm();
+        newFragment.show(getSupportFragmentManager(),"timePicker");
+    }
+    public void alarmSet2D(View view){
+        DatePickerFragmentAlarm.PARENT="AssignmentDetails";
+        DialogFragment newFragment = new DatePickerFragmentAlarm();
+        newFragment.show(getSupportFragmentManager(),"datePickerA");
+
+    }
+    public void alarmSet3D(View view){
+        String alarmTime = currentTime + currentDate +":";
+        Alarms.add(alarmTime);
+        global.setgAlarms(Alarms);
+        aLA.notifyItemInserted(Alarms.size()-1);
+
+    }
 }

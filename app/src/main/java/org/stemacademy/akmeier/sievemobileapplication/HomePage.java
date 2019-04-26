@@ -13,8 +13,6 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
-import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -44,14 +42,12 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.Dictionary;
+import java.util.Hashtable;
 import java.util.List;
-import java.util.Objects;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 import static java.lang.StrictMath.abs;
-import static java.lang.StrictMath.toIntExact;
 
 /**
  * Default activity for app. Displays a list of events created by user, links to settings menu
@@ -61,29 +57,34 @@ import static java.lang.StrictMath.toIntExact;
 
 public class HomePage extends AppCompatActivity {
     private static Context context;
-    public class SharedPreferencesManager{
+
+    public class SharedPreferencesManager {
         private SharedPreferences themeStorage;
         private SharedPreferences.Editor sEditor;
         private Context context;
-        SharedPreferencesManager(Context context){
+
+        SharedPreferencesManager(Context context) {
             this.context = context;
             themeStorage = PreferenceManager.getDefaultSharedPreferences(context);
         }
-        private SharedPreferences.Editor getEditor(){
+
+        private SharedPreferences.Editor getEditor() {
             return themeStorage.edit();
         }
-        int retrieveInt(String tag, int defValue){
+
+        int retrieveInt(String tag, int defValue) {
             return themeStorage.getInt(tag, defValue);
         }
-        void storeInt(String tag, int defValue){
+
+        void storeInt(String tag, int defValue) {
             sEditor = getEditor();
             sEditor.putInt(tag, defValue);
             sEditor.commit();
         }
     }
+
     GlobalVars global = GlobalVars.getInstance();
     Task mTask = global.getCurrentTask();
-    List <Integer> alarmNames;
     JobScheduler jobScheduler;
     TextView dateText;
     static TaskDatabase taskDatabase;
@@ -91,27 +92,41 @@ public class HomePage extends AppCompatActivity {
     static List<Task> tasks;
     RecyclerView rvTasks;
 
+    Integer currentID;
+    Dictionary<Integer, List<Integer>> AlarmsDict;
+    List<Integer> alarmsForTask;
+
+    /**
+     * Creates Activity and sets up the recycler view. Recycler view pulls a list of Task objects
+     * from the TaskDao and displays them in a visual list.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        alarmNames=new ArrayList<>();
         createNotificationChannel();
-        jobScheduler=(JobScheduler) this.getSystemService(this.JOB_SCHEDULER_SERVICE);
+        jobScheduler = (JobScheduler) this.getSystemService(this.JOB_SCHEDULER_SERVICE);
         BroadcastReceiver notificationJava = new Notificationjava();
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
-        this.registerReceiver(notificationJava,filter);
+        this.registerReceiver(notificationJava, filter);
+
+        if (global.getgAlarmDict() == null) {
+            global.setgAlarmDict(new Hashtable<Integer, List<Integer>>());
+        }
+        AlarmsDict = global.getgAlarmDict();
+        currentID = -1;
+        alarmsForTask = new ArrayList<Integer>();
 
         super.onCreate(savedInstanceState);
         context = this;
         Fabric.with(this, new Crashlytics());
         determineTheme();
         setContentView(R.layout.activity_home_page);
-        dateText= (TextView) findViewById(R.id.dateViewHP);
+        dateText = (TextView) findViewById(R.id.dateViewHP);
         setDate(dateText);
     }
 
     @Override
-    protected void onStart(){
+    protected void onStart() {
         super.onStart();
         determineTheme();
 
@@ -137,8 +152,9 @@ public class HomePage extends AppCompatActivity {
         swipeController = new SwipeController(new SwipeControllerActions() {
             @Override
             public void onRightClicked(int position) {
-                deleteTask(adapter.items.get(position));
+               deleteTask(adapter.items.get(position));//adapter.items.get(position)
             }
+
             public void onLeftClicked(int position) {
                 ToDetails(adapter.items.get(position));
             }
@@ -149,12 +165,12 @@ public class HomePage extends AppCompatActivity {
         Intent intent = getIntent();
         final Bundle bd = intent.getExtras();
         createListofNotifications();
-        final ConstraintLayout layout =(ConstraintLayout) findViewById(R.id.HomeView);
-        ViewTreeObserver vTO=layout.getViewTreeObserver();
+        final ConstraintLayout layout = (ConstraintLayout) findViewById(R.id.HomeView);
+        ViewTreeObserver vTO = layout.getViewTreeObserver();
         vTO.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                if(bd != null) {
+                if (bd != null) {
                     Boolean delete = (Boolean) bd.get("complete");
                     if (delete != null && delete) {
                         layout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
@@ -163,10 +179,9 @@ public class HomePage extends AppCompatActivity {
                 }
             }
         });
-        if(bd != null)
-        {
+        if (bd != null) {
             Boolean clearAlarms = (Boolean) bd.get("CLEAR_ALARMS");
-            if (clearAlarms != null && clearAlarms){
+            if (clearAlarms != null && clearAlarms) {
                 clearAlarms();
             }
         }
@@ -174,23 +189,28 @@ public class HomePage extends AppCompatActivity {
 
     /**
      * Opens Details activity
+     *
      * @param task the task to be opened
-     * */
+     */
     public void ToDetails(Task task) {
-        if (task.getTypeID() != -1){
+        if (task.getTypeID() != -1) {
             Intent toDetails = new Intent(this, AssignmentDetails.class);
             global.setCurrentTask(task);
             startActivity(toDetails);
         }
     }
 
-    /** Opens Settings activity */
+    /**
+     * Opens Settings activity
+     */
     public void toSettings(android.view.View view) {
         Intent toSettings = new Intent(this, Settings.class);
         startActivity(toSettings);
     }
 
-    /** Opens TaskCreate activity */
+    /**
+     * Opens TaskCreate activity
+     */
     public void toTaskCreate(View view) {
         Intent toTaskCreate = new Intent(this, TaskCreate.class);
         startActivity(toTaskCreate);
@@ -202,12 +222,31 @@ public class HomePage extends AppCompatActivity {
      * @param task The task to be deleted. Needs to be a copy of the one you want to delete in
      *             the database.
      */
-    public static void deleteTask(Task task){
-        if (task.getTypeID() != -1){
+    public void deleteTask(Task task){
+        if (global.getgAlarmDict() == null) {
+            global.setgAlarmDict(new Hashtable<Integer, List<Integer>>());
+        }
+        AlarmsDict = global.getgAlarmDict();
+        if (task.getTypeID() != -1) {
+            List<Integer> alarms = AlarmsDict.get(task.getId());
+            deleteAlarmsFromTask(alarms);
             tasks.remove(task);
             taskDatabase.taskDao().delete(task);
             TaskListManager.setTasks(tasks);
             adapter.updateItems(tasks);
+        }
+    }
+
+    /**
+     * Deletes all alarms from one task
+     * @param alarms
+     */
+    public void deleteAlarmsFromTask(List<Integer> alarms){
+        if (alarms != null) {
+            for (int i = 0; i < alarms.size(); i++) {
+                Integer alarm = alarms.get(i);
+                jobScheduler.cancel(alarm);
+            }
         }
     }
 
@@ -219,15 +258,14 @@ public class HomePage extends AppCompatActivity {
      * @param year
      * @param hour
      * @param minute
-     * @param notificationID
+     * @param taskID
      */
-    public void setAlarm(Context context, int day,int month, int year, int hour, int minute,int notificationID){
+    public void setAlarm(Context context, int day,int month, int year, int hour, int minute,int taskID){
         Calendar alarmCalendar = Calendar.getInstance();
         alarmCalendar.setTimeInMillis(System.currentTimeMillis());
         alarmCalendar.set(year,month,day,hour,minute);
         Calendar otherCalendar = Calendar.getInstance();
         otherCalendar.setTimeInMillis(System.currentTimeMillis());
-
 
         ComponentName componentName = new ComponentName(context,AlarmsIntentService.class);
         long diff = alarmCalendar.getTimeInMillis() - otherCalendar.getTimeInMillis();
@@ -239,8 +277,28 @@ public class HomePage extends AppCompatActivity {
                     .setOverrideDeadline(diff+180000)
                     .build();
             jobScheduler.schedule(jobInfo);
-            alarmNames.add(alarmNumber);
+            alarmsForTask.add(alarmNumber);
+            if(currentID!=taskID){
+                if(currentID!=-1) {
+                    AlarmsDict.put(currentID, alarmsForTask);
+                    currentID=taskID;
+                    alarmsForTask.clear();
+                }else{
+                    currentID=taskID;
+                    Integer cIDInteger=new Integer(taskID);
+                    if (alarmsForTask!=null){
+                        Log.d("HomePage_CreateAlarms","alarmsForTask is not null!");
+                        AlarmsDict.put(cIDInteger,alarmsForTask);
+                    }else{
+                        Log.d("HomePage_CreateAlarms","alarmsForTask is null, we've got a problem");
+                    }
+                }
+            }else{
+                AlarmsDict.remove(currentID);
+                AlarmsDict.put(currentID,alarmsForTask);
+            }
             Log.d("setAlarm", "Success!");
+            global.setgAlarmDict(AlarmsDict);
         }
 
     }
@@ -295,8 +353,7 @@ public class HomePage extends AppCompatActivity {
                                 scheduleDay = Integer.parseInt(alarmseparate.get(II));
                             }
                         }
-                        int LastNotificationID=toIntExact(SystemClock.uptimeMillis()/1000);
-                        setAlarm(this,scheduleDay,scheduleMonth,scheduleYear,scheduleHour,scheduleMinute,LastNotificationID);
+                        setAlarm(this,scheduleDay,scheduleMonth,scheduleYear,scheduleHour,scheduleMinute,task.getId());
                         scheduleDay=0;
                         scheduleMonth=0;
                         scheduleYear=0;
@@ -307,9 +364,39 @@ public class HomePage extends AppCompatActivity {
                     dates.clear();
                 }
             }
-            else{
-
-            }
+            else if (task.getNotified()==2){
+                deleteAlarmsFromTask(global.getgAlarmDict().get(task));
+                String AlertList =task.getAlertList();
+                if(AlertList==null || AlertList.length()<1) {
+                    //Oops
+                }else {
+                    List<String> dates=new ArrayList<>(Arrays.asList(AlertList.split(":")));
+                    for(int iI=0;iI<dates.size();iI++){
+                        List<String> alarmseparate= new ArrayList<>(Arrays.asList(dates.get(iI).split("/")));
+                        for(int II = 0; II<alarmseparate.size(); II++){
+                            if(II==0){
+                                scheduleHour = Integer.parseInt(alarmseparate.get(II));
+                            }else if(II==1){
+                                scheduleMinute = Integer.parseInt(alarmseparate.get(II));
+                            }else if (II ==2){
+                                scheduleYear = Integer.parseInt(alarmseparate.get(II));
+                            }else if (II == 3){
+                                scheduleMonth = Integer.parseInt(alarmseparate.get(II));
+                            }else if(II==4){
+                                scheduleDay = Integer.parseInt(alarmseparate.get(II));
+                            }
+                        }
+                        setAlarm(this,scheduleDay,scheduleMonth,scheduleYear,scheduleHour,scheduleMinute,task.getId());
+                        scheduleDay=0;
+                        scheduleMonth=0;
+                        scheduleYear=0;
+                        scheduleHour=0;
+                        scheduleMinute=0;
+                        alarmseparate.clear();
+                    }
+                    dates.clear();
+                }
+            }else{}
             tasks.get(i).setNotified(1);
             taskDatabase.taskDao().update(tasks.get(i));
         }

@@ -80,10 +80,11 @@ public class AssignmentStart extends AppCompatActivity {
     }
 
     public void completeTask(View view){
+        HomePage homePage=new HomePage();
         timeUntilBreak.cancel();
         Intent toHomePage = new Intent(this, HomePage.class);
         toHomePage.putExtra("complete", true);
-        HomePage.deleteTask(mTask);
+        homePage.deleteTask(mTask);
         startActivity(toHomePage);
     }
     public void determineTheme(){
