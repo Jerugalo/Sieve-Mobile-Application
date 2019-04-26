@@ -38,7 +38,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public List<Task> items;
     private TaskDatabase taskDatabase;
     private final Task DIVIDER = new Task(0, "", "", "" ,
-            "", -1, 0, "");
+            "", -1, 0, "","");
 
 
     public TaskListAdapter(Context C) {

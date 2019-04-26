@@ -34,6 +34,7 @@ import org.stemacademy.akmeier.sievemobileapplication.db.TaskDatabase;
 import org.stemacademy.akmeier.sievemobileapplication.db.Task;
 import org.stemacademy.akmeier.sievemobileapplication.utilities.SwipeController;
 import org.stemacademy.akmeier.sievemobileapplication.utilities.SwipeControllerActions;
+import org.stemacademy.akmeier.sievemobileapplication.utilities.TaskListManager;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -124,7 +125,8 @@ public class HomePage extends AppCompatActivity {
 
         taskDatabase = TaskDatabase.getInstance(this);
         tasks = taskDatabase.taskDao().getAll();
-        sortTasks();
+        tasks = TaskListManager.getSortedList(tasks);
+        TaskListManager.setTasks(tasks);
         rvTasks = findViewById(R.id.TaskList);
         adapter = new TaskListAdapter(this);
         rvTasks.setAdapter(adapter);
@@ -195,81 +197,6 @@ public class HomePage extends AppCompatActivity {
     }
 
     /**
-     *
-     */
-    private void sortTasks(){
-        Collections.sort(tasks, new Comparator<Task>() {
-            @Override
-            public int compare(Task o1, Task o2) {
-                float compare1;
-                float compare2;
-                float days1=0;
-                float days2=0;
-                Calendar calendar =Calendar.getInstance();
-                calendar.set(Calendar.MILLISECOND,0);
-                calendar.set(Calendar.SECOND,0);
-                calendar.set(Calendar.MINUTE,0);
-                calendar.set(Calendar.HOUR_OF_DAY,12);
-                calendar.set(Calendar.HOUR,0);
-                calendar.set(Calendar.AM_PM,Calendar.PM);
-                Date date1=calendar.getTime();
-                Date date2=calendar.getTime();
-                String incorrectTaskDate1=o1.getDueDate();
-                String incorrectTaskDate2=o2.getDueDate();
-                List<String> divided1=new ArrayList<>(Arrays.asList(incorrectTaskDate1.split("/")));
-                String cTD1=divided1.get(1)+"/"+divided1.get(0)+"/"+divided1.get(2);
-                List<String> divided2=new ArrayList<>(Arrays.asList(incorrectTaskDate2.split("/")));
-                String cTD2=divided2.get(1)+"/"+divided2.get(0)+"/"+divided2.get(2);
-                SimpleDateFormat sdf1=new SimpleDateFormat("dd/MM/yyyy");
-                try {
-                    date1=sdf1.parse(cTD1);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                SimpleDateFormat sdf2=new SimpleDateFormat("dd/MM/yyyy");
-                try {
-                    date2=sdf2.parse(cTD2);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                if(date1!=null&&date2!=null){
-                    long diff1= date1.getTime()-calendar.getTime().getTime();
-                    long diff2= date2.getTime()-calendar.getTime().getTime();
-                    days1=abs(TimeUnit.DAYS.convert(diff1,TimeUnit.MILLISECONDS));
-                    days2=abs(TimeUnit.DAYS.convert(diff2,TimeUnit.MILLISECONDS));
-                }
-                if(days1!=0&&days2!=0){
-                    int sample=o1.getPriority();
-                    int sample2= o2.getPriority();
-                    compare1=((o1.getPriority()+1)*10)/((days1+1)*50);
-                    compare2=((o2.getPriority()+1)*10)/((days2+1)*50);
-                }else{
-                    compare1=0;
-                    compare2=0;
-                }
-                if(days1==0){
-                    compare1=(100*(o1.getPriority()+1))+1000;
-                }
-                if(days2==0){
-                    compare2=(100*(o2.getPriority()+1))+1000;
-                }
-                if(o1.getTypeID()==0){
-                    compare1+=500;
-                }
-                else if(o1.getTypeID()==2){
-                    compare1+=250;
-                }
-                if(o2.getTypeID()==0){
-                    compare2+=500;
-                }else if(o1.getTypeID()==2){
-                    compare2+=250;
-                }
-                return compare1>compare2 ? -1:(compare1<compare2) ? 1: 0;
-            }
-        });
-    }
-
-    /**
      * Deletes a task from the homepage.
      *
      * @param task The task to be deleted. Needs to be a copy of the one you want to delete in
@@ -279,6 +206,7 @@ public class HomePage extends AppCompatActivity {
         if (task.getTypeID() != -1){
             tasks.remove(task);
             taskDatabase.taskDao().delete(task);
+            TaskListManager.setTasks(tasks);
             adapter.updateItems(tasks);
         }
     }

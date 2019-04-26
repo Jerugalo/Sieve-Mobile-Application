@@ -28,8 +28,10 @@ import org.stemacademy.akmeier.sievemobileapplication.db.TaskDatabase;
 import org.stemacademy.akmeier.sievemobileapplication.fragments.ClassroomCreationDialog;
 import org.stemacademy.akmeier.sievemobileapplication.fragments.ConfirmExitWithoutSaving;
 import org.stemacademy.akmeier.sievemobileapplication.fragments.DatePickerFragmentD;
+import org.stemacademy.akmeier.sievemobileapplication.utilities.TaskListManager;
 
 import java.lang.ref.WeakReference;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -77,15 +79,20 @@ public class AssignmentDetails extends AppCompatActivity {
 
     TaskDatabase taskDatabase;
     Task task;
+    int typeID;
     int taskID;
 
     int priorityID;
     String currentClassroom;
-    int typeID;
 
     private final ArrayList<String> classroomList = new ArrayList<>();
     private ClassroomDatabase classroomDatabase;
     private boolean saved=true;
+
+    private Spinner projectChooser;
+    private ArrayAdapter projectAdapter;
+    private String parentProject;
+    private final ArrayList<String> projectList = new ArrayList<>();
 
     /**
      * Runs when activity started
@@ -99,7 +106,7 @@ public class AssignmentDetails extends AppCompatActivity {
         task=mTask;
         taskDatabase=TaskDatabase.getInstance(this);
         priorityID=task.getPriority();
-        typeID=task.getTypeID();
+        typeID = task.getTypeID();
 
 
         final Calendar c = Calendar.getInstance();
@@ -147,17 +154,32 @@ public class AssignmentDetails extends AppCompatActivity {
             highPCb.setChecked(false);
         }
 
-        switch (initType) {
-            case 0: break;
-            case 1:
-                assignD.setChecked(true);
-                projectD.setChecked(false);
-                break;
-            case 2:
-                assignD.setChecked(false);
-                projectD.setChecked(true);
-                break;
+        if (initType == 1) {
+            assignD.setChecked(true);
+            projectD.setChecked(false);
+        }else if (initType == 2) {
+            assignD.setChecked(false);
+            projectD.setChecked(true);
+        }else{
+            assignD.setChecked(true);
+            projectD.setChecked(false);
         }
+
+        /* Fills the project spinner and allows user to select a project from the class database */
+        createProjectList();
+        projectChooser = findViewById(R.id.DetailsProjectSpinner);
+        projectAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, projectList);
+        projectAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        projectChooser.setAdapter(projectAdapter);
+        projectChooser.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                if (!(parent.getItemAtPosition(pos)).toString().equals("Select Parent Project")) {
+                    parentProject = (parent.getItemAtPosition(pos)).toString();
+                }
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
 
         /* Fills the spinner and allows user to select a class from the class database */
         createClassroomList();
@@ -236,6 +258,15 @@ public class AssignmentDetails extends AppCompatActivity {
                 currentClassroom="";
             }
         }
+
+        if(parentProject==null){
+            parentProject=task.getParentProject();
+            if(parentProject==null){
+                parentProject="";
+            }
+        }
+
+        task.setParentProject(parentProject);
         task.setClassroom(currentClassroom);
         task.setDueDate(dateText.getText().toString());
         task.setNotes(notesD.getText().toString());
@@ -243,7 +274,20 @@ public class AssignmentDetails extends AppCompatActivity {
         global.setCurrentTask(task);
         taskDatabase.taskDao().update(task);
         refreshSpinner();
+    }
 
+    /** Creates the array of projects that the spinner displays */
+    private void createProjectList() {
+        projectList.clear();
+        List<Task> projects = TaskListManager.getProjectList();
+        if (projects != null){
+            projectList.add(task.getParentProject());
+            for (Task project : projects) {
+                if (!project.getNameID().equals(task.getParentProject())){
+                    projectList.add(project.getNameID());
+                }
+            }
+        }
     }
 
     /** Creates a new class list and updates the spinner*/
@@ -300,11 +344,11 @@ public class AssignmentDetails extends AppCompatActivity {
         switch(view.getId()){
             case R.id.AssignmentButton:
                 if(checked)
-                    typeID=1;
+                    typeID = 1;
                 break;
             case R.id.ProjectButton:
                 if(checked)
-                    typeID=2;
+                    typeID = 2;
                 break;
         }
     }
