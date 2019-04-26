@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.Spinner;
 
 import org.stemacademy.akmeier.sievemobileapplication.db.Classroom;
 import org.stemacademy.akmeier.sievemobileapplication.db.ClassroomDatabase;
+import org.stemacademy.akmeier.sievemobileapplication.fragments.AlarmDeleteFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -251,10 +253,14 @@ public class Settings extends AppCompatActivity {
         }
     }
 
-    public void clearAlarms(View view){
+    public void clearAlarms(){
         Intent intent = new Intent(this, HomePage.class);
         intent.putExtra("CLEAR_ALARMS", true);
         startActivity(intent);
 
+    }
+    public void callClearAlarmsDialog(View view){
+        DialogFragment newFragment=new AlarmDeleteFragment();
+        newFragment.show(getSupportFragmentManager(),"alarmDeleteFragment");
     }
 }
