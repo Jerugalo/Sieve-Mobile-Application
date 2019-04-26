@@ -5,11 +5,7 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import com.google.gson.reflect.TypeToken;
 
 /**
  * Object that holds the values for each task in the database. Provides getters and setters for
@@ -36,13 +32,12 @@ public class Task {
     //@ColumnInfo(name="timeEst")
     //private float TimeEst;
 
-
-
     @ColumnInfo(name = "notes")
     private String Notes;
 
-    // -1 is divider, 0 is habit, 1 is assignment, 2 is project
-    private int TypeID;
+    //public enum typeID {DIVIDER, ASSIGNMENT, PROJECT}
+    // -1 is DIVIDER, 1 is ASSIGNMENT, 2 is PROJECT
+    private int typeID;
 
     @NonNull
     @ColumnInfo(name = "IsNotified")
@@ -51,16 +46,21 @@ public class Task {
     @ColumnInfo(name = "alertList")
     private String AlertList;//Format here, should be HH/MM/YY/MonthMonth/DD:HH/MM(etc)
 
+    @ColumnInfo(name = "parentProject")
+    private String parentProject;
+
     /** Initialisation */
-    public Task(int Priority, String NameID, String Classroom, String DueDate, String Notes, int TypeID, int Notified, String AlertList) {
+    public Task(int Priority, String NameID, String Classroom, String DueDate, String Notes,
+                int typeID, int Notified, String AlertList, String parentProject) {
         this.Priority = Priority;
         this.NameID = NameID;
         this.Classroom = Classroom;
         this.DueDate = DueDate;
         this.Notes = Notes;
-        this.TypeID = TypeID;
+        this.typeID = typeID;
         this.Notified = Notified;
         this.AlertList = AlertList;
+        this.parentProject = parentProject;
     }
 
     /** Getters and Setters */
@@ -100,11 +100,9 @@ public class Task {
     public void setNotes(String notes) {
         Notes = notes;
     }
-    public int getTypeID() {
-        return TypeID;
-    }
+    public int getTypeID() { return typeID; }
     public void setTypeID(int type) {
-        TypeID = type;
+        typeID = type;
     }
     public int getId(){
         return id;
@@ -121,5 +119,11 @@ public class Task {
     @Override
     public String toString(){
         return "Note{"+"id="+id+"NameID="+NameID+"}";
+    }
+    public String getParentProject() {
+        return parentProject;
+    }
+    public void setParentProject(String name) {
+        parentProject = name;
     }
 }
