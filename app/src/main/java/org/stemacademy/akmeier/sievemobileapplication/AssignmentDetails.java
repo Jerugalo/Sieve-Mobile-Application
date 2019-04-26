@@ -281,12 +281,19 @@ public class AssignmentDetails extends AppCompatActivity {
         projectList.clear();
         List<Task> projects = TaskListManager.getProjectList();
         if (projects != null){
-            projectList.add(task.getParentProject());
+            if(task.getParentProject() != null) {
+                projectList.add(task.getParentProject());
+            } else {
+                projectList.add("Select Parent Project");
+            }
+
             for (Task project : projects) {
                 if (!project.getNameID().equals(task.getParentProject())){
                     projectList.add(project.getNameID());
                 }
             }
+        } else {
+            projectList.add(" ");
         }
     }
 
