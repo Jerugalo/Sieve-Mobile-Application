@@ -6,87 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".projectView">
 
-    <LinearLayout
-        android:id="@+id/TopBar"
-        android:layout_width="match_parent"
+
+    <TextView
+        android:id="@+id/projectTitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:clickable="false"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <Button
-            android:id="@+id/MenuButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/button_style"
-            android:backgroundTint="?android:attr/colorPrimaryDark"
-            android:fontFamily="sans-serif-smallcaps"
-            android:onClick="toSettings"
-            android:text="@string/menu_key"
-            android:textAlignment="center"
-            android:textColor="?android:attr/textColorPrimary"
-            android:textSize="40sp" />
-
-        <TextView
-            android:id="@+id/SieveTitle"
-            android:layout_width="164dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="sans-serif-smallcaps"
-            android:text="@string/sieve_title"
-            android:textAlignment="center"
-            android:textColor="?android:attr/textColor"
-            android:textSize="33sp" />
-
-        <Button
-            android:id="@+id/AddTaskButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/button_style"
-            android:backgroundTint="?android:attr/colorPrimaryDark"
-            android:fontFamily="sans-serif-smallcaps"
-            android:onClick="toTaskCreate"
-            android:text="@string/create_task"
-            android:textAlignment="center"
-            android:textColor="?android:attr/textColorPrimary"
-            android:textSize="40sp" />
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/dateViewHP"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:fontFamily="sans-serif-smallcaps"
-        android:text="@string/date"
-        android:textAlignment="center"
-        android:textColor="?android:attr/textColor"
-        android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@+id/TopBar" />
-
-
-    <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/CheckMarkView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:baselineAligned="false"
-        android:src="@drawable/checkmark"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Project Title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/TaskList"
+        android:id="@+id/ProjectChildren"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
@@ -97,6 +31,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateViewHP" />
+        app:layout_constraintTop_toBottomOf="@+id/projectTitle" />
 
 </android.support.constraint.ConstraintLayout>
