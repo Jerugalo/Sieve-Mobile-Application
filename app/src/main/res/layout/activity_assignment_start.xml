@@ -93,6 +93,7 @@
         android:fontFamily="sans-serif-smallcaps"
         android:onClick="continueWork"
         android:text="@string/contWork"
+        android:textColor="?android:attr/textColorPrimary"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/DetailsTitle"
         app:layout_constraintEnd_toEndOf="parent"
