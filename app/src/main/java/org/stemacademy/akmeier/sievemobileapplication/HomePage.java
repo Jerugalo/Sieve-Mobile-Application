@@ -34,18 +34,12 @@ import org.stemacademy.akmeier.sievemobileapplication.utilities.SwipeController;
 import org.stemacademy.akmeier.sievemobileapplication.utilities.SwipeControllerActions;
 import org.stemacademy.akmeier.sievemobileapplication.utilities.TaskListManager;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import static java.lang.StrictMath.abs;
 
@@ -137,6 +131,7 @@ public class HomePage extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        adapter.PARENT="HomePage";
 
         taskDatabase = TaskDatabase.getInstance(this);
         tasks = taskDatabase.taskDao().getAll();
@@ -194,9 +189,25 @@ public class HomePage extends AppCompatActivity {
      */
     public void ToDetails(Task task) {
         if (task.getTypeID() != -1) {
-            Intent toDetails = new Intent(this, AssignmentDetails.class);
-            global.setCurrentTask(task);
-            startActivity(toDetails);
+            if(task.getTypeID()==1) {
+                Intent toDetails = new Intent(this, AssignmentDetails.class);
+                AssignmentDetails.PREVIOUSACTIVITY="HomePage";
+                global.setCurrentTask(task);
+                startActivity(toDetails);
+            }else if(task.getTypeID()==2){
+                if(TaskListManager.getProjectChildrenList(task)!=null) {
+                    if (TaskListManager.getProjectChildrenList(task).size() != 0) {
+                        Intent toProjectTasks=new Intent(this,ProjectTasks.class);
+                        global.setCurrentTask(task);
+                        startActivity(toProjectTasks);
+                    }
+                    else{
+                        Intent toDetails=new Intent(this,AssignmentDetails.class);
+                        global.setCurrentTask(task);
+                        startActivity(toDetails);
+                    }
+                }
+            }
         }
     }
 

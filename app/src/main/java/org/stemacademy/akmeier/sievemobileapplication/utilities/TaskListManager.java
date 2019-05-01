@@ -21,7 +21,6 @@ import static java.lang.StrictMath.abs;
 
 public class TaskListManager {
 
-    private static TaskListManager instance = new TaskListManager();
     private static List<Task> tasks;
 
     private TaskListManager(){
@@ -53,8 +52,10 @@ public class TaskListManager {
     public static List<Task> getProjectChildrenList(Task project){
         List<Task> children = new ArrayList<>();
         for (Task task : tasks){
-            if (task.getParentProject().equals(project.getNameID())){
-                children.add(task);
+            if (task.getParentProject() !=null){
+                if(task.getParentProject().equals(project.getNameID())){
+                    children.add(task);
+                }
             }
         }
         children = getSortedList(children);

@@ -24,6 +24,7 @@
         <activity android:name="org.stemacademy.akmeier.sievemobileapplication.AssignmentStart" />
         <activity android:name="org.stemacademy.akmeier.sievemobileapplication.TaskCreate" />
         <activity android:name="org.stemacademy.akmeier.sievemobileapplication.AssignmentDetails" />
+        <activity android:name="org.stemacademy.akmeier.sievemobileapplication.ProjectTasks"/>
 
         <receiver
             android:name="org.stemacademy.akmeier.sievemobileapplication.Notificationjava"
