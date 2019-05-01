@@ -58,7 +58,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 GlobalVars.setgDivPos(divPos);
                 if (divPos != 0) newItems.add(dividerPosition(), DIVIDER);
                 this.items.addAll(newItems);
-            }else{}
+            }else{this.items.addAll(newItems);}
         }
         DiffUtil.calculateDiff(new DiffUtil.Callback() {
             @Override
@@ -87,6 +87,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
+        items=items;
         LayoutInflater inflater = LayoutInflater.from(context);
         View taskView = inflater.inflate(R.layout.item_task_list, parent, false);
         View dividerView=inflater.inflate(R.layout.item_due_today_list,parent,false);

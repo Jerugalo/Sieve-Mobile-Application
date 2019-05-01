@@ -137,6 +137,7 @@ public class ProjectTasks extends AppCompatActivity {
     public void ToDetails(Task task) {
         if (task.getTypeID() != -1) {
             Intent toDetails = new Intent(this, AssignmentDetails.class);
+            AssignmentDetails.PREVIOUSACTIVITY="ProjectTasks";
             global.setCurrentTask(task);
             startActivity(toDetails);
         }

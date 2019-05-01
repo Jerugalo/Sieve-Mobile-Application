@@ -34,7 +34,6 @@ import org.stemacademy.akmeier.sievemobileapplication.fragments.DatePickerFragme
 import org.stemacademy.akmeier.sievemobileapplication.utilities.TaskListManager;
 
 import java.lang.ref.WeakReference;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -103,6 +102,9 @@ public class AssignmentDetails extends AppCompatActivity {
     AlarmListAdapter aLA;
     public String currentTime;
     public String currentDate;
+
+    public static String PREVIOUSACTIVITY="";
+    Task parentTask;
 
     /**
      * Runs when activity started
@@ -224,6 +226,12 @@ public class AssignmentDetails extends AppCompatActivity {
         aLA=new AlarmListAdapter(Alarms);
         rV.setAdapter(aLA);
         rV.setLayoutManager(new LinearLayoutManager(this));
+        List<Task> TasksAD=taskDatabase.taskDao().getAll();
+        for(int i=0;i<TasksAD.size();i++){
+            if(TasksAD.get(i).getNameID()==task.getParentProject()){
+                parentTask=TasksAD.get(i);
+            }
+        }
     }
     protected void onStart(){
         super.onStart();
@@ -235,8 +243,14 @@ public class AssignmentDetails extends AppCompatActivity {
      */
     public void toHomePage(View view){
         if(saved) {
-            Intent toHomePage = new Intent(this, HomePage.class);
-            startActivity(toHomePage);
+            if(PREVIOUSACTIVITY=="HomePage") {
+                Intent toHomePage = new Intent(this, HomePage.class);
+                startActivity(toHomePage);
+            }/*else if(PREVIOUSACTIVITY=="ProjectTasks"){
+                Intent toProjectTasks=new Intent(this,ProjectTasks.class);
+                global.setCurrentTask(parentTask);
+                startActivity(toProjectTasks);
+            }*/
         }else{
             ConfirmExitWithoutSaving.PARENT = "AssignmentDetails";
             ConfirmExitWithoutSaving.NEXT = "HomePage";
@@ -247,6 +261,11 @@ public class AssignmentDetails extends AppCompatActivity {
     public void toHomePageIntent(){
         Intent toHomePage = new Intent(this, HomePage.class);
         startActivity(toHomePage);
+        /*else if(PREVIOUSACTIVITY=="ProjectTasks"){
+            Intent toProjectTasks=new Intent(this,ProjectTasks.class);
+            global.setCurrentTask(parentTask);
+            startActivity(toProjectTasks);
+        }*/
     }
 
     /**
@@ -293,8 +312,10 @@ public class AssignmentDetails extends AppCompatActivity {
         task.setNotes(notesD.getText().toString());
         task.setTypeID(typeID);
         String alarmsString="";
-        for(int i=0; i<Alarms.size();i++){
-            alarmsString= alarmsString + Alarms.get(i);
+        if(Alarms!=null) {
+            for (int i = 0; i < Alarms.size(); i++) {
+                alarmsString = alarmsString + Alarms.get(i);
+            }
         }
         if(alarmsString!=task.getAlertList()){
             task.setAlertList(alarmsString);

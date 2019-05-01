@@ -191,6 +191,7 @@ public class HomePage extends AppCompatActivity {
         if (task.getTypeID() != -1) {
             if(task.getTypeID()==1) {
                 Intent toDetails = new Intent(this, AssignmentDetails.class);
+                AssignmentDetails.PREVIOUSACTIVITY="HomePage";
                 global.setCurrentTask(task);
                 startActivity(toDetails);
             }else if(task.getTypeID()==2){
