@@ -273,7 +273,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-smallcaps"
-                    android:text="Project"
+                    android:text="@string/project"
                     android:textColor="?android:attr/textColor"
                     android:textSize="29sp"
                     app:layout_constraintBaseline_toBaselineOf="@+id/DetailsClassSpinner"

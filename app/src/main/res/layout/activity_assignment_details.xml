@@ -235,7 +235,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-smallcaps"
-                    android:text="Project"
+                    android:text="@string/project"
                     android:textColor="?android:attr/textColor"
                     android:textSize="29sp" />
 
@@ -294,9 +294,9 @@
                     android:layout_marginStart="8dp"
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-smallcaps"
+                    android:text="@string/Alarms"
                     android:textColor="?android:attr/textColor"
-                    android:textSize="29sp"
-                    android:text="Alarms" />
+                    android:textSize="29sp" />
 
                 <Button
                     android:id="@+id/alarmsButtonAD"
