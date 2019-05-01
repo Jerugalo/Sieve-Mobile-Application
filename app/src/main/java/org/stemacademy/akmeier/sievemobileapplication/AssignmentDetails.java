@@ -243,14 +243,14 @@ public class AssignmentDetails extends AppCompatActivity {
      */
     public void toHomePage(View view){
         if(saved) {
-            if(PREVIOUSACTIVITY=="HomePage") {
+            //if(PREVIOUSACTIVITY=="HomePage") {
                 Intent toHomePage = new Intent(this, HomePage.class);
                 startActivity(toHomePage);
-            }/*else if(PREVIOUSACTIVITY=="ProjectTasks"){
-                Intent toProjectTasks=new Intent(this,ProjectTasks.class);
-                global.setCurrentTask(parentTask);
-                startActivity(toProjectTasks);
-            }*/
+            //}/*else if(PREVIOUSACTIVITY=="ProjectTasks"){
+                //Intent toProjectTasks=new Intent(this,ProjectTasks.class);
+               // global.setCurrentTask(parentTask);
+                //startActivity(toProjectTasks);
+            //}*/
         }else{
             ConfirmExitWithoutSaving.PARENT = "AssignmentDetails";
             ConfirmExitWithoutSaving.NEXT = "HomePage";

@@ -22,6 +22,7 @@ import org.stemacademy.akmeier.sievemobileapplication.utilities.SwipeControllerA
 import org.stemacademy.akmeier.sievemobileapplication.utilities.TaskListManager;
 
 import java.util.Calendar;
+import java.util.Hashtable;
 import java.util.List;
 
 import io.fabric.sdk.android.Fabric;
@@ -98,12 +99,12 @@ public class ProjectTasks extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         adapter.PARENT="ProjectTasks";
-
+        adapter = new TaskListAdapter(this);
         taskDatabase = TaskDatabase.getInstance(this);
         tasks = taskDatabase.taskDao().getAll();
+        adapter.updateItems(tasks);
         tasks=TaskListManager.getProjectChildrenList(mTask,tasks);
         rvTasks = findViewById(R.id.TaskListPT);
-        adapter = new TaskListAdapter(this);
         rvTasks.setAdapter(adapter);
         rvTasks.setLayoutManager(new LinearLayoutManager(this));
         adapter.updateItems(tasks);
@@ -113,11 +114,7 @@ public class ProjectTasks extends AppCompatActivity {
         swipeController = new SwipeController(new SwipeControllerActions() {
             @Override
             public void onRightClicked(int position) {
-                HomePage homePage=new HomePage();
-                Intent toHomePage = new Intent(context, HomePage.class);
-                toHomePage.putExtra("complete", true);
-                homePage.deleteTask(mTask);
-                startActivity(toHomePage);
+                deleteTask(adapter.items.get(position));
             }
 
             public void onLeftClicked(int position) {
@@ -127,6 +124,14 @@ public class ProjectTasks extends AppCompatActivity {
         ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeController);
         itemTouchhelper.attachToRecyclerView(rvTasks);
 
+    }
+    public void deleteTask(Task task){
+        if (task.getTypeID() != -1) {
+            tasks.remove(task);
+            taskDatabase.taskDao().delete(task);
+            TaskListManager.setTasks(tasks);
+            adapter.updateItems(tasks);
+        }
     }
 
     /**
