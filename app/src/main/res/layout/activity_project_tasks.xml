@@ -54,10 +54,10 @@
             android:backgroundTint="?android:attr/colorPrimaryDark"
             android:fontFamily="sans-serif-smallcaps"
             android:onClick="toTaskCreate"
-            android:text="@string/create_task"
+            android:text="Edit"
             android:textAlignment="center"
             android:textColor="?android:attr/textColorPrimary"
-            android:textSize="40sp" />
+            android:textSize="25sp" />
 
     </LinearLayout>
 

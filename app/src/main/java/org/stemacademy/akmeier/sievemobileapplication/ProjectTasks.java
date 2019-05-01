@@ -155,7 +155,7 @@ public class ProjectTasks extends AppCompatActivity {
      * Opens TaskCreate activity
      */
     public void toTaskCreate(View view) {
-        Intent toTaskCreate = new Intent(this, TaskCreate.class);
+        Intent toTaskCreate = new Intent(this, AssignmentDetails.class);
         startActivity(toTaskCreate);
     }
 
