@@ -54,7 +54,7 @@
             android:backgroundTint="?android:attr/colorPrimaryDark"
             android:fontFamily="sans-serif-smallcaps"
             android:onClick="toTaskCreate"
-            android:text="Edit"
+            android:text="@string/Edit"
             android:textAlignment="center"
             android:textColor="?android:attr/textColorPrimary"
             android:textSize="18sp" />

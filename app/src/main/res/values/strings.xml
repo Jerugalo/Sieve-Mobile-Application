@@ -54,6 +54,7 @@
     <string name="timeBreak">Time Until Break</string>
     <string name="timer_duration_title">Work Timer Duration</string>
     <string name="contWork">Continue &#xa; Working</string>
+    <string name="Edit">Edit</string>
 
     <string-array name="classes_array">
         <item>Math</item>
