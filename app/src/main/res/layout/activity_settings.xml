@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="org.stemacademy.akmeier.sievemobileapplication.Settings">
+
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/BackButton"
+            android:layout_width="12dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_style"
+            android:backgroundTint="?android:attr/colorPrimaryDark"
+            android:fontFamily="sans-serif-smallcaps"
+            android:onClick="toHomePage"
+            android:text="@string/return_home"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/SettingsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="@string/settings"
+            android:textAlignment="center"
+            android:textColor="?android:attr/textColor"
+            android:textSize="33sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/notifSettingsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/notification_settings"
+        android:textColor="?android:attr/textColor"
+        android:textSize="29sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topBar" />
+
+    <Button
+        android:id="@+id/ClearAlarmsButton"
+        android:layout_width="128dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/button_style"
+        android:backgroundTint="?android:attr/colorPrimaryDark"
+        android:fontFamily="sans-serif-smallcaps"
+        android:onClick="callClearAlarmsDialog"
+        android:text="@string/clearAlarms"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/notifSettingsTitle" />
+
+    <TextView
+        android:id="@+id/dispSettingsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/display_settings"
+        android:textColor="?android:attr/textColor"
+        android:textSize="29sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ClearAlarmsButton" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dispSettingsTitle">
+
+        <LinearLayout
+            android:id="@+id/themeColum1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/themeDefault"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="T1RDClicked"
+                android:text="@string/theme1name"
+                android:textColor="?android:attr/textColor" />
+
+            <RadioButton
+                android:id="@+id/themeAlternative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="T2RDClicked"
+                android:text="@string/theme2name"
+                android:textColor="?android:attr/textColor" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/themeColum2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/themeTwilight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="T3RDClicked"
+                android:text="@string/theme3name"
+                android:textColor="?android:attr/textColor" />
+
+            <RadioButton
+                android:id="@+id/themeDark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="T4RDClicked"
+                android:text="@string/theme4name"
+                android:textColor="?android:attr/textColor" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/themeColum3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/themeSimple"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="T5RDClicked"
+                android:text="@string/theme5name"
+                android:textColor="?android:attr/textColor" />
+
+            <RadioButton
+                android:id="@+id/themeOlive"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="T6RDClicked"
+                android:text="@string/theme6name"
+                android:textColor="?android:attr/textColor" />
+        </LinearLayout>
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/classOptionsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/class_options_title"
+        android:textColor="?android:attr/textColor"
+        android:textSize="29sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+    <Spinner
+        android:id="@+id/deleteClassSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/classOptionsTitle" />
+
+    <TextView
+        android:id="@+id/workTimerDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/timer_duration_title"
+        android:textColor="?android:attr/textColor"
+        android:textSize="29sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deleteClassSpinner" />
+
+    <Spinner
+        android:id="@+id/timerSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/workTimerDuration" />
+
+</android.support.constraint.ConstraintLayout>

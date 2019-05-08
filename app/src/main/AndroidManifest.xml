@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.stemacademy.akmeier.sievemobileapplication">
+
+
+    <application
+        android:name="org.stemacademy.akmeier.sievemobileapplication.GlobalVars"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/SieveDefault">
+        <activity
+            android:name="org.stemacademy.akmeier.sievemobileapplication.HomePage"
+            android:theme="@style/SieveDefault">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="org.stemacademy.akmeier.sievemobileapplication.Settings" />
+        <activity android:name="org.stemacademy.akmeier.sievemobileapplication.AssignmentStart" />
+        <activity android:name="org.stemacademy.akmeier.sievemobileapplication.TaskCreate" />
+        <activity android:name="org.stemacademy.akmeier.sievemobileapplication.AssignmentDetails" />
+        <activity android:name="org.stemacademy.akmeier.sievemobileapplication.ProjectTasks"/>
+
+        <receiver
+            android:name="org.stemacademy.akmeier.sievemobileapplication.Notificationjava"
+            android:enabled="true"
+            android:exported="false" />
+        <service android:name="org.stemacademy.akmeier.sievemobileapplication.AlarmsIntentService"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:enabled="true"
+            >
+        </service>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="ff41e32865bb2ef60652c7e1fd1f71dcc971a315" />
+    </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+</manifest>
