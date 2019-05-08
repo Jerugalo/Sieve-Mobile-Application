@@ -10,7 +10,7 @@
     <LinearLayout
         android:id="@+id/TopBar"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/MenuButton"
+            android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -35,7 +35,7 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/SieveTitle"
+            android:id="@+id/projectTitle"
             android:layout_width="164dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -46,7 +46,7 @@
             android:textSize="33sp" />
 
         <Button
-            android:id="@+id/AddTaskButton"
+            android:id="@+id/editProject"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -60,18 +60,6 @@
             android:textSize="18sp" />
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/dateViewPT"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:fontFamily="sans-serif-smallcaps"
-        android:text="@string/date"
-        android:textAlignment="center"
-        android:textColor="?android:attr/textColor"
-        android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@+id/TopBar" />
 
 
     <pl.droidsonroids.gif.GifImageView
@@ -93,11 +81,10 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateViewPT" />
+        app:layout_constraintTop_toBottomOf="@+id/TopBar" />
 
 </android.support.constraint.ConstraintLayout>

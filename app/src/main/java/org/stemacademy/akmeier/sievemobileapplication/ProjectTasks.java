@@ -78,21 +78,19 @@ public class ProjectTasks extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
-
         super.onCreate(savedInstanceState);
         context = this;
         Fabric.with(this, new Crashlytics());
         determineTheme();
         setContentView(R.layout.activity_project_tasks);
-        dateText = (TextView) findViewById(R.id.dateViewPT);
-        setDate(dateText);
+        TextView textView = findViewById(R.id.projectTitle);
+        textView.setText(GlobalVars.getCurrentTask().getNameID());
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         determineTheme();
-        setDate(dateText);
     }
 
     @Override
@@ -164,7 +162,6 @@ public class ProjectTasks extends AppCompatActivity {
         startActivity(toTaskCreate);
     }
 
-
     public void determineTheme(){
         int themeId = new SharedPreferencesManager(this).retrieveInt("themeId",1);
         if(themeId == 1){setTheme(R.style.SieveDefault);}
@@ -174,65 +171,6 @@ public class ProjectTasks extends AppCompatActivity {
         else if(themeId == 5){setTheme(R.style.SieveSimple);}
         else if(themeId == 6){setTheme(R.style.SieveOlive);}
         else{setTheme(R.style.SieveDefault);}
-    }
-
-    /**
-     * Sets the date on a text view
-     * @param textView the textView you want to write the date to
-     */
-    public void setDate(TextView textView){
-        Calendar calendar=Calendar.getInstance();
-        int dayInt=(calendar.get(Calendar.DAY_OF_WEEK));
-        String dayNameS;
-        if(dayInt==1){
-            dayNameS="Sunday";
-        }else if(dayInt==2){
-            dayNameS="Monday";
-        }else if(dayInt==3){
-            dayNameS="Tuesday";
-        }else if(dayInt==4){
-            dayNameS="Wednesday";
-        }else if(dayInt==5){
-            dayNameS="Thursday";
-        }else if(dayInt==6){
-            dayNameS="Friday";
-        } else if(dayInt==7){
-            dayNameS="Saturday";
-        }else{
-            dayNameS="";
-        }
-        int monthInt=(calendar.get(Calendar.MONTH))+1;
-        String monthName;
-        if(monthInt==1){
-            monthName="January";
-        }else if (monthInt==2){
-            monthName="February";
-        }else if(monthInt==3){
-            monthName="March";
-        }else if(monthInt==4){
-            monthName="April";
-        }else if(monthInt==5){
-            monthName="May";
-        }else if(monthInt==6){
-            monthName="June";
-        }else if(monthInt==7){
-            monthName="July";
-        }else if(monthInt==8){
-            monthName="August";
-        }else if(monthInt==9){
-            monthName="September";
-        }else if(monthInt==10){
-            monthName="October";
-        }else if(monthInt==11){
-            monthName="November";
-        }else if(monthInt==12){
-            monthName="December";
-        }else{
-            monthName="";
-        }
-        int dayNum=calendar.get(Calendar.DAY_OF_MONTH);
-        String dateFull=dayNameS+ ", " + monthName + " " + dayNum;
-        textView.setText(dateFull);
     }
 
     public static Context getContext(){
