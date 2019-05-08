@@ -1,5 +1,7 @@
 package org.stemacademy.akmeier.sievemobileapplication.fragments;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -22,12 +24,13 @@ public class ConfirmExitWithoutSaving extends DialogFragment implements DialogIn
     private static final String TAG = "ClassroomCreationDialog";
     public static String NEXT="";
     private boolean isTaskCreate;
+
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.dialog_confirm_save, container, false);
-        TextView mNo=view.findViewById(R.id.NoButton);
-        TextView mYes=view.findViewById(R.id.YesButton);
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        //final View view = inflater.inflate(R.layout.dialog_confirm_save, container, false);
+        //TextView mNo=view.findViewById(R.id.NoButton);
+        //TextView mYes=view.findViewById(R.id.YesButton);
         if (PARENT.equals("TaskCreate")){
             taskCreate = (TaskCreate)getActivity();
             isTaskCreate=true;
@@ -36,6 +39,34 @@ public class ConfirmExitWithoutSaving extends DialogFragment implements DialogIn
             assignmentDetails = (AssignmentDetails)getActivity();
             isTaskCreate=false;
         }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage(R.string.ConfirmExitWOSave)
+                .setPositiveButton(R.string.Yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Log.d(TAG,"onClick:moving to next");
+                        if(isTaskCreate){
+                            taskCreate.intentToHomePage();
+                        }
+                        if(!isTaskCreate){
+                            if(NEXT.equals("AssignmentStart")){
+                                assignmentDetails.beginTaskIntent();
+                            }
+                            if(NEXT.equals("HomePage")){
+                                assignmentDetails.toHomePageIntent();
+                            }
+                        }
+                        getDialog().dismiss();
+                    }
+                })
+                .setNegativeButton(R.string.No, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Log.d(TAG, "onClick: closing dialog");
+                        getDialog().dismiss();
+                    }
+                });
+
+        /*
         mNo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,8 +93,8 @@ public class ConfirmExitWithoutSaving extends DialogFragment implements DialogIn
                 getDialog().dismiss();
             }
         });
+        */
 
-
-        return view;
+        return builder.create();
     }
 }

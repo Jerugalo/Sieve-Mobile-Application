@@ -19,6 +19,8 @@
         <item name="android:datePickerStyle">@style/DatePickerDefaultStyle</item>
         <item name="android:timePickerStyle">@style/TimePickerDefaultStyle</item>
         <item name="android:timePickerDialogTheme">@style/TimePickerDefault</item>
+        <item name="android:alertDialogTheme">@style/AlertDialogDefault</item>
+        <item name="android:alertDialogStyle">@style/AlertDialogDefaultStyle</item>
     </style>
 
     <!-- Alternative Theme -->
@@ -146,6 +148,18 @@
         <item name="android:timePickerStyle">@style/TimePickerDefaultStyle</item>
     </style>
     <style name="TimePickerDefaultStyle" parent="@android:style/Widget.Material.Light.TimePicker">
+        <item name="android:background">@color/defaultBackground</item>
+        <item name="android:headerDayOfMonthTextAppearance">@color/defaultAccent</item>
+        <item name="android:colorAccent">@color/defaultAccent</item>
+    </style>
+    <style name="AlertDialogDefault" parent="@android:style/Theme.Material.Light.Dialog">
+        <item name="android:textColorPrimary">@color/textBlack</item>
+        <item name="android:colorAccent">@color/defaultAccent</item>
+        <item name="android:textColor">@color/textBlack</item>
+        <item name="android:textColorSecondary">@color/textBlack</item>
+        <item name="android:timePickerStyle">@style/AlertDialogDefaultStyle</item>
+    </style>
+    <style name="AlertDialogDefaultStyle" parent="@android:style/Widget.Material.Light.TimePicker">
         <item name="android:background">@color/defaultBackground</item>
         <item name="android:headerDayOfMonthTextAppearance">@color/defaultAccent</item>
         <item name="android:colorAccent">@color/defaultAccent</item>
