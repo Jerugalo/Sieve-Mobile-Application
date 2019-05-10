@@ -21,7 +21,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "org.stemacademy.akmeier.sievemobileapplication"
-        minSdkVersion 24
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode 3
         versionName "0.0-develop"
