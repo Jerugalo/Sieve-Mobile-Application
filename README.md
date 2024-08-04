@@ -1,6 +1,6 @@
 # Sieve-Mobile-Application
 
-Sieve, an app written for Android, allows users to input classes and classwork and to view their schedule in a minimalist fashion. It allows users to prioritize objectives during free time, and notifies users when due dates and other commitments are coming up. Project started Friday, August 29, 2018, and is currently ongoing.
+Sieve, an app written for Android, allows users to input classes and classwork and to view their schedule in a minimalist fashion. It allows users to prioritize objectives during free time, and notifies users when due dates and other commitments are coming up. Project started Friday, August 29, 2018, and concluded May 8, 2019.
 
 ## Installation and Deployment
 
